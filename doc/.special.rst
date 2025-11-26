@@ -38,3 +38,4 @@
 .. role:: left
 .. role:: right
 
+.. |oe|    unicode:: U+000F6 .. O UMLAUT
