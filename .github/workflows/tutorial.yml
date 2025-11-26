@@ -1,0 +1,89 @@
+name: dune-fem tutorial
+
+on: 
+  workflow_dispatch:
+    branches:
+      - main
+    inputs: 
+      version:
+        # note: this should be either 'latest' or a tag of the dune-fem tutorial version
+        #       vN where 'N' is a legal python package version e.g. N=2.11.0.3
+        type: string
+        description: 'tutorial version tag e.g. (latest | v2.11.0.3) [latest]'
+        required: true
+        default: 'v2.11.0.3'
+      keepfiles:
+        type: boolean
+        description: keep older versions [true]
+        required: true
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  builddocu:
+    runs-on: ubuntu-latest
+    steps:
+      # check documentation from version branch
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.version }}
+      - uses: actions/setup-python@v5
+      # install packages
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -o Acquire::Retries=3
+          sudo apt-get install python3-numpy python3-matplotlib python3-scipy python3-ufl pandoc
+          pip install sphinx sphinxcontrib-bibtex sphinx-versioning sphinxcontrib-packages nbsphinx sphinx_rtd_theme myst_parser numpy>=1.20 scipy nbconvert ipython jupyter jupytext pandas matplotlib pandoc pyqt5 sphinx-autobuild sphinx_rtd_theme sphinxcontrib-bibtex sortedcontainers triangle fenics-ufl==2024.2.0 x3d pygmsh
+          pip install sphinx sphinxcontrib-bibtex sphinx-versioning sphinxcontrib-packages nbsphinx sphinx_rtd_theme myst_parser numpy>=1.20 scipy nbconvert ipython jupyter jupytext pandas matplotlib pandoc pyqt5 sphinx-autobuild sphinx_rtd_theme sphinxcontrib-bibtex
+      # build sphinx documentation
+      # the documentation will be placed in versions/v.x.x.x.x
+      # versions/index.html is a redirection to the latest fem version directory
+      - name: latestversion 
+        if: github.event.inputs.version == 'latest'
+        run: echo "BRANCH=`git branch --contains tags/latest | grep v`" >> $GITHUB_ENV
+      - name: specificversion 
+        if: github.event.inputs.version != 'latest'
+        run: echo "BRANCH=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+
+      - name: Sphinx build
+        run: |
+          echo "Building documentation for $BRANCH"
+
+          git clone -b gh-pages https://github.com/${{ github.repository }}
+          # find other versions
+          echo $BRANCH > latest.txt
+          cd ${{ github.event.repository.name }}
+          ls -dvr v* >> ../latest.txt
+          # make versions unique 
+          cd ..
+          sort -nr latest.txt | uniq > uniqlatest.txt
+
+          rm -rf ${{ github.event.repository.name }}
+          LATEST=`sort -nr uniqlatest.txt | head -1`
+
+          wget https://raw.githubusercontent.com/dune-project/dune-fem-tutorial/refs/heads/main/createversions.sh
+          bash createversions.sh < uniqlatest.txt
+          mv versions.rst doc
+
+          # build docu
+          sphinx-build doc versions/$BRANCH
+
+          echo "Setting link to latest documentation for $LATEST"
+          # write redirect index.html
+          echo "<meta http-equiv=\"refresh\" content=\"0; url=https://dune-project.github.io/dune-fem-tutorial/$LATEST\" />" > versions/index.html
+
+
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' }}
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: versions/
+          # keep files to keep previous documentations
+          keep_files: ${{ github.event.inputs.keepfiles }}
+          #force_orphan: true
+
