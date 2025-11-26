@@ -1,0 +1,23 @@
+pip install -r reqCI.txt
+
+in doc:
+
+make clean
+
+make -i -j 8 
+
+# coffee!
+
+in build-cmake:
+
+make doc 
+
+in build-cmake/doc/html/ open index.html with firefox
+
+# aendern in doc oder demos (files in doc sind links)
+# CMakelists.txt in doc
+
+# change doc/Makefile to convert notebooks
+
+# index, siehe mfc.py "grid construction"
+
