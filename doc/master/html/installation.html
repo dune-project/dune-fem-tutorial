@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From PyPi &mdash; Tutorial for version 2.11-git</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="dune-fempy_nb.html" />
+    <link rel="prev" title="Cahn-Hilliard" href="chimpl_nb.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/dune-python-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="changelog210.html" style="color:white">Most recent changes</a></u></li>
+     </span>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Teasers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="furtherexamples.html">Main Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wave_nb.html">Wave Equation: double slit domain (using mass lumping)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#DG-formulation">DG formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="monolithicStokes_nb.html#id3">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Convergence-rate-check">Convergence rate check</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cylinder_nb.html">Navier-Stokes: flow around a cylinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mixed_poisson_nb.html">Mixed method for the Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evalues_laplace_nb.html">Eigenvalue problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evalues_laplace_nb.html#Eigenvalues-of-the-Neumann-Laplacian">Eigenvalues of the Neumann Laplacian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="evalues_laplace_nb.html#Dirichlet-Eigenvalue-problem">Dirichlet Eigenvalue problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="biharmonic_IPC0_nb.html">Biharmonic problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="biharmonic_IPC0_nb.html#Implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="biharmonic_IPC0_nb.html#Simply-supported-boundary-conditions">Simply supported boundary conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="furtherexamples.html#extension-modules">Extension Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="furtherexamples.html#discontinuous-galerkin-methods-with-dune-fem-dg">Discontinuous Galerkin Methods with DUNE-FEM-DG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="euler_nb.html">Euler System of Gas Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chemical_nb.html">An Advection-Diffusion-Reaction System: Chemical Reaction Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="furtherexamples.html#virtual-element-methods-with-dune-vem">Virtual Element Methods with DUNE-VEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html">Elliptic Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Nonlinear-Elliptic-Problem">Nonlinear Elliptic Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Linear-Elasticity">Linear Elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Fourth-order-problem">Fourth order problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chimpl_nb.html">Cahn-Hilliard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">From PyPi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#additional-external-packages">Additional external packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-the-installation">Testing the installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hints-for-windows">Hints for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#from-source">From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-the-required-dune-modules">Building the Required Dune Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dune-fempy_nb.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-Laplace-problem">A Laplace problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Laplace-equation-with-Dirichlet-boundary-conditions">Laplace equation with Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-non-linear-elliptic-problem">A non-linear elliptic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Using-Constant-parameters-and-grid-functions-in-PDEs">Using <code class="docutils literal notranslate"><span class="pre">Constant</span></code> parameters and grid functions in PDEs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts_nb.html">General Concepts (with a time dependent problem)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Setting-up-the-Grid">Setting up the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Grid-Functions">Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Spaces">Discrete Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Functions">Discrete Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Operators-and-Schemes">Operators and Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#A-Nonlinear-Time-Dependent-Problem">A Nonlinear Time Dependent Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Listing-Available-Dune-Components">Listing Available Dune Components</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="boundary_nb.html">More General Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Dirichlet-boundary-conditions">Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom">Accessing the Dirichlet degrees of freedom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Neumann-and-Robin-boundary-conditions">Neumann and Robin boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solversInternal_nb.html">Tweaking the (non-) linear solvers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Python-sided-Newton-solver">Python sided Newton solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Handling-Dirichlet-boundary-conditions">Handling Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Other-internal-solvers-(petsc)">Other internal solvers (petsc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Other-internal-solvers-(istl)">Other internal solvers (istl)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Parameters-for-fine-tuning-the-internal-solvers">Parameters for fine-tuning the internal solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Available-solvers-and-parameters">Available solvers and parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solversExternal_nb.html">Alternative Solvers (e.g. Scipy, Petsc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Accessing-underlying-data-structures">Accessing underlying data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Defining-discrete-function-with-given-external-dof-vector">Defining discrete function with given external dof vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-Scipy">Using Scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-scikit-umfpack">Using scikit-umfpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-PETSc4Py">Using PETSc4Py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corepy.html">Using the Full Grid Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Dense-Vectors-and-the-Geometry-Classes">Dense Vectors and the Geometry Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Grid-Construction-and-Basic-Interface">Grid Construction and Basic Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Structured-grids">Structured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Unstructured-grids">Unstructured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Local-grid-adaptivity">Local grid adaptivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dune-corepy_nb.html#Basic-information-and-iterators">Basic information and iterators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Using-grid-functions">Using grid functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Importing-user-defined-C++-code">Importing user defined C++ code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Attaching-Data-to-the-Grid">Attaching Data to the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Output-of-Grid-and-Visualization-of-Data">Output of Grid and Visualization of Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Paraview-(vtu/vtk-files)">Paraview (vtu/vtk files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Mayavi">Mayavi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Low-level-output">Low level output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gridviews_and_adaptivity.html">Grid views and adaptivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-and-some-basic-grid-views-level-and-filtered">Overview and some basic grid views (level and filtered)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="levelgridview_nb.html">LevelGridView examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening-h-adaptation">Dynamic Local Grid Refinement and Coarsening (h-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-on-adaptivity-for-spaces-p-adaptation">Overview on adaptivity for spaces (p-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-on-moving-grids-r-adaptation">Overview on moving grids (r-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpp.html">Using C++ Code Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Projects using Dune-Fem</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mmesh_descr.html">Mixed-dimensional PDEs: the Dune-MMesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mmesh_nb.html">Dune-MMesh: Solving a Mixed-dimensional PDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="landlab_descr.html">Components for the Landlab software package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview_of_advection_solver_nb.html">Linear Advection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview_of_advection_solver_nb.html#Advection-of-a-Gaussian-%22bump%22-in-2d">Advection of a Gaussian “bump” in 2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-east">Raster grid with advection to the east</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="overview_of_advection_solver_nb.html#Instantiate-component">Instantiate component</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-north">Raster grid with advection to the north</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-southwest">Raster grid with advection to the southwest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-a-non-uniform-advection-field">Raster grid with a non-uniform advection field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Case-of-divergent-velocity">Case of divergent velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="overview_of_advection_solver_nb.html#A-rotating-cone">A rotating cone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html">A Linear Diffusion Overland Flow Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Overview">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Model">Model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Flow-direction,-depth,-and-velocity">Flow direction, depth, and velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Numerical-Methods">Numerical Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#The-component">The component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Example-2:-overland-flow-on-a-DEM">Example 2: overland flow on a DEM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#References">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ddfem_descr.html">DDFEM: Diffuse Domain Python package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Information for C++ Developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#using-a-debugger">Using a debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#list-of-build-specific-environment-variables">List of build specific environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html">Contributing to this tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html#how-to-showcase-your-own-work">How to showcase your own work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional.html">Additional Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog290.html">Since 2.9 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#general-changes">General changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#updating-to-newer-version-of-ufl">Updating to newer version of UFL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#new-clone-method-on-spaces">New <cite>clone</cite> method on spaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#dirichlet-bcs-for-operators-with-different-range-domain-space">Dirichlet BCs for operators with different range/domain space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#changes-to-solver-parameter-keys">Changes to solver parameter keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#added-a-solve-method-to-the-linearization-of-schemes">Added a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method to the linearization of <code class="docutils literal notranslate"><span class="pre">schemes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#updated-dune-fem-scheme-linearized">Updated <code class="docutils literal notranslate"><span class="pre">dune.fem.scheme.linearized</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#add-operator-len-to-spaces">Add operator <code class="docutils literal notranslate"><span class="pre">__len__</span></code> to spaces.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#add-dirichletindices-method-to-operators-and-schemes">Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#extension-of-the-jacobian-method-on-schemes-and-operators">Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#set-non-default-quadratures-in-quadrature-rules">Set non default quadratures in quadrature rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#assembly-function">Assembly function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#improved-pickling-support">Improved Pickling support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#paraview-reader">Paraview Reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#sampler-along-boundary">Sampler along Boundary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">Point sampler returning (entity,local coordinate) for given global coordinate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#improved-boundary-indexing-in-ufl-forms-for-boundary-integrals-and-dirichlet-conditions">Improved Boundary Indexing in UFL Forms (for boundary integrals and Dirichlet conditions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#eisenstatwalker-in-newton-method">Eisenstatwalker in Newton method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#storage-setup-in-scheme">Storage setup in scheme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">Methods on space to return local mapper and for evaluating basis functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#logging-of-parameter-values">Logging of parameter values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-the-rhs-argument-for-scheme-solve">Deprecation of the <code class="docutils literal notranslate"><span class="pre">rhs</span></code> argument for <code class="docutils literal notranslate"><span class="pre">scheme.solve</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-integrate">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-ufl-expression2gf">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-operator-linear">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-space-combinedspace">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#dune-vem">DUNE-VEM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#dirichlet-constraints-for-conforming-c-1-space">Dirichlet constraints for conforming $C^1$ space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#intersection-integrals-now-use-the-edge-projections">Intersection integrals now use the edge projections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog210.html">Since 2.10 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#breaking-changes">Breaking changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#general-changes">General changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#bugfixes">Bugfixes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog210.html#pickling-of-discrete-functions">Pickling of discrete functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inforesources.html">Keyword index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gmsh2dgf_nb.html">Converting gmsh to DGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slurmbatchscript.html">Slurm batch script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DUNE-FEM Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">From PyPi</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="chimpl_nb.html" class="btn btn-neutral float-left" title="Cahn-Hilliard" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dune-fempy_nb.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="from-pypi">
+<h1>From PyPi<a class="headerlink" href="#from-pypi" title="Link to this heading"></a></h1>
+<div class="admonition warning" id="installation">
+<p class="admonition-title">Warning</p>
+<p>Make sure that the installation folder name and any parent folder names <strong>do not
+contain white spaces</strong> since this will break the installation at various
+points. In general white spaces in filenames and folder names should be
+avoided.</p>
+</div>
+<p>By far the easiest way to get access to <cite>Dune</cite> is by installing into a
+virtual environment using <cite>pip</cite>. In some folder e.g. <cite>Dune</cite> setup a virtual
+environment and activate it</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dune-env
+<span class="nb">source</span><span class="w"> </span>dune-env/bin/activate
+</pre></div>
+</div>
+<p>Then download and build <cite>Dune</cite> (note that this takes some time to have
+coffee/tea at hand):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This tutorial is based on the upcoming 2.11 version of Dune.
+Older release versions are available in the Python package index and can be
+obtained by removing the <cite>–pre</cite> from the above install command. Note
+that a few of the features described in this tutorial will not be
+available and that the API has changed in some places. See the
+description in the <a class="reference internal" href="changelog.html"><span class="doc">changelog</span></a> for details.</p>
+</div>
+<section id="additional-external-packages">
+<h2>Additional external packages<a class="headerlink" href="#additional-external-packages" title="Link to this heading"></a></h2>
+<p>To use additional external packages like <cite>petsc</cite> or <cite>umfpack</cite> which are not
+in a default location, the cmake prefix variable can be set during
+installation process:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_FLAGS</span><span class="o">=</span><span class="s2">&quot;-DCMAKE_PREFIX_PATH=PATHLIST&quot;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+</pre></div>
+</div>
+<p>where <cite>PATHLIST</cite> is a semicolon separated list of path containing external packages.</p>
+</section>
+<section id="testing-the-installation">
+<h2>Testing the installation<a class="headerlink" href="#testing-the-installation" title="Link to this heading"></a></h2>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The current installation requires MPI to be available and requires the
+additional installation of <cite>mpi4py</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mpi4py
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The first time you construct an object of a specific realization of one
+of the Dune interfaces (e.g. here a structured grid),
+the just in time compiler needs to be invoked. This can take quite some
+time - especially for grid realizations. This needs to be done only once
+so rerunning the above code a second time (even using other parameters
+in the <cite>structuredGrid</cite> function) should execute almost instantaniously.</p>
+</div>
+<p>To test that everything works you can download all the scripts described
+in this tutorial and try them out</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>dune.fem
+<span class="nb">cd</span><span class="w"> </span>fem_tutorial
+python<span class="w"> </span>concepts.py
+</pre></div>
+</div>
+<p>All examples are available as Python scripts or IPython notebooks - for
+the later <cite>jupyter</cite> is needed</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
+jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+<p>This has been tested with different Linux distributions, MacOS, and using
+the <em>Windows Subsystem for Linux</em>.</p>
+</section>
+<section id="hints-for-windows">
+<h2>Hints for Windows<a class="headerlink" href="#hints-for-windows" title="Link to this heading"></a></h2>
+<p>Some hints on getting Dune to work using the
+<em>Windows Subsystem for Linux</em> (tested on Windows 11).
+Installation in three steps:</p>
+<ol class="arabic">
+<li><p>First we need to <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment">install the wsl</a> (here an <cite>Ubuntu</cite> version):</p>
+<p>Open <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> as administrator and run <code class="docutils literal notranslate"><span class="pre">wsl</span> <span class="pre">--install</span></code>
+(find Windows <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> and right click;
+the first entry should be <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">as</span> <span class="pre">administrator</span></code>).
+This step takes quite some time (‘get a coffee’ long).
+Close the <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code> again (enter <code class="docutils literal notranslate"><span class="pre">exit</span></code>).
+Possibly one needs to restart after this step (second coffee).</p>
+</li>
+<li><p>We need to add some packages and setup a Python virtual environment.
+Open the wsl (Pinguin icon) - again some installation is done.
+Enter a new username and password.
+Then run the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w">  </span><span class="c1"># enter the password you used above</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>--reinstall<span class="w"> </span>ca-certificates
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-dev<span class="w"> </span>python3-pip<span class="w"> </span>python3-venv<span class="w"> </span>cmake
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>jupyter-core
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dune-env
+<span class="nb">source</span><span class="w"> </span>dune-env/bin/activate
+pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
+</pre></div>
+</div>
+</li>
+</ol>
+<p>3. We have reached the Dune specific part of the installation as described
+above in a lot more detail (I would suggest some tea at this stage)</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+python<span class="w"> </span>-m<span class="w"> </span>dune.fem
+</pre></div>
+</div>
+<p>The last step downloads the tutorial scripts into the folder
+<code class="docutils literal notranslate"><span class="pre">fem_tutorial</span></code>.</p>
+</div></blockquote>
+<p>Each time to open the Linux terminal (wsl) again you will need to
+run the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>~/dune-env/bin/activate
+</pre></div>
+</div>
+<p>To work on one of the scripts from the tutorial you can either use
+<code class="docutils literal notranslate"><span class="pre">jupyter-lab</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/fem_tutorial/
+jupyter<span class="w"> </span>lab<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>then open the given link in your favourite web browser.</p>
+<p>Instead of using the notebooks you can also run the python scripts from
+the command line, e.g., run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>concepts.py
+</pre></div>
+</div>
+<p>in the <code class="docutils literal notranslate"><span class="pre">fem_tutorial</span></code> folder.</p>
+</section>
+</section>
+<section id="from-source">
+<h1>From Source<a class="headerlink" href="#from-source" title="Link to this heading"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We strongly encourage the use of a python virtual environment and the
+following instructions are written assuming that a virtual environment is
+activated.</p>
+</div>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>The following dependencies are needed for Dune-Fem python binding:</p>
+<ul class="simple">
+<li><p>At least C++17 compatible C++ compiler (e.g. g++ 9 or later)</p></li>
+<li><p>python (3.7 or later)</p></li>
+<li><p><strong>Required</strong> Dune modules (release 2.9 or later)</p>
+<ul>
+<li><p>dune-common (<a class="reference external" href="https://gitlab.dune-project.org/core/dune-common.git">https://gitlab.dune-project.org/core/dune-common.git</a>)</p></li>
+<li><p>dune-geometry (<a class="reference external" href="https://gitlab.dune-project.org/core/dune-geometry.git">https://gitlab.dune-project.org/core/dune-geometry.git</a>)</p></li>
+<li><p>dune-grid (<a class="reference external" href="https://gitlab.dune-project.org/core/dune-grid.git">https://gitlab.dune-project.org/core/dune-grid.git</a>)</p></li>
+<li><p>dune-istl (<a class="reference external" href="https://gitlab.dune-project.org/core/dune-istl.git">https://gitlab.dune-project.org/core/dune-istl.git</a>)</p></li>
+<li><p>dune-localfunctions (<a class="reference external" href="https://gitlab.dune-project.org/core/dune-localfunctions.git">https://gitlab.dune-project.org/core/dune-localfunctions.git</a>)</p></li>
+<li><p>dune-alugrid  (<a class="reference external" href="https://gitlab.dune-project.org/extensions/dune-alugrid.git">https://gitlab.dune-project.org/extensions/dune-alugrid.git</a>)</p></li>
+<li><p>dune-fem (<a class="reference external" href="https://gitlab.dune-project.org/dune-fem/dune-fem.git">https://gitlab.dune-project.org/dune-fem/dune-fem.git</a>)</p></li>
+</ul>
+</li>
+<li><p><strong>Optional</strong> Dune modules (release 2.9 or later)</p>
+<ul>
+<li><p>dune-spgrid (<a class="reference external" href="https://gitlab.dune-project.org/extensions/dune-spgrid.git">https://gitlab.dune-project.org/extensions/dune-spgrid.git</a>)</p></li>
+<li><p>dune-polygongrid (<a class="reference external" href="https://gitlab.dune-project.org/extensions/dune-polygongrid.git">https://gitlab.dune-project.org/extensions/dune-polygongrid.git</a>)</p></li>
+<li><p>dune-fem-dg (<a class="reference external" href="https://gitlab.dune-project.org/dune-fem/dune-fem-dg.git">https://gitlab.dune-project.org/dune-fem/dune-fem-dg.git</a>)</p></li>
+<li><p>dune-vem (<a class="reference external" href="https://gitlab.dune-project.org/dune-fem/dune-vem.git">https://gitlab.dune-project.org/dune-fem/dune-vem.git</a>)</p></li>
+</ul>
+</li>
+</ul>
+<p>The optional Dune modules are only need for the parts of the tutorial discussing extension modules.</p>
+</section>
+<section id="building-the-required-dune-modules">
+<h2>Building the Required Dune Modules<a class="headerlink" href="#building-the-required-dune-modules" title="Link to this heading"></a></h2>
+<p>Read the instructions on how to <a class="reference external" href="https://dune-project.org/doc/installation/installation-pythonbindings/">build Dune with Python support</a> which also
+links to general instructions on how to <a class="reference external" href="https://dune-project.org/doc/installation">build Dune modules</a>.</p>
+<p>The <a class="reference external" href="https://gitlab.dune-project.org/dune-fem/dune-fem-dg">dune-fem-dg</a> module offers an <a class="reference external" href="https://gitlab.dune-project.org/dune-fem/dune-fem-dg/-/blob/master/scripts/build-dune-fem-dg.sh?ref_type=heads">example script</a> to build all required modules from source.</p>
+<p>Test your completed installation by opening a Python terminal and running</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="nd">@gridFunction</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+   <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">two_norm</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you have everything set up correctly (and have <cite>matplotlib</cite>) you should
+get a colored figure and are hopefully ready to go…</p>
+</section>
+</section>
+<section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
+<ul>
+<li><p><strong>Issue with C++ compiler:</strong>
+If the gnu compiler is used, version needs to be 7 or later. This can be checked in terminal with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>If your version is out of date, you will need to upgrade your system to use Dune</p>
+</li>
+<li><p><strong>A terminated compilation:</strong>
+If you get a <cite>CompileError</cite> exception with an output of the form:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>raise<span class="w"> </span>CompileError<span class="o">(</span>buffer_to_str<span class="o">(</span>stderr<span class="o">))</span>
+<span class="w">  </span>dune.generator.exceptions.CompileError:<span class="w"> </span>c++:<span class="w"> </span>fatal<span class="w"> </span>error:<span class="w"> </span>Killed<span class="w"> </span>signal
+<span class="w">  </span>terminated<span class="w"> </span>program<span class="w"> </span>cc1plus
+<span class="w">  </span>compilation<span class="w"> </span>terminated.
+</pre></div>
+</div>
+<p>then this could be caused by the compiler running out of memory.
+This can especially happen on a HPC cluster where memory can be
+restricted. An option is to run a small part of the simulation on
+a single core with a lot of memory so that all modules are compiled
+before starting the production run which might require less memory
+than the compilation process.</p>
+</li>
+<li><p><strong>Python version:</strong>
+It is possible that the python version may be an issue. The scripts
+require <cite>python3</cite> including the development package being installed.
+If during the Dune installation you get the error</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fatal error: pyconfig.h: No such file or directory
+</pre></div>
+</div>
+<p>This can probably be fixed by installing additional python3 libraries with e.g.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libpython3-dev
+</pre></div>
+</div>
+</li>
+<li><p><strong>MPI not found:</strong>
+One other problem is that a default version of Open MPI may already be installed.
+This will lead to errors where Dune appears to be looking in the wrong directory for Open MPI
+(e.g. <cite>usr/lib/openmpi</cite> instead of the home directory where the script installs it).
+This can be solved by running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>uninstall
+</pre></div>
+</div>
+<p>in the original MPI install directory, followed by removing the folder. It will then be necessary to reinstall Open MPI and Dune. It may also be necessary to direct mpi4py to the new MPI installation. It is possible to check whether this is a problem by running python and trying out</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mpi4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">MPI</span>
+</pre></div>
+</div>
+<p>If it comes up with an error, this can be fixed by installing mpi4py manually using the following commands</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://bitbucket.org/mpi4py/mpi4py.git
+<span class="nb">cd</span><span class="w"> </span>mpi4py
+python<span class="w"> </span>setup.py<span class="w"> </span>build<span class="w"> </span>--mpicc<span class="o">=</span>/path/to/openmpi/bin/mpicc
+python<span class="w"> </span>setup.py<span class="w"> </span>install<span class="w"> </span>--user
+</pre></div>
+</div>
+</li>
+<li><p>If you get a</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RuntimeError:<span class="w"> </span>ParallelError<span class="w"> </span><span class="o">[</span>Communication:dune-env/include/dune/common/parallel/mpicommunication.hh:???<span class="o">]</span>:
+You<span class="w"> </span>must<span class="w"> </span>call<span class="w"> </span>MPIHelper::instance<span class="o">(</span>argc,argv<span class="o">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>main<span class="o">()</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>before<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>MPI<span class="w"> </span>Communication!
+</pre></div>
+</div>
+<p>then the system did not correctly detect the missing <cite>mpi4py</cite> package -
+you need to install it using e.g.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mpi4py
+</pre></div>
+</div>
+</li>
+<li><p><strong>User warning from numpy:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>UserWarning: The value of the smallest subnormal for &lt;class &#39;numpy.float64&#39;&gt; type is zero.
+</pre></div>
+</div>
+<p>This is caused by some shared library using the compiler flag
+<code class="docutils literal notranslate"><span class="pre">fast-math</span></code>.
+Check for example that you are not using this flag in your cmake setup for Dune.
+See <a class="reference external" href="https://moyix.blogspot.com/2022/09/someones-been-messing-with-my-subnormals.html/">here</a>
+for a detailed description.</p>
+</li>
+<li><p><strong>Using petsc and petsc4py:</strong>
+It is important the all <cite>dune</cite> modules and <cite>petsc4py</cite> use the same
+version of <cite>petsc</cite>. An runtime exception will be thrown if some
+incompatibility is detected. The simplest way to avoid any issues is to
+set the <cite>PETSC_DIR</cite> environment variable during the building, e.g., <cite>pip</cite>
+installation of the <cite>dune</cite> packages and running the scripts.
+The following gives an example of how to first install <cite>petsc</cite> and
+<cite>petsc4py</cite> into a virtual environment and then install <cite>dune-fem</cite>.
+Assuming that the virtual environment with <cite>python</cite> version <cite>X.Y</cite>
+is in <cite>$HOME/dune-env</cite> and we want a few extra <cite>petsc</cite> packages we could run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mpi4py
+<span class="nv">PETSC_CONFIGURE_OPTIONS</span><span class="o">=</span><span class="s2">&quot;--download-hypre --download-parmetis --download-ml --download-metis --download-scalapack&quot;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>petsc
+<span class="nb">export</span><span class="w"> </span><span class="nv">PETSC_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/dune-env/lib/pythonX.Y/site-packages/petsc
+pip<span class="w"> </span>install<span class="w"> </span>petsc4py
+pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+</pre></div>
+</div>
+<p>After this the <cite>PETSC_DIR</cite> environment variable should not be required anymore.
+This is all a bit experimental so let us know if it is not working.
+Of course an installed <cite>petsc</cite> or build from source should work in the
+same way, without the need for the <cite>pip install petsc</cite> line, just make
+sure to set the <cite>PETSC_DIR</cite> during the installation of <cite>dune-fem</cite>.</p>
+</li>
+<li><p><strong>Newly installed software is not used:</strong>
+After for example adding <cite>petsc</cite> to your system one needs to remove an existing <cite>dune-py</cite> module which
+contains the jit compiled modules. New software components are not
+automatically picked up. One can run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>dune<span class="w"> </span>info
+</pre></div>
+</div>
+<p>to find the location of the <cite>dune-py</cite> folder. That folder needs to be
+removed before the new component can be used.</p>
+<p>If issues remain reinstalling all <cite>dune</cite> packages might be required -
+including the cached wheels:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>-y<span class="w"> </span><span class="sb">`</span>pip<span class="w"> </span>freeze<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>dune<span class="sb">`</span>
+pip<span class="w"> </span>cache<span class="w"> </span>remove<span class="w"> </span><span class="s2">&quot;dune*&quot;</span>
+</pre></div>
+</div>
+<p>When running <cite>pip install</cite> for the <cite>dune</cite> packages setting prefix path
+for cmake as described above might be necessary if the
+new package is not in a default location.</p>
+</li>
+<li><p><strong>Output to terminal seems a bit random:</strong>
+the issue is (probably) that
+Python buffers its <cite>print</cite> output and C++ does not. So if in a mixed
+program both are writing to the terminal (or piped into a file) the C++
+output often appears before the Python output. This can be fixed by (i)
+adding <cite>flush=True</cite> to the Python print statements or setting the
+environment variable <cite>PYTHONUNBUFFERED</cite> to some non zero value.</p></li>
+</ul>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3706994"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" />
+</a>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="chimpl_nb.html" class="btn btn-neutral float-left" title="Cahn-Hilliard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dune-fempy_nb.html" class="btn btn-neutral float-right" title="Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Nov 21, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
