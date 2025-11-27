@@ -58,7 +58,7 @@ nbsphinx_thumbnails = {
 html_theme = "sphinx_rtd_theme"   # 'sphinxdoc'
 #html_theme = "piccolo_theme"   # 'sphinxdoc'
 html_theme_options = {
-    'logo_only': True,
+    'logo_only': False,
     'prev_next_buttons_location': 'both',
     'style_external_links': True,
     'sticky_navigation': False,
@@ -176,6 +176,13 @@ html_favicon = 'favicon.ico'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_context = {
+    "versions": [
+        ("latest", "/latest/"),
+        ("v2.10", "/v2.10/"),
+    ],
+}
+
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
@@ -224,7 +231,6 @@ html_show_copyright = True
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'dune-fempydoc'
-
 
 # -- Options for LaTeX output ---------------------------------------------
 

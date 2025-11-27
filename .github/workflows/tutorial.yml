@@ -1,4 +1,4 @@
-name: tutorial
+name: dune-fem tutorial
 
 on: [pull_request, workflow_dispatch]
 
@@ -18,13 +18,13 @@ jobs:
 
       - name: Sphinx build
         run: |
-          sphinx-build doc _build
+          sphinx-build doc versions/v2.11.0.3
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _build/
+          publish_dir: versions/
           force_orphan: true
 
