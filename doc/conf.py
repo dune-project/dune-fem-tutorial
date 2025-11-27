@@ -40,6 +40,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
+    'sphinx_versioning',
 #    'sphinx_multitoc_numbering',
     'nbsphinx',
 #    'sphinxcontrib.apidoc',
@@ -199,6 +200,14 @@ html_last_updated_fmt = '%b %d, %Y'
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
+
+html_sidebars = {
+    '**': [
+        # ... other sidebars ...
+        # Suggest putting the extension above the search bar for better UX.
+        'sidebar/sphinx_versioning.html',
+    ]
+}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
