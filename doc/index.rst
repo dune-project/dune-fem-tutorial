@@ -16,7 +16,7 @@ This version describes the bindings for the development version
    is used to describe the mathematical
    model, all realizations of the `Dune`_ grid interface can be used to
    work with the domain tessellation, and the finite element spaces,
-   operator, and solvers provided by `Dune-Fem`_ for the discretizations
+   operator, and solvers provided by `Dune-Fem`_ for the discretizations 
    and solving steps. All of this is available to be used in python
    scripts or through Jupyter notebooks.
 2. Rapid prototyping of new methods or other parts of a simulation is easy
@@ -40,11 +40,6 @@ This version describes the bindings for the development version
 ################
 Table of Content
 ################
-
-.. toctree::
-   :caption: Versions
-
-   versions
 
 .. toctree::
    :caption: Overview
