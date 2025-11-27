@@ -1,6 +1,6 @@
 name: dune-fem tutorial
 
-on: [pull_request, workflow_dispatch]
+on: [push, pull_request, workflow_dispatch]
 
 permissions:
   contents: write
