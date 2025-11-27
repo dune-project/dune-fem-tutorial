@@ -1,4 +1,12 @@
-.. dropdown:: Version
-   Dropdown latest    :doc:`latest`
-   Dropdown v2.11.0.3 :doc:`v2.11.0.3`
-   Dropdown v2.10.0.0 :doc:`v2.10.0.0`
+..
+
+##########################
+DUNE-FEM Tutorial Versions
+##########################
+
+Previous versions of the DUNE-FEM tutorial:
+  * :ref:`latest`
+  * :ref:`twoten`
+
+:: _latest: https://dune-project.github.io/dune-fem-tutorial/latest
+:: _twoten: https://dune-project.github.io/dune-fem-tutorial/v2.10.0.0/
