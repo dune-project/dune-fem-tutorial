@@ -179,7 +179,8 @@ html_static_path = ['_static']
 html_context = {
     "versions": [
         ("latest", "/latest/"),
-        ("v2.10", "/v2.10/"),
+        ("v2.11.0.3", "/v2.11.0.3/"),
+        ("v2.10.0.0", "/v2.10.0.0/"),
     ],
 }
 
