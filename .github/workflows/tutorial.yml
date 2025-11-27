@@ -19,6 +19,7 @@ jobs:
       - name: Sphinx build
         run: |
           sphinx-build doc versions/v2.11.0.3
+          ln -s versions/v2.11.0.3/* versions 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' }}
