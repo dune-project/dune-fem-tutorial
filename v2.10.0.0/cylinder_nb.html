@@ -1,0 +1,994 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navier-Stokes: flow around a cylinder &mdash; Tutorial for version 2.11-git</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/dune-python-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="changelog290.html" style="color:white">Most recent changes</a></u></li>
+     </span>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">From PyPi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#hints-for-windows">Hints for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#from-source">From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-the-required-dune-modules">Building the Required Dune Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dune-fempy_nb.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-Laplace-problem">A Laplace problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Laplace-equation-with-Dirichlet-boundary-conditions">Laplace equation with Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-non-linear-elliptic-problem">A non-linear elliptic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Using-Constant-parameters-and-grid-functions-in-PDEs">Using <code class="docutils literal notranslate"><span class="pre">Constant</span></code> parameters and grid functions in PDEs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts_nb.html">General Concepts (with a time dependent problem)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Setting-up-the-Grid">Setting up the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Grid-Functions">Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Spaces">Discrete Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Functions">Discrete Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Operators-and-Schemes">Operators and Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#A-Nonlinear-Time-Dependent-Problem">A Nonlinear Time Dependent Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Listing-Available-Dune-Components">Listing Available Dune Components</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="boundary_nb.html">More General Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Dirichlet-boundary-conditions">Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom">Accessing the Dirichlet degrees of freedom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Neumann-and-Robin-boundary-conditions">Neumann and Robin boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corepy.html">Using the Full Grid Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Dense-Vectors-and-the-Geometry-Classes">Dense Vectors and the Geometry Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Grid-Construction-and-Basic-Interface">Grid Construction and Basic Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Structured-grids">Structured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Unstructured-grids">Unstructured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Local-grid-adaptivity">Local grid adaptivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dune-corepy_nb.html#Basic-information-and-iterators">Basic information and iterators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Using-grid-functions">Using grid functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Importing-user-defined-C++-code">Importing user defined C++ code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Attaching-Data-to-the-Grid">Attaching Data to the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Output-of-Grid-and-Visualization-of-Data">Output of Grid and Visualization of Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Paraview-(vtu/vtk-files)">Paraview (vtu/vtk files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Mayavi">Mayavi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Low-level-output">Low level output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wave_nb.html">Wave Equation: double slit domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html#DG-formulation">DG formulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#id3">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html#Convergence-rate-check">Convergence rate check</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="evalues_laplace_nb.html">Eigenvalue problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="evalues_laplace_nb.html#Eigenvalues-of-the-Neumann-Laplacian">Eigenvalues of the Neumann Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evalues_laplace_nb.html#Dirichlet-Eigenvalue-problem">Dirichlet Eigenvalue problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp.html">Using C++ Code Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Projects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h)">Marker for grid adaptivity (h)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mmesh_descr.html">Mixed-dimensional PDEs: the Dune-MMesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mmesh_nb.html">Dune-MMesh: Solving a Mixed-dimensional PDE</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Information for C++ Developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#using-a-debugger">Using a debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#list-of-build-specific-environment-variables">List of build specific environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html">How to showcase your own project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional.html">Notebooks and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional.html#mesh-files-used-in-the-examples">Mesh Files used in the Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog290.html">Since 2.9 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#deprecation-of-dune-ufl-expression2gf">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-integrate">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#id1">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-operator-linear">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-space-combinedspace">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#add-dirichletindices-method-to-operators-and-schemes">Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#extension-of-the-jacobian-method-on-schemes-and-operators">Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#set-non-default-quadratures-in-quadrature-rules">Set non default quadratures in quadrature rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#assembly-function">Assembly function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#improved-pickling-support">Improved Pickling support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#paraview-reader">Paraview Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#sampler-along-boundary">Sampler along Boundary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">Point sampler returning (entity,local coordinate) for given global coordinate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#improved-dirichlet-boundary-indexing-in-ufl-forms">Improved Dirichlet Boundary Indexing in UFL Forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#eisenstatwalker-in-newton-method">Eisenstatwalker in Newton method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#storage-setup-in-scheme">Storage setup in scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">Methods on space to return local mapper and for evaluating basis functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#logging-of-parameter-values">Logging of parameter values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inforesources.html">Keyword index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gmsh2dgf_nb.html">Converting gmsh to DGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slurmbatchscript.html">Slurm batch script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DUNE-FEM Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Navier-Stokes: flow around a cylinder</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>cylinder</em> as <a class="reference download internal" download="" href="_downloads/b275450fdef33a8cc360807c629821ab/cylinder_nb.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(_nb.ipynb)</span></code></a> or as <a class="reference download internal" download="" href="_downloads/ddf0880297946c17cda5015b8f770a33/cylinder.py"><code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></a></div>
+</div>
+</div>
+<section id="Navier-Stokes:-flow-around-a-cylinder">
+<h1>Navier-Stokes: flow around a cylinder<a class="headerlink" href="#Navier-Stokes:-flow-around-a-cylinder" title="Link to this heading"></a></h1>
+<p><a class="reference external" href="https://hplgit.github.io/fenics-tutorial/pub/sphinx1/._ftut1004.html#flow-past-a-cylinder">https://hplgit.github.io/fenics-tutorial/pub/sphinx1/._ftut1004.html#flow-past-a-cylinder</a> OMP_NUM_THREADS=4 python cylinderSplit.py</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">linalg</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pygmsh</span>
+<span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">GridView</span>
+<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">Constant</span><span class="p">,</span> <span class="n">DirichletBC</span>
+<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span>
+<span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span>
+<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">FacetNormal</span><span class="p">,</span>
+    <span class="n">Identity</span><span class="p">,</span>
+    <span class="n">SpatialCoordinate</span><span class="p">,</span>
+    <span class="n">TestFunction</span><span class="p">,</span>
+    <span class="n">TrialFunction</span><span class="p">,</span>
+    <span class="n">conditional</span><span class="p">,</span>
+    <span class="n">div</span><span class="p">,</span>
+    <span class="n">dot</span><span class="p">,</span>
+    <span class="n">ds</span><span class="p">,</span>
+    <span class="n">dx</span><span class="p">,</span>
+    <span class="n">inner</span><span class="p">,</span>
+    <span class="n">nabla_grad</span><span class="p">,</span>
+    <span class="n">sqrt</span><span class="p">,</span>
+    <span class="n">sym</span><span class="p">,</span>
+    <span class="n">triangle</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Setup parameters for simulation:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">order</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">,</span> <span class="s2">&quot;tau&quot;</span><span class="p">)</span>      <span class="c1"># time step</span>
+<span class="n">mu</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="s2">&quot;mu&quot;</span><span class="p">)</span>          <span class="c1"># kinematic viscosity</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">)</span>             <span class="c1"># density</span>
+</pre></div>
+</div>
+</div>
+<p>Use pygmsh to define domain with cylinder</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pygmsh</span><span class="o">.</span><span class="n">occ</span><span class="o">.</span><span class="n">Geometry</span><span class="p">()</span> <span class="k">as</span> <span class="n">geom</span><span class="p">:</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">set_mesh_size_callback</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">dim</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">lc</span><span class="p">:</span>
+        <span class="nb">min</span><span class="p">(</span><span class="mf">0.02</span><span class="o">+</span><span class="mf">1.5</span><span class="o">*</span><span class="p">(</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="mf">0.04</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">rectangle</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">add_rectangle</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">)</span>
+    <span class="n">cylinder</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">add_disk</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">boolean_difference</span><span class="p">(</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">cylinder</span><span class="p">)</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">generate_mesh</span><span class="p">()</span>
+    <span class="n">points</span><span class="p">,</span> <span class="n">cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span>
+    <span class="c1"># extract dictionary for grid construction</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;vertices&quot;</span><span class="p">:</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+        <span class="s2">&quot;simplices&quot;</span><span class="p">:</span> <span class="n">cells</span><span class="p">[</span><span class="s2">&quot;triangle&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="n">gridView</span> <span class="o">=</span> <span class="n">GridView</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;grid size:&quot;</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+grid size: 1410
+</pre></div></div>
+</div>
+<p>Setup spaces for Taylor-Hood and required discrete functions and UFL coefficients:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">space_u</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">space_p</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space_u</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space_u</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space_p</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space_p</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space_p</span><span class="p">)</span>
+
+<span class="n">u_h</span> <span class="o">=</span> <span class="n">space_u</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;u_h&quot;</span><span class="p">)</span>
+<span class="n">u_h_n</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;u_h_n&quot;</span><span class="p">)</span>
+
+<span class="n">p_h</span> <span class="o">=</span> <span class="n">space_p</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;p_h&quot;</span><span class="p">)</span>
+<span class="n">p_h_n</span> <span class="o">=</span> <span class="n">p_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;p_h_n&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Now setup model - one time step is split into three linear parts. First some general definitions:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inflow</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.41</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mf">0.41</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># 6-&gt;18</span>
+<span class="n">dbc_u_in</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space_u</span><span class="p">,</span> <span class="n">inflow</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">1e-8</span><span class="p">)</span>
+<span class="n">dbc_u_noflow</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space_u</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">dbc_u_out</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space_u</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">],</span> <span class="mf">2.2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">1e-8</span><span class="p">)</span>
+<span class="n">dbc_p_out</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space_p</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.2</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mf">1e-8</span><span class="p">)</span>
+
+<span class="c1"># Define strain-rate tensor</span>
+<span class="k">def</span> <span class="nf">epsilon</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">sym</span><span class="p">(</span><span class="n">nabla_grad</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+
+<span class="c1"># Define stress tensor</span>
+<span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mu</span> <span class="o">*</span> <span class="n">epsilon</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="n">p</span> <span class="o">*</span> <span class="n">Identity</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">u</span><span class="p">))</span>
+
+<span class="c1"># Define expressions used in variational forms</span>
+<span class="n">U</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">u_h_n</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Step 1:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E1</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">rho</span> <span class="o">*</span> <span class="n">dot</span><span class="p">((</span><span class="n">u</span> <span class="o">-</span> <span class="n">u_h_n</span><span class="p">)</span> <span class="o">/</span> <span class="n">tau</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+    <span class="o">+</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">dot</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">,</span> <span class="n">nabla_grad</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">)),</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+    <span class="o">+</span> <span class="n">inner</span><span class="p">(</span><span class="n">sigma</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">p_h_n</span><span class="p">),</span> <span class="n">epsilon</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">*</span> <span class="n">dx</span>
+    <span class="o">-</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">scheme1</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="p">[</span><span class="n">E1</span><span class="p">,</span> <span class="n">dbc_u_in</span><span class="p">,</span><span class="n">dbc_u_out</span><span class="p">,</span><span class="n">dbc_u_noflow</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Step 2:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E2</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">dot</span><span class="p">(</span><span class="n">nabla_grad</span><span class="p">(</span><span class="n">p</span><span class="o">-</span><span class="n">p_h_n</span><span class="p">),</span> <span class="n">nabla_grad</span><span class="p">(</span><span class="n">q</span><span class="p">))</span> <span class="o">*</span> <span class="n">dx</span>
+    <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">div</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">)</span> <span class="o">*</span> <span class="n">q</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">scheme2</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">E2</span><span class="p">,</span> <span class="n">dbc_p_out</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Step 3:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">E3</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+    <span class="o">-</span> <span class="n">dot</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+    <span class="o">+</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">dot</span><span class="p">(</span><span class="n">nabla_grad</span><span class="p">(</span><span class="n">p_h</span> <span class="o">-</span> <span class="n">p_h_n</span><span class="p">),</span> <span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="n">scheme3</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="p">[</span><span class="n">E3</span><span class="p">,</span> <span class="n">dbc_u_in</span><span class="p">,</span><span class="n">dbc_u_out</span><span class="p">,</span><span class="n">dbc_u_noflow</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Next we assemble the matrices for all three steps and precompute the LU decomposition for each one to speedup the simulation:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">invA</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">Ainv</span> <span class="o">=</span> <span class="n">linalg</span><span class="o">.</span><span class="n">splu</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">tocsc</span><span class="p">())</span>
+    <span class="k">return</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">Ainv</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:])</span>
+<span class="n">A1</span>    <span class="o">=</span> <span class="n">scheme1</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
+<span class="n">A1inv</span> <span class="o">=</span> <span class="n">invA</span><span class="p">(</span><span class="n">A1</span><span class="p">)</span>
+<span class="n">A2</span>    <span class="o">=</span> <span class="n">scheme2</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
+<span class="n">A2inv</span> <span class="o">=</span> <span class="n">invA</span><span class="p">(</span><span class="n">A2</span><span class="p">)</span>
+<span class="n">A3</span>    <span class="o">=</span> <span class="n">scheme3</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
+<span class="n">A3inv</span> <span class="o">=</span> <span class="n">invA</span><span class="p">(</span><span class="n">A3</span><span class="p">)</span>
+
+<span class="n">zero_u</span> <span class="o">=</span> <span class="n">space_u</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;zero&quot;</span><span class="p">)</span>
+<span class="n">zero_p</span> <span class="o">=</span> <span class="n">space_p</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;zero&quot;</span><span class="p">)</span>
+<span class="n">rhs_u</span>  <span class="o">=</span> <span class="n">zero_u</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;rhs&quot;</span><span class="p">)</span>
+<span class="n">rhs_p</span>  <span class="o">=</span> <span class="n">zero_p</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;rhs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>To show the solution we make use of the <em>animate</em> module of <em>matplotlib</em>. Here is the <code class="docutils literal notranslate"><span class="pre">stepping</span></code> functions:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">pointData</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">tricontourf</span><span class="p">(</span><span class="n">triangulation</span><span class="p">,</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">rainbow</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">C</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">collections</span>
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">count</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">t</span><span class="p">,</span><span class="n">stepsize</span><span class="p">,</span><span class="n">nextstep</span>
+    <span class="n">nextstep</span> <span class="o">+=</span> <span class="n">stepsize</span>
+    <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">nextstep</span><span class="p">:</span>
+        <span class="n">u_h_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
+        <span class="n">p_h_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">p_h</span><span class="p">)</span>
+        <span class="n">scheme1</span><span class="p">(</span><span class="n">zero_u</span><span class="p">,</span><span class="n">rhs_u</span><span class="p">)</span>
+        <span class="n">rhs_u</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">scheme1</span><span class="o">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">rhs_u</span><span class="p">)</span>
+        <span class="n">u_h</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">A1inv</span><span class="p">(</span><span class="n">rhs_u</span><span class="p">)</span>
+        <span class="n">u_h_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
+
+        <span class="n">scheme2</span><span class="p">(</span><span class="n">zero_p</span><span class="p">,</span><span class="n">rhs_p</span><span class="p">)</span>
+        <span class="n">rhs_p</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">scheme2</span><span class="o">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">rhs_p</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="n">p_h</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">A2inv</span><span class="p">(</span><span class="n">rhs_p</span><span class="p">)</span>
+
+        <span class="n">scheme3</span><span class="p">(</span><span class="n">zero_u</span><span class="p">,</span><span class="n">rhs_u</span><span class="p">)</span>
+        <span class="n">rhs_u</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">scheme3</span><span class="o">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">rhs_u</span><span class="p">)</span>
+        <span class="n">u_h</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">A3inv</span><span class="p">(</span><span class="n">rhs_u</span><span class="p">)</span>
+
+        <span class="n">t</span> <span class="o">+=</span> <span class="n">tau</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">pointData</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">tricontourf</span><span class="p">(</span><span class="n">triangulation</span><span class="p">,</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">rainbow</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">C</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">collections</span>
+</pre></div>
+</div>
+</div>
+<p>And generate the movie:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
+
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.23</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">))</span>
+<span class="n">triangulation</span> <span class="o">=</span> <span class="n">gridView</span><span class="o">.</span><span class="n">triangulation</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">levels</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">t</span>        <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">stepsize</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">nextstep</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">frames</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">movie</span> <span class="o">=</span> <span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()</span>
+    <span class="c1"># save and embed</span>
+    <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;cylinder.gif&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">animation</span><span class="o">.</span><span class="n">ImageMagickWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
+    <span class="n">display</span><span class="p">(</span> <span class="n">HTML</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span> <span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ffmpeg probably missing&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;cylinder.html&quot;</span><span class="p">)</span>
+        <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span>
+        <span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;./nice.html&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<video width="320" height="240" controls autoplay loop>
+  <source type="video/mp4" src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAARyBtZGF0AAACrgYF//+q
+3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2NCByMzEwOCAzMWUxOWY5IC0gSC4yNjQvTVBF
+Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMyAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
+b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
+eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
+X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
+ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTcg
+bG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRl
+cmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJf
+cHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9
+MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTEwIHNjZW5lY3V0PTQwIGludHJhX3Jl
+ZnJlc2g9MCByY19sb29rYWhlYWQ9NDAgcmM9Y3JmIG1idHJlZT0xIGNyZj0yMy4wIHFjb21wPTAu
+NjAgcXBtaW49MCBxcG1heD02OSBxcHN0ZXA9NCBpcF9yYXRpbz0xLjQwIGFxPTE6MS4wMACAAAAJ
+c2WIhAAQ//73gb8yy18iuslx+ed9LKzPPOQ8cl2JrrjQARB4efQ+dBIdXFiCCAAAG6D8qP8JWuuI
+D1emlmVfiD7bI5LCcMPU5ra64jdAbsCAa8EisIbR50PmTuqJX7LQD5EkKNmJm+t8v3Erz63PxCmF
+VajCS4FPQuhPB+rv7ZIkkzKXoylhNJPMp+L6WPawPFlBMbPLqG4F8c53ki/IAJNofNPIKWeMQ4+7
+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
+">
+  Your browser does not support the video tag.
+</video></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/cylinder_nb_21_1.jpg" src="_images/cylinder_nb_21_1.jpg" />
+</div>
+</div>
+<p>… if the movie is not showing you might have to rerun the notebook …</p>
+<p>Here is the velocity at the end of the simulation:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/cylinder_nb_23_0.jpg" src="_images/cylinder_nb_23_0.jpg" />
+</div>
+</div>
+</section>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>cylinder</em> as <a class="reference download internal" download="" href="_downloads/b275450fdef33a8cc360807c629821ab/cylinder_nb.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(.ipynb)</span></code></a> or as <a class="reference download internal" download="" href="_downloads/ddf0880297946c17cda5015b8f770a33/cylinder.py"><code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></a></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Nov 28, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
