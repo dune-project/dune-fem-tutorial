@@ -1,0 +1,565 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Since 2.9 release &mdash; Tutorial for version 2.11-git</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Converting gmsh to DGF" href="gmsh2dgf_nb.html" />
+    <link rel="prev" title="Changelog" href="changelog.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/dune-python-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="#" style="color:white">Most recent changes</a></u></li>
+     </span>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">From PyPi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#hints-for-windows">Hints for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#from-source">From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-the-required-dune-modules">Building the Required Dune Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dune-fempy_nb.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-Laplace-problem">A Laplace problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Laplace-equation-with-Dirichlet-boundary-conditions">Laplace equation with Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-non-linear-elliptic-problem">A non-linear elliptic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Using-Constant-parameters-and-grid-functions-in-PDEs">Using <code class="docutils literal notranslate"><span class="pre">Constant</span></code> parameters and grid functions in PDEs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts_nb.html">General Concepts (with a time dependent problem)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Setting-up-the-Grid">Setting up the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Grid-Functions">Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Spaces">Discrete Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Functions">Discrete Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Operators-and-Schemes">Operators and Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#A-Nonlinear-Time-Dependent-Problem">A Nonlinear Time Dependent Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Listing-Available-Dune-Components">Listing Available Dune Components</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="boundary_nb.html">More General Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Dirichlet-boundary-conditions">Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom">Accessing the Dirichlet degrees of freedom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Neumann-and-Robin-boundary-conditions">Neumann and Robin boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solvers_nb.html">Alternative Linear Solvers (Scipy and Petsc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solvers_nb.html#Using-Scipy">Using Scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solvers_nb.html#Handling-Dirichlet-boundary-conditions">Handling Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solvers_nb.html#Using-PETSc-and-Petsc4Py">Using PETSc and Petsc4Py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solvers_nb.html#Accessing-and-reusing-values-of-parameters">Accessing and reusing values of parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solvers_nb.html#Parameter-hints">Parameter hints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solvers_nb.html#Available-solvers-and-parameters">Available solvers and parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corepy.html">Using the Full Grid Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Dense-Vectors-and-the-Geometry-Classes">Dense Vectors and the Geometry Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Grid-Construction-and-Basic-Interface">Grid Construction and Basic Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Structured-grids">Structured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Unstructured-grids">Unstructured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Local-grid-adaptivity">Local grid adaptivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dune-corepy_nb.html#Basic-information-and-iterators">Basic information and iterators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Using-grid-functions">Using grid functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Importing-user-defined-C++-code">Importing user defined C++ code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Attaching-Data-to-the-Grid">Attaching Data to the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Output-of-Grid-and-Visualization-of-Data">Output of Grid and Visualization of Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Paraview-(vtu/vtk-files)">Paraview (vtu/vtk files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Mayavi">Mayavi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Low-level-output">Low level output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
+<li class="toctree-l1"><a class="reference internal" href="wave_nb.html">Wave Equation: double slit domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html#DG-formulation">DG formulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#id3">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html#Convergence-rate-check">Convergence rate check</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="evalues_laplace_nb.html">Eigenvalue problems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="evalues_laplace_nb.html#Eigenvalues-of-the-Neumann-Laplacian">Eigenvalues of the Neumann Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evalues_laplace_nb.html#Dirichlet-Eigenvalue-problem">Dirichlet Eigenvalue problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gridviews.html">Adaptivity and Moving Domains: extended grid views</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews.html#overview-and-some-basic-grid-views-level-and-filtered">Overview and some basic grid views (level and filtered)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="levelgridview_nb.html">LevelGridView examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews.html#dynamic-local-grid-refinement-and-coarsening">Dynamic Local Grid Refinement and Coarsening</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews.html#evolving-domains">Evolving Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpp.html">Using C++ Code Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extension Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="femdg.html">Discontinuous Galerkin Methods: the DUNE-FEM-DG Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="euler_nb.html">Euler System of Gas Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chemical_nb.html">An Advection-Diffusion-Reaction System: Chemical Reaction Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="vemdemo_descr.html">Virtual Element Methods: the DUNE-VEM module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="vemdemo_nb.html">Elliptic Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vemdemo_nb.html#Nonlinear-Elliptic-Problem">Nonlinear Elliptic Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vemdemo_nb.html#Linear-Elasticity">Linear Elasticity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vemdemo_nb.html#Fourth-order-problem">Fourth order problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="chimpl_nb.html">Cahn-Hilliard</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Projects</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h)">Marker for grid adaptivity (h)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mmesh_descr.html">Mixed-dimensional PDEs: the Dune-MMesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mmesh_nb.html">Dune-MMesh: Solving a Mixed-dimensional PDE</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Information for C++ Developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#using-a-debugger">Using a debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#list-of-build-specific-environment-variables">List of build specific environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html">How to showcase your own project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional.html">Notebooks and Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional.html#mesh-files-used-in-the-examples">Mesh Files used in the Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="changelog.html">Changelog</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Since 2.9 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deprecation-of-dune-ufl-expression2gf">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deprecation-of-dune-fem-function-integrate">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deprecation-of-dune-fem-operator-linear">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deprecation-of-dune-fem-space-combinedspace">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-dirichletindices-method-to-operators-and-schemes">Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extension-of-the-jacobian-method-on-schemes-and-operators">Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-non-default-quadratures-in-quadrature-rules">Set non default quadratures in quadrature rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assembly-function">Assembly function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved-pickling-support">Improved Pickling support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#paraview-reader">Paraview Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sampler-along-boundary">Sampler along Boundary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">Point sampler returning (entity,local coordinate) for given global coordinate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#improved-dirichlet-boundary-indexing-in-ufl-forms">Improved Dirichlet Boundary Indexing in UFL Forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#eisenstatwalker-in-newton-method">Eisenstatwalker in Newton method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#storage-setup-in-scheme">Storage setup in scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">Methods on space to return local mapper and for evaluating basis functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#logging-of-parameter-values">Logging of parameter values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inforesources.html">Keyword index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gmsh2dgf_nb.html">Converting gmsh to DGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slurmbatchscript.html">Slurm batch script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DUNE-FEM Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="inforesources.html">Keyword index</a></li>
+          <li class="breadcrumb-item"><a href="changelog.html">Changelog</a></li>
+      <li class="breadcrumb-item active">Since 2.9 release</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gmsh2dgf_nb.html" class="btn btn-neutral float-right" title="Converting gmsh to DGF" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="since-2-9-release">
+<h1>Since 2.9 release<a class="headerlink" href="#since-2-9-release" title="Link to this heading"></a></h1>
+<section id="deprecation-of-dune-ufl-expression2gf">
+<h2>Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code><a class="headerlink" href="#deprecation-of-dune-ufl-expression2gf" title="Link to this heading"></a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">dune.fem.function.gridFunction</span></code> instead</p>
+</section>
+<section id="deprecation-of-dune-fem-function-integrate">
+<h2>Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code><a class="headerlink" href="#deprecation-of-dune-fem-function-integrate" title="Link to this heading"></a></h2>
+<p>This function is deprecated. Use <code class="docutils literal notranslate"><span class="pre">dune.fem.integrate</span></code> instead. The ufl
+expression to integrate is now the first argument. If possible the grid
+view and order will be determined from the ufl expression if possible but
+can be passed in as extra arguments similar to the old function:
+<code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate(grid,expression,order=None)</span></code>
+with
+<code class="docutils literal notranslate"><span class="pre">dune.fem.integrate(expression,gridView=None,order=None)</span></code>.</p>
+</section>
+<section id="deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">
+<h2>Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code><a class="headerlink" href="#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction" title="Link to this heading"></a></h2>
+<p>To construct different versions of grid function use
+<code class="docutils literal notranslate"><span class="pre">dune.fem.function.gridFunction</span></code>. The signature of the new function is
+<code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">gridFunction(expr=None,gridView=None,*,name=None,order=None,</span> <span class="pre">fctName=None,</span> <span class="pre">view=None,</span> <span class="pre">**kwargs)</span></code>.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">expr</span></code> is a <code class="docutils literal notranslate"><span class="pre">gridView</span></code> or is <code class="docutils literal notranslate"><span class="pre">None</span></code> (and the <code class="docutils literal notranslate"><span class="pre">gridView</span></code> is not <code class="docutils literal notranslate"><span class="pre">None</span></code>)
+then the function acts like the decorator from 2.9 version. Note that the
+old <code class="docutils literal notranslate"><span class="pre">view</span></code> parameter is also deprecated and replaced by <code class="docutils literal notranslate"><span class="pre">gridView</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">&#64;gridFunction(gv,&quot;name&quot;,5)</span></code> will not work anymore since name and
+order need to be named arguments. So this will lead to an error instead
+of a deprecation warning and needs to be replaced by
+<code class="docutils literal notranslate"><span class="pre">&#64;gridFunction(gv,name=&quot;name&quot;,order=5)</span></code>.</p>
+</div>
+</li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">expr</span></code> is a ufl expression then this functions acts like the
+<code class="docutils literal notranslate"><span class="pre">uflFunction</span></code> from 2.9 with the old <code class="docutils literal notranslate"><span class="pre">ufl</span></code> argument being replaced by
+<code class="docutils literal notranslate"><span class="pre">expr</span></code>. In addition <code class="docutils literal notranslate"><span class="pre">gridView</span></code> and <code class="docutils literal notranslate"><span class="pre">order</span></code> can be omitted in case where
+the grid view can be determined from the ufl expression (e.g. the
+expression contains a grid function). The order will be determined
+heuristically from the expression if omitted.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">expr</span></code> is a string then the function acts as like the old <code class="docutils literal notranslate"><span class="pre">cppFunction</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">fctName</span></code> is not provided the <code class="docutils literal notranslate"><span class="pre">name</span></code> argument is assumed to also
+be the name of the cpp function to export.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code><a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>Use the extended version of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.gridFunction</span></code> instead.</p>
+</section>
+<section id="deprecation-of-dune-fem-operator-linear">
+<h2>Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code><a class="headerlink" href="#deprecation-of-dune-fem-operator-linear" title="Link to this heading"></a></h2>
+<p>Use the new method <code class="docutils literal notranslate"><span class="pre">linear</span></code> on the schemes or operators. Note that the
+new method has no <code class="docutils literal notranslate"><span class="pre">ubar</span></code> argument (use the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method to
+assemble around a non zero value). The method has a new bool argument <code class="docutils literal notranslate"><span class="pre">assemble</span></code>
+which is <code class="docutils literal notranslate"><span class="pre">True</span></code> by default. Passing in <code class="docutils literal notranslate"><span class="pre">assemble=False</span></code> returns an
+empty linear operator which can be passed into <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> to be filled.</p>
+</section>
+<section id="deprecation-of-dune-fem-space-combinedspace">
+<h2>Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code><a class="headerlink" href="#deprecation-of-dune-fem-space-combinedspace" title="Link to this heading"></a></h2>
+<p>This has been renamed to <code class="docutils literal notranslate"><span class="pre">dune.fem.space.compositeSpace</span></code> and will be
+deprecated soon.</p>
+</section>
+<section id="add-dirichletindices-method-to-operators-and-schemes">
+<h2>Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes<a class="headerlink" href="#add-dirichletindices-method-to-operators-and-schemes" title="Link to this heading"></a></h2>
+<p>This method returns the indices of dofs on the Dirichlet boundary. By
+default all indices are returned but a boundary id can be provided to only
+return a subset of indices.</p>
+</section>
+<section id="extension-of-the-jacobian-method-on-schemes-and-operators">
+<h2>Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators<a class="headerlink" href="#extension-of-the-jacobian-method-on-schemes-and-operators" title="Link to this heading"></a></h2>
+<p>In addition to the existing <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method taking a linear operator
+object a new overload is available taking a further <cite>rhs</cite> argument which
+returns the functional part of the operator as though it was on the right
+hand side. So if the ufl form is <code class="docutils literal notranslate"><span class="pre">a(u,v)=l(v)</span></code> then this method assembles
+both the system matrix <code class="docutils literal notranslate"><span class="pre">A</span></code> and the right hand side functional (<code class="docutils literal notranslate"><span class="pre">rhs</span></code>
+needs to be a discrete function over the range space of the operator).</p>
+</section>
+<section id="set-non-default-quadratures-in-quadrature-rules">
+<h2>Set non default quadratures in quadrature rules<a class="headerlink" href="#set-non-default-quadratures-in-quadrature-rules" title="Link to this heading"></a></h2>
+<p>At the moment only <code class="docutils literal notranslate"><span class="pre">dx(metadata={&quot;quadrature_rule&quot;:&quot;lumped&quot;})</span></code> is
+available that sets a quadrature that can be used for lower order Lagrange
+elements to use lumped mass matrices. More general cases will be added
+soon.</p>
+</section>
+<section id="assembly-function">
+<h2>Assembly function<a class="headerlink" href="#assembly-function" title="Link to this heading"></a></h2>
+<p>The function <code class="docutils literal notranslate"><span class="pre">dune.fem.assemble</span></code> takes a ufl form and returns their assembled versions.</p>
+<ul class="simple">
+<li><p>If the first argument has arity zero (i.e. has no trial or test function)
+then the intral will be computed, e.g.,
+<code class="docutils literal notranslate"><span class="pre">dune.fem.assemble(dot.ufl(x,x)*ufl.dx,</span> <span class="pre">gridView=gv)</span></code> where <code class="docutils literal notranslate"><span class="pre">x</span></code> is a
+<code class="docutils literal notranslate"><span class="pre">ufl.SpatialCoordinate</span></code>. Note that the grid view needs to be provided
+since it can not be determined from the ufl form. It can be omitted if
+the form contains for example a grid function, e.g.,
+<code class="docutils literal notranslate"><span class="pre">dune.fem.assemble(inner(grad(u_h),grad(u_h))*dx)</span></code>. Note that forms are
+always scalar valued. For vector valued integration use
+<code class="docutils literal notranslate"><span class="pre">dune.fem.integrate</span></code>.</p></li>
+<li><p>If the first function has arity one (i.e. contains a test function) then
+the functional we be assembled returning a discrete function:
+<code class="docutils literal notranslate"><span class="pre">dune.fem.assemble(f*v*dx)</span></code>. Again if possible the grid view will be
+extracted from the form.</p></li>
+<li><p>If the first argument has arity two (i.e. contains both test and trial
+function) then the function assembles the system matrix and (if the form
+contains a arity one part) the right hand side functional:
+<code class="docutils literal notranslate"><span class="pre">dune.fem.assemble(u*v*dx</span> <span class="pre">-</span> <span class="pre">f*v*dx)</span></code> returns the linear operator for
+<code class="docutils literal notranslate"><span class="pre">u*v*dx</span></code> and the discrete function for <code class="docutils literal notranslate"><span class="pre">f*v*dx</span></code>. If the form does not
+contain an arity one part, e.g., <code class="docutils literal notranslate"><span class="pre">dune.fem.assemble(u*v*dx)</span></code> returns only
+the linear operator.</p></li>
+</ul>
+</section>
+<section id="improved-pickling-support">
+<h2>Improved Pickling support<a class="headerlink" href="#improved-pickling-support" title="Link to this heading"></a></h2>
+<p>Discrete functions can now be directly pickled and will
+be reconstructed with the grid on load.
+The required JIT modules will also be
+generated on load if they do not exist on the system.
+For this to work one needs to use the <code class="docutils literal notranslate"><span class="pre">dune.common.pickle</span></code>
+module as discussed in the Section on
+<a class="reference internal" href="backuprestore_nb.html#Pickling"><span class="std std-ref">pickling</span></a>.</p>
+</section>
+<section id="paraview-reader">
+<h2>Paraview Reader<a class="headerlink" href="#paraview-reader" title="Link to this heading"></a></h2>
+<p>A paraview reader is added to the <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> package which can directly work
+with the pickled files. UFL transformations
+can be applied after loading the discrete functions in paraview.
+For paraview to find the reader a environment variable needs to be set.
+The correct command can be found running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">dune.fem</span> <span class="pre">reader</span></code> or
+the correct env variable can be set by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PV_PLUGIN_PATH=`python -m dune.fem readerpath`
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://gitlab.dune-project.org/dune-fem/dune-fem/-/merge_requests/581">https://gitlab.dune-project.org/dune-fem/dune-fem/-/merge_requests/581</a>.</p>
+</section>
+<section id="sampler-along-boundary">
+<h2>Sampler along Boundary<a class="headerlink" href="#sampler-along-boundary" title="Link to this heading"></a></h2>
+<p>In addition to a <code class="docutils literal notranslate"><span class="pre">lineSample</span></code> and <code class="docutils literal notranslate"><span class="pre">pointSample</span></code> the <code class="docutils literal notranslate"><span class="pre">dune.fem.utility</span></code>
+module now also provides a <code class="docutils literal notranslate"><span class="pre">boundarySample</span></code> function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">boundarySample</span><span class="p">(</span><span class="n">gridFunction</span><span class="p">,</span> <span class="n">boundaryId</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">boundaryDomain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See the help text of <cite>dune.fem.utility.boundarySample</cite> for details.</p>
+</section>
+<section id="point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">
+<h2>Point sampler returning (entity,local coordinate) for given global coordinate<a class="headerlink" href="#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate" title="Link to this heading"></a></h2>
+</section>
+<section id="improved-dirichlet-boundary-indexing-in-ufl-forms">
+<h2>Improved Dirichlet Boundary Indexing in UFL Forms<a class="headerlink" href="#improved-dirichlet-boundary-indexing-in-ufl-forms" title="Link to this heading"></a></h2>
+<p>To restrict a domain integral to a part of the boundary given by a boundary id
+one can now use <code class="docutils literal notranslate"><span class="pre">ufl.ds(id)</span></code> or multiply the integral with <code class="docutils literal notranslate"><span class="pre">dune.ufl.BoundaryId(id)</span></code>
+(see the section on
+<a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions"><span class="std std-ref">Mixing different types of boundary conditions</span></a>.</p>
+<p><strong>Note</strong>: we have also unified the
+<a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids"><span class="std std-ref">default boundary ids</span></a>
+when using a
+<code class="docutils literal notranslate"><span class="pre">dune.grid.cartesianDomain</span></code> to always be the same as when using
+<code class="docutils literal notranslate"><span class="pre">dune.grid.structuredGrid</span></code>.
+This was not the case with some grid implementations.</p>
+</section>
+<section id="eisenstatwalker-in-newton-method">
+<h2>Eisenstatwalker in Newton method<a class="headerlink" href="#eisenstatwalker-in-newton-method" title="Link to this heading"></a></h2>
+</section>
+<section id="storage-setup-in-scheme">
+<h2>Storage setup in scheme<a class="headerlink" href="#storage-setup-in-scheme" title="Link to this heading"></a></h2>
+</section>
+<section id="methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">
+<h2>Methods on space to return local mapper and for evaluating basis functions<a class="headerlink" href="#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions" title="Link to this heading"></a></h2>
+<p>New methods have been added to the space to return the basis functions
+evaluated at some given point. Also a new method has been added to return
+the global indices of the dofs attached to a given element.</p>
+</section>
+<section id="logging-of-parameter-values">
+<h2>Logging of parameter values<a class="headerlink" href="#logging-of-parameter-values" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="solvers_nb.html#Available-solvers-and-parameters"><span class="std std-ref">See section</span></a>.</p>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3706994"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" />
+</a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gmsh2dgf_nb.html" class="btn btn-neutral float-right" title="Converting gmsh to DGF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Nov 26, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
