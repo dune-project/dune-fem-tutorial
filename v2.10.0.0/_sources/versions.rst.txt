@@ -4,10 +4,8 @@ DUNE-FEM Tutorial Versions
 
 Previous versions of the DUNE-FEM tutorial:
 
-* `v2.10.0.0`_
 * `v2.11.0.3`_
 * `v2.10.0.0`_
 
-.. _`v2.10.0.0`: https://dune-project.github.io/dune-fem-tutorial//v2.10.0.0
 .. _`v2.11.0.3`: https://dune-project.github.io/dune-fem-tutorial//v2.11.0.3
 .. _`v2.10.0.0`: https://dune-project.github.io/dune-fem-tutorial//v2.10.0.0
