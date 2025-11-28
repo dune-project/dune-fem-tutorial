@@ -42,12 +42,13 @@ jobs:
       - name: checkout
         run: |
           git clone -b gh-pages https://github.com/${{ github.repository }}
+          echo "TUTORIAL=tutorial" >> $GITHUB_ENV
           
       - name: latest2branch
         if: github.event.inputs.version == 'latest'
         run: |
           cd ${{ github.event.repository.name }}
-          BRANCH=`git branch -r | grep v | sort -rn | head -1 | cut -d "/" -f 2`
+          BRANCH=`git branch -r | grep "$TUTORIAL/" | sort -rn | head -1 | cut -d "/" -f 3`
           echo "BRANCH=$BRANCH" >> $GITHUB_ENV
           echo "Using branch $BRANCH"
           cd ../
@@ -74,7 +75,7 @@ jobs:
           LATEST=`head -1 uniqsorted.txt`
 
           # get tutorial source to build web page
-          git clone -b $BRANCH https://github.com/${{ github.repository }}
+          git clone -b $TUTORIAL/$BRANCH https://github.com/${{ github.repository }}
           
           # create versions.rst
           bash createversions.sh < uniqsorted.txt
