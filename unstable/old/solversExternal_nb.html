@@ -1,0 +1,985 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alternative Solvers (Scipy and Petsc) &mdash; Tutorial for version 2.11-git</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/dune-python-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="../genindex.html" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="../changelog210.html" style="color:white">Most recent changes</a></u></li>
+     </span>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../versions.html">DUNE-FEM Tutorial Versions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">An Overview of this Document</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Teasers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../furtherexamples.html">Main Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wave_nb.html">Wave Equation: double slit domain (using mass lumping)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../monolithicStokes_nb.html#DG-formulation">DG formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../monolithicStokes_nb.html#id3">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../monolithicStokes_nb.html#Convergence-rate-check">Convergence rate check</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cylinder_nb.html">Navier-Stokes: flow around a cylinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mixed_poisson_nb.html">Mixed method for the Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evalues_laplace_nb.html">Eigenvalue problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evalues_laplace_nb.html#Eigenvalues-of-the-Neumann-Laplacian">Eigenvalues of the Neumann Laplacian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evalues_laplace_nb.html#Dirichlet-Eigenvalue-problem">Dirichlet Eigenvalue problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../biharmonic_IPC0_nb.html">Biharmonic problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic_IPC0_nb.html#Implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic_IPC0_nb.html#Simply-supported-boundary-conditions">Simply supported boundary conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../furtherexamples.html#extension-modules">Extension Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../furtherexamples.html#discontinuous-galerkin-methods-with-dune-fem-dg">Discontinuous Galerkin Methods with DUNE-FEM-DG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../euler_nb.html">Euler System of Gas Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chemical_nb.html">An Advection-Diffusion-Reaction System: Chemical Reaction Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../furtherexamples.html#virtual-element-methods-with-dune-vem">Virtual Element Methods with DUNE-VEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html">Elliptic Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html#Nonlinear-Elliptic-Problem">Nonlinear Elliptic Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html#Linear-Elasticity">Linear Elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html#Fourth-order-problem">Fourth order problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chimpl_nb.html">Cahn-Hilliard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">From PyPi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#additional-external-packages">Additional external packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#hints-for-windows">Hints for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#from-source">From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-the-required-dune-modules">Building the Required Dune Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dune-fempy_nb.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#A-Laplace-problem">A Laplace problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#Laplace-equation-with-Dirichlet-boundary-conditions">Laplace equation with Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#A-non-linear-elliptic-problem">A non-linear elliptic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#Using-Constant-parameters-and-grid-functions-in-PDEs">Using <code class="docutils literal notranslate"><span class="pre">Constant</span></code> parameters and grid functions in PDEs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts_nb.html">General Concepts (with a time dependent problem)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Setting-up-the-Grid">Setting up the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Grid-Functions">Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Discrete-Spaces">Discrete Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Discrete-Functions">Discrete Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Operators-and-Schemes">Operators and Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#A-Nonlinear-Time-Dependent-Problem">A Nonlinear Time Dependent Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Listing-Available-Dune-Components">Listing Available Dune Components</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../boundary_nb.html">More General Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Dirichlet-boundary-conditions">Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom">Accessing the Dirichlet degrees of freedom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Neumann-and-Robin-boundary-conditions">Neumann and Robin boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../solversInternal_nb.html">Tweaking the (non-) linear solvers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Python-sided-Newton-solver">Python sided Newton solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Handling-Dirichlet-boundary-conditions">Handling Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Other-internal-solvers-(petsc)">Other internal solvers (petsc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Other-internal-solvers-(istl)">Other internal solvers (istl)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Parameters-for-fine-tuning-the-internal-solvers">Parameters for fine-tuning the internal solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Available-solvers-and-parameters">Available solvers and parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../solversExternal_nb.html">Alternative Solvers (e.g. Scipy, Petsc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Accessing-underlying-data-structures">Accessing underlying data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Defining-discrete-function-with-given-external-dof-vector">Defining discrete function with given external dof vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Using-Scipy">Using Scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Using-scikit-umfpack">Using scikit-umfpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Using-PETSc4Py">Using PETSc4Py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../othergrids_nb.html">Examples of grid construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#1D-example">1D example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parallelization_nb.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../parallelization_nb.html#Load-balancing">Load balancing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../backuprestore_nb.html">Backup and restore (pickling)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../backuprestore_nb.html#Pickling">Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../corepy.html">Using the Full Grid Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Dense-Vectors-and-the-Geometry-Classes">Dense Vectors and the Geometry Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Grid-Construction-and-Basic-Interface">Grid Construction and Basic Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Structured-grids">Structured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Unstructured-grids">Unstructured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Local-grid-adaptivity">Local grid adaptivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dune-corepy_nb.html#Basic-information-and-iterators">Basic information and iterators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Using-grid-functions">Using grid functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Importing-user-defined-C++-code">Importing user defined C++ code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Attaching-Data-to-the-Grid">Attaching Data to the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Output-of-Grid-and-Visualization-of-Data">Output of Grid and Visualization of Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Paraview-(vtu/vtk-files)">Paraview (vtu/vtk files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Mayavi">Mayavi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Low-level-output">Low level output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gridviews_and_adaptivity.html">Grid views and adaptivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#overview-and-some-basic-grid-views-level-and-filtered">Overview and some basic grid views (level and filtered)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../levelgridview_nb.html">LevelGridView examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filteredgridview_nb.html">FilteredGridView examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening-h-adaptation">Dynamic Local Grid Refinement and Coarsening (h-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#overview-on-adaptivity-for-spaces-p-adaptation">Overview on adaptivity for spaces (p-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#overview-on-moving-grids-r-adaptation">Overview on moving grids (r-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">Using C++ Code Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cppfunctions_nb.html">C++ Based Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lineplot_nb.html">Sampling the Solution over a Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Projects using Dune-Fem</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mmesh_descr.html">Mixed-dimensional PDEs: the Dune-MMesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mmesh_nb.html">Dune-MMesh: Solving a Mixed-dimensional PDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../landlab_descr.html">Components for the Landlab software package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview_of_advection_solver_nb.html">Linear Advection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Advection-of-a-Gaussian-%22bump%22-in-2d">Advection of a Gaussian “bump” in 2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-east">Raster grid with advection to the east</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Instantiate-component">Instantiate component</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-north">Raster grid with advection to the north</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-southwest">Raster grid with advection to the southwest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-a-non-uniform-advection-field">Raster grid with a non-uniform advection field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Case-of-divergent-velocity">Case of divergent velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../overview_of_advection_solver_nb.html#A-rotating-cone">A rotating cone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html">A Linear Diffusion Overland Flow Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Overview">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Model">Model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Flow-direction,-depth,-and-velocity">Flow direction, depth, and velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Numerical-Methods">Numerical Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#The-component">The component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Example-2:-overland-flow-on-a-DEM">Example 2: overland flow on a DEM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#References">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ddfem_descr.html">DDFEM: Diffuse Domain Python package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers.html">Information for C++ Developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers.html#using-a-debugger">Using a debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers.html#list-of-build-specific-environment-variables">List of build specific environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributions.html">Contributing to this tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributions.html#how-to-showcase-your-own-work">How to showcase your own work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional.html">Additional Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog290.html">Since 2.9 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog290.html#general-changes">General changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#updating-to-newer-version-of-ufl">Updating to newer version of UFL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#new-clone-method-on-spaces">New <cite>clone</cite> method on spaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#dirichlet-bcs-for-operators-with-different-range-domain-space">Dirichlet BCs for operators with different range/domain space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#changes-to-solver-parameter-keys">Changes to solver parameter keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#added-a-solve-method-to-the-linearization-of-schemes">Added a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method to the linearization of <code class="docutils literal notranslate"><span class="pre">schemes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#updated-dune-fem-scheme-linearized">Updated <code class="docutils literal notranslate"><span class="pre">dune.fem.scheme.linearized</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#add-operator-len-to-spaces">Add operator <code class="docutils literal notranslate"><span class="pre">__len__</span></code> to spaces.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#add-dirichletindices-method-to-operators-and-schemes">Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#extension-of-the-jacobian-method-on-schemes-and-operators">Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#set-non-default-quadratures-in-quadrature-rules">Set non default quadratures in quadrature rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#assembly-function">Assembly function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#improved-pickling-support">Improved Pickling support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#paraview-reader">Paraview Reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#sampler-along-boundary">Sampler along Boundary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">Point sampler returning (entity,local coordinate) for given global coordinate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#improved-boundary-indexing-in-ufl-forms-for-boundary-integrals-and-dirichlet-conditions">Improved Boundary Indexing in UFL Forms (for boundary integrals and Dirichlet conditions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#eisenstatwalker-in-newton-method">Eisenstatwalker in Newton method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#storage-setup-in-scheme">Storage setup in scheme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">Methods on space to return local mapper and for evaluating basis functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#logging-of-parameter-values">Logging of parameter values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-the-rhs-argument-for-scheme-solve">Deprecation of the <code class="docutils literal notranslate"><span class="pre">rhs</span></code> argument for <code class="docutils literal notranslate"><span class="pre">scheme.solve</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-function-integrate">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-ufl-expression2gf">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-operator-linear">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-space-combinedspace">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog290.html#dune-vem">DUNE-VEM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#dirichlet-constraints-for-conforming-c-1-space">Dirichlet constraints for conforming $C^1$ space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#intersection-integrals-now-use-the-edge-projections">Intersection integrals now use the edge projections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog210.html">Since 2.10 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog210.html#breaking-changes">Breaking changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog210.html#general-changes">General changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog210.html#bugfixes">Bugfixes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../changelog210.html#pickling-of-discrete-functions">Pickling of discrete functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inforesources.html">Keyword index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gmsh2dgf_nb.html">Converting gmsh to DGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../slurmbatchscript.html">Slurm batch script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">List of things that need doing…</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DUNE-FEM Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Alternative Solvers (Scipy and Petsc)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>old/solversExternal</em> as <code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(_nb.ipynb)</span></code> or as <code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></div>
+</div>
+</div>
+<section id="Alternative-Solvers-(Scipy-and-Petsc)">
+<h1>Alternative Solvers (Scipy and Petsc)<a class="headerlink" href="#Alternative-Solvers-(Scipy-and-Petsc)" title="Link to this heading"></a></h1>
+<p>Here we look at different ways of solving PDEs using external packages. Different linear algebra backends can be accessed by changing setting the <code class="docutils literal notranslate"><span class="pre">storage</span></code> parameter during construction of the discrete space. All discrete functions and operators/schemes based on this space will then use this backend. Available backends are <code class="docutils literal notranslate"><span class="pre">numpy,istl,petsc</span></code>. The default is <code class="docutils literal notranslate"><span class="pre">numpy</span></code> which uses simple data structures and linear solvers implemented in the <code class="docutils literal notranslate"><span class="pre">dune-fem</span></code> package - these backends were discussed
+<a class="reference internal" href="solversInternal_nb.html"><span class="doc">in the previously section</span></a>.</p>
+<p>As discussed there, a degrees of freedom vector (dof vector) can be retrieved from a discrete function over the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> space by using the <code class="docutils literal notranslate"><span class="pre">as_numpy</span></code> method. Similar attributes are available for the other storages, i.e., <code class="docutils literal notranslate"><span class="pre">as_istl,as_petsc</span></code>. These attributes are also available to retrieve the underlying matrix structures of linear operators. We will show now how to use this to use <code class="docutils literal notranslate"><span class="pre">scipy</span></code> or <code class="docutils literal notranslate"><span class="pre">petsc4py</span></code> to solve the (non) linear systems.</p>
+<p>We start with the same setup as used <a class="reference internal" href="solversInternal_nb.html"><span class="doc">in the previously section</span></a>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+
+<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span>
+<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span> \
+                <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">conditional</span>
+
+<span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">])</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="p">(</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">FacetNormal</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">a</span>  <span class="o">=</span> <span class="p">(</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">u</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">v</span> <span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="n">bf</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">div</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">exact</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">exact</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">exact</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="n">bg</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">exact</span><span class="p">),</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+
+<span class="c1"># simple function to show the result of a simulation</span>
+<span class="k">def</span> <span class="nf">printResult</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="n">info</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="s2">&quot;L^2, H^1 error:&quot;</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">{:0.5e}</span><span class="s1">, </span><span class="si">{:0.5e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                 <span class="o">*</span><span class="p">[</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">integrate</span><span class="p">([</span><span class="n">error</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">error</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">error</span><span class="p">))])</span> <span class="p">]),</span>
+          <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;solver info=&quot;</span><span class="p">,</span><span class="n">info</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">galerkin</span></code> operator from <code class="docutils literal notranslate"><span class="pre">dune.fem.operator</span></code> instead of the <code class="docutils literal notranslate"><span class="pre">scheme</span></code> used so far, since we do not need the <code class="docutils literal notranslate"><span class="pre">solve</span></code> method since we want to use external solvers in this section:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.operator</span> <span class="kn">import</span> <span class="n">galerkin</span>
+<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span>
+<span class="n">operator</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">-</span> <span class="p">(</span><span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">),</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+<section id="Accessing-underlying-data-structures">
+<h2>Accessing underlying data structures<a class="headerlink" href="#Accessing-underlying-data-structures" title="Link to this heading"></a></h2>
+<p>The most important step is accessing the data structures setup on the C++ side in Python. In this case we would like to use the underlying dof vector from a discrete function as numpy arrays and system matrices assembled by the schemes and operators as scipy sparse matrices.</p>
+<p>In the <a class="reference internal" href="dune-fempy_nb.html"><span class="doc">introduction</span></a> we already discussed the <code class="docutils literal notranslate"><span class="pre">as_numpy</span></code> attribute which allows access to the degrees of freedom as numpy array based on the <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">buffer</span> <span class="pre">protocol</span></code>. So no data is copied and changes to the dofs made on the Python side are automatically carried over to the C++ side.</p>
+<p>We setup <code class="docutils literal notranslate"><span class="pre">u_h</span></code> to be zero but can initialize the dof vector with a random values directly changing <code class="docutils literal notranslate"><span class="pre">u_h</span></code> itself:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_5_0.jpg" src="../_images/old_solversExternal_nb_5_0.jpg" />
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>changes to the numpy array <code class="docutils literal notranslate"><span class="pre">u_h.as_numpy</span></code> carries over to the discrete function <code class="docutils literal notranslate"><span class="pre">u_h</span></code>, just remember to make changes using <code class="docutils literal notranslate"><span class="pre">vecu_h[:]</span></code> to change the actual memory buffer.</p>
+</div>
+<p>An instance of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator</span></code> describing an operator <code class="docutils literal notranslate"><span class="pre">L</span></code> provides a method <code class="docutils literal notranslate"><span class="pre">linear</span></code> which returns an object that stores a sparse matrix structure. The object describes the operator linearized around zero. To linearize around a different value use the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on the <code class="docutils literal notranslate"><span class="pre">operator</span></code> that linearized the the operator <code class="docutils literal notranslate"><span class="pre">L</span></code> around a given grid function <code class="docutils literal notranslate"><span class="pre">ubar</span></code> and fills the linear operator structure passed in as second argument. It is also possible to pass <code class="docutils literal notranslate"><span class="pre">assemble=False</span></code> to
+the <code class="docutils literal notranslate"><span class="pre">linear</span></code> method to avoid an the linearization around zero to reduce computational cost:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linOp</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>                  <span class="c1"># linearized around 0</span>
+<span class="n">linOp</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">assemble</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>    <span class="c1"># empty (non valid) linear operator</span>
+<span class="n">operator</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">zero</span><span class="p">,</span> <span class="n">linOp</span><span class="p">)</span>       <span class="c1"># linearized around zero</span>
+</pre></div>
+</div>
+</div>
+<p>Here we linearize around zero. But that argument could be any grid function. A second version of this method will return an addition discrete function <code class="docutils literal notranslate"><span class="pre">rhs</span></code> which equals <code class="docutils literal notranslate"><span class="pre">-L[ubar]</span></code> such that <code class="docutils literal notranslate"><span class="pre">DL[ubar](u-ubar)</span> <span class="pre">-</span> <span class="pre">rhs</span></code> are the first terms in the Taylor expansion of the operator <code class="docutils literal notranslate"><span class="pre">L</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rhs</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">operator</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">u_h</span><span class="p">,</span> <span class="n">linOp</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>One can now easily access the underlying sparse matrix by again using <code class="docutils literal notranslate"><span class="pre">as_numpy</span></code> (and again the underlying data buffers are not copied):</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">linOp</span><span class="o">.</span><span class="n">as_numpy</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;scipy.sparse._csr.csr_matrix&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;matplotlib.lines.Line2D at 0x7facff61ace0&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_11_2.jpg" src="../_images/old_solversExternal_nb_11_2.jpg" />
+</div>
+</div>
+</section>
+<section id="Defining-discrete-function-with-given-external-dof-vector">
+<h2>Defining discrete function with given external dof vector<a class="headerlink" href="#Defining-discrete-function-with-given-external-dof-vector" title="Link to this heading"></a></h2>
+<p>As a last step we sometimes need to construct a discrete function based on a given dof vector. Here a simple example where we use a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> random vector as dof vector for a discrete function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_coeff</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">vh</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;random&quot;</span><span class="p">,</span> <span class="n">dofVector</span><span class="o">=</span><span class="n">v_coeff</span><span class="p">)</span>
+<span class="n">vh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_13_0.jpg" src="../_images/old_solversExternal_nb_13_0.jpg" />
+</div>
+</div>
+<p>Again the dof vector is not copied so changing the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array will directly change the discrete function</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">v_coeff</span><span class="p">[:]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="n">vh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_15_0.jpg" src="../_images/old_solversExternal_nb_15_0.jpg" />
+</div>
+</div>
+<p>Now we have all the ingredients to write a simple Newton solver to solve our non-linear time dependent PDE.</p>
+</section>
+<section id="Using-Scipy">
+<span id="index-0"></span><h2>Using Scipy<a class="headerlink" href="#Using-Scipy" title="Link to this heading"></a></h2>
+<p>In our first example, we implement a simple Newton Krylov solver using a <code class="docutils literal notranslate"><span class="pre">cg</span></code> solver from Scipy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>As pointed out the system matrix is no longer symmetric due to the handling of the Dirichlet constraints. For this reason we need to provide an initial guess to the <code class="docutils literal notranslate"><span class="pre">cg</span></code> solver with the degrees of freedom on the boundary set to be equal to the corresponding degrees of freedom in the right hand side vector. For this we use the <code class="docutils literal notranslate"><span class="pre">setConstraints</span></code> method on the solver.</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">cg</span>
+<span class="k">class</span> <span class="nc">Scheme1</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="c1"># create a copy of target for the residual</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
+        <span class="n">initialGuess</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial-guess&quot;</span><span class="p">)</span>
+
+        <span class="c1"># extract numpy vectors from target and res</span>
+        <span class="n">sol_coeff</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">as_numpy</span>
+        <span class="n">res_coeff</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">as_numpy</span>
+        <span class="n">x0</span> <span class="o">=</span> <span class="n">initialGuess</span><span class="o">.</span><span class="n">as_numpy</span>
+
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+            <span class="n">absF</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">res_coeff</span><span class="p">,</span><span class="n">res_coeff</span><span class="p">)</span> <span class="p">)</span>
+            <span class="k">if</span> <span class="n">absF</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">initialGuess</span><span class="p">)</span>
+            <span class="n">dh_coeff</span> <span class="o">=</span> <span class="n">cg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">,</span> <span class="n">res_coeff</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span>
+                          <span class="n">callback</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
+            <span class="n">sol_coeff</span> <span class="o">-=</span> <span class="n">dh_coeff</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;iterations&quot;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;linear_iterations&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">linIter</span><span class="p">}</span>
+
+<span class="n">scheme1_cls</span> <span class="o">=</span> <span class="n">Scheme1</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">scheme1_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Scipy-1&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Scipy-1 L^2, H^1 error: 1.17613e-06, 1.83002e-04
+         solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 799}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_18_1.jpg" src="../_images/old_solversExternal_nb_18_1.jpg" />
+</div>
+</div>
+<p>We can also use a non linear solver from the Scipy package - together for example with an incomplete LU factorization for the Jacobian.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>since we are using a LU type method here (i.e. a direct solver) we do not need to worry about the constraints as with the <code class="docutils literal notranslate"><span class="pre">cg</span></code> method previously.</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton_krylov</span><span class="p">,</span> <span class="n">root</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">LinearOperator</span><span class="p">,</span><span class="n">spilu</span>
+
+<span class="k">class</span> <span class="nc">Scheme2</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">operator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">def</span> <span class="nf">cgCallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cg</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="c1"># non linear function</span>
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
+        <span class="c1"># the following converts a given numpy array</span>
+        <span class="c1"># into a discrete function over the given space</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="n">dofVector</span><span class="o">=</span><span class="n">x_coeff</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">as_numpy</span>
+
+    <span class="c1"># class for the derivative DS of S</span>
+    <span class="k">class</span> <span class="nc">Df</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">x_coeff</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="n">dofVector</span><span class="o">=</span><span class="n">x_coeff</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">x_coeff</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># reassemble the matrix DF(u) given a DoF vector for u</span>
+        <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="n">dofVector</span><span class="o">=</span><span class="n">x_coeff</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">invJac</span> <span class="o">=</span> <span class="n">spilu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">as_numpy</span><span class="o">.</span><span class="n">tocsc</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># compute DS(u)^{-1}x for a given DoF vector x</span>
+        <span class="k">def</span> <span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">invJac</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x_coeff</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="n">sol_coeff</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">as_numpy</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Df</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span><span class="n">sol_coeff</span><span class="p">)</span>
+        <span class="c1"># call the newton krylov solver from scipy</span>
+        <span class="n">sol_coeff</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">newton_krylov</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="n">sol_coeff</span><span class="p">,</span>
+                    <span class="n">f_tol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cgCallback</span><span class="p">,</span> <span class="n">inner_M</span><span class="o">=</span><span class="n">M</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;iterations&quot;</span><span class="p">:</span><span class="n">M</span><span class="o">.</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;linear_iterations&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">linIter</span><span class="p">}</span>
+
+<span class="n">scheme2_cls</span> <span class="o">=</span> <span class="n">Scheme2</span><span class="p">(</span><span class="n">operator</span><span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">scheme2_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Scipy-2&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Scipy-2 L^2, H^1 error: 1.17613e-06, 1.83002e-04
+         solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 16}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_20_1.jpg" src="../_images/old_solversExternal_nb_20_1.jpg" />
+</div>
+</div>
+</section>
+<section id="Using-PETSc4Py">
+<span id="index-1"></span><h2>Using PETSc4Py<a class="headerlink" href="#Using-PETSc4Py" title="Link to this heading"></a></h2>
+<p>The following requires that a PETSc installation was found during the configuration of <code class="docutils literal notranslate"><span class="pre">dune</span></code>. Furthermore the Python package `<code class="docutils literal notranslate"><span class="pre">petsc4py</span></code> is required:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.common.checkconfiguration</span> <span class="kn">import</span> <span class="n">assertCMakeHave</span><span class="p">,</span> <span class="n">ConfigurationError</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">assertCMakeHave</span><span class="p">(</span><span class="s2">&quot;HAVE_PETSC&quot;</span><span class="p">)</span>
+    <span class="n">petsc</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span> <span class="n">ConfigurationError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dune not configured with petsc - skipping example&quot;</span><span class="p">)</span>
+    <span class="n">petsc</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span> <span class="nn">petsc4py</span>
+    <span class="n">petsc4py</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">petsc4py</span> <span class="kn">import</span> <span class="n">PETSc</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;petsc4py module not found -- skipping example&quot;</span><span class="p">)</span>
+    <span class="n">petsc4py</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<p>To use <code class="docutils literal notranslate"><span class="pre">petsc4py</span></code> we need to which to a storage based on the PETSc package using the <code class="docutils literal notranslate"><span class="pre">storage</span></code> argument to the space constructor.</p>
+<p>Implementing a Newton Krylov solver using the binding provided by <code class="docutils literal notranslate"><span class="pre">petsc4py</span></code> is now straightforward - we again use incomplete LU as preconditioner:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">petsc4py</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">petsc</span><span class="p">:</span>
+    <span class="n">petsc_options</span> <span class="o">=</span> <span class="n">PETSc</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
+    <span class="n">spacePetsc</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;petsc&#39;</span><span class="p">)</span>
+    <span class="n">u_h</span> <span class="o">=</span> <span class="n">spacePetsc</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>  <span class="c1"># start with solution at top boundary</span>
+    <span class="n">opPetsc</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span><span class="o">==</span><span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">,</span><span class="n">DirichletBC</span><span class="p">(</span><span class="n">spacePetsc</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="mi">2</span><span class="p">)],</span>
+                       <span class="n">domainSpace</span><span class="o">=</span><span class="n">spacePetsc</span><span class="p">,</span><span class="n">rangeSpace</span><span class="o">=</span><span class="n">spacePetsc</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Scheme3</span><span class="p">:</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span> <span class="o">=</span> <span class="n">PETSc</span><span class="o">.</span><span class="n">KSP</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">PETSc</span><span class="o">.</span><span class="n">COMM_WORLD</span><span class="p">)</span>
+            <span class="c1"># use conjugate gradients method</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setType</span><span class="p">(</span><span class="s2">&quot;cg&quot;</span><span class="p">)</span>
+            <span class="c1"># use sor preconditioner</span>
+            <span class="c1"># self.ksp.getPC().setType(&quot;sor&quot;)</span>
+            <span class="c1"># or ILU(1)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">getPC</span><span class="p">()</span><span class="o">.</span><span class="n">setType</span><span class="p">(</span><span class="s2">&quot;ilu&quot;</span><span class="p">)</span>
+            <span class="n">petsc_options</span><span class="p">[</span><span class="s1">&#39;pc_factor_levels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setOperators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">as_petsc</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setInitialGuessNonzero</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setFromOptions</span><span class="p">()</span>
+        <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
+            <span class="n">dh</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;direction&quot;</span><span class="p">)</span>
+            <span class="n">sol_coeff</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">as_petsc</span>
+            <span class="n">dh_coeff</span> <span class="o">=</span> <span class="n">dh</span><span class="o">.</span><span class="n">as_petsc</span>
+            <span class="n">res_coeff</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">as_petsc</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">numIter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+                <span class="n">absF</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">res_coeff</span><span class="p">,</span><span class="n">res_coeff</span><span class="p">)</span> <span class="p">)</span>
+                <span class="k">if</span> <span class="n">absF</span> <span class="o">&lt;</span> <span class="mf">1e-6</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="n">dh</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="n">dh</span><span class="p">)</span> <span class="c1"># petsc does not seem to need this...</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setUp</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">res_coeff</span><span class="p">,</span> <span class="n">dh_coeff</span><span class="p">)</span>
+                <span class="n">numIter</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">getIterationNumber</span><span class="p">()</span>
+                <span class="n">sol_coeff</span> <span class="o">-=</span> <span class="n">dh_coeff</span>
+                <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;iterations&quot;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;linear_iterations&quot;</span><span class="p">:</span><span class="n">numIter</span><span class="p">}</span>
+
+    <span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">scheme3_cls</span> <span class="o">=</span> <span class="n">Scheme3</span><span class="p">(</span><span class="n">opPetsc</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">scheme3_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
+    <span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;PETSc4py 1&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+    <span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+PETSc4py 1 L^2, H^1 error: 1.17613e-06, 1.83002e-04
+         solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 52}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_24_1.jpg" src="../_images/old_solversExternal_nb_24_1.jpg" />
+</div>
+</div>
+<p>Here is another example now using the petsc4py bindings for the non linear KSP solvers from PETSc. This time we use a algebraic multigrid preconditioner:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">petsc4py</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">petsc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">class</span> <span class="nc">Scheme4</span><span class="p">:</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">rangeSpace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span> <span class="o">=</span> <span class="n">PETSc</span><span class="o">.</span><span class="n">SNES</span><span class="p">()</span><span class="o">.</span><span class="n">create</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">setFunction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">as_petsc</span><span class="o">.</span><span class="n">duplicate</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">setUseMF</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">setJacobian</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">as_petsc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">as_petsc</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">setTolerances</span><span class="p">(</span><span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">getKSP</span><span class="p">()</span><span class="o">.</span><span class="n">setType</span><span class="p">(</span><span class="s2">&quot;cg&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">getKSP</span><span class="p">()</span><span class="o">.</span><span class="n">getPC</span><span class="p">()</span><span class="o">.</span><span class="n">setType</span><span class="p">(</span><span class="s2">&quot;hypre&quot;</span><span class="p">)</span>
+            <span class="n">petsc_options</span><span class="p">[</span><span class="s1">&#39;pc_hypre_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;boomeramg&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">setFromOptions</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+            <span class="c1"># setup discrete function using the provide petsc vectors</span>
+            <span class="n">inDF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domainSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span><span class="n">dofVector</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">outDF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">rangeSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span><span class="n">dofVector</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">inDF</span><span class="p">,</span><span class="n">outDF</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">Df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+            <span class="n">inDF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domainSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span><span class="n">dofVector</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">inDF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">PETSc</span><span class="o">.</span><span class="n">Mat</span><span class="o">.</span><span class="n">Structure</span><span class="o">.</span><span class="n">SAME_NONZERO_PATTERN</span>
+
+        <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+            <span class="n">sol_coeff</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">as_petsc</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">as_petsc</span><span class="p">,</span> <span class="n">sol_coeff</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;iterations&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">getIterationNumber</span><span class="p">(),</span>
+                    <span class="s2">&quot;linear_iterations&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">getLinearSolveIterations</span><span class="p">()}</span>
+
+    <span class="n">scheme4_cls</span> <span class="o">=</span> <span class="n">Scheme4</span><span class="p">(</span><span class="n">opPetsc</span><span class="p">)</span>
+    <span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">scheme4_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
+    <span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;PETSc4py 2&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+    <span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+PETSc4py 2 L^2, H^1 error: 1.17613e-06, 1.83002e-04
+         solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 16}
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_solversExternal_nb_26_1.jpg" src="../_images/old_solversExternal_nb_26_1.jpg" />
+</div>
+</div>
+</section>
+</section>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>old/solversExternal</em> as <code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(.ipynb)</span></code> or as <code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Nov 28, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

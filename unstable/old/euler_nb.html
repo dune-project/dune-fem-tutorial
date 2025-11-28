@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Euler System of Gas Dynamics &mdash; Tutorial for version 2.11-git</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/dune-python-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="../genindex.html" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="../changelog210.html" style="color:white">Most recent changes</a></u></li>
+     </span>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../versions.html">DUNE-FEM Tutorial Versions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">An Overview of this Document</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Teasers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../furtherexamples.html">Main Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wave_nb.html">Wave Equation: double slit domain (using mass lumping)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../monolithicStokes_nb.html#DG-formulation">DG formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../monolithicStokes_nb.html#id3">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../monolithicStokes_nb.html#Convergence-rate-check">Convergence rate check</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cylinder_nb.html">Navier-Stokes: flow around a cylinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mixed_poisson_nb.html">Mixed method for the Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../evalues_laplace_nb.html">Eigenvalue problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../evalues_laplace_nb.html#Eigenvalues-of-the-Neumann-Laplacian">Eigenvalues of the Neumann Laplacian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../evalues_laplace_nb.html#Dirichlet-Eigenvalue-problem">Dirichlet Eigenvalue problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../biharmonic_IPC0_nb.html">Biharmonic problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic_IPC0_nb.html#Implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../biharmonic_IPC0_nb.html#Simply-supported-boundary-conditions">Simply supported boundary conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../furtherexamples.html#extension-modules">Extension Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../furtherexamples.html#discontinuous-galerkin-methods-with-dune-fem-dg">Discontinuous Galerkin Methods with DUNE-FEM-DG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../euler_nb.html">Euler System of Gas Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chemical_nb.html">An Advection-Diffusion-Reaction System: Chemical Reaction Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../furtherexamples.html#virtual-element-methods-with-dune-vem">Virtual Element Methods with DUNE-VEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html">Elliptic Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html#Nonlinear-Elliptic-Problem">Nonlinear Elliptic Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html#Linear-Elasticity">Linear Elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../vemdemo_nb.html#Fourth-order-problem">Fourth order problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../chimpl_nb.html">Cahn-Hilliard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">From PyPi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#additional-external-packages">Additional external packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#testing-the-installation">Testing the installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#hints-for-windows">Hints for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#from-source">From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#building-the-required-dune-modules">Building the Required Dune Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dune-fempy_nb.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#A-Laplace-problem">A Laplace problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#Laplace-equation-with-Dirichlet-boundary-conditions">Laplace equation with Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#A-non-linear-elliptic-problem">A non-linear elliptic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-fempy_nb.html#Using-Constant-parameters-and-grid-functions-in-PDEs">Using <code class="docutils literal notranslate"><span class="pre">Constant</span></code> parameters and grid functions in PDEs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../concepts_nb.html">General Concepts (with a time dependent problem)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Setting-up-the-Grid">Setting up the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Grid-Functions">Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Discrete-Spaces">Discrete Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Discrete-Functions">Discrete Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Operators-and-Schemes">Operators and Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#A-Nonlinear-Time-Dependent-Problem">A Nonlinear Time Dependent Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts_nb.html#Listing-Available-Dune-Components">Listing Available Dune Components</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../boundary_nb.html">More General Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Dirichlet-boundary-conditions">Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom">Accessing the Dirichlet degrees of freedom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Neumann-and-Robin-boundary-conditions">Neumann and Robin boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../solversInternal_nb.html">Tweaking the (non-) linear solvers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Python-sided-Newton-solver">Python sided Newton solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Handling-Dirichlet-boundary-conditions">Handling Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Other-internal-solvers-(petsc)">Other internal solvers (petsc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Other-internal-solvers-(istl)">Other internal solvers (istl)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Parameters-for-fine-tuning-the-internal-solvers">Parameters for fine-tuning the internal solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversInternal_nb.html#Available-solvers-and-parameters">Available solvers and parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../solversExternal_nb.html">Alternative Solvers (e.g. Scipy, Petsc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Accessing-underlying-data-structures">Accessing underlying data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Defining-discrete-function-with-given-external-dof-vector">Defining discrete function with given external dof vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Using-Scipy">Using Scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Using-scikit-umfpack">Using scikit-umfpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../solversExternal_nb.html#Using-PETSc4Py">Using PETSc4Py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../othergrids_nb.html">Examples of grid construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../othergrids_nb.html#1D-example">1D example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parallelization_nb.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../parallelization_nb.html#Load-balancing">Load balancing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../backuprestore_nb.html">Backup and restore (pickling)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../backuprestore_nb.html#Pickling">Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../corepy.html">Using the Full Grid Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Dense-Vectors-and-the-Geometry-Classes">Dense Vectors and the Geometry Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Grid-Construction-and-Basic-Interface">Grid Construction and Basic Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Structured-grids">Structured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Unstructured-grids">Unstructured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Local-grid-adaptivity">Local grid adaptivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dune-corepy_nb.html#Basic-information-and-iterators">Basic information and iterators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Using-grid-functions">Using grid functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Importing-user-defined-C++-code">Importing user defined C++ code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Attaching-Data-to-the-Grid">Attaching Data to the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dune-corepy_nb.html#Output-of-Grid-and-Visualization-of-Data">Output of Grid and Visualization of Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Paraview-(vtu/vtk-files)">Paraview (vtu/vtk files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Mayavi">Mayavi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dune-corepy_nb.html#Low-level-output">Low level output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gridviews_and_adaptivity.html">Grid views and adaptivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#overview-and-some-basic-grid-views-level-and-filtered">Overview and some basic grid views (level and filtered)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../levelgridview_nb.html">LevelGridView examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../filteredgridview_nb.html">FilteredGridView examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening-h-adaptation">Dynamic Local Grid Refinement and Coarsening (h-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#overview-on-adaptivity-for-spaces-p-adaptation">Overview on adaptivity for spaces (p-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../gridviews_and_adaptivity.html#overview-on-moving-grids-r-adaptation">Overview on moving grids (r-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp.html">Using C++ Code Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cppfunctions_nb.html">C++ Based Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lineplot_nb.html">Sampling the Solution over a Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Projects using Dune-Fem</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mmesh_descr.html">Mixed-dimensional PDEs: the Dune-MMesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mmesh_nb.html">Dune-MMesh: Solving a Mixed-dimensional PDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../landlab_descr.html">Components for the Landlab software package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview_of_advection_solver_nb.html">Linear Advection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Advection-of-a-Gaussian-%22bump%22-in-2d">Advection of a Gaussian “bump” in 2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-east">Raster grid with advection to the east</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Instantiate-component">Instantiate component</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-north">Raster grid with advection to the north</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-southwest">Raster grid with advection to the southwest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Raster-grid-with-a-non-uniform-advection-field">Raster grid with a non-uniform advection field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../overview_of_advection_solver_nb.html#Case-of-divergent-velocity">Case of divergent velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../overview_of_advection_solver_nb.html#A-rotating-cone">A rotating cone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html">A Linear Diffusion Overland Flow Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Overview">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Model">Model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Flow-direction,-depth,-and-velocity">Flow direction, depth, and velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Numerical-Methods">Numerical Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#The-component">The component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#Example-2:-overland-flow-on-a-DEM">Example 2: overland flow on a DEM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../linear_diffusion_overland_flow_dune_nb.html#References">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ddfem_descr.html">DDFEM: Diffuse Domain Python package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../developers.html">Information for C++ Developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers.html#using-a-debugger">Using a debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../developers.html#list-of-build-specific-environment-variables">List of build specific environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributions.html">Contributing to this tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributions.html#how-to-showcase-your-own-work">How to showcase your own work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../additional.html">Additional Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog290.html">Since 2.9 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog290.html#general-changes">General changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#updating-to-newer-version-of-ufl">Updating to newer version of UFL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#new-clone-method-on-spaces">New <cite>clone</cite> method on spaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#dirichlet-bcs-for-operators-with-different-range-domain-space">Dirichlet BCs for operators with different range/domain space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#changes-to-solver-parameter-keys">Changes to solver parameter keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#added-a-solve-method-to-the-linearization-of-schemes">Added a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method to the linearization of <code class="docutils literal notranslate"><span class="pre">schemes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#updated-dune-fem-scheme-linearized">Updated <code class="docutils literal notranslate"><span class="pre">dune.fem.scheme.linearized</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#add-operator-len-to-spaces">Add operator <code class="docutils literal notranslate"><span class="pre">__len__</span></code> to spaces.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#add-dirichletindices-method-to-operators-and-schemes">Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#extension-of-the-jacobian-method-on-schemes-and-operators">Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#set-non-default-quadratures-in-quadrature-rules">Set non default quadratures in quadrature rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#assembly-function">Assembly function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#improved-pickling-support">Improved Pickling support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#paraview-reader">Paraview Reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#sampler-along-boundary">Sampler along Boundary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">Point sampler returning (entity,local coordinate) for given global coordinate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#improved-boundary-indexing-in-ufl-forms-for-boundary-integrals-and-dirichlet-conditions">Improved Boundary Indexing in UFL Forms (for boundary integrals and Dirichlet conditions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#eisenstatwalker-in-newton-method">Eisenstatwalker in Newton method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#storage-setup-in-scheme">Storage setup in scheme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">Methods on space to return local mapper and for evaluating basis functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#logging-of-parameter-values">Logging of parameter values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-the-rhs-argument-for-scheme-solve">Deprecation of the <code class="docutils literal notranslate"><span class="pre">rhs</span></code> argument for <code class="docutils literal notranslate"><span class="pre">scheme.solve</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-function-integrate">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-ufl-expression2gf">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-operator-linear">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#deprecation-of-dune-fem-space-combinedspace">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog290.html#dune-vem">DUNE-VEM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#dirichlet-constraints-for-conforming-c-1-space">Dirichlet constraints for conforming $C^1$ space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../changelog290.html#intersection-integrals-now-use-the-edge-projections">Intersection integrals now use the edge projections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog210.html">Since 2.10 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog210.html#breaking-changes">Breaking changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog210.html#general-changes">General changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog210.html#bugfixes">Bugfixes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../changelog210.html#pickling-of-discrete-functions">Pickling of discrete functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inforesources.html">Keyword index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gmsh2dgf_nb.html">Converting gmsh to DGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../slurmbatchscript.html">Slurm batch script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">List of things that need doing…</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">DUNE-FEM Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Euler System of Gas Dynamics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>old/euler</em> as <code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(_nb.ipynb)</span></code> or as <code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></div>
+</div>
+</div>
+<section id="Euler-System-of-Gas-Dynamics">
+<span id="index-0"></span><h1>Euler System of Gas Dynamics<a class="headerlink" href="#Euler-System-of-Gas-Dynamics" title="Link to this heading"></a></h1>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">dune.femdg</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example needs &#39;dune.femdg&#39; - skipping&quot;</span><span class="p">)</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span><span class="p">,</span> <span class="n">reader</span>
+<span class="kn">import</span> <span class="nn">dune.fem</span>
+<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">dgonb</span><span class="p">,</span> <span class="n">finiteVolume</span>
+<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">gridFunction</span>
+<span class="kn">from</span> <span class="nn">dune.femdg</span> <span class="kn">import</span> <span class="n">femDGOperator</span>
+<span class="kn">from</span> <span class="nn">dune.femdg.rk</span> <span class="kn">import</span> <span class="n">femdgStepper</span>
+<span class="kn">from</span> <span class="nn">dune.fem.utility</span> <span class="kn">import</span> <span class="n">lineSample</span>
+
+<span class="n">dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">threading</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+</div>
+</div>
+<p id="index-1">The dune-fem-dg module can either used stabilizer DG methods to solve this type of problem or higher order FV methods based on linear reconstruction. The following function uses a finite-volume space when order=0 and a dg space with orthonormal polynomials otherwise. Note that when a limiter is then used in the scheme, the finite-volume scheme will use linear reconstruction:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getSpace</span><span class="p">(</span> <span class="n">gv</span><span class="p">,</span> <span class="n">order</span> <span class="p">):</span>
+    <span class="k">return</span> <span class="n">finiteVolume</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">4</span> <span class="p">)</span> <span class="k">if</span> <span class="n">order</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span>\
+           <span class="n">dgonb</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Basic model for hyperbolic conservation law</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="mf">1.4</span>
+    <span class="c1"># helper function</span>
+    <span class="k">def</span> <span class="nf">toPrim</span><span class="p">(</span><span class="n">U</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">(</span> <span class="p">[</span><span class="n">U</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span> <span class="p">)</span>
+        <span class="n">kin</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">pressure</span> <span class="o">=</span> <span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">gamma</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">kin</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">,</span> <span class="n">pressure</span>
+
+    <span class="c1"># interface methods for model</span>
+    <span class="k">def</span> <span class="nf">F_c</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+        <span class="n">rho</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">toPrim</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">as_matrix</span><span class="p">(</span> <span class="p">[</span>
+                  <span class="p">[</span><span class="n">rho</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rho</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                  <span class="p">[</span><span class="n">rho</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">,</span> <span class="n">rho</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
+                  <span class="p">[</span><span class="n">rho</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rho</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">],</span>
+                  <span class="p">[(</span><span class="n">U</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="p">]</span> <span class="p">)</span>
+
+    <span class="c1"># simple &#39;outflow&#39; boundary conditions on all boundaries</span>
+    <span class="n">boundary</span> <span class="o">=</span> <span class="p">{</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">:</span> <span class="n">U</span><span class="p">}</span>
+
+    <span class="c1"># interface method needed for LLF and time step control</span>
+    <span class="k">def</span> <span class="nf">maxWaveSpeed</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">rho</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">toPrim</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">n</span><span class="p">))</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">gamma</span><span class="o">*</span><span class="n">p</span><span class="o">/</span><span class="n">rho</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p id="index-2">Add methods for limiting</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">velocity</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">toPrim</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">v</span>
+<span class="k">def</span> <span class="nf">physical</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+    <span class="n">rho</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">toPrim</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">conditional</span><span class="p">(</span> <span class="n">rho</span><span class="o">&gt;</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">conditional</span><span class="p">(</span> <span class="n">p</span><span class="o">&gt;</span><span class="mf">1e-8</span> <span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span> <span class="p">),</span> <span class="mi">0</span> <span class="p">)</span>
+<span class="k">def</span> <span class="nf">jump</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">V</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span> <span class="n">pL</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">toPrim</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span><span class="n">_</span><span class="p">,</span> <span class="n">pR</span> <span class="o">=</span> <span class="n">Model</span><span class="o">.</span><span class="n">toPrim</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">pL</span> <span class="o">-</span> <span class="n">pR</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">pL</span> <span class="o">+</span> <span class="n">pR</span><span class="p">))</span>
+<span class="n">Model</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">velocity</span>
+<span class="n">Model</span><span class="o">.</span><span class="n">physical</span> <span class="o">=</span> <span class="n">physical</span>
+<span class="n">Model</span><span class="o">.</span><span class="n">jump</span>     <span class="o">=</span> <span class="n">jump</span>
+</pre></div>
+</div>
+</div>
+<p>Method to evolve the solution in time</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evolve</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">u_h</span><span class="p">,</span> <span class="n">limiter</span><span class="o">=</span><span class="s2">&quot;MinMod&quot;</span><span class="p">):</span>
+    <span class="n">lu_h</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">localFunction</span><span class="p">()</span>
+    <span class="nd">@gridFunction</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">gridView</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;rho&quot;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="n">space</span><span class="o">.</span><span class="n">order</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">rho</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">lu_h</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lu_h</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">operator</span> <span class="o">=</span> <span class="n">femDGOperator</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">limiter</span><span class="o">=</span><span class="n">limiter</span><span class="p">)</span> <span class="c1"># note: that u_h.space fails since not ufl_space</span>
+    <span class="n">stepper</span>  <span class="o">=</span> <span class="n">femdgStepper</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="n">space</span><span class="o">.</span><span class="n">order</span><span class="o">+</span><span class="mi">1</span> <span class="k">if</span> <span class="n">space</span><span class="o">.</span><span class="n">order</span><span class="o">&gt;</span><span class="mi">0</span> <span class="k">else</span> <span class="mi">2</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">)</span>
+    <span class="n">operator</span><span class="o">.</span><span class="n">applyLimiter</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">saveStep</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="mi">131</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="p">[</span><span class="mf">0.125</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mf">0.3</span><span class="p">:</span>
+        <span class="n">operator</span><span class="o">.</span><span class="n">setTime</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="n">stepper</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="n">saveStep</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">saveStep</span> <span class="o">+=</span> <span class="mf">0.1</span>
+            <span class="n">rho</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="mi">131</span><span class="o">+</span><span class="n">c</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clim</span><span class="o">=</span><span class="p">[</span><span class="mf">0.125</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">space</span><span class="o">.</span><span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">space</span><span class="o">.</span><span class="n">gridView</span><span class="o">.</span><span class="n">elements</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">center</span>
+        <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">two_norm</span>
+        <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">rho</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">e</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">toLocal</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">res</span>
+</pre></div>
+</div>
+</div>
+<p>A radial Riemann problem</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">triangle</span><span class="p">)</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="n">conditional</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.1</span><span class="p">,</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]),</span>
+                                   <span class="n">as_vector</span><span class="p">([</span><span class="mf">0.125</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">]))</span>
+
+<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">dgf</span><span class="p">,</span> <span class="s2">&quot;triangle.dgf&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We start with a triangular grid</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluSimplexGrid</span> <span class="k">as</span> <span class="n">simplexGrid</span>
+<span class="n">gridView</span> <span class="o">=</span> <span class="n">simplexGrid</span><span class="p">(</span> <span class="n">domain</span><span class="p">,</span> <span class="n">dimgrid</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1"># fix the order to use and storage structure for results</span>
+<span class="n">res</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">order</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">getSpace</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_13_0.jpg" src="../_images/old_euler_nb_13_0.jpg" />
+</div>
+</div>
+<p>Initial conditions for a radial Riemann problem</p>
+<p>First solved on a triangle grid and minmod limiter</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s2">&quot;simplex (minmod)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">u_h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+femDGOperator: Limiter = MinMod
+0.10067226533061213
+0.20011688589049687
+0.3006285980734703
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_15_1.jpg" src="../_images/old_euler_nb_15_1.jpg" />
+</div>
+</div>
+<p>Now a triangle grid without limiter (which of course fails)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+    <span class="n">evolve</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">u_h</span><span class="p">,</span><span class="n">limiter</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SOLUTION NOT VALID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+femDGOperator: Limiter = unlimited
+8.089619106880421e+307
+SOLUTION NOT VALID
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_17_1.jpg" src="../_images/old_euler_nb_17_1.jpg" />
+</div>
+</div>
+<p>Now a finite volume method first without reconstruction on the triangle grid</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fvspace</span> <span class="o">=</span> <span class="n">getSpace</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span>
+<span class="n">u_h</span>   <span class="o">=</span> <span class="n">fvspace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s2">&quot;simplex (fv)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">fvspace</span><span class="p">,</span><span class="n">u_h</span><span class="p">,</span><span class="n">limiter</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+femDGOperator: Limiter = unlimited
+0.10210605133997673
+0.20082317461244167
+0.30230727763246446
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_19_1.jpg" src="../_images/old_euler_nb_19_1.jpg" />
+</div>
+</div>
+<p>and a finite volume method with reconstruction</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fvspace</span> <span class="o">=</span> <span class="n">getSpace</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span>
+<span class="n">u_h</span>   <span class="o">=</span> <span class="n">fvspace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s2">&quot;simplex (higher order fv)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">fvspace</span><span class="p">,</span><span class="n">u_h</span><span class="p">,</span><span class="n">limiter</span><span class="o">=</span><span class="s2">&quot;MinMod&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+femDGOperator: Limiter = MinMod
+0.10084269417709438
+0.2019004406055368
+0.30190270811495373
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_21_1.jpg" src="../_images/old_euler_nb_21_1.jpg" />
+</div>
+</div>
+<p>Using a polygonal grid (dual grid of previous grid)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">dune.polygongrid</span> <span class="kn">import</span> <span class="n">polygonGrid</span>
+    <span class="n">gridView</span> <span class="o">=</span> <span class="n">polygonGrid</span><span class="p">(</span> <span class="n">domain</span><span class="p">,</span> <span class="n">dualGrid</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;dune.polygongrid module not found using the simplex grid again&quot;</span><span class="p">)</span>
+    <span class="n">gridView</span> <span class="o">=</span> <span class="n">simplexGrid</span><span class="p">(</span> <span class="n">domain</span><span class="p">,</span> <span class="n">dimgrid</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">getSpace</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_23_0.jpg" src="../_images/old_euler_nb_23_0.jpg" />
+</div>
+</div>
+<p>Solution with limiter - fails as above without</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+<span class="n">res</span><span class="p">[</span><span class="s2">&quot;polygons (minmod)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">u_h</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+femDGOperator: Limiter = MinMod
+0.10079052613578879
+0.20000620030070312
+0.30079672643648403
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_25_1.jpg" src="../_images/old_euler_nb_25_1.jpg" />
+</div>
+</div>
+<p>Solutions along the diagonal</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="s1">&#39;tab:orange&#39;</span><span class="p">,</span> <span class="s1">&#39;tab:green&#39;</span><span class="p">,</span> <span class="s1">&#39;tab:red&#39;</span><span class="p">]</span>
+<span class="n">figure</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,(</span><span class="n">k</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">221</span><span class="o">+</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/old_euler_nb_27_0.jpg" src="../_images/old_euler_nb_27_0.jpg" />
+</div>
+</div>
+</section>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>old/euler</em> as <code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(.ipynb)</span></code> or as <code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Nov 28, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
