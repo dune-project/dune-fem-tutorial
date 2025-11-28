@@ -4,10 +4,11 @@ data = XMLUnstructuredGridReader(FileName=['interpolation_subsampled.vtu'])
 
 view = GetActiveViewOrCreate('RenderView')
 view.ViewSize = [1036, 768]
+if GetParaViewVersion() < 5.5:
+    view.UseOffscreenRendering = True
 
 view.CenterAxesVisibility = 0
 view.OrientationAxesVisibility = 0
-
 
 # this does not work with newer ParaView versions
 try:
@@ -33,7 +34,7 @@ for current in ['discrete', 'exact', 'error']:
     display = Show(warped, view)
 
     display.ColorArrayName = ('POINTS', current)
-    display.LookupTable = GetColorTransferFunction(current, Discretize=0, RGBPoints=[rg[0], 0.0, 0.0, 1.0, rg[1], 1.0, 0.0, 0.0], ColorSpace='HSV')
+    display.LookupTable = GetLookupTableForArray(current, 1, Discretize=0, RGBPoints=[rg[0], 0.0, 0.0, 1.0, rg[1], 1.0, 0.0, 0.0], ColorSpace='HSV')
     display.SetRepresentationType('Surface with Edges')
     display.EdgeColor = [1./3., 1./3., 1./3.]
 

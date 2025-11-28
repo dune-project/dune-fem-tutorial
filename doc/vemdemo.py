@@ -94,7 +94,7 @@ polygons.plot(colorbar="horizontal")
 # `testSpaces=[0,order-2,order-2]` defines a conforming space.
 
 # %%
-order = 1
+order = 3
 space = dune.vem.vemSpace( polyGrid, order=order, storage="numpy",
                            testSpaces=[-1,order-1,order-2])
 
@@ -122,13 +122,13 @@ dbc = [dune.ufl.DirichletBC(space, exact, i+1) for i in range(4)]
 # description and arguments for stabilization:
 
 # %%
-parameters = {"nonlinear.verbose": False,
-              "linear.tolerance": 1e-12,
-              "linear.preconditioning.method": "jacobi",
-              "linear.verbose": False,
+parameters = {"newton.linear.tolerance": 1e-12,
+              "newton.linear.preconditioning.method": "jacobi",
               "penalty": 10*order*order,  # for the dg schemes
+              "newton.linear.verbose": False,
+              "newton.verbose": False
               }
-df = space.function(name="solution")
+df = space.interpolate(0,name="solution")
 scheme = dune.vem.vemScheme( [a==b, *dbc], space, solver="cg",
                              gradStabilization=diffCoeff,
                              massStabilization=massCoeff,
@@ -143,7 +143,7 @@ df.plot()
 # %%
 space = dune.vem.vemSpace( polyGrid, order=order, storage="numpy",
                            testSpaces=[0,order-2,order-2])
-df = space.function(name="solution")
+df = space.interpolate(0,name="solution")
 scheme = dune.vem.vemScheme( [a==b, *dbc], space, solver="cg",
                              gradStabilization=diffCoeff,
                              massStabilization=massCoeff,
@@ -191,7 +191,7 @@ methods = [ ### "[legend,space,scheme,spaceKwargs,schemeKwargs]"
 # %%
 def compute(grid, space,spaceArgs, schemeName,schemeArgs):
     space = space( grid, order=order, **spaceArgs )
-    df = space.function(name="solution")
+    df = space.interpolate(0,name="solution")
     scheme = schemeName( [a==b, *dbc], space, solver="cg", **schemeArgs,
                          parameters=parameters )
     info = scheme.solve(target=df)
@@ -223,8 +223,7 @@ for i,m in enumerate(methods):
 # We can easily set up a non linear problem
 
 # %%
-# space = dune.vem.vemSpace( polyGrid, order=1, conforming=True )
-space = dune.vem.vemSpace( polyGrid, order=1, testSpaces=[-1,0,-1])
+space = dune.vem.vemSpace( polyGrid, order=1, conforming=True )
 u = TrialFunction(space)
 v = TestFunction(space)
 x = SpatialCoordinate(space)
@@ -235,7 +234,7 @@ b = -div( Dcoeff(exact) * grad(exact) ) * v * dx
 dbcs = [dune.ufl.DirichletBC(space, exact, i+1) for i in range(4)]
 scheme = dune.vem.vemScheme( [a==b, *dbcs], space, gradStabilization=Dcoeff(u),
                              solver="cg", parameters=parameters)
-solution = space.function(name="solution")
+solution = space.interpolate(0, name="solution")
 info = scheme.solve(target=solution)
 edf = exact-solution
 errors = [ numpy.sqrt(e) for e in
@@ -291,7 +290,7 @@ a = inner(sigma(u), epsilon(v))*dx
 b = dot(as_vector([0,-rho*g]),v)*dx
 
 # Compute solution
-displacement = space.function(name="displacement")
+displacement = space.interpolate([0,0], name="displacement")
 scheme = dune.vem.vemScheme( [a==b, dbc], space,
         gradStabilization = as_vector([lambda_+2*mu, lambda_+2*mu]),
         solver="cg", parameters=parameters )

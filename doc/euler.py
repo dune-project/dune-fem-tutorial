@@ -15,13 +15,11 @@ from matplotlib import pyplot
 from ufl import *
 from dune.grid import structuredGrid, reader
 import dune.fem
-import dune.ufl
 from dune.fem.space import dgonb, finiteVolume
 from dune.fem.function import gridFunction
 from dune.femdg import femDGOperator
 from dune.femdg.rk import femdgStepper
 from dune.fem.utility import lineSample
-from dune.femdg import BndValue, BndFlux_v, BndFlux_c
 
 dune.fem.threading.use = 4
 
@@ -52,8 +50,7 @@ class Model:
         return U[0], v, pressure
 
     # interface methods for model
-    @classmethod
-    def F_c(cls,t,x,U):
+    def F_c(t,x,U):
         rho, v, p = Model.toPrim(U)
         return as_matrix( [
                   [rho*v[0], rho*v[1]],
@@ -62,11 +59,10 @@ class Model:
                   [(U[3]+p)*v[0], (U[3]+p)*v[1]] ] )
 
     # simple 'outflow' boundary conditions on all boundaries
-    boundary = {range(1,5): BndValue(lambda t,x,U: U)}
+    boundary = {range(1,5): lambda t,x,U: U}
 
     # interface method needed for LLF and time step control
-    @classmethod
-    def maxWaveSpeed(cls,t,x,U,n):
+    def maxWaveSpeed(t,x,U,n):
         rho, v, p = Model.toPrim(U)
         return abs(dot(v,n)) + sqrt(Model.gamma*p/rho)
 
@@ -75,19 +71,19 @@ class Model:
 #
 # Add methods for limiting
 # %%
-def velocity(cls,t,x,U):
+def velocity(t,x,U):
     _, v ,_ = Model.toPrim(U)
     return v
-def physical(cls,t,x,U):
+def physical(t,x,U):
     rho, _, p = Model.toPrim(U)
     return conditional( rho>1e-8, conditional( p>1e-8 , 1, 0 ), 0 )
-def jump(cls,t,x,U,V):
+def jump(t,x,U,V):
     _,_, pL = Model.toPrim(U)
     _,_, pR = Model.toPrim(V)
     return (pL - pR)/(0.5*(pL + pR))
-Model.velocity = classmethod(velocity)
-Model.physical = classmethod(physical)
-Model.jump     = classmethod(jump)
+Model.velocity = velocity
+Model.physical = physical
+Model.jump     = jump
 
 # %% [markdown]
 # Method to evolve the solution in time
@@ -124,8 +120,12 @@ def evolve(space, u_h, limiter="MinMod"):
     return res
 
 # %% [markdown]
-# A radial Riemann problem using [a triangle grid](triangle.dgf)
+# A radial Riemann problem
 # %%
+x = SpatialCoordinate(triangle)
+initial = conditional(dot(x,x)<0.1,as_vector([1,0,0,2.5]),
+                                   as_vector([0.125,0,0,0.25]))
+
 domain = (reader.dgf, "triangle.dgf")
 
 # %% [markdown]
@@ -146,10 +146,6 @@ space = getSpace( gridView, order )
 # First solved on a triangle grid and minmod limiter
 
 # %%
-x = SpatialCoordinate(space)
-initial = conditional(dot(x,x)<0.1,as_vector([1,0,0,2.5]),
-                                   as_vector([0.125,0,0,0.25]))
-
 u_h   = space.interpolate( initial, name="solution")
 res["simplex (minmod)"] = evolve(space,u_h)
 
@@ -205,3 +201,4 @@ for i,(k,x) in enumerate(res.items()):
     ax.scatter(x[0],x[1], color=color[i], label=k)
     ax.legend()
     ax.grid(True)
+pyplot.show()

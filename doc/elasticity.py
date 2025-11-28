@@ -55,7 +55,7 @@ g    = 9.8     # gravitational acceleration
 # %%
 epsilon = lambda u: 0.5*(nabla_grad(u) + nabla_grad(u).T)
 sigma = lambda u: lamb*nabla_div(u)*Identity(2) + 2*mu*epsilon(u)
-forcing = dune.ufl.Constant( [0,-rho*g], "forcing")
+
 
 # %% [markdown]
 # Finally we define the variational problem
@@ -68,10 +68,10 @@ forcing = dune.ufl.Constant( [0,-rho*g], "forcing")
 # %%
 u = TrialFunction(space)
 v = TestFunction(space)
-equation = inner(sigma(u), epsilon(v))*dx == dot(forcing,v)*dx
+equation = inner(sigma(u), epsilon(v))*dx == dot(as_vector([0,-rho*g]),v)*dx
 
 scheme = solutionScheme([equation, dbc], solver='cg',
-            parameters = {"linear.preconditioning.method": "ilu"} )
+            parameters = {"newton.linear.preconditioning.method": "ilu"} )
 info = scheme.solve(target=displacement)
 
 

@@ -8,7 +8,7 @@
 # # Moving surface grid: flow under mean curvature
 #
 # This example uses a
-# [moving grid](gridviews_and_adaptivity.rst#Evolving-Domains).
+# [moving grid](gridviews.rst#Evolving-Domains).
 
 # Mean curvature flow is a specific example of a geometric evolution
 # equation where the evolution is governed by the mean curvature $H$.
@@ -65,9 +65,7 @@ R0 = 2.
 # %% [markdown]
 # .. index: Grid construction; Dune Grid Format file (`DGF`_)
 #
-# We begin by setting up reference domain $\Gamma_0$ (```grid```)
-# ([a sphere](sphere.dgf)), and the space on $\Gamma_0$ that describes $\Gamma(t)$ (```space```).
-# From this we interpolate the non-spherical initial surface ```positions```, and, then reconstruct ```space``` for the discrete solution on $\Gamma(t)$.
+# We begin by setting up reference domain $\Gamma_0$ (```grid```), and the space on $\Gamma_0$ that describes $\Gamma(t)$ (```space```). From this we interpolate the non-spherical initial surface ```positions```, and, then reconstruct ```space``` for the discrete solution on $\Gamma(t)$.
 
 # %%
 from dune.fem.view import geometryGridView
@@ -122,7 +120,7 @@ while t < end_time:
              gridLines="", triplot=True)
 
 # %% [markdown]
-# By choosing an initial surface with boundary we can solve the [soap film](soap.dgf)
+# By choosing an initial surface with boundary we can solve the _soap film_
 # problem, i.e., compute the surface of minimum curvature:
 # %%
 pyplot.close('all')
@@ -167,11 +165,11 @@ bc = DirichletBC(space,x)
 
 # %%
 solverParameters =\
-       {"nonlinear.tolerance": 1e-9,
-        "linear.tolerance": 1e-11,
-        "linear.preconditioning.method": "jacobi",
-        "nonlinear.verbose": False,
-        "linear.preconditioning.iteration": 3}
+       {"newton.tolerance": 1e-9,
+        "newton.linear.tolerance": 1e-11,
+        "newton.linear.preconditioning.method": "jacobi",
+        "newton.verbose": False,
+        "newton.linear.preconditioning.iteration": 3}
 # setup scheme
 scheme = solutionScheme([form == 0, bc], space, solver="cg",
                         parameters=solverParameters)
@@ -195,7 +193,7 @@ try:
         mlab.figure(bgcolor = (1,1,1))
         s = mlab.triangular_mesh(x[:,0],x[:,1],x[:,2],triangles)
         display( s )
-except (ImportError, ModuleNotFoundError):
+except ImportError:
     print("mayavi module not found so not showing plot - ignored")
     def plot3d(uh,level):
         pass

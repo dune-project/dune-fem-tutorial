@@ -17,17 +17,15 @@
 #
 # ## Setting up the Grid
 #
-# .. attention::
-#    The goal of a Dune **grid** or **hierarchical grid** is to provide an
+# .. note:: The goal of a Dune **grid** or **hierarchical grid** is to provide an
 #    interface to describe subdivisions (entities or elements for codim 0) of the computational domain $\Omega$
 #    in a generic way. In the following this is referred to as `hierarchicalGrid`.
 #    See <cite data-cite="DuneReview"></cite>, Section 3.1, for more details.
 #
-# .. note::
-#    Grids can be refined in a hierarchic manner, meaning that elements are subdivided into several smaller elements. The
+# .. note:: Grids can be refined in a hierarchic manner, meaning that elements are subdivided into several smaller elements. The
 #    element to be refined is kept in the grid and remains accessible. One
 #    can either refine all elements (global refinement) as described below.
-#    We will discuss [local refinement](gridviews_and_adaptivity.rst#Dynamic-Local-Grid-Refinement-and-Coarsening)
+#    We will discuss [local refinement](gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening)
 #    in a later section.
 #
 # After some general import statements we start our tutorial by setting up
@@ -63,7 +61,7 @@ gridView.plot()
 # .. index::
 #    pair: Grid view; Grid view Definition
 #
-# .. attention:: A **grid view** object provides read-only access to the entities of all codimensions
+# .. note:: A **grid view** object provides read-only access to the entities of all codimensions
 # of a subset of the `hierarchical grid`.
 # In the following this is called `gridView` and sometimes simply `grid`.
 # See <cite data-cite="DuneReview"></cite>, Section 3.1.1, for more details.
@@ -71,8 +69,8 @@ gridView.plot()
 # .. tip:: The functions constructing a grid generally return a **leaf grid view**,
 # i.e., only contains of a view of the finest grid elements.
 # We also provide some special grid views to for example simulate on
-# [evolving domains](gridviews_and_adaptivity.rst#Evolving-Domains) or
-# to simplify efficient [local grid adaptivity](gridviews_and_adaptivity.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
+# [evolving domains](gridviews.rst#Evolving-Domains) or
+# to simplify efficient [local grid adaptivity](gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
 #
 # Since a `gridView` can not be changed
 # directly we need to access the underlying `hierarchicalGrid` to perform
@@ -87,7 +85,7 @@ gridView.plot()
 # grid is refined down by the given level and `level<0` leads to global
 # coarsening of the grid by the given number of levels (if possible).
 #
-# .. tip:: The effect of this refinement will depend on the underlying
+# .. tip:: the effect of this refinement will depend on the underlying
 # grid manager. For Cartesian grid for example refining by one level leads
 # a reduction of the grid spacing by 2 while for a bisection grid in $d$
 # space dimensions one needs to refine by $2^{d-1}$ levels to achieve the same effect.
@@ -96,7 +94,7 @@ gridView.plot()
 # `dune-fem` also provides a `globalRefine` function, which takes the
 # `level` as the first argument and a hierarchical grid as second argument.
 # This method can also be used to prolong and restrict discrete functions
-# as will be discussed in [a later section](gridviews_and_adaptivity.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
+# as will be discussed in [a later section](gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
 
 # %%
 from dune.fem import globalRefine
@@ -111,8 +109,7 @@ gridView.plot()
 #
 # ## Grid Functions
 #
-# .. attention::
-# A **grid function** is a function that is defined
+# .. note:: A **grid function** is a function that is defined
 # over a given grid view and is evaluated by using an element
 # of this view and local coordinate within that element, e.g., a quadrature point.
 #
@@ -135,9 +132,8 @@ gridView.plot()
 # We can for example integrate a UFL expression over the grid:
 
 # %%
-from ufl import SpatialCoordinate
-from dune.ufl import cell
-x = SpatialCoordinate(cell(2))
+from ufl import SpatialCoordinate, triangle
+x = SpatialCoordinate(triangle)
 
 exact = 1/2*(x[0]**2+x[1]**2) - 1/3*(x[0]**3 - x[1]**3) + 1
 
@@ -162,7 +158,7 @@ gridView.writeVTK('exact', pointdata={'exact': exact})
 # we provide more detail on how to access the grid interface).
 
 # .. index::
-#    pair: dune.fem.function; gridFunction
+#    pari: dune.fem.function; gridFunction
 #
 # .. note:: ``dune.fem.function.gridFunction`` provides different options for
 # constructing grid functions: it can be used as decorator of Python
@@ -267,8 +263,7 @@ exactGlobal.plot(figure=(fig,122))
 # discretization, they are exactly evaluated at the given point. We next
 # discuss functions over finite dimensional (discrete) spaces.
 #
-# .. attention::
-# A **discrete (function) space** is a finite dimensional function space
+# .. note:: A **discrete (function) space** is a finite dimensional function space
 # defined over a given grid view. Typically these are Finite Element
 # spaces.
 #
@@ -303,7 +298,7 @@ space = solutionSpace(gridView, order=2)
 # the basis functions with support on the element:
 
 # %%
-mapper = space.mapper()
+mapper = space.mapper
 for i,element in enumerate(gridView.elements):
     print( mapper(element) )
     if i == 4: break # only show indices for first few elements
@@ -318,9 +313,7 @@ localPoint = [0.1,0.1] # this is in the reference element
 for i,element in enumerate(gridView.elements):
     print( space.evaluateBasis(element, localPoint) )
     if i == 4: break
-# The next line fails on MacOS (with a Bus Error 10)
-# (tested 28/04/2024). Removed for now
-# print("convert to a numpy array:", np.array( space.jacobianBasis(element, localPoint) ) )
+print("convert to a numpy array:", np.array( space.jacobianBasis(element, localPoint) ) )
 
 
 # %% [markdown]
@@ -330,23 +323,22 @@ for i,element in enumerate(gridView.elements):
 #
 # ## Discrete Functions
 #
-# .. attention::
-# A special type of grid function is a **discrete function** living in a
+# .. note:: A special type of grid function is a **discrete function** living in a
 # discrete (finite dimensional) space. The main property of a discrete
 # function is that it contains a **dof vector**.
-# [In a later section](solversExternal_nb.ipynb)
+# [In a later section](solvers_nb.ipynb)
 # we will see how to extract the underlying dof vector in the form of a `numpy` or a `petsc` vector.
 
 #
 # The easiest way to construct a discrete function is to use the `interpolate`
 # method on the discrete function space to create an initialized discrete
-# function or `function` to create a discrete function initialized with $\mathbf{0}$.
+# function or `function` to create an uninitialized discrete function.
 
 # %%
-# initialized with an analytical expression
+# initialized
 u_h = space.interpolate(exact, name='u_h')
 
-# initialized with zeros
+# uninitialized
 u_h = space.function(name='u_h')
 
 # %% [markdown]
@@ -494,8 +486,7 @@ print()
 #
 # .. index:: Scheme; Scheme Definition
 #
-# .. attention::
-#    A **scheme** implements a Galerkin scheme for a given
+# .. note:: A **scheme** implements a Galerkin scheme for a given
 #    weak form for a wide range of PDEs, where the model (integrands) is provided as ufl form.
 #    Mathematically a `scheme` implements an operator $L\colon V_h\to V_h$
 #    with equal (discrete) domain and range space. The `scheme`
@@ -538,7 +529,7 @@ print("Number of elements:",gridView.size(0),
 
 # %% [markdown]
 #
-# .. index:: Constants; Constant Definition
+# .. index:: Constant; Constant Definition
 #
 # .. note:: The **dune.ufl.Constant** class implements a scalar or vector
 #    valued constant with a name. This constant can be used within a ufl form
@@ -640,7 +631,7 @@ u_h.plot()
 
 # %%
 space = solutionSpace(gridView, order=2)
-u_h   = space.function(name='u_h')
+u_h   = space.interpolate(0, name='u_h')
 u_h_n = u_h.copy(name="previous")
 
 x = SpatialCoordinate(space)

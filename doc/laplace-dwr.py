@@ -30,15 +30,10 @@ from dune.fem.view import adaptiveLeafGridView as adaptiveGridView
 from dune.fem.space import lagrange as solutionSpace
 from dune.fem.scheme import galerkin as solutionScheme
 from dune.alugrid import aluConformGrid as leafGridView
+from ufl import *
 from dune.ufl import DirichletBC
 from dune.fem.function import gridFunction
-from dune.fem import GridMarker
 
-from ufl import *
-try: # this is needed to remain compatible with version 2022 of ufl
-    from ufl import atan_2 as atan2
-except:
-    pass
 
 # set the angle for the corner (0<angle<=360)
 cornerAngle = 320.
@@ -74,17 +69,17 @@ def setup():
 
     u = TrialFunction(space)
     v = TestFunction(space)
-    x = SpatialCoordinate(space)
+    x = SpatialCoordinate(space.cell())
 
     # exact solution for this angle
     Phi = cornerAngle / 180 * pi
-    phi = atan2(x[1], x[0]) + conditional(x[1] < 0, 2*pi, 0)
+    phi = atan_2(x[1], x[0]) + conditional(x[1] < 0, 2*pi, 0)
     exact = dot(x, x)**(pi/2/Phi) * sin(pi/Phi * phi)
     a = dot(grad(u), grad(v)) * dx
 
     # set up the scheme
     laplace = solutionScheme([a==0, DirichletBC(space, exact, 1)], solver="cg",
-            parameters={"linear.preconditioning.method":"jacobi"})
+            parameters={"newton.linear.preconditioning.method":"jacobi"})
     uh = space.interpolate(0, name="solution")
     return uh, exact, laplace
 
@@ -99,9 +94,6 @@ uh, exact, laplace = setup()
 # therefore need to implement this either using some lower level functions
 # on the space or using a small C++ function which we then export
 # to Python.
-# Here we implement a version based entirely on the available binding,
-# In a [second notebook](laplace-dwr-algorithm_nb.ipynb) we revisit this problem
-# but implement a version using some C++ code to speed up the evaluation of the functional.
 
 # %%
 
@@ -122,14 +114,16 @@ def computeFunctional(point, pointFunctional, eh):
     space = pointFunctional.space
     en, xLoc = pointSample(space.gridView, point)
     phiVal = numpy.array( space.evaluateBasis(en, xLoc) )[:,0] # issue here with scalar function spaces
-    idx = space.mapper()(en)
+    idx = space.mapper(en)
     lf = eh.localFunction()
     lf.bind(en)
     pointFunctional.as_numpy[ idx ] += phiVal
     return lf(xLoc)
 
 # %% [markdown]
-# Next we define the actual estimator:
+#
+# %% [markdown]
+# Next we define the actual estimator
 
 # %%
 from dune.fem.space import finiteVolume as estimatorSpace
@@ -138,9 +132,9 @@ from dune.fem.operator import galerkin as estimatorOp
 fvspace = estimatorSpace(uh.space.gridView)
 estimate = fvspace.interpolate([0], name="estimate")
 
-u = TrialFunction(uh.space)
+u = TrialFunction(uh.space.as_ufl())
 v = TestFunction(fvspace)
-n = FacetNormal(fvspace)
+n = FacetNormal(fvspace.cell())
 estimator_ufl = abs(div(grad(u)))*abs(z-zh) * v * dx +\
                 abs(inner(jump(grad(u)), n('+')))*abs(avg(z-zh)) * avg(v) * dS
 estimator = estimatorOp(estimator_ufl)
@@ -151,53 +145,40 @@ estimator = estimatorOp(estimator_ufl)
 # %%
 h1error = dot(grad(uh - exact), grad(uh - exact))
 
-def compute(tolerance, fig):
+def compute(tolerance):
+    fig = pyplot.figure(figsize=(60,30))
     count = 0
     errorVector    = []
     estimateVector = []
     dofs           = []
-
-    hTol = 1.
-    marker = GridMarker( estimate, lambda : hTol )
-
     while True:
         laplace.solve(target=uh)
-        if count == 10:
+        if count%9 == 6:
             plot(uh, figure=(fig, 121), colorbar=False, linewidth=1)
         pointFunctional.clear()
         error = computeFunctional(point, pointFunctional,eh)
-        dual.solve(target=z, rightHandSide=pointFunctional)
+        dual.solve(target=z, rhs=pointFunctional)
         zh.interpolate(z)
         estimator(uh, estimate)
         eta = sum(estimate.dofVector)
         dofs           += [uh.space.size]
         errorVector    += [error]
         estimateVector += [eta]
+        if count%3 == 2:
+            print(count, ": size=", uh.space.gridView.size(0), "estimate=", eta, "error=", error)
         if eta < tolerance:
             break
-        # update refinement tolerance
-        hTol = eta/uh.space.gridView.size(0)
-        fem.gridAdapt(marker, uh) # can also be a list or tuple of function to prolong/restrict
+        marked = fem.mark(estimate,eta/uh.space.gridView.size(0))
+        fem.adapt(uh) # can also be a list or tuple of function to prolong/restrict
+        fem.loadBalance(uh)
         count += 1
     plot(uh, figure=(fig, 122), colorbar=False, linewidth=1)
-    return dofs, estimateVector, errorVector
-
-# %% nbsphinx-thumbnail={"tooltip": "Goal oriented local adaptivity"}
-fig = pyplot.figure(figsize=(20,10))
-dofs, estimateVector, errorVector = compute( tolerance=1e-6, fig=fig )
 
 # %% [markdown]
-# Here is a table with the number of dofs, the estimated, and actual error:
+# We first use a version based entirely on the available binding:
 
 # %%
-try:
-    import pandas as pd
-    keys = {'dofs': dofs, 'estimate': estimateVector, "error": errorVector}
-    table = pd.DataFrame(keys, index=range(len(dofs)),columns=['dofs', 'estimate', 'error'])
-    print(table)
-except ImportError:
-    print("pandas module not found so not showing table - ignored")
-    pass
+compute( tolerance=1e-6 )
 
 # %% [markdown]
 # Let's take a close up look of the refined region around the point of
@@ -205,7 +186,7 @@ except ImportError:
 
 # %%
 pyplot.close('all')
-fig = pyplot.figure(figsize=(30,10))
+fig = pyplot.figure(figsize=(45,15))
 plot(uh, figure=(fig, 131), xlim=(-0.5, 0.5), ylim=(-0.5, 0.5),
         gridLines="white", colorbar={"shrink": 0.75}, linewidth=2)
 plot(uh, figure=(fig, 132), xlim=(-0.1, 0.5), ylim=(-0.1, 0.5),
@@ -213,7 +194,7 @@ plot(uh, figure=(fig, 132), xlim=(-0.1, 0.5), ylim=(-0.1, 0.5),
 plot(uh, figure=(fig, 133), xlim=(-0.02, 0.5), ylim=(-0.02, 0.5),
         gridLines="white", colorbar={"shrink": 0.75}, linewidth=2)
 
-fig = pyplot.figure(figsize=(30,10))
+fig = pyplot.figure(figsize=(45,15))
 from dune.fem.function import levelFunction
 levels = levelFunction(uh.space.gridView)
 plot(levels, figure=(fig, 131), xlim=(-0.5, 0.5), ylim=(-0.5, 0.5),

@@ -19,33 +19,12 @@ integrated into the Dune core modules. If you have a version newer than 2.8
 then note that the `Dune-Python`_ module is obsolete.
 
 Here is a quick summary of the different parts of this document - all of
-the code is available for download in form of both a Notebook or a script.
-Links to either are included on each page. To get the full tutorial (both
-scripts and notebooks) you can also run (after installing `dune-fem`)
-
-.. code-block:: bash
-
-  python -m dune.fem
-
-which will download everything into a subfolder `fem_tutorial`.
-Or the script can be obtained by cloning the git repository
+the code is available for download in form of both :ref:`scripts`.
+Or can be obtained by cloning the git repository
 https://gitlab.dune-project.org/dune-fem/dune-fempy
 where the scripts can be found in the demo folder.
 
-If you are already familiar with the main concepts or want to get an idea
-of the range of this package take a look at our :ref:`gallery` page where we
-
-#. build upon the general concepts described in this tutorial to solve a
-   range of more complex PDEs.
-   These example are hopefully useful starting point for new projects.
-#. describe two larger extension modules build on top of dune-fem which
-   provide Python bindings: `Dune-Fem-Dg`_ and `Dune-Vem`_ which focus on Discontinuous Galerkin methods for
-   advection-diffusion (especially advection dominated problems) and the
-   implementations of the virtual element method, respectively.
-
-The main body of this tutorial then contains the following:
-
-#. First some remarks on getting the package to work: the simplest
+#. First off some remarks on getting the package to work: the simplest
    approach is to use the Python package index (pip) to install the software
    into a new virtual environment.
    Working from the git sources is a good option for more advanced users
@@ -74,6 +53,11 @@ The main body of this tutorial then contains the following:
    * discuss the grid interface in more details, i.e., how to iterate over
      the grid, access geometrical information, and attach data to elements
      of the grid.
+#. Building upon the general concepts described in the first part, we
+   provide scripts showing how to solve far more complex PDEs.
+   The :ref:`scripts`
+   used for each of these and the following examples can be downloaded
+   and are hopefully useful as starting point for new projects.
 #. We then discuss some further topics:
 
    * Local grid refinement and coarsening is a central feature of
@@ -86,12 +70,16 @@ The main body of this tutorial then contains the following:
    * We complete our discussion by demonstrating how to straightforwardly
      extend the functionality of the package and
      improve performance by important additional C++ algorithms and classes.
+#. There are two larger extension modules build on top of dune-fem which
+   provide Python bindings: those are the `Dune-Fem-Dg`_ and the
+   `Dune-Vem`_ modules which focus on Discontinuous Galerkin methods for
+   advection-diffusion (especially advection dominated problems) and the
+   implementations of the virtual element method, respectively.
 #. Finally other projects are presented some of them developed by
    the authors of this document, some contributed by other
    users. If you have used this package then we would like to
    hear about it and would ask you to contribute to this
    chapter. Doing so is quite easy (see :ref:`contributing` for details).
-
 
 .. _mayavi: https://docs.enthought.com/mayavi/mayavi
 .. _paraview: https://www.paraview.org

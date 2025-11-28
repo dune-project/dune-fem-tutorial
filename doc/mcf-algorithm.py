@@ -36,6 +36,7 @@
 
 # %%
 import time, io
+import pickle
 import numpy
 from matplotlib import pyplot as plt
 from matplotlib.ticker import ScalarFormatter
@@ -126,7 +127,7 @@ def calculate(use_cpp, gridView):
     space = solutionSpace(gridView, dimRange=gridView.dimWorld, order=order)
     u = TrialFunction(space)
     v = TestFunction(space)
-    x = SpatialCoordinate(space)
+    x = SpatialCoordinate(space.cell())
     positions = space.interpolate(x, name="position")
 
     # space for discrete solution on Gamma(t)
@@ -193,7 +194,7 @@ def calculate(use_cpp, gridView):
 # %% [markdown]
 # Compute the mean curvature flow evolution of a spherical surface. Compare
 # computational time of a pure Python implementation and using a C++
-# algorithm to compute the radius of the [surface](sphere.dgf) for verifying the
+# algorithm to compute the radius of the surface for verifying the
 # algorithm.
 
 # %%

@@ -38,7 +38,6 @@ exact_u     = as_vector( [x[1] * (1.-x[1]), 0] )
 exact_p     = (-2*x[0] + 2)*mu
 f           = as_vector( [0,]*grid.dimension )
 f          += nu*exact_u
-dbc         = DirichletBC(spcU,exact_u)
 
 mainModel   = (nu*dot(u,v) + mu*inner(grad(u)+grad(u).T, grad(v)) - dot(f,v)) * dx
 gradModel   = -inner( p*Identity(grid.dimension), grad(v) ) * dx
@@ -46,10 +45,10 @@ divModel    = -div(u)*q * dx
 massModel   = p*q * dx
 preconModel = inner(grad(p),grad(q)) * dx
 
-mainOp      = galerkinOperator( [mainModel, dbc] )
-gradOp      = galerkinOperator( [gradModel, dbc] )
-divOp       = galerkinOperator( divModel )
-massOp      = galerkinOperator( massModel )
+mainOp      = galerkinOperator( (mainModel, DirichletBC(spcU,exact_u)), spcU)
+gradOp      = galerkinOperator( gradModel, spcP,spcU)
+divOp       = galerkinOperator( divModel, spcU,spcP)
+massOp      = galerkinOperator( massModel, spcP)
 
 A = mainOp.linear()
 A = A.as_numpy
@@ -88,6 +87,7 @@ mainOp(velocity,rhsVelo)
 rhs_u *= -1
 xi[:] = G*sol_p
 rhs_u -= xi
+mainOp.setConstraints(rhsVelo)
 Ainv(rhs_u[:], sol_u[:])
 rhs_p[:] = D*sol_u
 Minv(rhs_p, r)
@@ -103,6 +103,7 @@ delta = numpy.dot(r,rhs_p)
 for m in range(100):
     xi.fill(0)
     rhs_u[:] = G*d
+    mainOp.setConstraints([0,]*grid.dimension, rhsVelo)
     Ainv(rhs_u[:], xi[:])
     rhs_p[:] = D*xi
     rho = delta / numpy.dot(d,rhs_p)
@@ -117,8 +118,8 @@ for m in range(100):
         r += mainOp.model.nu*precon
     oldDelta = delta
     delta = numpy.dot(r,rhs_p)
-    print(m,delta)
-    if delta < (1e-9)**2: break
+    print(delta)
+    if delta < 1e-14: break
     gamma = delta/oldDelta
     d *= gamma
     d += r

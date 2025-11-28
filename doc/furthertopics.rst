@@ -3,6 +3,6 @@
 .. toctree::
    :maxdepth: 1
 
-   gridviews_and_adaptivity
+   gridviews
    cpp
    scheme_api

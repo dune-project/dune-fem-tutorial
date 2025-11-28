@@ -6,9 +6,9 @@
 # # Adaptive phase field: crystal growth model
 # Here we demonstrate crystallisation on the surface of a liquid due to cooling from [@Guyer].
 # This example uses
-# [dynamic grid refinement](gridviews_and_adaptivity.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
+# [dynamic grid refinement](gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
 #
-# Let us first set up the grid and the function space. We use the default DoF storage available in ``dune-fem`` - this can be changed for example to ``istl`` or ``petsc``.
+# Let us first set up the grid and the function space. We use the default DoF storage available in ```dune-fem``` - this can be changed for example to ```istl``` or ```petsc```.
 
 
 # %%
@@ -18,7 +18,6 @@ from dune.alugrid import aluConformGrid as leafGridView
 from dune.fem.view import adaptiveLeafGridView as adaptiveGridView
 from dune.fem.space import lagrange as solutionSpace
 from dune.fem import threading
-from dune.fem import GridMarker
 threading.use = max(4,threading.max) # use at most 4 threads
 
 order = 1
@@ -125,13 +124,8 @@ a_ex = (inner(u_h_n, v) - inner(u_h_n[0], v[1])) * dx
 # For the left hand side we have the spatial derivatives and the implicit parts.
 
 # %%
-from ufl import pi, atan, tan, grad, inner
-try:
-    from ufl import atan2
-except ImportError: # remain compatible with version 2022 of ufl
-    from ufl import atan_2 as atan2
-
-psi        = pi/8.0 + atan2(grad(u_h_n[0])[1], (grad(u_h_n[0])[0]))
+from ufl import pi, atan, atan_2, tan, grad, inner
+psi        = pi/8.0 + atan_2(grad(u_h_n[0])[1], (grad(u_h_n[0])[0]))
 Phi        = tan(N / 2.0 * psi)
 beta       = (1.0 - Phi*Phi) / (1.0 + Phi*Phi)
 dbeta_dPhi = -2.0 * N * Phi / (1.0 + Phi*Phi)
@@ -155,10 +149,10 @@ a_im = (alpha*alpha*dt / tau * (inner(dot(d0, grad(u[0])),
 # %%
 from dune.fem.scheme import galerkin as solutionScheme
 solverParameters = {
-        "nonlinear.tolerance": 1e-8,
-        "linear.tolerance": 1e-10,
-        "nonlinear.verbose": False,
-        "linear.verbose": False
+        "newton.tolerance": 1e-8,
+        "newton.linear.tolerance": 1e-10,
+        "newton.verbose": False,
+        "newton.linear.verbose": False
     }
 scheme = solutionScheme(a_im == a_ex, space, solver="gmres", parameters=solverParameters)
 
@@ -178,15 +172,10 @@ maxLevel = 11
 startLevel = 5
 gridView.hierarchicalGrid.globalRefine(startLevel)
 u_h.interpolate(initial)
-
-# default marking strategy based on indicator values
-marker = GridMarker(indicator,
-                    refineTolerance  = 1.4,
-                    coarsenTolerance = 1.2,
-                    minLevel=0, maxLevel=maxLevel)
-
 for i in range(startLevel, maxLevel):
-    fem.gridAdapt(marker, u_h)
+    fem.mark(indicator,1.4,1.2,0,maxLevel)
+    fem.adapt(u_h)
+    fem.loadBalance(u_h)
     u_h.interpolate(initial)
     print(gridView.size(0), end=" ")
 print()
@@ -230,7 +219,7 @@ vtk()
 
 
 # %% [markdown]
-# We set ``dt`` and the initial time t=0.
+# We set ```dt``` and the initial time t=0.
 
 
 # %%
@@ -240,8 +229,8 @@ t = 0.0
 # %% [markdown]
 # Finally, we set up the time loop and solve the problem -
 # each time this cell is run the simulation will progress to
-# the given ``endTime`` and then the result is shown.
-# The simulation can be progressed further by rerunning the cell while increasing the ``endTime``.
+# the given ```endTime``` and then the result is shown.
+# The simulation can be progressed further by rerunning the cell while increasing the ```endTime```.
 
 # %%
 from dune.fem.plotting import plotPointData
@@ -250,10 +239,12 @@ endTime = 0.1
 while t < endTime:
     u_h_n.assign(u_h)
     scheme.solve(target=u_h)
-    # print(t, gridView.size(0), end="\r")
+    print(t, gridView.size(0), end="\r")
     t += dt.value
-    fem.gridAdapt(marker, u_h) # can also be a list or tuple of function to prolong/restrict
-    vtk()                      # store result in sequence of vtk file
+    fem.mark(indicator,1.4,1.2,0,maxLevel)
+    fem.adapt(u_h) # can also be a list or tuple of function to prolong/restrict
+    fem.loadBalance(u_h) # can also be a list or tuple of function
+    vtk()                # store result in sequence of vtk file
 print()
 
 fig = pyplot.figure(figsize=(30,10))

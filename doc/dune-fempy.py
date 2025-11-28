@@ -37,11 +37,11 @@ gridView = structuredGrid([0, 0], [1, 1], [20, 20])
 # %% [markdown]
 #
 # .. note::
-#    In the following we will often use the term ``gridView`` instead of grid.
-#    The details of what a ``gridView`` is together with some other central
-#    concepts is provided in the [next section](concepts_nb.ipynb).
+# In the following we will often use the term ``gridView`` instead of grid.
+# The details of what a ``gridView`` is together with some other central
+# concepts is provided in the [next section](concepts_nb.ipynb).
 #
-# .. tip:: An overview of available approaches to construct a grid can be
+# .. tip:: an overview of available approaches to construct a grid can be
 #    found [here](othergrids_nb.ipynb).
 #
 
@@ -94,10 +94,9 @@ y[:] = solver(A,b)
 # stored in the same buffer used for the discrete function. Consequently,
 # no copying is required.
 #
-# .. tip:: More details on how to use [Scipy](solversExternal_nb.ipynb#Using-Scipy) will be given later
+# .. tip:: More details on how to use [Scipy](solvers_nb.ipynb#Using-Scipy) will be given later
 #    in the tutorial. Other linear solver backends are also available,
-#    e.g., [PETSc](solversInternal_nb.ipynb#Other-internal-solvers-(petsc))
-#    and [PETSc4py can also be used](solversExternal_nb.ipynb#Using-PETSc4Py).
+#    e.g., [PETSc and petsc4py](solvers_nb.ipynb#Using-PETSc-and-Petsc4Py).
 
 # %% [markdown]
 # That's it - to see the result we plot it using matplotlib
@@ -267,16 +266,22 @@ l = dot(x,x)*v * dx
 # %% [markdown]
 # To solve the non-linear problem we need to use something like a Newton
 # solver. We could use
-# [the implementation available in Scipy](solversExternal_nb.ipynb)
+# [the implementation available in Scipy](solvers_nb.ipynb)
 # but ``dune-fem`` provides so called
 # [schemes](concepts_nb.ipynb#Operators-and-Schemes)
 # that have a ``solve`` method which can handle both linear and non-linear models.
-#
-# .. note:: The default solver is based on a Newton-Krylov solver using a
-#    ``gmres`` method to solve the intermediate linear problems.
-#
-# Since the problem we are considering is symmetric we can use a ``cg`` method which we
-# do during construction of the scheme:
+# The default solver is based on a Newton-Krylov solver using a
+# ``gmres`` method to solve the intermediate linear problems.
+# These ``schemes`` are quite central to solving PDE is different ways,
+# including writing your own linear or non-linear solvers, accessing
+# degrees of freedom on the boundary etc. A detailed description on the
+# API is given [here](scheme_api.rst) and how to use the schemes in
+# different context to solve the problems on the Python side is available
+# [here](solvers_nb.ipynb).
+
+# Since the problem here is symmetric we can use a ``cg``
+# method. A full list of available solvers, preconditioners, and how
+# to customize them is available in the [Alternative Linear Solvers](solvers_nb.ipynb#Available-solvers-and-parameters) section.
 
 # %%
 from dune.fem.scheme import galerkin as solutionScheme
@@ -285,16 +290,6 @@ u_h.clear() # set u_h to zero as initial guess for the Newton solver
 info = scheme.solve(target=u_h)
 
 # %% [markdown]
-# .. tip:: These ``schemes`` provide options for solving PDEs
-#    for writing your own solvers, accessing
-#    degrees of freedom on the boundary etc. A description of the
-#    API is given [here](scheme_api.rst) and example usage is
-#    available in the sections on the use of
-#    [internal solvers](solversInternal_nb.ipynb) and
-#    [external solvers](solversExternal_nb.ipynb).
-#    A list of solvers, preconditioners, and parameters is available
-#    [here](solversInternal_nb.ipynb#Available-solvers-and-parameters).
-#
 # That's it - we can plot the solution again - we don't know the exact
 # solution so we can't compute any errors in this case.
 # In addition the ``info`` structure returned by the ``solve`` method
@@ -303,40 +298,6 @@ info = scheme.solve(target=u_h)
 # %%
 print(info)
 u_h.plot()
-
-# %% [markdown]
-# Let's complete this discussion by looking at the experimental order of
-# convergence (EOC) of our approximation. For this we add a forcing that
-# leads to the problem having the prescribed solution
-# \begin{align*}
-# u(x,y) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
-# \end{align*}
-
-# %%
-exact = 1/2*(x[0]**2+x[1]**2) - 1/3*(x[0]**3 - x[1]**3) + 1
-a  = ( inner(grad(u),grad(v)) + (1+u)**2*u*v ) * dx
-bf = (-div(grad(exact)) + (1+exact)**2*exact) * v * dx
-bg = dot(grad(exact),n)*v*ds
-scheme = solutionScheme(a == bf+bg, solver="cg")
-
-errors = 0,0
-loops = 2
-for eocLoop in range(loops):
-    u_h.interpolate(0)
-    info = scheme.solve(target=u_h)
-    errors_old = errors
-    l2error, h1error = dot(u_h-exact, u_h-exact), dot(grad(u_h-exact), grad(u_h-exact))
-    errors = [np.sqrt(e) for e in integrate([l2error,h1error])]
-    if eocLoop == 0:
-        eocs = ['-','-']
-    else:
-        eocs = [ round(np.log(e/e_old)/np.log(0.5),2) for e,e_old in zip(errors,errors_old) ]
-    print("step:", eocLoop, ", size:", gridView.size(0))
-    print("\t\t L^2, H^1 error:",'{:0.5e}, {:0.5e}'.format(*errors),", eocs =", eocs)
-    print("\t\t solver info=",info)
-    u_h.plot()
-    if eocLoop < loops-1:
-        gridView.hierarchicalGrid.globalRefine(1)
 
 # %% [markdown]
 # .. index::

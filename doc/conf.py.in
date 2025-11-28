@@ -48,17 +48,11 @@ extensions = [
 ]
 bibtex_bibfiles = ['dune-fempy.bib']
 
-# nbsphinx-thumbnail={"filename":"_images/mcf.gif", "tooltip": "Surface mean curvature flow using a moving grid"}
-nbsphinx_thumbnails = {
-    'stokes': '_images/monolithicStokes_nb_16_0.jpg',
-    'mcf_nb': '_images/mcf.gif',
-    'spiral_nb': '_static/spiral.gif',
-    'cylinder_nb': '_static/cylinder.gif',
-}
 html_theme = "sphinx_rtd_theme"   # 'sphinxdoc'
 #html_theme = "piccolo_theme"   # 'sphinxdoc'
 html_theme_options = {
     'logo_only': True,
+    'display_version': True,
     'prev_next_buttons_location': 'both',
     'style_external_links': True,
     'sticky_navigation': False,
@@ -327,42 +321,16 @@ rst_epilog = """
 todo_include_todos=True
 nbsphinx_timeout = -1
 nbsphinx_execute = 'never'
-
-
-nbsphinx_prolog = r"""
-
-{% set docBase = env.doc2path(env.docname, base=None).__str__()[:-9] %}
-
-.. only:: html
-
-    .. role:: raw-html(raw)
-        :format: html
-
-    .. note::
-
-        .. raw:: html
-
-              This document is part of the dune-fem tutorial
-              <a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a>
-
-        | Download *{{ docBase }}* as :download:`Jupyter notebook (_nb.ipynb) <{{ docBase }}_nb.ipynb>` or as :download:`Python script (.py) <{{ docBase }}.py>`
-"""
-
 nbsphinx_epilog = r"""
 
-{% set docBase = env.doc2path(env.docname, base=None).__str__()[:-9] %}
+.. raw:: html
 
-.. only:: html
-
-    .. role:: raw-html(raw)
-        :format: html
-
-    .. note::
-
-        .. raw:: html
-
-              This document is part of the dune-fem tutorial
-              <a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a>
-
-        | Download *{{ docBase }}* as :download:`Jupyter notebook (.ipynb) <{{ docBase }}_nb.ipynb>` or as :download:`Python script (.py) <{{ docBase }}.py>`
+    <div class="admonition note">
+      <p>
+            This page was generated from
+            the notebook {{ env.doc2path(env.docname, base=None) }}
+            and is part of the tutorial for the dune-fem python bindings
+            <a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a>
+      </p>
+    </div>
 """

@@ -4,13 +4,8 @@
 #
 # # Backup and restore (pickling)
 # We show here how the state of a simulation can be stored and restored
-# using pickle. This is still work in progress and based on an extension
-# of the standard `pickle` module available in `dune.common`:
-
-# %%
-import dune.common.pickle
-
-# %% [markdown]
+# using pickle. This is still work in progress.
+#
 # Let's first construct a grid and some discrete function:
 
 # %%
@@ -20,7 +15,7 @@ from dune.fem.view import adaptiveLeafGridView as view
 from dune.grid import cartesianDomain, Marker
 from dune.fem.function import gridFunction
 from dune.fem.space import lagrange
-from dune.fem import gridAdapt
+from dune.fem import adapt
 from dune.ufl import Constant
 import ufl
 
@@ -35,9 +30,11 @@ def setup():
     df = space.interpolate(gf,name="test")
 
     gridView.hierarchicalGrid.globalRefine(4)
-    marker = lambda e: Marker.refine if df.localFunction(e).jacobian([1./3.,1./3.]).infinity_norm > 1 else Marker.coarsen
     for i in range(5):
-        gridAdapt(marker, gridView.hierarchicalGrid)
+        gridView.hierarchicalGrid.mark(lambda e:
+             Marker.refine if df.localFunction(e).jacobian([1./3.,1./3.]).infinity_norm > 1
+             else Marker.coarsen)
+        adapt(gridView.hierarchicalGrid)
         df.interpolate( gf )
     print("size of adapted grid view:", gridView.size(0))
 
@@ -61,6 +58,7 @@ def setup():
 
 # Let's first write a function that dumps some discrete functions:
 # %%
+import dune.common.pickle
 def dump():
     df1, df2, gf = setup()
 
@@ -74,9 +72,11 @@ def dump():
         p -= [numpy.cos(t),numpy.sin(t)]
         return p.two_norm < 0.3
     for i,tsp in enumerate(tsps):
-        marker = lambda e: Marker.refine if inCircle(e.geometry.center,tsp) else Marker.keep
         for i in range(3):
-            gridAdapt(marker, [df1,df2])
+            df1.gridView.hierarchicalGrid.mark(lambda e:
+                 Marker.refine if inCircle(e.geometry.center,tsp)
+                 else Marker.keep)
+            adapt([df1,df2])
         gf.time = tsp
         df2.interpolate(gf)
         series.dump({"time":tsp})
@@ -122,7 +122,7 @@ class CheckPointer:
             pickle.dump(self.gridView,self.file)
         self.items = []
 
-    # add an item to pickle when backup is called (or restore)
+    # add an item to picke when backup is called (or restore)
     def add(self,item):
         assert hasattr(item,"write") and hasattr(item,"read")
         self.items += [item]

@@ -1,7 +1,7 @@
 # %% [markdown]
 # .. index:: Equations; Wave Equation
 #
-# # Wave Equation: double slit domain (using mass lumping)
+# # Wave Equation: double slit domain
 #
 # In the following we will consider the wave equation
 # \begin{align*}
@@ -53,7 +53,7 @@
 
 # %%
 from matplotlib import pyplot as plt
-import numpy as np
+import numpy
 import dune.fem as fem
 from dune.grid import reader
 from dune.alugrid import aluConformGrid as leafGridView
@@ -64,6 +64,7 @@ T = 3
 dt = 0.005
 t = 0
 
+
 # %% [markdown]
 # .. index:: Grid construction; gmsh (from file)
 #
@@ -72,8 +73,7 @@ t = 0
 # construct general grids by either defining the grids directly in Python
 # (as demonstrated in the following example) or by reading the grid from
 # files using readers provided by Dune, e.g., Dune Grid Format (dgf) files
-# or Gmsh files. Here we use a
-# [slit domain mesh](wave_tank.msh).
+# or Gmsh files.
 
 # %%
 domain = (reader.gmsh, "wave_tank.msh")
@@ -171,23 +171,14 @@ S2 = M*S
 # sparse matrix and vector encoding the boundary constraint.
 
 # %%
+step = 0
 while t <= T:
-    # first phi update (two possible approaches doing the same thing...)
-    # phiVec[:] -= pVec[:]*dt/2
-    phi.axpy(-dt/2, p)
-
-    # multiply p with S and set values on the Dirichlet boundary
-    pVec[:] += S2*phiVec[:]
-    p_in.value = np.sin(2*np.pi*5*t)
-    op.setConstraints(p)
-
-    # second phi updatw
+    step += 1
     phiVec[:] -= pVec[:]*dt/2
-    # phi.axpy(-dt/2, p)
-
-    # check for instabilities
-    assert np.max(abs(pVec)) < 3
-
-    # update time
+    pVec[:]   += S2*phiVec[:]
     t += dt
-p.plot(gridLines=None, clim=[-0.25,0.25], figure=plt.figure(figsize=(10,10)))
+    # set the values on the Dirichlet boundary
+    p_in.value = numpy.sin(2*numpy.pi*5*t)
+    op.setConstraints(p)
+    phiVec[:] -= pVec[:]*dt/2
+phi.plot(gridLines=None, clim=[-0.02,0.02], figure=plt.figure(figsize=(10,10)))

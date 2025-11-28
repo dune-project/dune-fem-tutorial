@@ -4,13 +4,6 @@ From PyPi
 
 .. _installation:
 
-.. warning::
-
-   Make sure that the installation folder name and any parent folder names **do not
-   contain white spaces** since this will break the installation at various
-   points. In general white spaces in filenames and folder names should be
-   avoided.
-
 By far the easiest way to get access to `Dune` is by installing into a
 virtual environment using `pip`. In some folder e.g. `Dune` setup a virtual
 environment and activate it
@@ -27,48 +20,12 @@ coffee/tea at hand):
 
   pip install --pre dune-fem
 
-.. note:: This tutorial is based on the upcoming 2.11 version of Dune.
-   Older release versions are available in the Python package index and can be
+.. note:: this tutorial is based on the upcoming 2.10 version of Dune. A
+   2.9 release version is available in the Python package index and can be
    obtained by removing the `--pre` from the above install command. Note
    that a few of the features described in this tutorial will not be
    available and that the API has changed in some places. See the
-   description in the :doc:`changelog<changelog>` for details.
-
-****************************
-Additional external packages
-****************************
-
-To use additional external packages like `petsc` or `umfpack` which are not
-in a default location, the cmake prefix variable can be set during
-installation process:
-
-.. code-block:: bash
-
-  CMAKE_FLAGS="-DCMAKE_PREFIX_PATH=PATHLIST" pip install --pre dune-fem
-
-where `PATHLIST` is a semicolon separated list of path containing external packages.
-
-************************
-Testing the installation
-************************
-
-.. important::
-
-   The current installation requires MPI to be available and requires the
-   additional installation of `mpi4py`:
-
-   .. code-block:: bash
-
-      pip install mpi4py
-
-.. note::
-
-   The first time you construct an object of a specific realization of one
-   of the Dune interfaces (e.g. here a structured grid),
-   the just in time compiler needs to be invoked. This can take quite some
-   time - especially for grid realizations. This needs to be done only once
-   so rerunning the above code a second time (even using other parameters
-   in the `structuredGrid` function) should execute almost instantaniously.
+   description in the :doc:`changelog<changelog290>` for details.
 
 To test that everything works you can download all the scripts described
 in this tutorial and try them out
@@ -90,16 +47,29 @@ the later `jupyter` is needed
 This has been tested with different Linux distributions, MacOS, and using
 the *Windows Subsystem for Linux*.
 
+.. note::
+
+   the current installation requires MPI to be available.
+
+.. note::
+
+   The first time you construct an object of a specific realization of one
+   of the Dune interfaces (e.g. here a structured grid),
+   the just in time compiler needs to be invoked. This can take quite some
+   time - especially for grid realizations. This needs to be done only once
+   so rerunning the above code a second time (even using other parameters
+   in the `structuredGrid` function) should execute almost instantaniously.
+
 
 *****************
 Hints for Windows
 *****************
 
-Some hints on getting Dune to work using the
+Some hints on getting Dune to 11 using the
 *Windows Subsystem for Linux* (tested on Windows 11).
 Installation in three steps:
 
-1. First we need to `install the wsl`_ (here an `Ubuntu` version):
+1. First we need to `install the wsl`_ (an Ubuntu version):
 
    Open ``PowerShell`` as administrator and run ``wsl --install``
    (find Windows ``PowerShell`` and right click;
@@ -123,12 +93,12 @@ Installation in three steps:
       source dune-env/bin/activate
       pip install jupyterlab
 
-3. We have reached the Dune specific part of the installation as described
-above in a lot more detail (I would suggest some tea at this stage)
+3. We have reached the Dune specific part of the installation
+   (I would suggest some tea at this stage)
 
    .. code-block:: bash
 
-      pip install --pre dune-fem
+      pip install dune-fem
       python -m dune.fem
 
    The last step downloads the tutorial scripts into the folder
@@ -236,31 +206,23 @@ get a colored figure and are hopefully ready to go...
 Troubleshooting
 ###############
 
+* **Compiling issue with ``Pyhon 3.11`` or above:**
+  If you are using ``Python 3.11`` or above the version of ``Pybind11``
+  shipped with the release version of ``Dune`` is not recent enough.
+  Please try the prerelease version by using
+
+  .. code-block:: bash
+
+    $ pip install --pre dune-fem
+
 * **Issue with C++ compiler:**
   If the gnu compiler is used, version needs to be 7 or later. This can be checked in terminal with
 
   .. code-block:: bash
 
-    g++ --version
+    $ g++ --version
 
   If your version is out of date, you will need to upgrade your system to use Dune
-
-* **A terminated compilation:**
-  If you get a `CompileError` exception with an output of the form:
-
-  .. code-block:: bash
-
-    raise CompileError(buffer_to_str(stderr))
-      dune.generator.exceptions.CompileError: c++: fatal error: Killed signal
-      terminated program cc1plus
-      compilation terminated.
-
-  then this could be caused by the compiler running out of memory.
-  This can especially happen on a HPC cluster where memory can be
-  restricted. An option is to run a small part of the simulation on
-  a single core with a lot of memory so that all modules are compiled
-  before starting the production run which might require less memory
-  than the compilation process.
 
 * **Python version:**
   It is possible that the python version may be an issue. The scripts
@@ -271,11 +233,9 @@ Troubleshooting
 
     fatal error: pyconfig.h: No such file or directory
 
-  This can probably be fixed by installing additional python3 libraries with e.g.
+  This can probably be fixed by installing additional python3 libraries with e.g. ::
 
-  .. code-block:: bash
-
-    sudo apt-get install libpython3-dev
+  $ sudo apt-get install libpython3-dev
 
 * **MPI not found:**
   One other problem is that a default version of Open MPI may already be installed.
@@ -285,7 +245,7 @@ Troubleshooting
 
   .. code-block:: bash
 
-    make uninstall
+    $ make uninstall
 
   in the original MPI install directory, followed by removing the folder. It will then be necessary to reinstall Open MPI and Dune. It may also be necessary to direct mpi4py to the new MPI installation. It is possible to check whether this is a problem by running python and trying out 
 
@@ -297,24 +257,10 @@ Troubleshooting
 
   .. code-block:: bash
 
-    git clone https://bitbucket.org/mpi4py/mpi4py.git
-    cd mpi4py
-    python setup.py build --mpicc=/path/to/openmpi/bin/mpicc
-    python setup.py install --user
-
-* If you get a
-
-  .. code-block:: bash
-
-    RuntimeError: ParallelError [Communication:dune-env/include/dune/common/parallel/mpicommunication.hh:???]:
-    You must call MPIHelper::instance(argc,argv) in your main() function before using the MPI Communication!
-
-  then the system did not correctly detect the missing `mpi4py` package -
-  you need to install it using e.g.
-
-  .. code-block:: bash
-
-    pip install mpi4py
+    $ git clone https://bitbucket.org/mpi4py/mpi4py.git
+    $ cd mpi4py
+    $ python setup.py build --mpicc=/path/to/openmpi/bin/mpicc
+    $ python setup.py install --user
 
 * **User warning from numpy:**
 
@@ -328,33 +274,9 @@ Troubleshooting
   See `here <https://moyix.blogspot.com/2022/09/someones-been-messing-with-my-subnormals.html/>`_
   for a detailed description.
 
-* **Using petsc and petsc4py:**
-  It is important the all `dune` modules and `petsc4py` use the same
-  version of `petsc`. An runtime exception will be thrown if some
-  incompatibility is detected. The simplest way to avoid any issues is to
-  set the `PETSC_DIR` environment variable during the building, e.g., `pip`
-  installation of the `dune` packages and running the scripts. 
-  The following gives an example of how to first install `petsc` and
-  `petsc4py` into a virtual environment and then install `dune-fem`.
-  Assuming that the virtual environment with `python` version `X.Y`
-  is in `$HOME/dune-env` and we want a few extra `petsc` packages we could run:
-
-  .. code-block:: bash
-
-   pip install mpi4py
-   PETSC_CONFIGURE_OPTIONS="--download-hypre --download-parmetis --download-ml --download-metis --download-scalapack" pip install petsc
-   export PETSC_DIR=$HOME/dune-env/lib/pythonX.Y/site-packages/petsc
-   pip install petsc4py
-   pip install --pre dune-fem
-
-  After this the `PETSC_DIR` environment variable should not be required anymore.
-  This is all a bit experimental so let us know if it is not working.
-  Of course an installed `petsc` or build from source should work in the
-  same way, without the need for the `pip install petsc` line, just make
-  sure to set the `PETSC_DIR` during the installation of `dune-fem`.
-
 * **Newly installed software is not used:**
-  After for example adding `petsc` to your system one needs to remove an existing `dune-py` module which
+  after for example adding `petsc` to
+  your system one needs to remove an existing `dune-py` module which
   contains the jit compiled modules. New software components are not
   automatically picked up. One can run
 
@@ -364,18 +286,6 @@ Troubleshooting
 
   to find the location of the `dune-py` folder. That folder needs to be
   removed before the new component can be used.
-
-  If issues remain reinstalling all `dune` packages might be required -
-  including the cached wheels:
-
-  .. code-block:: bash
-
-    pip uninstall -y `pip freeze | grep dune`
-    pip cache remove "dune*"
-
-  When running `pip install` for the `dune` packages setting prefix path
-  for cmake as described above might be necessary if the
-  new package is not in a default location.
 
 * **Output to terminal seems a bit random:**
   the issue is (probably) that

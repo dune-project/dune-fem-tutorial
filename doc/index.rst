@@ -2,12 +2,12 @@
    Andreas Dedner on Mon Mai 20 2019.
 
 ###################################################
-Welcome to the dune-fem tutorial (for version 2.11)
+Welcome to the dune-fem tutorial (for version 2.10)
 ###################################################
 
 This module brings python scripting support to `Dune`_.
 This version describes the bindings for the development version
-(to become 2.11). The bindings serves three purposes:
+(to become 2.10). The bindings serves three purposes:
 
 1. High level program control for solving partial differential equations
    using classes from the `Dune`_ core and from `Dune-Fem`_
@@ -47,12 +47,6 @@ Table of Content
    overview
 
 .. toctree::
-   :caption: Teasers
-   :maxdepth: 1
-
-   furtherexamples
-
-.. toctree::
    :caption: Installation
    :maxdepth: 1
 
@@ -73,13 +67,25 @@ Table of Content
    nextsteps
 
 .. toctree::
+   :caption: Further Examples
+   :maxdepth: 2
+
+   furtherexamples
+
+.. toctree::
    :caption: Further Topics
    :maxdepth: 2
 
    furthertopics
 
 .. toctree::
-   :caption: Other Projects using Dune-Fem
+   :caption: Extension Modules
+   :maxdepth: 1
+
+   extensionmodules
+
+.. toctree::
+   :caption: User Projects
    :name: userprojects
    :maxdepth: 1
 

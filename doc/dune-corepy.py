@@ -184,7 +184,7 @@ aluView = aluSimplexGrid({"vertices": vertices, "simplices": triangles})
 #    lost. Use `dune.fem.adapt` and `dune.fem.globalRefine` if data is
 #    supposed to be retained during grid modification. This is described in
 #    detail in the section on
-#    [dynamic grid modification](gridviews_and_adaptivity.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
+#    [dynamic grid modification](gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
 
 # %% [markdown]
 # .. index::
@@ -459,7 +459,7 @@ try:
     display( s )
     # mlab.savefig("mayavi.png", size=(400,300))
     mlab.close(all=True)
-except (ImportError, ModuleNotFoundError):
+except ImportError:
     print("mayavi module not found so not rendering plot - ignored")
     pass
 

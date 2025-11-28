@@ -30,19 +30,9 @@ from dune.fem.space import lagrange as solutionSpace
 from dune.alugrid import aluConformGrid as leafGridView
 from dune.fem.function import gridFunction
 from dune.fem import integrate
-from dune.fem import GridMarker
 from ufl import *
-try:
-    from ufl import atan2
-except ImportError: # remain compatible with version 2022 of ufl
-    from ufl import atan_2 as atan2
-
 from dune.ufl import DirichletBC
 
-from functools import partial
-from dune.common import comm
-# print can be used in parallel runs as before but will only produce output on rank 0
-print = partial(print, flush=True) if comm.rank == 0 else lambda *args, **kwargs: None
 
 # set the angle for the corner (0<angle<=360)
 cornerAngle = 320.
@@ -81,17 +71,17 @@ def setup():
     from dune.fem.scheme import galerkin as solutionScheme
     u = TrialFunction(space)
     v = TestFunction(space)
-    x = SpatialCoordinate(space)
+    x = SpatialCoordinate(space.cell())
 
     # exact solution for this angle
     Phi = cornerAngle / 180 * pi
-    phi = atan2(x[1], x[0]) + conditional(x[1] < 0, 2*pi, 0)
+    phi = atan_2(x[1], x[0]) + conditional(x[1] < 0, 2*pi, 0)
     exact = dot(x, x)**(pi/2/Phi) * sin(pi/Phi * phi)
     a = dot(grad(u), grad(v)) * dx
 
     # set up the scheme
     laplace = solutionScheme([a==0, DirichletBC(space, exact, 1)], solver="cg",
-                parameters={"linear.preconditioning.method":"jacobi"})
+                parameters={"newton.linear.preconditioning.method":"jacobi"})
     uh = space.interpolate([0], name="solution")
     return uh, exact, laplace
 
@@ -153,11 +143,11 @@ from dune.fem.operator import galerkin as estimatorOp
 fvspace = estimatorSpace(uh.space.gridView)
 estimate = fvspace.interpolate([0], name="estimate")
 
-u = TrialFunction(uh.space)
+u = TrialFunction(uh.space.as_ufl())
 v = TestFunction(fvspace)
-hT = MaxCellEdgeLength(fvspace)
-he = MaxFacetEdgeLength(fvspace)('+')
-n = FacetNormal(fvspace)
+hT = MaxCellEdgeLength(fvspace.cell())
+he = MaxFacetEdgeLength(fvspace.cell())('+')
+n = FacetNormal(fvspace.cell())
 estimator_ufl = hT**2 * (div(grad(u)))**2 * v * dx +        he * inner(jump(grad(u)), n('+'))**2 * avg(v) * dS
 estimator = estimatorOp(estimator_ufl)
 tolerance = 0.05
@@ -175,13 +165,6 @@ count = 0
 errorVector    = []
 estimateVector = []
 dofs           = []
-
-marker = GridMarker( estimate, # grid function to be evaluated at cell center
-                     0.6,                    # refinement tolerance
-                     strategy = 'doerfler',  # marking strategy doerfler
-                     layered = 0.1)          # parameter for Doerfler layered strategy.
-
-
 while True:
     laplace.solve(target=uh)
     if count%9 == 8:
@@ -196,8 +179,9 @@ while True:
         print(count, ": size=", uh.space.gridView.size(0), "estimate=", eta, "error=", error)
     if eta < tolerance:
         break
-
-    fem.gridAdapt(marker, uh) # can also be a list or tuple of function to prolong/restrict
+    marked = fem.doerflerMark(estimate,0.6,layered=0.1)
+    fem.adapt(uh) # can also be a list or tuple of function to prolong/restrict
+    fem.loadBalance(uh) # can also be a list or tuple of function
     count += 1
 plot(uh, figure=(fig, 131+2), colorbar=False)
 

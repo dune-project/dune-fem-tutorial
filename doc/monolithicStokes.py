@@ -5,7 +5,7 @@
 # .. index::
 #    triple: Equations; Stokes; Saddle-Point;
 #
-# .. index:: Methods; Mixed FEM
+# .. index:: Methods; Mixed Finite Elements
 #
 # .. index:: Spaces; Taylor-Hood
 #
@@ -152,14 +152,14 @@ def weak_form_stationary_stokes(u,v,p,q, f,mu, dirichlet_velocity=None):
 #
 
 # %%
-from dune.ufl import DirichletBC
+from dune.ufl import DirichletBC, BoundaryId
 from ufl import as_vector
 from dune.fem.function import gridFunction
 
 x = spatial_coordinate[0]
 y = spatial_coordinate[1]
 
-u_exact = gridFunction(-256*y*(y-1)*(2*y-1)*x**2*(x-1)**2,
+u_exact = gridFunction(256*y*(y-1)*(2*y-1)*x**2*(x-1)**2,
                       gridView,
                       name="analytical_solution_x",
                       order=5)
@@ -173,7 +173,7 @@ p_exact = gridFunction((x-0.5)*(y-0.5),
                       order=5)
 def f_1(x,y):
     return 256*(x**2*(x-1)**2*(12*y-6) + y*(y-1)*(2*y-1)*(12*x**2 -12*x + 2))
-f_exact = gridFunction(as_vector([f_1(x,y) + (y-0.5), -f_1(y,x) + (x-0.5)]),
+f_exact = gridFunction(as_vector([f_1(x,y) + (y-0.5), -f_1(y,x) +(x-0.5)]),
                       gridView,
                       name="analytical_solution_force_term",
                       order=5)
@@ -223,19 +223,19 @@ dirichlet_bcs_exact   = [DirichletBC(taylor_hood_space, [u_exact, v_exact, None]
                          DirichletBC(taylor_hood_space, [u_exact, v_exact, None], is_bot),
                          DirichletBC(taylor_hood_space, [u_exact, v_exact, None], is_top)]
 
-print("velocity element order: " + str(taylor_hood_space.subSpaces[0].order))
-print("pressure element order: " + str(taylor_hood_space.subSpaces[1].order))
+print("velocity element order: " + str(taylor_hood_space.components[0].order))
+print("pressure element order: " + str(taylor_hood_space.components[1].order))
 
 solution_vector_cg = taylor_hood_space.interpolate([0]*(dim_space+1), name="solution_vector_cg")
 
 print("solution_vector.order = " + str(solution_vector_cg.order))
 
-solver_parameters ={"nonlinear.tolerance": 1e-10,
-                    "nonlinear.verbose": False,
-                    "linear.tolerance": 1e-14,
-                    "linear.preconditioning.method": "ilu",
-                    "linear.verbose": False,
-                    "linear.maxiterations": 1000}
+solver_parameters ={"newton.tolerance": 1e-10,
+                    "newton.verbose": False,
+                    "newton.linear.tolerance": 1e-14,
+                    "newton.linear.preconditioning.method": "ilu",
+                    "newton.linear.verbose": False,
+                    "newton.linear.maxiterations": 1000}
 
 # Alternative (commented) version uses weakly imposed boundary conditions:
 # eqns = weak_form_stationary_stokes(u_h, v_h, p_h, q_h, f_exact, mu, as_vector([u_exact, v_exact]))
@@ -470,8 +470,8 @@ v_h = as_vector([V[0], V[1]])
 p_h = U[2]
 q_h = V[2]
 
-print("DG velocity element order: " + str(taylor_hood_space_dg.subSpaces[0].order))
-print("DG pressure element order: " + str(taylor_hood_space_dg.subSpaces[1].order))
+print("DG velocity element order: " + str(taylor_hood_space_dg.components[0].order))
+print("DG pressure element order: " + str(taylor_hood_space_dg.components[1].order))
 
 
 is_dirichlet_velocity = Constant(1.0, "all_boundaries")
@@ -479,12 +479,12 @@ dirichlet_velocity = as_vector([u_exact, v_exact])
 weak_form_stokes_dg = weak_form_stationary_stokes_dg(u_h, v_h, p_h, q_h, f_exact, mu, is_dirichlet_velocity, dirichlet_velocity)
 solution_vector_dg = taylor_hood_space_dg.interpolate([0, 0, 0], name="solution_vector_dg")
 
-solver_parameters ={"nonlinear.tolerance": 1e-10,
-                    "nonlinear.verbose": False,
-                    "linear.tolerance": 1e-14,
-                    "linear.preconditioning.method": "ilu",
-                    "linear.verbose": False,
-                    "linear.maxiterations": 1000}
+solver_parameters ={"newton.tolerance": 1e-10,
+                    "newton.verbose": False,
+                    "newton.linear.tolerance": 1e-14,
+                    "newton.linear.preconditioning.method": "ilu",
+                    "newton.linear.verbose": False,
+                    "newton.linear.maxiterations": 1000}
 
 scheme_taylor_hood_dg = solutionScheme(weak_form_stokes_dg,
                                     space=taylor_hood_space_dg,
@@ -507,7 +507,7 @@ gamma_grad_div.value =  0.0
 gamma_mass_flux.value =  0.0
 gamma_stab_cburn.value = 0.0
 
-velocity_order = taylor_hood_space_dg.subSpaces[0].order
+velocity_order = taylor_hood_space_dg.components[0].order
 sigma_ip.value = penalty_parameter_abkas(velocity_order)
 
 print("Penalty parameter value: " + str(sigma_ip.value))
@@ -619,8 +619,8 @@ def convergence_study(scheme, solution_vector, refinement_steps=2, penalty = 20)
 print("\n")
 print("----------------------")
 print("Test convergence with CG: \n")
-print("Velocity polynomial order: " + str(taylor_hood_space.subSpaces[0].order))
-print("Pressure polynomial order: " + str(taylor_hood_space.subSpaces[1].order))
+print("Velocity polynomial order: " + str(taylor_hood_space.components[0].order))
+print("Pressure polynomial order: " + str(taylor_hood_space.components[1].order))
 
 convergence_study(scheme=scheme_taylor_hood_cg,
                   solution_vector=solution_vector_cg,
@@ -637,8 +637,8 @@ convergence_study(scheme=scheme_taylor_hood_cg,
 print("\n")
 print("----------------------")
 print("Test convergence with DG: \n")
-print("Velocity polynomial order: " + str(taylor_hood_space_dg.subSpaces[0].order))
-print("Pressure polynomial order: " + str(taylor_hood_space_dg.subSpaces[1].order))
+print("Velocity polynomial order: " + str(taylor_hood_space_dg.components[0].order))
+print("Pressure polynomial order: " + str(taylor_hood_space_dg.components[1].order))
 
 method_switch_ip = -1.0
 gamma_grad_div.value = 0.0
@@ -670,7 +670,7 @@ def dof_count_taylor_hood_quad_mesh(velocity_order=2):
     # number dofs per quad = velocity_dofs + pressure_dofs
     return number_elements*(number_velocity_dofs_lagrange_polynomial_per_quad + number_pressure_dofs_lagrange_polynomial_per_quad)
 
-velocity_order = taylor_hood_space_dg.subSpaces[0].order
+velocity_order = taylor_hood_space_dg.components[0].order
 pressure_order = velocity_order - 1
 
 print("\n")

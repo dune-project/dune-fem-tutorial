@@ -100,20 +100,16 @@ during construction of the operator:
 
 The resulting operator will have the same methods as before but both the
 ``__call__`` and the ``jacobian`` method will include handing of the
-Dirichlet boundary conditions. In the current version to behavior is
-different depending on equality of the range and domain spaces.
+Dirichlet boundary conditions:
 
 - ``__call__``: this method will as before compute :math:`w_h=L[v_h]` 
   (where :math:`v_h` can be a general grid function as pointed out above).
-  In addition if domain and range space are identical,
-  all components in :math:`w_h` associated with the
+  But in addition all components in :math:`w_h` associated with the
   Dirichlet boundary will be of the form :math:`w_i = v_i - g_i` where
   :math:`g_i` is the given boundary data evaluate at the corresponding
-  degree of freedom. If the range and domain spaces differ then
-  :math:`w_i = 0` for all these components.
+  degree of freedom.
 
-  .. note:: in the case :math:`V_h=W_h`, a more mathematical explanation
-            is to consider all functionals
+  .. note:: a more mathematical explanation is to consider all functionals
             :math:`\lambda` which are associated with the boundaries, i.e.,
             depend on their argument restricted to the boundary:
             :math:`\lambda(g_1)=\lambda(g_2)` if :math:`g_1=g_2` on the
@@ -121,12 +117,10 @@ different depending on equality of the range and domain spaces.
             :math:`\lambda(w_h) = \lambda(v_h-g) = \lambda(v_h)-\lambda(g)`
             for each of these functionals.
 
-- ``jacobain``: if range and domain spaces are identical then 
-  the matrix assembled will contain a unit row for each row
+- ``jacobain``: the matrix assembled will contain a unit row for each row
   associated with the Dirichlet constraints. If the version with the right
   hand side argument is used, the components for the Dirichlet degrees of
-  freedom will contain :math:`g_i`. For different range and domain spaces
-  rows in the matrix will simply be zero for the Dirichlet dofs.
+  freedom will contain :math:`g_i`.
 
   .. note:: this corresponds to the correct linearization of :math:`w_i=u_i-g_i`.
 

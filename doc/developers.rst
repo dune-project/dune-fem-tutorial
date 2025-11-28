@@ -109,28 +109,7 @@ adding
 
 to the end of the script. This will produce a file `moduleslist.txt`
 containing all dune jit modules loaded during the run of the script.
-An alternative approach is to log all files being loaded during the
-execution of a script by calling
-
-.. code-block::
-
-  dune.generator.setModuleLog( __file__, procs=n )
-
-at the start of the script. This will generate a file with the same base
-name as the script and extension `.modules`. The name of each `Dune` module being
-loaded will be added to this file. If the file already exists at the point were
-`setModuleLog` is called (i.e. a second the script is being run) then all
-modules listed here will be rebuild if dependencies have changed using
-`make -in` i.e. in parallel if the `procs` argument is greater than one.
-An even more automatic approach is available by setting an environment
-variable to the number of processes to use for the build process
-
-.. code-block::
-
-  export DUNE_LOGMODULES=n
-
-If either the `modulelist.txt` or `scriptname.modules` has been generated
-in one form or another, then one can rebuild (or remove) all modules by for example running
+Then one can rebuild (or remove) all modules by for example running
 
 .. code-block::
 

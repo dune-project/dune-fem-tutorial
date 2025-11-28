@@ -82,7 +82,7 @@ else:
     spiral_eps = 0.08
     def spiral_h(u,v): return u**3 - v
 
-x = ufl.SpatialCoordinate(dune.ufl.domain(2))
+x = ufl.SpatialCoordinate(ufl.triangle)
 initial_u = ufl.conditional(x[1]>1.25,1,0)
 initial_v = ufl.conditional(x[0]<1.25,0.5,0)
 
@@ -126,11 +126,11 @@ ode_update = ufl.as_vector([ vh_n[0] + dt*spiral_h(uh_n[0], vh_n[0]) ])
 # The model is now completely implemented and can be created, together with the corresponding scheme:
 # %%
 solverParameters =\
-       {"nonlinear.tolerance": 1e-3,
-        "nonlinear.verbose": False,
-        "linear.tolerance": 1e-5,
-        "linear.preconditioning.method": "jacobi",
-        "linear.verbose": False}
+       {"newton.tolerance": 1e-3,
+        "newton.verbose": False,
+        "newton.linear.tolerance": 1e-5,
+        "newton.linear.preconditioning.method": "jacobi",
+        "newton.linear.verbose": False}
 scheme = dune.fem.scheme.galerkin( equation, space, solver="cg", parameters=solverParameters)
 
 # %% [markdown]
@@ -140,7 +140,7 @@ scheme = dune.fem.scheme.galerkin( equation, space, solver="cg", parameters=solv
 def init():
     data = uh.pointData(1)
     C = plt.tricontourf(triangulation, data[:,0], cmap=plt.cm.rainbow, levels=levels)
-    return C.axes.collections
+    return C.collections
 def animate(count):
     global t,stepsize,nextstep
     nextstep += stepsize
@@ -155,11 +155,10 @@ def animate(count):
     data = uh.pointData(1)
     C = plt.tricontourf(triangulation, data[:,0], cmap=plt.cm.rainbow, levels=levels)
     # gridView.writeVTK("spiral", pointdata=[uh], number=count)
-    return C.axes.collections
+    return C.collections
 
 # %% [markdown]
 # And generate the movie:
-
 # %%
 import matplotlib.pyplot as plt
 from matplotlib import animation
@@ -178,15 +177,13 @@ anim = animation.FuncAnimation(fig, animate, init_func=init, frames=20, interval
 
 try:
     movie = anim.to_html5_video()
-    # save and embed
-    anim.save('spiral.gif', writer=animation.ImageMagickWriter(fps=2))
     from IPython.display import HTML, display
     display( HTML(movie) )
 except: # ffmpeg probably missing
     try:
         anim.save("spiral.html")
         from IPython.display import IFrame
-        IFrame(src='./spiral.html', width=700, height=600)
+        IFrame(src='./nice.html', width=700, height=600)
     except:
         pass
 # %% [markdown]

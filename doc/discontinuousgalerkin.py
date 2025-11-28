@@ -22,20 +22,16 @@
 # %%
 import numpy, math, sys
 from matplotlib import pyplot
-from dune.grid import cartesianDomain
-# from dune.alugrid import aluConformGrid as leafGridView
-# from dune.fem.space import dgonb as dgSpace
-from dune.grid import yaspGrid as leafGridView
+from dune.grid import structuredGrid as leafGridView
 from dune.fem.space import dglegendre as dgSpace
 from dune.fem.scheme import galerkin as solutionScheme
 from dune.ufl import Constant
-from ufl import ( TestFunction, TrialFunction, SpatialCoordinate, FacetNormal,
-                  dx, ds, grad, div, grad, dot, inner, sqrt, exp, atan, conditional,
-                  as_vector, avg, jump, dS, CellVolume, FacetArea )
+from ufl import ( TestFunction, TrialFunction, SpatialCoordinate, triangle, FacetNormal,
+                  dx, ds, grad, div, grad, dot, inner, sqrt, exp, conditional,
+                  as_vector, avg, jump, dS, CellVolume, FacetArea, atan )
 
 # overlap=1 is needed for parallel computations
-domain   = cartesianDomain([-1, -1], [1, 1], [20, 20], overlap=1)
-gridView = leafGridView(domain)
+gridView = leafGridView([-1, -1], [1, 1], [20, 20], overlap=1)
 space    = dgSpace(gridView, order=2)
 
 
@@ -66,13 +62,10 @@ g    = conditional(x[0]<0,atan(10*x[1]),0)
 # penalty parameter (take 1 for p=0)
 beta = 10 * space.order**2 if space.order > 0 else 1
 
-                # eps*dot(avg(grad(u)),n('+'))*jump(v)*dS -
-                # eps*jump(u)*dot(avg(grad(v)),n('+'))*dS
-dn = lambda u: dot(grad(u),n)
 aInternal     = dot(eps*grad(u) - b*u, grad(v)) * dx
 diffSkeleton  = eps*beta/he*jump(u)*jump(v)*dS -\
-                eps*avg(dn(u))*jump(v)*dS -\
-                eps*jump(u)*avg(dn(v))*dS
+                eps*dot(avg(grad(u)),n('+'))*jump(v)*dS -\
+                eps*jump(u)*dot(avg(grad(v)),n('+'))*dS
 diffSkeleton += eps*beta/hbnd*(u-g)*v*dD*ds -\
                 eps*dot(grad(u),n)*v*dD*ds
 advSkeleton   = jump(hatb*u)*jump(v)*dS
@@ -82,10 +75,10 @@ form          = aInternal + diffSkeleton + advSkeleton
 # %% [markdown]
 # We solve the problem as in previous examples
 
-# %% nbsphinx-thumbnail={"tooltip": "Discontinuous Galerkin method for advection dominated problems"}
+# %%
 scheme = solutionScheme(form==0, solver="gmres",
-            parameters={"linear.preconditioning.method":"jacobi",
-                       # "nonlinear.verbose": True,
+            parameters={"newton.linear.preconditioning.method":"jacobi",
+                       # "newton.verbose": True,
                        }
                         )
 uh = space.interpolate(0, name="solution")
@@ -133,8 +126,7 @@ if parallel:
 # %%
 # remove later, shows same error: from dune.fem.space import dgonb as dgSpace
 N = 200
-domain1d = cartesianDomain([0], [1], [N], overlap=1)
-gridView = leafGridView( domain1d )
+gridView = leafGridView([0], [1], [N], overlap=1)
 space    = dgSpace(gridView, order=1)
 
 # %% [markdown]
@@ -243,4 +235,4 @@ uh.plot()
 # dependent advection-diffusion problem. The module includes
 # implicit-explicit Runge-Kutta methods and stabilization approaches for
 # non-linear advection dominated models. This module is described in
-# more details in [other places in this tutorial](furtherexamples.rst#Discontinuous-Galerkin-Methods-with-DUNE-FEM-DG).
+# more details in [other places in this tutorial](femdg.rst).

@@ -30,9 +30,8 @@ dune.fem.threading.use = 4
 # %%
 order        = 3
 polyGrid = dune.vem.polyGrid( cartesianDomain([0,0],[1,1],[30,30]), cubes=True)
-testSpaces = [ [0], [order-3,order-2], [order-4] ]
-# testSpaces   = [ [0,0],[order-4,order-3], [order-4] ]
-space = dune.vem.vemSpace(polyGrid, order=order, testSpaces=testSpaces)
+ncC1testSpaces = [ [0], [order-3,order-2], [order-4] ]
+space = dune.vem.vemSpace(polyGrid, order=order, testSpaces=ncC1testSpaces)
 
 # %% [markdown]
 # To define the mathematical model, let $\psi\colon{\mathbb R} \rightarrow
@@ -106,27 +105,42 @@ df = space.interpolate(initial, name="solution")
 
 
 # %% [markdown]
-# Finally the time loop - for the final coarsening phase (time greater than 0.8)
-# we increase the time step a bit:
+# Finally the time loop:
 
 # %%
 t.value = 0
 eps.value = 0.05
+tau.value = 1e-02
 
-fig = pyplot.figure(figsize=(30,30))
+fig = pyplot.figure(figsize=(40,20))
 count = 0
 pos = 1
-while t.value < 2.15:
-    if t.value < 0.6:
-        tau.value = 1e-02
-    else:
-        tau.value = 5e-02
+while t.value < 0.8:
     df_n.assign(df)
     info = scheme.solve(target=df)
     t.value += tau
     count += 1
     if count % 10 == 0:
-        df.plot(figure=(fig,330+pos),colorbar=None,clim=[-1,1])
+        df.plot(figure=(fig,240+pos),colorbar=None,clim=[-1,1])
+        energy = dune.fem.integrate(Eint(df),order=3)
+        print("[",pos,"]",t.value,tau.value,energy,info,flush=True)
+        pos += 1
+
+# %% [markdown]
+# For the final coarsening phase we increase the time step a bit:
+
+# %%
+tau.value = 4e-02
+fig = pyplot.figure(figsize=(30,10))
+count = 0
+pos = 1
+while t.value < 2.0:
+    df_n.assign(df)
+    info = scheme.solve(target=df)
+    t.value += tau
+    count += 1
+    if count % 10 == 0:
+        df.plot(figure=(fig,140+pos),colorbar=None,clim=[-1,1])
         energy = dune.fem.integrate(Eint(df),order=3)
         print("[",pos,"]",t.value,tau.value,energy,info,flush=True)
         pos += 1

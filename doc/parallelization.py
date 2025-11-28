@@ -16,8 +16,7 @@
 # the code might not be as high as expected. Since we rely mostly on
 # external packages for the linear algebra, speedup in this step will
 # depend on the multithreading support available in the chosen linear
-# algebra backend - see the discussion on how to
-# [switch between linear solver backends](solversExternal_nb.ipynb)
+# algebra backend - see the discussion on how to [switch between linear solver backends](solvers_nb.ipynb)
 # to, for example, use the thread parallel solvers from scipy.
 #
 # By default only a single thread is used. To enable multithreading simply add
@@ -49,8 +48,7 @@ print("Using",threading.use,"threads")
 # It is straightforward to use **MPI** for parallelization. It requires a
 # parallel grid, in fact most of the DUNE grids work in parallel except `albertaGrid` or `polyGrid`.
 # Most iterative solvers in DUNE work for parallel runs. Some of the
-# preconditioning methods also work in parallel, a complete list is found at the
-# [bottom of the solver discussion](solversInternal_nb.ipynb).
+# preconditioning methods also work in parallel, a complete list is found at the [bottom of the solver discussion](solvers_nb.ipynb).
 #
 # Running a parallel job can be
 # done by using `mpirun`
@@ -60,21 +58,7 @@ print("Using",threading.use,"threads")
 # in order to use `4` MPI processes. Example scripts that run in parallel are,
 # for example, the [Re-entrant Corner Problem](laplace-adaptive_nb.ipynb).
 #
-# .. index:  Parallelization; print
-#
-# .. tip:: When running a parallel program output to the console should only be
-# received on dedicated processors, e.g. process 0. This can be achieved by
-# simply overloading the print function as shown below.
-#
-# %%
-from functools import partial
-from dune.common import comm
-# print can be used as before but will only produce output on rank 0
-print = partial(print, flush=True) if comm.rank == 0 else lambda *args, **kwargs: None
-# %% [markdown]
-#
 # .. index:  Parallelization; SLURM Batch Script
-#
 #
 # .. tip:: On a cluster where multiple parallel jobs are run simultaneously, it's
 # advisable to use one separate cache per job. This can be easily
@@ -125,5 +109,5 @@ vtk()
 # For load balancing with re-distribution of user data the function
 # `dune.fem.loadBalance` should be used. This method is similar to the
 # ``dune.fem.adapt`` method discussed in the
-# [section on adaptivity](gridviews_and_adaptivity.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
+# [section on adaptivity](gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening).
 # See also the [crystal growth](crystal_nb.ipynb) or [Re-entrant Corner Problem](laplace-adaptive_nb.ipynb) examples.

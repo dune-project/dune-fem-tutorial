@@ -14,7 +14,7 @@
 # We start again by setting up a grid
 
 # %%
-import numpy
+import io, numpy
 from matplotlib import pyplot, ticker
 from dune.fem.plotting import plotComponents
 
@@ -28,7 +28,7 @@ gridView = leafGridView([0, 0], [1, 1], [4, 4])
 # template being ``class GridView``
 # The return value of this ``lambda`` is either a ``double`` or
 # a ``Dune::FieldVector<double,R>``. The generating function can
-# have parameters of their own which can be set when constructing the grid
+# have parameters of own which can be set when constructing the grid
 # function. The first example takes a double parameter `a` which we set
 # to `2`:
 
@@ -53,10 +53,9 @@ exactCpp.plot()
 # expression and compare the two.
 
 # %%
-from ufl import SpatialCoordinate
-import dune.ufl
+from ufl import SpatialCoordinate, triangle
 from dune.fem import integrate
-x = SpatialCoordinate(dune.ufl.domain(2))
+x = SpatialCoordinate(triangle)
 exact = (x[0]**2+x[1]**2) - 1/3*(x[0]**3 - x[1]**3) + 1
 exact_gf = gridFunction(exact, gridView, name="ufl", order=1)
 print( integrate(abs(exact-exactCpp)) )
@@ -79,7 +78,6 @@ code2="""
 template <class GridView, class GF>
 auto aTimesExact(const GF &gf,Dune::FieldVector<double,1> &a) {
   return [lgf=localFunction(gf),&a] (const auto& en,const auto& xLocal) mutable -> auto {
-
     lgf.bind(en); // lambda must be mutable so that the non const function can be called
     return a[0]*lgf(xLocal);
   };
@@ -116,7 +114,7 @@ print( integrate(abs(exactCpp-exactCpp2)) )
 # %%
 from dune.fem.space import lagrange as solutionSpace
 from ufl import TestFunction, TrialFunction, SpatialCoordinate,\
-                dx, ds, grad, inner, sin, pi
+                dx, ds, grad, inner, sin, pi, triangle
 from dune.fem.scheme import galerkin as solutionScheme
 from dune.ufl import DirichletBC, Constant
 
@@ -143,7 +141,7 @@ bndCpp = gridFunction(code, gridView=gridView, name="bnd", order=2, args=[coeffV
 bcBottom = DirichletBC(vecSpace,[sin(2*pi*(x[0]+x[1])),1],x[1]<1e-10)
 bc = DirichletBC(vecSpace,[bndCpp,None])
 vecScheme = solutionScheme( [a == 0, bc, bcBottom],
-                            parameters={"linear.tolerance": 1e-9} )
+                            parameters={"newton.linear.tolerance": 1e-9} )
 vecScheme.solve(target=vec)
 plotComponents(vec, gridLines=None, level=2,
                colorbar={"orientation":"horizontal", "ticks":ticker.MaxNLocator(nbins=4)})

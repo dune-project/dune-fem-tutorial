@@ -31,7 +31,6 @@ from ufl import dx, grad, grad, dot, inner, conditional, sin
 # .. note:: The DGF is ASCII based and thus only meant for prototyping and
 # testing. For serious computations use `meshio` or the [pickling approach](backuprestore_nb.ipynb).
 #
-# We start with a simple [grid of triangles](triangle.dgf)
 # %%
 domain2d = (reader.dgf, "triangle.dgf")
 
@@ -44,7 +43,7 @@ aluView.plot(figsize=(5,5))
 # .. index:: Grid construction; gmsh (from file)
 #
 # There is also a `reader.gmsh` option allowing previously stored `gmsh` files to be
-# read. The [grid file](wave_tank.msh) is the one used in the [wave equation](wave_nb.ipynb) example.
+# read. The grid is the one used in the [wave equation](wave_nb.ipynb) example.
 
 # %%
 waveDomain = (reader.gmsh, "wave_tank.msh")
@@ -234,7 +233,7 @@ bndIds.plot()
 #
 # We will use the `meshio` package to read a gmsh file, extract the points
 # and cells and use that to construct a Dune grid. The final part is then
-# quite similar to the above. We use the [2D grid](wave_tank.msh) from the
+# quite similar to the above. We use the 2D grid from the
 # [wave equation](wave_nb.ipynb) test case. Note that this is a 2D grid but the points are
 # returned as 3D points so we need to remove the final columns containing
 # only zeros. We have already seen this grid above so let's zoom in to the
@@ -260,7 +259,7 @@ except ImportError:
 #
 # .. index:: Grid construction; meshio (quadrilateral grids)
 #
-# Here is a second example where we want to read a [gmsh file](quads.msh) containing
+# Here is a second example where we want to read a gmsh containing
 # quadrilateral elements. Note that the vertices of the cells are ordered
 # counterclockwise which is not identical to the ordering required by the
 # [Dune reference element](https://www.dune-project.org/doxygen/2.5.0/group__GeometryReferenceElements.html).
