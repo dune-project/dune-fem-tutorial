@@ -458,7 +458,7 @@ This document is part of the dune-fem tutorial
 </div>
 <section id="Moving-surface-grid:-flow-under-mean-curvature">
 <span id="index-2"></span><span id="index-1"></span><span id="index-0"></span><h1>Moving surface grid: flow under mean curvature<a class="headerlink" href="#Moving-surface-grid:-flow-under-mean-curvature" title="Link to this heading"></a></h1>
-<p>This example uses a <a class="reference external" href="gridviews.rst#Evolving-Domains">moving grid</a>.</p>
+<p>This example uses a moving grid.</p>
 <p>Mean curvature flow is a specific example of a geometric evolution equation where the evolution is governed by the mean curvature <span class="math notranslate nohighlight">\(H\)</span>. One real-life example of this is in how soap films change over time, although it can also be applied to image processing (e.g. <span id="id1">[<a class="reference internal" href="index.html#id11" title="Ravi Malladi and James A. Sethian. Image processing: flows under min/max curvature and mean curvature. Graphical models and image processing, 58(2):127–141, 1996.">MS96</a>]</span>). Assume we can define a reference surface <span class="math notranslate nohighlight">\(\Gamma_0\)</span> such that we can write the evolving surface <span class="math notranslate nohighlight">\(\Gamma(t)\)</span> in the form <span class="math">\begin{gather*}
 \Gamma(t) = X(t,\Gamma_0).
 \end{gather*}</span> It is now possible to show that the vector valued function <span class="math notranslate nohighlight">\(X=X(t,x)\)</span> with <span class="math notranslate nohighlight">\(x\in\Gamma_0\)</span> satisfies <span class="math">\begin{gather*}
@@ -470,7 +470,7 @@ This document is part of the dune-fem tutorial
 \theta\nabla_{\Gamma^n} U^{n+1} + (1-\theta) I \big)
 \colon\nabla_{\Gamma^n}\varphi
 =0.
-\end{align*}</span> Here <span class="math notranslate nohighlight">\(U^n\)</span> parametrizes <span class="math notranslate nohighlight">\(\Gamma(t^{n+1})\)</span> over <span class="math notranslate nohighlight">\(\Gamma^n:=\Gamma(t^{n})\)</span>, <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix, <span class="math notranslate nohighlight">\(\tau\)</span> is the time step and <span class="math notranslate nohighlight">\(\theta\in[0,1]\)</span> is a discretization parameter. <img alt="60eb1ebc294f434aacbf79ef2f9d756b" src="_images/mcf.gif" /></p>
+\end{align*}</span> Here <span class="math notranslate nohighlight">\(U^n\)</span> parametrizes <span class="math notranslate nohighlight">\(\Gamma(t^{n+1})\)</span> over <span class="math notranslate nohighlight">\(\Gamma^n:=\Gamma(t^{n})\)</span>, <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix, <span class="math notranslate nohighlight">\(\tau\)</span> is the time step and <span class="math notranslate nohighlight">\(\theta\in[0,1]\)</span> is a discretization parameter. <img alt="912f631a8ca546298439111b13fa6863" src="_images/mcf.gif" /></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -640,7 +640,7 @@ This document is part of the dune-fem tutorial
         <span class="n">mlab</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">bgcolor</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">triangular_mesh</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span><span class="n">x</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">triangles</span><span class="p">)</span>
         <span class="n">display</span><span class="p">(</span> <span class="n">s</span> <span class="p">)</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ModuleNotFoundError</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mayavi module not found so not showing plot - ignored&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">plot3d</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span><span class="n">level</span><span class="p">):</span>
         <span class="k">pass</span>

@@ -458,7 +458,7 @@ This document is part of the dune-fem tutorial
 </div>
 <section id="Adaptive-phase-field:-crystal-growth-model">
 <span id="index-1"></span><span id="index-0"></span><h1>Adaptive phase field: crystal growth model<a class="headerlink" href="#Adaptive-phase-field:-crystal-growth-model" title="Link to this heading"></a></h1>
-<p>Here we demonstrate crystallisation on the surface of a liquid due to cooling from [&#64;Guyer]. This example uses <a class="reference external" href="gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening">dynamic grid refinement</a>.</p>
+<p>Here we demonstrate crystallisation on the surface of a liquid due to cooling from [&#64;Guyer]. This example uses dynamic grid refinement.</p>
 <p>Let us first set up the grid and the function space. We use the default DoF storage available in <code class="docutils literal notranslate"><span class="pre">dune-fem</span></code> - this can be changed for example to <code class="docutils literal notranslate"><span class="pre">istl</span></code> or <code class="docutils literal notranslate"><span class="pre">petsc</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -637,7 +637,6 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">startLevel</span><span class="p">,</span> <span class="n">maxLevel</span><span class="p">):</span>
     <span class="n">fem</span><span class="o">.</span><span class="n">gridAdapt</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">u_h</span><span class="p">)</span>
-    <span class="n">fem</span><span class="o">.</span><span class="n">loadBalance</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
     <span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
@@ -716,7 +715,6 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
     <span class="c1"># print(t, gridView.size(0), end=&quot;\r&quot;)</span>
     <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span><span class="o">.</span><span class="n">value</span>
     <span class="n">fem</span><span class="o">.</span><span class="n">gridAdapt</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">u_h</span><span class="p">)</span> <span class="c1"># can also be a list or tuple of function to prolong/restrict</span>
-    <span class="n">fem</span><span class="o">.</span><span class="n">loadBalance</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>       <span class="c1"># can also be a list or tuple of function</span>
     <span class="n">vtk</span><span class="p">()</span>                      <span class="c1"># store result in sequence of vtk file</span>
 <span class="nb">print</span><span class="p">()</span>
 

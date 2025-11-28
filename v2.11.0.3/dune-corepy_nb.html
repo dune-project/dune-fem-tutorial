@@ -512,10 +512,10 @@ compilation utility available in Dune-Python makes it then very easy to use thes
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 (0.000000, 0.000000)    (1.000000, 0.000000)    (0.000000, 1.000000)
-position: (0.333333, 0.333333) (&lt;class &#39;dune.common.FieldVector_double_2&#39;&gt;) weight: -0.28125 (&lt;class &#39;float&#39;&gt;)
-position: (0.600000, 0.200000) (&lt;class &#39;dune.common.FieldVector_double_2&#39;&gt;) weight: 0.2604166666666667 (&lt;class &#39;float&#39;&gt;)
-position: (0.200000, 0.600000) (&lt;class &#39;dune.common.FieldVector_double_2&#39;&gt;) weight: 0.2604166666666667 (&lt;class &#39;float&#39;&gt;)
-position: (0.200000, 0.200000) (&lt;class &#39;dune.common.FieldVector_double_2&#39;&gt;) weight: 0.2604166666666667 (&lt;class &#39;float&#39;&gt;)
+position: (0.333333, 0.333333) (&lt;class &#39;dune.common._common.FieldVector_double_2&#39;&gt;) weight: -0.28125 (&lt;class &#39;float&#39;&gt;)
+position: (0.600000, 0.200000) (&lt;class &#39;dune.common._common.FieldVector_double_2&#39;&gt;) weight: 0.2604166666666667 (&lt;class &#39;float&#39;&gt;)
+position: (0.200000, 0.600000) (&lt;class &#39;dune.common._common.FieldVector_double_2&#39;&gt;) weight: 0.2604166666666667 (&lt;class &#39;float&#39;&gt;)
+position: (0.200000, 0.200000) (&lt;class &#39;dune.common._common.FieldVector_double_2&#39;&gt;) weight: 0.2604166666666667 (&lt;class &#39;float&#39;&gt;)
 </pre></div></div>
 </div>
 <p>We can also obtain all weights and points stored in numpy arrays which can be useful to vectorize the computation of quadratures:</p>
@@ -752,7 +752,7 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If discrete functions based on the <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> spaces have been constructed before local or global grid refinement is performed, the degree of freedom (dof) vectors will be resized but the data will be lost. Use <code class="docutils literal notranslate"><span class="pre">dune.fem.adapt</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.globalRefine</span></code> if data is supposed to be retained during grid modification. This is described in detail in the section on <a class="reference external" href="gridviews.rst#Dynamic-Local-Grid-Refinement-and-Coarsening">dynamic grid modification</a>.</p>
+<p>If discrete functions based on the <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> spaces have been constructed before local or global grid refinement is performed, the degree of freedom (dof) vectors will be resized but the data will be lost. Use <code class="docutils literal notranslate"><span class="pre">dune.fem.adapt</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.globalRefine</span></code> if data is supposed to be retained during grid modification. This is described in detail in the section on dynamic grid modification.</p>
 </div>
 <section id="Basic-information-and-iterators">
 <span id="index-5"></span><h3>Basic information and iterators<a class="headerlink" href="#Basic-information-and-iterators" title="Link to this heading"></a></h3>
@@ -781,8 +781,8 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 2 elements and 4 vertices
-(1.000000, 1.000000), (1.000000, 0.000000), (0.000000, 0.000000)
 (0.000000, 0.000000), (0.000000, 1.000000), (1.000000, 1.000000)
+(1.000000, 1.000000), (1.000000, 0.000000), (0.000000, 0.000000)
 (0.000000, 0.000000), (1.000000, 0.000000)
 (0.000000, 0.000000), (1.000000, 1.000000)
 (0.000000, 0.000000), (0.000000, 1.000000)
@@ -876,7 +876,7 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-integral of function &#39;f&#39;: 0.07942992585030194
+integral of function &#39;f&#39;: 0.07942992585030195
 </pre></div></div>
 </div>
 <p>There are some approach available to improve the efficiency of the computation of integrals since this is an important component of many grid based schemes. Especially, using vectorization can greatly reduce the complexity of the above loop:</p>
@@ -901,7 +901,7 @@ integral of function &#39;f&#39;: 0.07942992585030194
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-integral of function &#39;f&#39;: 0.07942992585030188
+integral of function &#39;f&#39;: 0.07942992585030195
 </pre></div></div>
 </div>
 <p>Now a vector valued function</p>
@@ -1041,10 +1041,10 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 [0 1 2]
-[0 3 1]
-[3 4 1]
-[5 4 3]
-[2 6 0]
+[2 3 0]
+[0 4 5]
+[3 4 0]
+[6 7 0]
 </pre></div></div>
 </div>
 </section>
@@ -1126,7 +1126,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
     <span class="n">display</span><span class="p">(</span> <span class="n">s</span> <span class="p">)</span>
     <span class="c1"># mlab.savefig(&quot;mayavi.png&quot;, size=(400,300))</span>
     <span class="n">mlab</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="nb">all</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+<span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">ModuleNotFoundError</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mayavi module not found so not rendering plot - ignored&quot;</span><span class="p">)</span>
     <span class="k">pass</span>
 </pre></div>
