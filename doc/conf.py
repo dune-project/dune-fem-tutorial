@@ -40,7 +40,6 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
-    #'sphinx_versioning',
 #    'sphinx_multitoc_numbering',
     'nbsphinx',
 #    'sphinxcontrib.apidoc',
@@ -59,7 +58,7 @@ nbsphinx_thumbnails = {
 html_theme = "sphinx_rtd_theme"   # 'sphinxdoc'
 #html_theme = "piccolo_theme"   # 'sphinxdoc'
 html_theme_options = {
-    'logo_only': False,
+    'logo_only': True,
     'prev_next_buttons_location': 'both',
     'style_external_links': True,
     'sticky_navigation': False,
@@ -177,14 +176,6 @@ html_favicon = 'favicon.ico'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-html_context = {
-    "versions": [
-        ("latest", "/latest/"),
-        ("v2.11.0.3", "/v2.11.0.3/"),
-        ("v2.10.0.0", "/v2.10.0.0/"),
-    ],
-}
-
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
 # directly to the root of the documentation.
@@ -200,14 +191,6 @@ html_last_updated_fmt = '%b %d, %Y'
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
-
-#html_sidebars = {
-#    '**': [
-#        # ... other sidebars ...
-#        # Suggest putting the extension above the search bar for better UX.
-#        'sidebar/sphinx_versioning.html',
-#    ]
-#}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
@@ -241,6 +224,7 @@ html_show_copyright = True
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'dune-fempydoc'
+
 
 # -- Options for LaTeX output ---------------------------------------------
 
