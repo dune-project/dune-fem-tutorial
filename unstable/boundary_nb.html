@@ -464,7 +464,7 @@ This document is part of the dune-fem tutorial
 <p id="index-0">To fix Dirichlet boundary conditions <span class="math notranslate nohighlight">\(u=g\)</span> on part of the boundary <span class="math notranslate nohighlight">\(\Gamma\subset\partial\Omega\)</span> the central class is <code class="docutils literal notranslate"><span class="pre">dune.ufl.DirichletBC</span></code> which takes three arguments: the discrete function space for <span class="math notranslate nohighlight">\(u\)</span>, the function <span class="math notranslate nohighlight">\(g\)</span> given by a UFL expression, and a description of <span class="math notranslate nohighlight">\(\Gamma\)</span>. There are different ways to do this. If the final argument is omitted or <code class="docutils literal notranslate"><span class="pre">None</span></code> the condition is applied to the whole domain, a integer <span class="math notranslate nohighlight">\(s&gt;0\)</span> can be provided which can be set to
 describe a part of the boundary during grid construction as described at the end of this section. Finally a UFL condition can be used, i.e., <code class="docutils literal notranslate"><span class="pre">x[0]&lt;0</span></code>.</p>
 <p>For vector valued functions <span class="math notranslate nohighlight">\(u\)</span> the value function <span class="math notranslate nohighlight">\(g\)</span> can be a UFL vector or a list. In the later case a component of <code class="docutils literal notranslate"><span class="pre">None</span></code> can be used to describe components which are not to be constrained by the boundary condition.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -502,8 +502,15 @@ describe a part of the boundary during grid construction as described at the end
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_1_0.jpg" src="_images/boundary_nb_1_0.jpg" />
+</div>
+</div>
 <p>To prescribe <span class="math notranslate nohighlight">\(u_2=1\)</span> at the bottom boundary is easily achieve by providing multiple instances of the <code class="docutils literal notranslate"><span class="pre">dune.ufl.DiricheltBC</span></code> class:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -516,9 +523,16 @@ describe a part of the boundary during grid construction as described at the end
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_3_0.jpg" src="_images/boundary_nb_3_0.jpg" />
+</div>
+</div>
 <p>We can also use general grid functions (including discrete functions) for the boundary conditions in the same way we could use grid functions anywhere within the UFL forms. We could for example fix the boundary values of the first component using the discrete solution from the previous computation by writing <code class="docutils literal notranslate"><span class="pre">bc</span> <span class="pre">=</span> <span class="pre">DirichletBC(vecSpace,[vec[0],None])</span></code> Since this would just be an approximation to the actual boundary condition the overall results would not be identical to the previous version. We
 therefore do not use the discrete solution to describe the boundary conditions but instead use other forms of grid functions. The following two code snippets lead to the same results as above:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -536,6 +550,13 @@ therefore do not use the discrete solution to describe the boundary conditions b
 <span class="k">assert</span> <span class="nb">sum</span><span class="p">([</span> <span class="nb">abs</span><span class="p">(</span><span class="n">td</span><span class="o">-</span><span class="n">vd</span><span class="p">)</span> <span class="k">for</span> <span class="n">td</span><span class="p">,</span><span class="n">vd</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">dofVector</span><span class="p">,</span> <span class="n">vec</span><span class="o">.</span><span class="n">dofVector</span><span class="p">)]</span> <span class="p">)</span> <span class="o">/</span>\
        <span class="nb">len</span><span class="p">(</span><span class="n">vec</span><span class="o">.</span><span class="n">dofVector</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-8</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_5_0.jpg" src="_images/boundary_nb_5_0.jpg" />
 </div>
 </div>
 <p>As with other grid functions we can also use <a class="reference internal" href="cppfunctions_nb.html"><span class="doc">C++ code snippets</span></a>. to define the Dirichlet conditions.</p>
@@ -559,13 +580,20 @@ therefore do not use the discrete solution to describe the boundary conditions b
 </div>
 <p>We have set all degrees of freedom on the boundary to zero. In this example the Dirichlet boundary was specified by the two <code class="docutils literal notranslate"><span class="pre">DirichletBC</span></code> instances <code class="docutils literal notranslate"><span class="pre">bc</span></code> and <code class="docutils literal notranslate"><span class="pre">bcBottom</span></code>. The first specified that for the first component the whole boundary was Dirichlet while specifying nothing for the second component. The second then set Dirichlet conditions for the second component along the lower boundary. Consequently, the solution should now be zero along the whole boundary in the first component, and
 zero along the lower boundary for the second:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotComponents</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                <span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;orientation&quot;</span><span class="p">:</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="s2">&quot;ticks&quot;</span><span class="p">:</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)})</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_11_0.jpg" src="_images/boundary_nb_11_0.jpg" />
 </div>
 </div>
 <p id="index-2">It is sometimes necessary to set all degrees of freedom on the boundary to zero, to be equal to some other function, or to as an interpolation of the boundary data provided to the scheme. To this end the operators/schemes provide methods <code class="docutils literal notranslate"><span class="pre">setConstraints</span></code>. To cover the cases detailed above, there are three versions of this method:</p>
@@ -575,7 +603,7 @@ zero along the lower boundary for the second:</p>
 <li><p>Finally there is a version taking a grid function and a discrete function <code class="docutils literal notranslate"><span class="pre">op.setConstraints(g,</span> <span class="pre">uh)</span></code> which sets the dofs at the boundary so that <code class="docutils literal notranslate"><span class="pre">uh=g</span></code> at the Dirichlet boundary.</p></li>
 </ol>
 <p>We use the first version to set the data at the boundary first having cleared the discrete function. As second example we interpolate the <code class="docutils literal notranslate"><span class="pre">bnd</span></code> grid function and then set all boundary dofs to 0. Recall that the second component has no Dirichlet boundary conditions set at the lower boundary.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
@@ -590,12 +618,26 @@ zero along the lower boundary for the second:</p>
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_13_0.jpg" src="_images/boundary_nb_13_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_13_1.jpg" src="_images/boundary_nb_13_1.jpg" />
+</div>
+</div>
 </section>
 <section id="Neumann-and-Robin-boundary-conditions">
 <span id="index-3"></span><h2>Neumann and Robin boundary conditions<a class="headerlink" href="#Neumann-and-Robin-boundary-conditions" title="Link to this heading"></a></h2>
 <p>Neumann boundary flux are added to the ufl form by using the measure <code class="docutils literal notranslate"><span class="pre">ufl.ds</span></code>. By default they will be added to all boundaries for which no Dirichlet conditions have been prescribed. In the above example we prescribed no Dirichlet conditions to the second component at both vertical and the top boundary using the <code class="docutils literal notranslate"><span class="pre">dune.ufl.DirichletBC</span></code> instance <code class="docutils literal notranslate"><span class="pre">bc</span></code>. This leads to zero fluxes (natural boundary conditions) being used there. To add some (here nonlinear) Neumann boundary conditions for the
 second component at these three sides we can simply add an additional term to <code class="docutils literal notranslate"><span class="pre">a</span></code>:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
@@ -608,6 +650,13 @@ second component at these three sides we can simply add an additional term to <c
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                <span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;orientation&quot;</span><span class="p">:</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="s2">&quot;ticks&quot;</span><span class="p">:</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)})</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_15_0.jpg" src="_images/boundary_nb_15_0.jpg" />
 </div>
 </div>
 <p>Robin boundary conditions can be handled in the same way using the <code class="docutils literal notranslate"><span class="pre">ufl.ds</span></code> measure.</p>
@@ -634,7 +683,7 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 <li><p>bottom boundary (id=3): Neumann conditions <span class="math notranslate nohighlight">\(\nabla u\cdot n=2\)</span></p></li>
 <li><p>top boundary (id=4): Dirichlet conditions <span class="math notranslate nohighlight">\(u=1\)</span> for <span class="math notranslate nohighlight">\(x\in [0.3,0.6]\)</span> and natural boundary conditions (<span class="math notranslate nohighlight">\(\nabla u\cdot n=0\)</span>) otherwise.</p></li>
 </ul>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
@@ -660,13 +709,20 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_20_0.jpg" src="_images/boundary_nb_20_0.jpg" />
+</div>
+</div>
 <p>The final example has a slightly more complex setup at the boundary:</p>
 <ul class="simple">
 <li><p>left and right (id=1 and id=2): for <span class="math notranslate nohighlight">\(y\in[0.4,0.6]\)</span> we set Neumann conditions <span class="math notranslate nohighlight">\(\nabla u\cdot n=-50\)</span></p></li>
 <li><p>left and right (id=1 and id=2): for <span class="math notranslate nohighlight">\(y\in[0.2,0.8]\setminus [0.4,0.6]\)</span> we set Dirichlet conditions <span class="math notranslate nohighlight">\(u=1\)</span></p></li>
 <li><p>rest of boundary: 3</p></li>
 </ul>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
@@ -685,8 +741,15 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_22_0.jpg" src="_images/boundary_nb_22_0.jpg" />
+</div>
+</div>
 <p>Let check if that solution makes sense…</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
@@ -694,6 +757,13 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">solution</span><span class="p">)</span>
 <span class="n">solution</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_24_0.jpg" src="_images/boundary_nb_24_0.jpg" />
 </div>
 </div>
 </section>

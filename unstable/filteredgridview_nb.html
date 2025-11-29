@@ -489,13 +489,27 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_3_0.jpg" src="_images/filteredgridview_nb_3_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 number of dofs: 5151 integral over original domain 1.3333333333333384
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_3_2.jpg" src="_images/filteredgridview_nb_3_2.jpg" />
+</div>
 </div>
 <p>Now create a <code class="docutils literal notranslate"><span class="pre">filteredGridView</span></code> with a simple callable specifying which element belongs to the new domain.</p>
 <div class="nbinput docutils container">
@@ -520,6 +534,13 @@ number of dofs: 5151 integral over original domain 1.3333333333333384
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_5_0.jpg" src="_images/filteredgridview_nb_5_0.jpg" />
+</div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
@@ -533,7 +554,7 @@ number of dofs: 1053 integral over filtered domain 10 0.04858624000000002
 <p>The final parameter <code class="docutils literal notranslate"><span class="pre">useFilteredIndexSet</span></code> changes the index set that is used over the filtered grid view. The default is <code class="docutils literal notranslate"><span class="pre">False</span></code> so that the index set is taken from the underlying grid view. If this is set to <code class="docutils literal notranslate"><span class="pre">True</span></code> as here a new index set is generated that only covers the the filtered part of the grid. Consequently, the size of the spaces over the underlying grid view and the filtered grid view are different as shown here.</p>
 </div>
 <p>One can quite easily transfer a grid function from the filtered grid view to a discrete function over the containing grid or vice versa: Note that simply using <code class="docutils literal notranslate"><span class="pre">solution10.interpolate(solution)</span></code> will not work since this method requires the grid views to match:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
@@ -546,13 +567,34 @@ number of dofs: 1053 integral over filtered domain 10 0.04858624000000002
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_8_0.jpg" src="_images/filteredgridview_nb_8_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_8_1.jpg" src="_images/filteredgridview_nb_8_1.jpg" />
+</div>
+</div>
 <p>The boundary ids are set to original ids or to the id of the outside domain for internal boundaries, i.e., 15 in the current setup:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">filteredView10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_10_0.jpg" src="_images/filteredgridview_nb_10_0.jpg" />
 </div>
 </div>
 <p>Filter out a different section of the domain:</p>
@@ -571,13 +613,27 @@ number of dofs: 1053 integral over filtered domain 10 0.04858624000000002
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_12_0.jpg" src="_images/filteredgridview_nb_12_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_12_2.jpg" src="_images/filteredgridview_nb_12_2.jpg" />
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -594,7 +650,7 @@ number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
 </div>
 </div>
 <p>A consequence of not changing the index set is that layout of the degrees of freedom of discrete functions over the same spaces one over the filtered grid view and the other over the underlying grid view are identical. This makes the transfer of data very easy to achieve:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
@@ -604,6 +660,20 @@ number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
 <span class="n">solution15</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
 <span class="n">solution15</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_16_0.jpg" src="_images/filteredgridview_nb_16_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_16_1.jpg" src="_images/filteredgridview_nb_16_1.jpg" />
 </div>
 </div>
 <p>Finally the outer part of the domain</p>
@@ -623,7 +693,14 @@ number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_18_0.jpg" src="_images/filteredgridview_nb_18_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -631,8 +708,15 @@ number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
 number of dofs: 2979 integral over filtered domain 20 1.0839645866666672
 </pre></div></div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_18_2.jpg" src="_images/filteredgridview_nb_18_2.jpg" />
+</div>
+</div>
 <p>Finally we solve a simple linear PDE but with some mixed boundary conditions taken from one of the <a class="reference internal" href="concepts_nb.html"><span class="doc">introduction notebooks</span></a></p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
@@ -657,8 +741,15 @@ number of dofs: 2979 integral over filtered domain 20 1.0839645866666672
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_20_0.jpg" src="_images/filteredgridview_nb_20_0.jpg" />
+</div>
+</div>
 <p>Let’s compare with the exact solution</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
@@ -667,8 +758,15 @@ number of dofs: 2979 integral over filtered domain 20 1.0839645866666672
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_22_0.jpg" src="_images/filteredgridview_nb_22_0.jpg" />
+</div>
+</div>
 <p>We already mentioned how the boundary ids are set on internal boundaries, here is an example elliptic problem with different Dirichlet boundary conditions set on the two internal boundaries. The small part of the original boundary at <span class="math notranslate nohighlight">\(y=0\)</span> will have trivial Neumann conditions:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
@@ -682,6 +780,13 @@ number of dofs: 2979 integral over filtered domain 20 1.0839645866666672
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">solution15</span><span class="p">)</span>
 <span class="n">solution15</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/filteredgridview_nb_24_0.jpg" src="_images/filteredgridview_nb_24_0.jpg" />
 </div>
 </div>
 </section>

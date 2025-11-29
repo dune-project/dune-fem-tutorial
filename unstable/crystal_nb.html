@@ -672,7 +672,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 </pre></div>
 </div>
 <p>This can be for example used in a time loop. Simply adding <code class="docutils literal notranslate"><span class="pre">vtk()</span></code> in the loop will write files <code class="docutils literal notranslate"><span class="pre">crystalXXXX.vtu</span></code> where the sequence counter <code class="docutils literal notranslate"><span class="pre">XXXX</span></code> is automatically increased by one each time <code class="docutils literal notranslate"><span class="pre">vtk()</span></code> is called.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
@@ -682,6 +682,13 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">u_h</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">pyplot</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span><span class="n">contourWidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">vtk</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/crystal_nb_21_0.jpg" src="_images/crystal_nb_21_0.jpg" />
 </div>
 </div>
 <p>We set <code class="docutils literal notranslate"><span class="pre">dt</span></code> and the initial time t=0.</p>
@@ -721,17 +728,30 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
+<img alt="_images/crystal_nb_25_0.jpg" src="_images/crystal_nb_25_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
 <div class="highlight"><pre>
 
 </pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/crystal_nb_25_2.jpg" src="_images/crystal_nb_25_2.jpg" />
+</div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Figure size 1500x500 with 0 Axes&gt;
-</pre></div></div>
+<img alt="_images/crystal_nb_25_3.jpg" src="_images/crystal_nb_25_3.jpg" />
+</div>
 </div>
 </section>
 <div class="admonition note">

@@ -533,7 +533,7 @@ This document is part of the dune-fem tutorial
 </div>
 </div>
 <p>We solve the problem as in previous examples</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -552,8 +552,15 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/discontinuousgalerkin_nb_5_0.jpg" src="_images/discontinuousgalerkin_nb_5_0.jpg" />
+</div>
+</div>
 <p>So far the example was not really advection dominated so we now repeat the experiment but set <span class="math notranslate nohighlight">\(\varepsilon=1e-5\)</span></p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
@@ -570,6 +577,13 @@ This document is part of the dune-fem tutorial
 <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/discontinuousgalerkin_nb_7_0.jpg" src="_images/discontinuousgalerkin_nb_7_0.jpg" />
 </div>
 </div>
 </section>
@@ -650,7 +664,7 @@ This document is part of the dune-fem tutorial
 \[\frac{1}{2}\Big( \vec{u}_1^{n+1} + \vec{u}_2^{n+1} \Big)\]</div>
 <p>by applying the above operator twice.</p>
 <p>We show the transport of a a simple discontinuety:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
@@ -677,6 +691,20 @@ This document is part of the dune-fem tutorial
     <span class="n">t</span> <span class="o">+=</span> <span class="n">tau</span>
 <span class="n">uh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/discontinuousgalerkin_nb_15_0.jpg" src="_images/discontinuousgalerkin_nb_15_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/discontinuousgalerkin_nb_15_1.jpg" src="_images/discontinuousgalerkin_nb_15_1.jpg" />
 </div>
 </div>
 <div class="admonition-todo admonition" id="id2">

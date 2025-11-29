@@ -477,7 +477,7 @@ This document is part of the dune-fem tutorial
 </div>
 <p>After some general import statements we start our tutorial by setting up a simple Cartesian grid over the domain <span class="math notranslate nohighlight">\(\Omega = [0,1]^2\)</span> subdivided into four intervals in each dimension. We can then show the grid using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method - note that direct plotting with MatPlotLib is only supported in 2D, other options for visualization, e.g., using ParaView will be discussed later.</p>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">dune.grid.structuredGrid</span></code> function is the simplest way to construct a grid, more complicated (unstructured) grids can be constructed using a dictionary containing the vertices and the element connectivity or by for example providing a <code class="docutils literal notranslate"><span class="pre">gmsh</span></code> file. This will be discussed in later section, see for example here for <a class="reference internal" href="othergrids_nb.html"><span class="doc">a 3d gmsh file</span></a> or here <a class="reference internal" href="dune-corepy_nb.html#Unstructured-grids"><span class="std std-ref">for a simple example using a dictionary</span></a>.</p>
-<span class="target" id="index-1"></span><div class="nbinput nblast docutils container">
+<span class="target" id="index-1"></span><div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -490,6 +490,13 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_2_0.jpg" src="_images/concepts_nb_2_0.jpg" />
+</div>
+</div>
 <p>Often the initial grid is a bit coarse - it is very easy to refine it globally.</p>
 <div class="admonition attention" id="index-2">
 <p class="admonition-title">Attention</p>
@@ -500,7 +507,7 @@ This document is part of the dune-fem tutorial
 <p>The functions constructing a grid generally return a <strong>leaf grid view</strong>, i.e., only contains of a view of the finest grid elements. We also provide some special grid views to for example simulate on evolving domains or to simplify efficient local grid adaptivity.</p>
 </div>
 <p>Since a <code class="docutils literal notranslate"><span class="pre">gridView</span></code> can not be changed directly we need to access the underlying <code class="docutils literal notranslate"><span class="pre">hierarchicalGrid</span></code> to perform e.g. grid refinement. So to globally refine the grid call</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -509,13 +516,20 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_4_0.jpg" src="_images/concepts_nb_4_0.jpg" />
+</div>
+</div>
 <p>If <code class="docutils literal notranslate"><span class="pre">level&gt;0</span></code> then the grid is refined down by the given level and <code class="docutils literal notranslate"><span class="pre">level&lt;0</span></code> leads to global coarsening of the grid by the given number of levels (if possible).</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>The effect of this refinement will depend on the underlying grid manager. For Cartesian grid for example refining by one level leads a reduction of the grid spacing by 2 while for a bisection grid in <span class="math notranslate nohighlight">\(d\)</span> space dimensions one needs to refine by <span class="math notranslate nohighlight">\(2^{d-1}\)</span> levels to achieve the same effect.</p>
 </div>
 <p>In addition to the <code class="docutils literal notranslate"><span class="pre">globalRefine</span></code> method on the <code class="docutils literal notranslate"><span class="pre">hierarchicalGrid</span></code> <code class="docutils literal notranslate"><span class="pre">dune-fem</span></code> also provides a <code class="docutils literal notranslate"><span class="pre">globalRefine</span></code> function, which takes the <code class="docutils literal notranslate"><span class="pre">level</span></code> as the first argument and a hierarchical grid as second argument. This method can also be used to prolong and restrict discrete functions as will be discussed in a later section.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -525,6 +539,20 @@ This document is part of the dune-fem tutorial
 <span class="n">globalRefine</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="p">)</span> <span class="c1"># coarsen again by one level</span>
 <span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_6_0.jpg" src="_images/concepts_nb_6_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_6_1.jpg" src="_images/concepts_nb_6_1.jpg" />
 </div>
 </div>
 </section>
@@ -571,7 +599,7 @@ for e in grid.elements:
 </pre></div></div>
 </div>
 <p id="index-4">and plot them using matplotlib or write a vtk file for postprocessing</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
@@ -579,6 +607,13 @@ for e in grid.elements:
 <span class="n">plot</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span> <span class="n">gridView</span><span class="o">=</span><span class="n">gridView</span><span class="p">)</span>
 <span class="n">gridView</span><span class="o">.</span><span class="n">writeVTK</span><span class="p">(</span><span class="s1">&#39;exact&#39;</span><span class="p">,</span> <span class="n">pointdata</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;exact&#39;</span><span class="p">:</span> <span class="n">exact</span><span class="p">})</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_10_0.jpg" src="_images/concepts_nb_10_0.jpg" />
 </div>
 </div>
 <p>In some cases it can be necessary to convert a UFL expression into a grid function explicitly - for example to be able to evaluate it over each element in the grid (<a class="reference internal" href="dune-corepy_nb.html"><span class="doc">in a later section</span></a> we provide more detail on how to access the grid interface).</p>
@@ -680,9 +715,8 @@ for e in grid.elements:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Figure size 1250x500 with 0 Axes&gt;
-</pre></div></div>
+<img alt="_images/concepts_nb_18_1.jpg" src="_images/concepts_nb_18_1.jpg" />
+</div>
 </div>
 <p>Converting UFL expressions to grid functions leads to JIT code generation and is therefore efficient when used in other C++ algorithm (like <code class="docutils literal notranslate"><span class="pre">integrate</span></code>). But more complex control structures are hard to express within UFL. On the other hand using the <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> decorator leads to a callback into Python for each evaluation and is therefore much less efficient. An alternative approach is based on writing small C++ snippets implementing the grid function as described in the section on
 generating <a class="reference internal" href="cppfunctions_nb.html"><span class="doc">C++ Based Grid Functions</span></a>.</p>
@@ -782,13 +816,20 @@ generating <a class="reference internal" href="cppfunctions_nb.html"><span class
 </div>
 </div>
 <p>On an existing discrete function the <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> method can be used to reinitialize it</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span>
 <span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_29_0.jpg" src="_images/concepts_nb_29_0.jpg" />
 </div>
 </div>
 <p>Note that in the last example the Python lambda is used as a callback automatically using the same concept used in the <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> decorator. As pointed out above there are some methods where these conversions are implicit and no explicit generation of a grid function has to be carried out.</p>
@@ -835,7 +876,7 @@ generating <a class="reference internal" href="cppfunctions_nb.html"><span class
 </pre></div></div>
 </div>
 <p id="index-12"><span id="index-11"></span>or plot using matplotlib and write a vtk file for postprocessing (using binary data format to reduce size)</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
@@ -843,6 +884,13 @@ generating <a class="reference internal" href="cppfunctions_nb.html"><span class
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">OutputType</span>
 <span class="n">gridView</span><span class="o">.</span><span class="n">writeVTK</span><span class="p">(</span><span class="s1">&#39;uh&#39;</span><span class="p">,</span> <span class="n">pointdata</span><span class="o">=</span><span class="p">[</span><span class="n">u_h</span><span class="p">])</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_37_0.jpg" src="_images/concepts_nb_37_0.jpg" />
 </div>
 </div>
 <div class="admonition tip">
@@ -978,7 +1026,7 @@ u(x) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of elements: 64 number of dofs: 289 H^1 error: 0.5635700799030016
+Number of elements: 64 number of dofs: 289 H^1 error: 0.5635700799030048
 </pre></div></div>
 </div>
 <div class="admonition note" id="index-17">
@@ -1023,16 +1071,23 @@ Number of elements: 64 number of dofs: 289 H^1 error: 0.5635700799030016
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of elements: 64 number of dofs: 289 H^1 error: 0.0016470196146886034
+Number of elements: 64 number of dofs: 289 H^1 error: 0.0016470196146885843
 </pre></div></div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_51_1.jpg" src="_images/concepts_nb_51_1.jpg" />
+</div>
+</div>
 <p>Or switch to <span class="math notranslate nohighlight">\(\alpha=1\)</span> to directly solve a different PDE without needing to recompile anything:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
@@ -1040,6 +1095,13 @@ Number of elements: 64 number of dofs: 289 H^1 error: 0.0016470196146886034
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">u_h</span><span class="p">)</span>
 <span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_53_0.jpg" src="_images/concepts_nb_53_0.jpg" />
 </div>
 </div>
 <div class="admonition tip">
@@ -1167,7 +1229,7 @@ u(x,t) = e^{-2t}\left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -1176,6 +1238,13 @@ grid size: 64
          | u_h - u | = 1.98216e-05
          | grad(uh - u) | = 9.99185e-04
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_68_1.jpg" src="_images/concepts_nb_68_1.jpg" />
+</div>
 </div>
 <p>We can refine the grid once and recompute the solution on the finer grid.</p>
 <div class="nbinput docutils container">
@@ -1200,7 +1269,7 @@ grid size: 64
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -1209,6 +1278,13 @@ grid size: 256
          | u_h - u | = 2.69665e-06
          | grad(uh - u) | = 2.49777e-04
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_70_1.jpg" src="_images/concepts_nb_70_1.jpg" />
+</div>
 </div>
 <p>To check that everything is working as expected let’s compute the <strong>experimental order of convergence</strong> (convergence should be cubic for <span class="math notranslate nohighlight">\(L^2\)</span>-error and quadratic for the <span class="math notranslate nohighlight">\(H^1\)</span>-error:</p>
 <div class="nbinput docutils container">

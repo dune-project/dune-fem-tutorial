@@ -557,7 +557,7 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </div>
 </div>
 <p>Let’s visualize the grid and then globally refine it once</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
@@ -567,8 +567,22 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_9_0.jpg" src="_images/dune-corepy_nb_9_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_9_1.jpg" src="_images/dune-corepy_nb_9_1.jpg" />
+</div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">dune.alugrid</span></code> module provides 2d and 3d unstructured grids (both triangle and cubes). We can construct a triangle grid, visualize, and refine it in exactly the same way as the structured grid used above. We use <code class="docutils literal notranslate"><span class="pre">dune.alugrid.aluConformGrid</span></code> which uses newest vertex bisection to refine the grid. So one step of refinement only reduces the grid width by a factor of <span class="math notranslate nohighlight">\(\sqrt2\)</span>. We we need two steps to half the grid width:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
@@ -582,8 +596,29 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_11_0.jpg" src="_images/dune-corepy_nb_11_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_11_1.jpg" src="_images/dune-corepy_nb_11_1.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_11_2.jpg" src="_images/dune-corepy_nb_11_2.jpg" />
+</div>
+</div>
 <p>We can also provide the number of levels to refine to the <code class="docutils literal notranslate"><span class="pre">globalRefine</span></code> method:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
@@ -598,8 +633,22 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_13_0.jpg" src="_images/dune-corepy_nb_13_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_13_1.jpg" src="_images/dune-corepy_nb_13_1.jpg" />
+</div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">dune.grid.yaspGrid</span></code> grid manager also provides the option to construct tensor product grid. For a 2d grid one needs to provide a vector of x-coordinates <span class="math notranslate nohighlight">\(x=(x_i)\)</span> and y-coordinates <span class="math notranslate nohighlight">\(y=(y_j)\)</span> resulting in a grid with points <span class="math notranslate nohighlight">\((x_i,y_j)\)</span>:</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
@@ -610,11 +659,18 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_15_0.jpg" src="_images/dune-corepy_nb_15_0.jpg" />
+</div>
+</div>
 </section>
 <section id="Unstructured-grids">
 <span id="index-3"></span><h2>Unstructured grids<a class="headerlink" href="#Unstructured-grids" title="Link to this heading"></a></h2>
 <p>General unstructured grids can be constructed by providing a dictionary containing vertex coordinate and element connectivity</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
@@ -627,12 +683,26 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_17_0.jpg" src="_images/dune-corepy_nb_17_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_17_1.jpg" src="_images/dune-corepy_nb_17_1.jpg" />
+</div>
+</div>
 <p>An unstructured grid can also be constructed from a file. Currently <a class="reference internal" href="othergrids_nb.html"><span class="doc">gmsh and DGF</span></a> are supported.</p>
 </section>
 <section id="Local-grid-adaptivity">
 <span id="index-4"></span><h2>Local grid adaptivity<a class="headerlink" href="#Local-grid-adaptivity" title="Link to this heading"></a></h2>
 <p>In addition to global refinement we can also pre process the grid by marking a subset of elements for local refinement.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
@@ -650,6 +720,34 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <span class="n">triangles</span> <span class="o">=</span> <span class="p">[</span><span class="n">aluView</span><span class="o">.</span><span class="n">indexSet</span><span class="o">.</span><span class="n">subIndices</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">aluView</span><span class="o">.</span><span class="n">elements</span><span class="p">]</span>
 <span class="n">aluView</span> <span class="o">=</span> <span class="n">aluSimplexGrid</span><span class="p">({</span><span class="s2">&quot;vertices&quot;</span><span class="p">:</span> <span class="n">vertices</span><span class="p">,</span> <span class="s2">&quot;simplices&quot;</span><span class="p">:</span> <span class="n">triangles</span><span class="p">})</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_20_0.jpg" src="_images/dune-corepy_nb_20_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_20_1.jpg" src="_images/dune-corepy_nb_20_1.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_20_2.jpg" src="_images/dune-corepy_nb_20_2.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_20_3.jpg" src="_images/dune-corepy_nb_20_3.jpg" />
 </div>
 </div>
 <div class="admonition tip">
@@ -712,7 +810,7 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <p class="admonition-title">Tip</p>
 <p>in the following we will use the <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> decorator provided by <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code>. A very similar decorator is also available in <code class="docutils literal notranslate"><span class="pre">dune.grid</span></code> but the latter does not provide the option to use the grid functions in ufl expressions.</p>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
@@ -733,6 +831,27 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">])</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_26_0.jpg" src="_images/dune-corepy_nb_26_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_26_1.jpg" src="_images/dune-corepy_nb_26_1.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_26_2.jpg" src="_images/dune-corepy_nb_26_2.jpg" />
 </div>
 </div>
 <p id="index-7">We can now use the quadrature rules discuss at the beginning of this chapter to compute the integral over each element of the grid function.</p>
@@ -939,7 +1058,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <p class="admonition-title">Tip</p>
 <p>the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method will only work on 1d or 2d grids.</p>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
@@ -947,6 +1066,27 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 <span class="n">error</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_46_0.jpg" src="_images/dune-corepy_nb_46_0.jpg" />
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_46_1.jpg" src="_images/dune-corepy_nb_46_1.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/dune-corepy_nb_46_2.jpg" src="_images/dune-corepy_nb_46_2.jpg" />
 </div>
 </div>
 </section>
