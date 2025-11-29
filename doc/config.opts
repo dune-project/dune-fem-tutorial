@@ -1,0 +1,13 @@
+BUILDDIR=build-cmake
+USE_CMAKE=yes
+MAKE_FLAGS=-j4
+CXXFLAGS="-O3 -DNDEBUG -funroll-loops -finline-functions -Wall -ftree-vectorize -fno-stack-protector -mtune=native"
+CMAKE_FLAGS="-DCMAKE_CXX_FLAGS='$CXXFLAGS' \
+             -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \\
+             -DALLOW_CXXFLAGS_OVERWRITE=ON \
+             -DENABLE_HEADERCHECK=OFF \
+             -DUSE_PTHREADS=ON \
+             -DCMAKE_DISABLE_FIND_PACKAGE_LATEX=TRUE \
+             -DCMAKE_DISABLE_DOCUMENTATION=TRUE \
+             -DADDITIONAL_PIP_PARAMS="-upgrade" \
+            "
