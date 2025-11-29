@@ -17,6 +17,10 @@ on:
         description: keep older versions [true]
         required: true
         default: true
+      # needed only for dispatching from other repo
+      distinct_id:
+        required: false
+        description: 'set when dispatching from external repo - leave empty'
 
 permissions:
   contents: write
