@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elliptic Problems &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -471,22 +471,22 @@ u(x,y) &= xy\cos(\pi xy)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">dune.vem</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">dune.vem</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example needs &#39;dune.vem&#39; - skipping&quot;</span><span class="p">)</span>
-    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">cartesianDomain</span><span class="p">,</span> <span class="n">gridFunction</span>
-<span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">discreteFunction</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">integrate</span>
-<span class="kn">import</span> <span class="nn">dune.fem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span><span class="p">,</span> <span class="n">gridFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">discreteFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.fem</span>
 
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">dune.ufl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.ufl</span>
 </pre></div>
 </div>
 </div>
@@ -523,7 +523,7 @@ u(x,y) &= xy\cos(\pi xy)
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indexSet</span> <span class="o">=</span> <span class="n">polyGrid</span><span class="o">.</span><span class="n">indexSet</span>
 <span class="nd">@gridFunction</span><span class="p">(</span><span class="n">polyGrid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cells&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">polygons</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polygons</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">polyGrid</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">agglomerate</span><span class="p">(</span><span class="n">indexSet</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">en</span><span class="p">))</span>
 <span class="n">polygons</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 </pre></div>
@@ -685,7 +685,7 @@ Polygon diameters: (0.22039631950697425, 0.2788132170712137)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span><span class="n">spaceArgs</span><span class="p">,</span> <span class="n">schemeName</span><span class="p">,</span><span class="n">schemeArgs</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span><span class="n">spaceArgs</span><span class="p">,</span> <span class="n">schemeName</span><span class="p">,</span><span class="n">schemeArgs</span><span class="p">):</span>
     <span class="n">space</span> <span class="o">=</span> <span class="n">space</span><span class="p">(</span> <span class="n">grid</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="o">**</span><span class="n">spaceArgs</span> <span class="p">)</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
     <span class="n">scheme</span> <span class="o">=</span> <span class="n">schemeName</span><span class="p">(</span> <span class="p">[</span><span class="n">a</span><span class="o">==</span><span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">dbc</span><span class="p">],</span> <span class="n">space</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;cg&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">schemeArgs</span><span class="p">,</span>
@@ -797,7 +797,7 @@ non linear problem: [np.float64(0.010897544759791636), np.float64(0.154919525189
 <span class="n">beamGrid</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">vem</span><span class="o">.</span><span class="n">polyGrid</span><span class="p">(</span> <span class="n">dune</span><span class="o">.</span><span class="n">vem</span><span class="o">.</span><span class="n">voronoiCells</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="n">L</span><span class="p">,</span><span class="n">W</span><span class="p">]],</span> <span class="mi">120</span><span class="p">)</span> <span class="p">)</span>
 <span class="n">indexSet</span> <span class="o">=</span> <span class="n">beamGrid</span><span class="o">.</span><span class="n">indexSet</span>
 <span class="nd">@gridFunction</span><span class="p">(</span><span class="n">beamGrid</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cells&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">polygons</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polygons</span><span class="p">(</span><span class="n">en</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">beamGrid</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">agglomerate</span><span class="p">(</span><span class="n">indexSet</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">en</span><span class="p">))</span>
 <span class="n">polygons</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 
@@ -831,9 +831,9 @@ non linear problem: [np.float64(0.010897544759791636), np.float64(0.154919525189
 <span class="n">dbc</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">as_vector</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="mf">1e-10</span><span class="p">)</span>
 
 <span class="c1"># Define strain and stress</span>
-<span class="k">def</span> <span class="nf">epsilon</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">epsilon</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
     <span class="k">return</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">nabla_grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">+</span> <span class="n">nabla_grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sigma</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">lambda_</span><span class="o">*</span><span class="n">nabla_div</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">Identity</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">epsilon</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
 
 <span class="c1"># Define the variational problem</span>
@@ -877,7 +877,7 @@ non linear problem: [np.float64(0.010897544759791636), np.float64(0.154919525189
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">geometryGridView</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometryGridView</span>
 <span class="n">position</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">x</span><span class="o">+</span><span class="n">displacement</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;position&quot;</span> <span class="p">)</span>
 <span class="n">beam</span> <span class="o">=</span> <span class="n">geometryGridView</span><span class="p">(</span> <span class="n">position</span> <span class="p">)</span>
 <span class="n">beam</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>

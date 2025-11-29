@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Problem Description &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -466,35 +466,35 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">dune.femdg</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">dune.femdg</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example needs &#39;dune.femdg&#39; - skipping&quot;</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
 
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">Space</span><span class="p">,</span> <span class="n">Constant</span>
-<span class="kn">import</span> <span class="nn">dune.ufl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Space</span><span class="p">,</span> <span class="n">Constant</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.ufl</span>
 
-<span class="kn">import</span> <span class="nn">dune.fem</span> <span class="k">as</span> <span class="nn">fem</span>
-<span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluCubeGrid</span>
-<span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">adaptiveLeafGridView</span>
-<span class="kn">from</span> <span class="nn">dune.generator</span> <span class="kn">import</span> <span class="n">algorithm</span>
-<span class="kn">from</span> <span class="nn">dune.common</span> <span class="kn">import</span> <span class="n">FieldVector</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">cartesianDomain</span><span class="p">,</span> <span class="n">Marker</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">levelFunction</span><span class="p">,</span> <span class="n">gridFunction</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">integrate</span>
-<span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span>
-<span class="kn">from</span> <span class="nn">dune.fem.operator</span> <span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">galerkinOp</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">dglegendrehp</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">finiteVolume</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">GridMarker</span><span class="p">,</span> <span class="n">SpaceMarker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluCubeGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">adaptiveLeafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">algorithm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">FieldVector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span><span class="p">,</span> <span class="n">Marker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">levelFunction</span><span class="p">,</span> <span class="n">gridFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">galerkinOp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">dglegendrehp</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">finiteVolume</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridMarker</span><span class="p">,</span> <span class="n">SpaceMarker</span>
 
-<span class="kn">from</span> <span class="nn">dune.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
 
-<span class="kn">from</span> <span class="nn">dune.femdg</span> <span class="kn">import</span> <span class="n">createOrderRedcution</span><span class="p">,</span> <span class="n">createLimiter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.femdg</span><span class="w"> </span><span class="kn">import</span> <span class="n">createOrderRedcution</span><span class="p">,</span> <span class="n">createLimiter</span>
 
 <span class="n">fem</span><span class="o">.</span><span class="n">threading</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="mi">4</span>
 </pre></div>
@@ -530,7 +530,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">brooksCorey</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">s_n</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">brooksCorey</span><span class="p">(</span><span class="n">P</span><span class="p">,</span><span class="n">s_n</span><span class="p">):</span>
     <span class="n">s_w</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">s_n</span>
     <span class="n">s_we</span> <span class="o">=</span> <span class="p">(</span><span class="n">s_w</span><span class="o">-</span><span class="n">P</span><span class="o">.</span><span class="n">s_wr</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">P</span><span class="o">.</span><span class="n">s_wr</span><span class="o">-</span><span class="n">P</span><span class="o">.</span><span class="n">s_nr</span><span class="p">)</span>
     <span class="n">s_ne</span> <span class="o">=</span> <span class="p">(</span><span class="n">s_n</span><span class="o">-</span><span class="n">P</span><span class="o">.</span><span class="n">s_nr</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">P</span><span class="o">.</span><span class="n">s_wr</span><span class="o">-</span><span class="n">P</span><span class="o">.</span><span class="n">s_nr</span><span class="p">)</span>
@@ -553,7 +553,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AnisotropicLens</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AnisotropicLens</span><span class="p">:</span>
     <span class="n">dimWorld</span> <span class="o">=</span> <span class="mi">2</span>
     <span class="n">domain</span>   <span class="o">=</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.39</span><span class="p">],[</span><span class="mf">0.9</span><span class="p">,</span><span class="mf">0.65</span><span class="p">],[</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
     <span class="n">x</span>        <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">Space</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
@@ -694,14 +694,14 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sMax</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="k">return</span> <span class="n">max_value</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sMax</span><span class="p">(</span><span class="n">a</span><span class="p">):</span> <span class="k">return</span> <span class="n">max_value</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">),</span> <span class="n">a</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
 <span class="n">n</span>         <span class="o">=</span> <span class="n">FacetNormal</span><span class="p">(</span><span class="n">uflSpace</span><span class="p">)</span>
 <span class="n">hT</span>        <span class="o">=</span> <span class="n">MaxCellEdgeLength</span><span class="p">(</span><span class="n">uflSpace</span><span class="p">)</span>
 <span class="n">he</span>        <span class="o">=</span> <span class="n">avg</span><span class="p">(</span> <span class="n">CellVolume</span><span class="p">(</span><span class="n">uflSpace</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="n">FacetArea</span><span class="p">(</span><span class="n">uflSpace</span><span class="p">)</span>
 <span class="n">heBnd</span>     <span class="o">=</span> <span class="n">CellVolume</span><span class="p">(</span><span class="n">uflSpace</span><span class="p">)</span> <span class="o">/</span> <span class="n">FacetArea</span><span class="p">(</span><span class="n">uflSpace</span><span class="p">)</span>
 <span class="n">k</span>         <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">K</span><span class="o">*</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
 <span class="n">lambdaMax</span> <span class="o">=</span> <span class="n">k</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">/</span><span class="n">avg</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">wavg</span><span class="p">(</span><span class="n">z</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">z</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">z</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wavg</span><span class="p">(</span><span class="n">z</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">z</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">*</span><span class="n">z</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">k</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -754,7 +754,7 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">limiter</span> <span class="o">=</span> <span class="n">createLimiter</span><span class="p">(</span> <span class="n">spc</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)),</span> <span class="n">limiter</span><span class="o">=</span><span class="s2">&quot;scaling&quot;</span> <span class="p">)</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">limit</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">limit</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
     <span class="n">tmp</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
     <span class="n">limiter</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">target</span><span class="p">)</span>
 </pre></div>
@@ -793,7 +793,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">errorMeasure</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">dw</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">errorMeasure</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">dw</span><span class="p">):</span>
     <span class="n">rel</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">([</span><span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">dw</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">],</span> <span class="n">order</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">gridView</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">rel</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">tolerance</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">rel</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
@@ -806,7 +806,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">step</span><span class="p">():</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">():</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">solution_old</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -852,7 +852,7 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hTol</span> <span class="o">=</span> <span class="mf">1e-16</span>                           <span class="c1"># changed later</span>
-<span class="k">def</span> <span class="nf">markh</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">markh</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
     <span class="n">center</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">referenceElement</span><span class="o">.</span><span class="n">center</span>
     <span class="n">eta</span>    <span class="o">=</span> <span class="n">estimate</span><span class="o">.</span><span class="n">localFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">center</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">eta</span> <span class="o">&gt;</span> <span class="n">hTol</span> <span class="ow">and</span> <span class="n">element</span><span class="o">.</span><span class="n">level</span> <span class="o">&lt;</span> <span class="n">maxLevel</span><span class="p">:</span>
@@ -886,7 +886,7 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pTol</span> <span class="o">=</span> <span class="mf">1e-14</span>
-<span class="k">def</span> <span class="nf">markp</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">markp</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
     <span class="n">center</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">referenceElement</span><span class="o">.</span><span class="n">center</span>
     <span class="n">eta</span>    <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">estimate_pm1</span><span class="o">.</span><span class="n">localFunction</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">center</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">polorder</span> <span class="o">=</span> <span class="n">spc</span><span class="o">.</span><span class="n">localOrder</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
@@ -1183,9 +1183,9 @@ t =  800.00, size =  1134, est = 0.0000e+00, hTol = 1.4255900806183596e-17
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">levelFunction</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">levelFunction</span>
 <span class="nd">@gridFunction</span><span class="p">(</span><span class="n">gridView</span><span class="o">=</span><span class="n">grid</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;polOrder&quot;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">polOrder</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">polOrder</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">spc</span><span class="o">.</span><span class="n">localOrder</span><span class="p">(</span><span class="n">e</span><span class="p">)]</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">solution</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>

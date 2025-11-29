@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Information for C++ Developers &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -488,7 +488,7 @@ one can provide the module prefix (e.g. <cite>hierarchicalgrid</cite>) and all m
 with this prefix will be removed. If is quite easy to find the module name
 from a generated <cite>dune</cite> object in Python by using the <cite>__module__</cite> magic
 attribute. The following script outputs</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
 <span class="n">view</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">view</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
 </pre></div>
@@ -505,7 +505,7 @@ environment variable, e.g.,</p>
 </pre></div>
 </div>
 <p>Alternatively, we can set the flags from within a Python script</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dune.generator</span> <span class="k">as</span> <span class="nn">generator</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dune.generator</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">generator</span>
 <span class="n">generator</span><span class="o">.</span><span class="n">addToFlags</span><span class="p">(</span><span class="s2">&quot;-DWANT_CACHED_COMM_MANAGER=0&quot;</span><span class="p">,</span><span class="n">noChecks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">algorithm</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="n">generator</span><span class="o">.</span><span class="n">setFlags</span><span class="p">(</span><span class="s2">&quot;-g -Wfatal-errors&quot;</span><span class="p">,</span><span class="n">noChecks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

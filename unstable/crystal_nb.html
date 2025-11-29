@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adaptive phase field: crystal growth model &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -464,13 +464,13 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dune.fem</span> <span class="k">as</span> <span class="nn">fem</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">cartesianDomain</span>
-<span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">adaptiveLeafGridView</span> <span class="k">as</span> <span class="n">adaptiveGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span> <span class="k">as</span> <span class="n">solutionSpace</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">threading</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">GridMarker</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">adaptiveLeafGridView</span> <span class="k">as</span> <span class="n">adaptiveGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span> <span class="k">as</span> <span class="n">solutionSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridMarker</span>
 <span class="n">threading</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="n">threading</span><span class="o">.</span><span class="n">max</span><span class="p">)</span> <span class="c1"># use at most 4 threads</span>
 
 <span class="n">order</span> <span class="o">=</span> <span class="mi">1</span>
@@ -520,7 +520,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">sqrt</span><span class="p">,</span><span class="n">conditional</span><span class="p">,</span><span class="n">as_vector</span><span class="p">,</span> <span class="n">SpatialCoordinate</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">dot</span><span class="p">,</span><span class="n">sqrt</span><span class="p">,</span><span class="n">conditional</span><span class="p">,</span><span class="n">as_vector</span><span class="p">,</span> <span class="n">SpatialCoordinate</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span> <span class="n">dot</span><span class="p">(</span> <span class="n">x</span><span class="o">-</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">]),</span> <span class="n">x</span><span class="o">-</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">]))</span> <span class="p">)</span>
 <span class="n">initial</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">(</span> <span class="p">[</span><span class="n">conditional</span><span class="p">(</span><span class="n">r</span><span class="o">&gt;</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]</span> <span class="p">)</span>
@@ -534,8 +534,8 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">Constant</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;dt&quot;</span><span class="p">)</span>    <span class="c1"># time step</span>
@@ -560,7 +560,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dx</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dx</span>
 <span class="n">a_ex</span> <span class="o">=</span> <span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="o">-</span> <span class="n">inner</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">*</span> <span class="n">dx</span>
 </pre></div>
 </div>
@@ -570,11 +570,11 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">atan</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">inner</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">atan</span><span class="p">,</span> <span class="n">tan</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">inner</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">atan2</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">atan2</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c1"># remain compatible with version 2022 of ufl</span>
-    <span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">atan_2</span> <span class="k">as</span> <span class="n">atan2</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">atan_2</span> <span class="k">as</span> <span class="n">atan2</span>
 
 <span class="n">psi</span>        <span class="o">=</span> <span class="n">pi</span><span class="o">/</span><span class="mf">8.0</span> <span class="o">+</span> <span class="n">atan2</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">]))</span>
 <span class="n">Phi</span>        <span class="o">=</span> <span class="n">tan</span><span class="p">(</span><span class="n">N</span> <span class="o">/</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">psi</span><span class="p">)</span>
@@ -599,7 +599,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
 <span class="n">solverParameters</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;nonlinear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span>
         <span class="s2">&quot;linear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-10</span><span class="p">,</span>
@@ -656,12 +656,12 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotComponents</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">pyplot</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">levelFunction</span><span class="p">,</span> <span class="n">partitionFunction</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotComponents</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pyplot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">levelFunction</span><span class="p">,</span> <span class="n">partitionFunction</span>
 
 <span class="c1"># dummy vtk</span>
-<span class="k">def</span> <span class="nf">vtk</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">vtk</span><span class="p">():</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
@@ -676,7 +676,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">u_h</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">pyplot</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span><span class="n">contourWidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -706,7 +706,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span>
 <span class="n">u_h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">onlyContours</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">contourWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">contourColor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 <span class="n">endTime</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">endTime</span><span class="p">:</span>

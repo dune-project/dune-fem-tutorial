@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>An Advection-Diffusion-Reaction System: Chemical Reaction Problem &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -463,25 +463,25 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">dune.femdg</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">dune.femdg</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example needs &#39;dune.femdg&#39; - skipping&quot;</span><span class="p">)</span>
-    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span>
-<span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span><span class="p">,</span> <span class="n">dgonb</span>
-<span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span>
-<span class="kn">from</span> <span class="nn">dune.femdg</span> <span class="kn">import</span> <span class="n">femDGOperator</span>
-<span class="kn">from</span> <span class="nn">dune.femdg.rk</span> <span class="kn">import</span> <span class="n">femdgStepper</span>
-<span class="kn">from</span> <span class="nn">dune.femdg</span> <span class="kn">import</span> <span class="n">BndValue</span><span class="p">,</span> <span class="n">BndFlux_v</span><span class="p">,</span> <span class="n">BndFlux_c</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirichletBC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span><span class="p">,</span> <span class="n">dgonb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.femdg</span><span class="w"> </span><span class="kn">import</span> <span class="n">femDGOperator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.femdg.rk</span><span class="w"> </span><span class="kn">import</span> <span class="n">femdgStepper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.femdg</span><span class="w"> </span><span class="kn">import</span> <span class="n">BndValue</span><span class="p">,</span> <span class="n">BndFlux_v</span><span class="p">,</span> <span class="n">BndFlux_c</span>
 
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">threading</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">threading</span>
 <span class="n">threading</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="n">threading</span><span class="o">.</span><span class="n">max</span><span class="p">)</span> <span class="c1"># use at most 4 threads</span>
 
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">2</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="p">],[</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">])</span>
@@ -493,7 +493,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">computeVelocity</span><span class="p">():</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">computeVelocity</span><span class="p">():</span>
     <span class="n">streamSpace</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">Psi</span>  <span class="o">=</span> <span class="n">streamSpace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;streamFunction&quot;</span><span class="p">)</span>
     <span class="n">u</span><span class="p">,</span><span class="n">v</span>  <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">streamSpace</span><span class="p">),</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">streamSpace</span><span class="p">)</span>
@@ -510,10 +510,10 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Model</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Model</span><span class="p">:</span>
     <span class="n">transportVelocity</span> <span class="o">=</span> <span class="n">computeVelocity</span><span class="p">()</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">S_e</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">DU</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">S_e</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">DU</span><span class="p">):</span>
         <span class="n">P1</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">([</span><span class="mf">0.2</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span><span class="mf">0.2</span><span class="o">*</span><span class="n">pi</span><span class="p">])</span> <span class="c1"># midpoint of first source</span>
         <span class="n">P2</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">([</span><span class="mf">1.8</span><span class="o">*</span><span class="n">pi</span><span class="p">,</span><span class="mf">1.8</span><span class="o">*</span><span class="n">pi</span><span class="p">])</span> <span class="c1"># midpoint of second source</span>
         <span class="n">f1</span> <span class="o">=</span> <span class="n">conditional</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">P1</span><span class="p">,</span><span class="n">x</span><span class="o">-</span><span class="n">P1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -522,19 +522,19 @@ This document is part of the dune-fem tutorial
         <span class="n">r</span> <span class="o">=</span> <span class="mi">10</span><span class="o">*</span><span class="n">as_vector</span><span class="p">([</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
         <span class="k">return</span> <span class="n">f</span> <span class="o">-</span> <span class="n">r</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">F_c</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">F_c</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">as_matrix</span><span class="p">([</span> <span class="p">[</span><span class="o">*</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="p">)]</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">U</span> <span class="p">])</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">maxWaveSpeed</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">maxWaveSpeed</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">velocity</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">),</span><span class="n">n</span><span class="p">))</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">velocity</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">velocity</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Model</span><span class="o">.</span><span class="n">transportVelocity</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">F_v</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">DU</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">F_v</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">,</span><span class="n">DU</span><span class="p">):</span>
         <span class="k">return</span> <span class="mf">0.02</span><span class="o">*</span><span class="n">DU</span>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">physical</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">physical</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">U</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">conditional</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">conditional</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span>\
                <span class="n">conditional</span><span class="p">(</span><span class="n">U</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">boundary</span> <span class="o">=</span> <span class="p">{</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span> <span class="n">BndValue</span><span class="p">(</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]))}</span>
@@ -589,8 +589,8 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotComponents</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">ticker</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotComponents</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ticker</span>
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">u_h</span><span class="p">,</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
                <span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;orientation&quot;</span><span class="p">:</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="s2">&quot;ticks&quot;</span><span class="p">:</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)})</span>
 </pre></div>
