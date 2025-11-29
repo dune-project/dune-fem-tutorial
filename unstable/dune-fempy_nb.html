@@ -546,19 +546,12 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 <p>More details on how to use <a class="reference internal" href="solversExternal_nb.html#Using-Scipy"><span class="std std-ref">Scipy</span></a> will be given later in the tutorial. Other linear solver backends are also available, e.g., <a class="reference internal" href="solversInternal_nb.html#Other-internal-solvers-(petsc)"><span class="std std-ref">PETSc</span></a> and <a class="reference internal" href="solversExternal_nb.html#Using-PETSc4Py"><span class="std std-ref">PETSc4py can also be used</span></a>.</p>
 </div>
 <p>That’s it - to see the result we plot it using matplotlib</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_13_0.jpg" src="_images/dune-fempy_nb_13_0.jpg" />
 </div>
 </div>
 <p>Since in this case the exact solution is known, we can also compute the <span class="math notranslate nohighlight">\(L^2\)</span> and <span class="math notranslate nohighlight">\(H^1\)</span> errors to see how good our approximation actually is</p>
@@ -579,7 +572,7 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-L^2 and H^1 errors: [np.float64(0.004816749930263435), np.float64(0.4025999518395464)]
+L^2 and H^1 errors: [np.float64(0.004816749930263433), np.float64(0.4025999518395466)]
 </pre></div></div>
 </div>
 <div class="admonition note" id="index-2">
@@ -607,7 +600,7 @@ L^2 and H^1 errors: [np.float64(0.004816749930263435), np.float64(0.402599951839
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 average: 1.5720931501039814e-17
-average: 1.5720931501039814e-17
+average: 1.4242011975133806e-17
 </pre></div></div>
 </div>
 </section>
@@ -671,23 +664,16 @@ u(x) = \left(\frac{1}{2}(x_1^2 + x_2^2) - \frac{1}{3}(x_1^3 - x_2^3)\right) + 1~
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_24_0.jpg" src="_images/dune-fempy_nb_24_0.jpg" />
-</div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-L^2 and H^1 errors: [np.float64(0.0004929227968176295), np.float64(0.0311760235508707)]
+L^2 and H^1 errors: [np.float64(0.0004929227968097871), np.float64(0.031176023550870707)]
 </pre></div></div>
 </div>
 <p>It is straightforward to solve a problem with a different right hand side and different boundary values. Assuming the type of the boundary conditions remains the same, the system matrix does not change we only need to reassemble the right hand side:</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
@@ -697,13 +683,6 @@ L^2 and H^1 errors: [np.float64(0.0004929227968176295), np.float64(0.03117602355
 <span class="n">u_h</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">solver</span><span class="p">(</span><span class="n">mat</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">,</span> <span class="n">rhs</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">)</span>
 <span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_26_0.jpg" src="_images/dune-fempy_nb_26_0.jpg" />
 </div>
 </div>
 </section>
@@ -755,20 +734,13 @@ L^2 and H^1 errors: [np.float64(0.0004929227968176295), np.float64(0.03117602355
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-{&#39;converged&#39;: True, &#39;iterations&#39;: 5, &#39;linear_iterations&#39;: 250, &#39;timing&#39;: [0.008574161, 0.004492204, 0.004081957000000001]}
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_32_1.jpg" src="_images/dune-fempy_nb_32_1.jpg" />
-</div>
+<div class="highlight"><pre>
+{&#39;converged&#39;: True, &#39;iterations&#39;: 5, &#39;linear_iterations&#39;: 250, &#39;timing&#39;: [0.010801487, 0.002298766, 0.008502721000000001]}
+</pre></div></div>
 </div>
 <p>Let’s complete this discussion by looking at the experimental order of convergence (EOC) of our approximation. For this we add a forcing that leads to the problem having the prescribed solution <span class="math">\begin{align*}
 u(x,y) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
@@ -804,39 +776,18 @@ u(x,y) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 step: 0 , size: 400
                  L^2, H^1 error: 2.16373e-04, 3.11774e-02 , eocs = [&#39;-&#39;, &#39;-&#39;]
-                 solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 433, &#39;timing&#39;: [0.014693631, 0.0072679350000000005, 0.007425696]}
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_34_1.jpg" src="_images/dune-fempy_nb_34_1.jpg" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
+                 solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 433, &#39;timing&#39;: [0.015468328, 0.0040093179999999996, 0.01145901]}
 step: 1 , size: 1600
                  L^2, H^1 error: 5.40907e-05, 1.55899e-02 , eocs = [np.float64(2.0), np.float64(1.0)]
-                 solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 789, &#39;timing&#39;: [0.067647742, 0.029964139, 0.037683602999999996]}
+                 solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 789, &#39;timing&#39;: [0.055527361, 0.012893757, 0.042633604]}
 </pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_34_3.jpg" src="_images/dune-fempy_nb_34_3.jpg" />
-</div>
 </div>
 </section>
 <section id="Using-Constant-parameters-and-grid-functions-in-PDEs">
@@ -851,7 +802,7 @@ we want to solve the same linear problem but with <span class="math notranslate 
 <div class="math notranslate nohighlight">
 \[\int_\Omega uv = \int_\Omega fv~.\]</div>
 <p>Although the problem is linear and we could just use <code class="docutils literal notranslate"><span class="pre">dune.fem.assemble</span></code> and Scipy to solve it, we will again use a <code class="docutils literal notranslate"><span class="pre">scheme</span></code> instead. Details on schemes and operators will be provided in the following section. For this example the important characteristic of a <code class="docutils literal notranslate"><span class="pre">scheme</span></code> is that we can still access some information contained in the underlying UFL form, e.g., the <code class="docutils literal notranslate"><span class="pre">Constants</span></code> used. This allows us to change these efficiently during the simulation as shown below.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
@@ -871,13 +822,6 @@ we want to solve the same linear problem but with <span class="math notranslate 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
 <span class="n">op</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_36_0.jpg" src="_images/dune-fempy_nb_36_0.jpg" />
 </div>
 </div>
 <p>Note that since <span class="math notranslate nohighlight">\(\varepsilon=1\)</span> and we use the previously computed approximation <span class="math notranslate nohighlight">\(u_h\)</span> the new discrete function <span class="math notranslate nohighlight">\(w_h\)</span> is close to <span class="math notranslate nohighlight">\(u_h\)</span>.</p>
@@ -902,7 +846,7 @@ we want to solve the same linear problem but with <span class="math notranslate 
 </pre></div></div>
 </div>
 <p>To switch to a standard <span class="math notranslate nohighlight">\(L^2\)</span> projection we will also change <span class="math notranslate nohighlight">\(m=(1+u_h)^2\)</span> to <span class="math notranslate nohighlight">\(m\equiv 1\)</span>. This can be easily done by changing <span class="math notranslate nohighlight">\(u_h\)</span> to be zero everywhere. This can be either done using <code class="docutils literal notranslate"><span class="pre">u_h.interpolate(0)</span></code> or by using <code class="docutils literal notranslate"><span class="pre">u_h.clear()</span></code>.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
@@ -910,13 +854,6 @@ we want to solve the same linear problem but with <span class="math notranslate 
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">w_h</span><span class="p">)</span>
 <span class="n">w_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/dune-fempy_nb_40_0.jpg" src="_images/dune-fempy_nb_40_0.jpg" />
 </div>
 </div>
 <div class="admonition tip">

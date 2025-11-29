@@ -548,11 +548,12 @@ This document is part of the dune-fem tutorial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/elasticity_nb_11_0.jpg" src="_images/elasticity_nb_11_0.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 1000x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p>Finally we can plot the actual displaced beam using a grid view that allows us to add a transformation of the geometry of each entity in the grid by prociding a grid function to the constructor. Note that this also allows for higher order transformation like in this case where the transformation is given by a second order Lagrange discrete function. We will highlight the flexibility of the # <code class="docutils literal notranslate"><span class="pre">GeometryGridView</span></code> in further examples:</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
@@ -561,13 +562,6 @@ This document is part of the dune-fem tutorial
 <span class="n">beam</span> <span class="o">=</span> <span class="n">geometryGridView</span><span class="p">(</span> <span class="n">position</span> <span class="p">)</span>
 <span class="n">beam</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/elasticity_nb_13_0.jpg" src="_images/elasticity_nb_13_0.jpg" />
 </div>
 </div>
 </section>

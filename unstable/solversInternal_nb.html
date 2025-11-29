@@ -478,7 +478,7 @@ u(x,y) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
                 <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">conditional</span>
 
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">])</span>
-<span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;istl&#39;</span><span class="p">)</span>
 <span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
 
 <span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="p">(</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">FacetNormal</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="p">)</span>
@@ -529,21 +529,14 @@ to <span class="math notranslate nohighlight">\(10^{-8}\)</span>. In addition we
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Default L^2, H^1 error: 1.17598e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 5, &#39;linear_iterations&#39;: 289, &#39;timing&#39;: [0.077352758, 0.023532723, 0.053820034999999995]}
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversInternal_nb_5_1.jpg" src="_images/solversInternal_nb_5_1.jpg" />
-</div>
+<div class="highlight"><pre>
+Default L^2, H^1 error: 1.20362e-06, 1.83003e-04
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 252, &#39;timing&#39;: [0.027202768, 0.008256998, 0.01894577]}
+</pre></div></div>
 </div>
 <section id="Python-sided-Newton-solver">
 <h2>Python sided Newton solver<a class="headerlink" href="#Python-sided-Newton-solver" title="Link to this heading"></a></h2>
@@ -594,7 +587,7 @@ Default L^2, H^1 error: 1.17598e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Newton 1 L^2, H^1 error: 1.17597e-06, 1.83002e-04
-         solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 619}
+         solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 618}
 </pre></div></div>
 </div>
 <div class="admonition tip">
@@ -660,17 +653,17 @@ Newton 1 L^2, H^1 error: 1.17597e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0 141085.76467817265
-1 17905.922126842455
-2 7537.485971022514
-3 2816.7398167325914
-4 729.4502131630727
-5 67.95222228769525
-6 0.5837225090318674
-7 4.080727400222704e-05
+0 141085.74926120762
+1 17905.920241774333
+2 7537.485122978748
+3 2816.7394179534726
+4 729.4500739362206
+5 67.95220111350947
+6 0.5837200125700535
+7 4.0818883975234545e-05
 8 0.0
-Newton 2 (gmres) L^2, H^1 error: 1.17601e-06, 1.83002e-04
-         solver info= {&#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 2076}
+Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
+         solver info= {&#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 2201}
 </pre></div></div>
 </div>
 <div class="admonition tip">
@@ -718,7 +711,7 @@ Newton 2 (gmres) L^2, H^1 error: 1.17601e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.025146098, 0.004754108999999999, 0.020391989]}
+{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.010734892, 0.003110639, 0.007624252999999999]}
 </pre></div></div>
 </div>
 <div class="admonition tip">
@@ -744,7 +737,7 @@ Newton 2 (gmres) L^2, H^1 error: 1.17601e-06, 1.83002e-04
 </div>
 <p>So far everything is as before. Dirichlet boundary conditions are handled in the matrix through changing all rows associated with boundary degrees of freedom to unit rows - associated columns are not changed so the matrix will not be symmetric anymore. For solving the system we need to modify the right hand side and the initial guess for the iterative solver to include the boundary values (to counter the missing symmetry). We can use the first of the three versions of the <code class="docutils literal notranslate"><span class="pre">setConstraints</span></code>
 methods on the scheme class discussed in the section on <a class="reference internal" href="boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom"><span class="std std-ref">more general boundary conditions</span></a>.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
@@ -758,13 +751,6 @@ methods on the scheme class discussed in the section on <a class="reference inte
 <span class="n">lin</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rightHandSide</span><span class="o">=</span><span class="n">rhs</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">sol</span><span class="p">)</span>
 <span class="n">sol</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/solversInternal_nb_19_0.jpg" src="_images/solversInternal_nb_19_0.jpg" />
 </div>
 </div>
 <p>Let’s revisit our two implementations of the Newton method discussed above but with Dirichlet conditions on the whole boundary:</p>
@@ -814,10 +800,10 @@ Dirichlet, Newton 1 L^2, H^1 error: 1.17658e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0 994.7300931673126
-1 14.080846388373416
-2 0.005556564215679982
-3 1.0225993011519528e-09
+0 994.7300931673301
+1 14.080846388370963
+2 0.005556564215700865
+3 1.022599295261397e-09
 4 0.0
 Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 518}
@@ -870,7 +856,7 @@ Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.078212362, 0.049349553000000004, 0.02886280899999999]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.052362205, 0.026095011, 0.026267194]}
 </pre></div></div>
 </div>
 </section>
@@ -901,7 +887,7 @@ PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Dune-Istl L^2, H^1 error: 1.17597e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.107077367, 0.020071142, 0.087006225]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.353666798, 0.033731518, 0.31993528]}
 </pre></div></div>
 </div>
 </section>
@@ -946,8 +932,8 @@ that is used in the output.</p>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Fem::CG preconditioning=jacobi
-Fem::CG it: 0 : sqr(residuum) 9.91003e-26
-Fem::CG it: 1 : sqr(residuum) 1.1676e-26
+Fem::CG it: 0 : residual 3.14787e-13
+Fem::CG it: 1 : residual 1.08053e-13
 </pre></div></div>
 </div>
 <p>We use the <code class="docutils literal notranslate"><span class="pre">pprint</span></code> (pretty print) module if available to get nicer output.</p>
@@ -970,7 +956,7 @@ Fem::CG it: 1 : sqr(residuum) 1.1676e-26
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;default&#39;: {(&#39;fem.solver.threading&#39;, &#39;true&#39;), (&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;), (&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;), (&#39;fem.threads.communicationthread&#39;, &#39;false&#39;)},
+{&#39;default&#39;: {(&#39;fem.threads.communicationthread&#39;, &#39;false&#39;), (&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;), (&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;)},
  &#39;log-jacobi&#39;: {(&#39;fem.solver.linear.maxiterations&#39;, &#39;2147483647&#39;),
                 (&#39;fem.solver.linear.preconditioning.iterations&#39;, &#39;1&#39;),
                 (&#39;fem.solver.linear.preconditioning.relaxation&#39;, &#39;1.1&#39;),
@@ -987,8 +973,7 @@ Fem::CG it: 1 : sqr(residuum) 1.1676e-26
                 (&#39;linear.method&#39;, &#39;cg&#39;),
                 (&#39;linear.preconditioning.method&#39;, &#39;jacobi&#39;),
                 (&#39;linear.tolerance&#39;, &#39;1e-12&#39;),
-                (&#39;linear.verbose&#39;, &#39;True&#39;)},
- &#39;program code&#39;: {(&#39;fem.adaptation.method&#39;, &#39;callback&#39;)}}
+                (&#39;linear.verbose&#39;, &#39;True&#39;)}}
 </pre></div></div>
 </div>
 <p>Note above that all parameters are printed including some default ones used in other parts of the code. If multiple schemes with different <code class="docutils literal notranslate"><span class="pre">logging</span></code> parameter strings are used, all would be shown using the <code class="docutils literal notranslate"><span class="pre">log</span></code> method as shown above. To access only the parameters used in the scheme simply use either <code class="docutils literal notranslate"><span class="pre">dune.fem.parameter.log()[&quot;tag&quot;])</span></code> or access the parameter log through the scheme:</p>
@@ -1274,6 +1259,8 @@ class Scheme(pybind11_builtins.pybind11_object)
  |  dimRange
  |
  |  domainSpace
+ |
+ |  gridSizeInterior
  |
  |  parameterHelp
  |

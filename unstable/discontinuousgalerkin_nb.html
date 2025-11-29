@@ -469,7 +469,10 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="o">,</span><span class="w"> </span><span class="nn">math</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span>
+<span class="c1"># from dune.alugrid import aluConformGrid as leafGridView</span>
+<span class="c1"># from dune.fem.space import dgonb as dgSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">yaspGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">dglegendre</span> <span class="k">as</span> <span class="n">dgSpace</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span>
@@ -478,7 +481,8 @@ This document is part of the dune-fem tutorial
                   <span class="n">as_vector</span><span class="p">,</span> <span class="n">avg</span><span class="p">,</span> <span class="n">jump</span><span class="p">,</span> <span class="n">dS</span><span class="p">,</span> <span class="n">CellVolume</span><span class="p">,</span> <span class="n">FacetArea</span> <span class="p">)</span>
 
 <span class="c1"># overlap=1 is needed for parallel computations</span>
-<span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">domain</span>   <span class="o">=</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
 <span class="n">space</span>    <span class="o">=</span> <span class="n">dgSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 
@@ -513,10 +517,13 @@ This document is part of the dune-fem tutorial
 <span class="c1"># penalty parameter (take 1 for p=0)</span>
 <span class="n">beta</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">space</span><span class="o">.</span><span class="n">order</span><span class="o">**</span><span class="mi">2</span> <span class="k">if</span> <span class="n">space</span><span class="o">.</span><span class="n">order</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span>
 
+                <span class="c1"># eps*dot(avg(grad(u)),n(&#39;+&#39;))*jump(v)*dS -</span>
+                <span class="c1"># eps*jump(u)*dot(avg(grad(v)),n(&#39;+&#39;))*dS</span>
+<span class="n">dn</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">n</span><span class="p">)</span>
 <span class="n">aInternal</span>     <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">eps</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">u</span><span class="p">,</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">*</span> <span class="n">dx</span>
 <span class="n">diffSkeleton</span>  <span class="o">=</span> <span class="n">eps</span><span class="o">*</span><span class="n">beta</span><span class="o">/</span><span class="n">he</span><span class="o">*</span><span class="n">jump</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">jump</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dS</span> <span class="o">-</span>\
-                <span class="n">eps</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">avg</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)),</span><span class="n">n</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">))</span><span class="o">*</span><span class="n">jump</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dS</span> <span class="o">-</span>\
-                <span class="n">eps</span><span class="o">*</span><span class="n">jump</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">avg</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">)),</span><span class="n">n</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">))</span><span class="o">*</span><span class="n">dS</span>
+                <span class="n">eps</span><span class="o">*</span><span class="n">avg</span><span class="p">(</span><span class="n">dn</span><span class="p">(</span><span class="n">u</span><span class="p">))</span><span class="o">*</span><span class="n">jump</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dS</span> <span class="o">-</span>\
+                <span class="n">eps</span><span class="o">*</span><span class="n">jump</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">avg</span><span class="p">(</span><span class="n">dn</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dS</span>
 <span class="n">diffSkeleton</span> <span class="o">+=</span> <span class="n">eps</span><span class="o">*</span><span class="n">beta</span><span class="o">/</span><span class="n">hbnd</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="o">-</span><span class="n">g</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dD</span><span class="o">*</span><span class="n">ds</span> <span class="o">-</span>\
                 <span class="n">eps</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dD</span><span class="o">*</span><span class="n">ds</span>
 <span class="n">advSkeleton</span>   <span class="o">=</span> <span class="n">jump</span><span class="p">(</span><span class="n">hatb</span><span class="o">*</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">jump</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dS</span>
@@ -526,7 +533,7 @@ This document is part of the dune-fem tutorial
 </div>
 </div>
 <p>We solve the problem as in previous examples</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -545,15 +552,8 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/discontinuousgalerkin_nb_5_0.jpg" src="_images/discontinuousgalerkin_nb_5_0.jpg" />
-</div>
-</div>
 <p>So far the example was not really advection dominated so we now repeat the experiment but set <span class="math notranslate nohighlight">\(\varepsilon=1e-5\)</span></p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
@@ -572,13 +572,6 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/discontinuousgalerkin_nb_7_0.jpg" src="_images/discontinuousgalerkin_nb_7_0.jpg" />
-</div>
-</div>
 </section>
 <section id="A-linear-transport-problem">
 <h2>A linear transport problem<a class="headerlink" href="#A-linear-transport-problem" title="Link to this heading"></a></h2>
@@ -593,7 +586,8 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># remove later, shows same error: from dune.fem.space import dgonb as dgSpace</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">domain1d</span> <span class="o">=</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">N</span><span class="p">],</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span> <span class="n">domain1d</span> <span class="p">)</span>
 <span class="n">space</span>    <span class="o">=</span> <span class="n">dgSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -656,7 +650,7 @@ This document is part of the dune-fem tutorial
 \[\frac{1}{2}\Big( \vec{u}_1^{n+1} + \vec{u}_2^{n+1} \Big)\]</div>
 <p>by applying the above operator twice.</p>
 <p>We show the transport of a a simple discontinuety:</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
@@ -683,20 +677,6 @@ This document is part of the dune-fem tutorial
     <span class="n">t</span> <span class="o">+=</span> <span class="n">tau</span>
 <span class="n">uh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/discontinuousgalerkin_nb_15_0.jpg" src="_images/discontinuousgalerkin_nb_15_0.jpg" />
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/discontinuousgalerkin_nb_15_1.jpg" src="_images/discontinuousgalerkin_nb_15_1.jpg" />
 </div>
 </div>
 <div class="admonition-todo admonition" id="id2">

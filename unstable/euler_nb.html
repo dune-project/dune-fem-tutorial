@@ -596,16 +596,12 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-<span class="n">initial</span> <span class="o">=</span> <span class="n">conditional</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.1</span><span class="p">,</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]),</span>
-                                   <span class="n">as_vector</span><span class="p">([</span><span class="mf">0.125</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">]))</span>
-
-<span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">dgf</span><span class="p">,</span> <span class="s2">&quot;triangle.dgf&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">dgf</span><span class="p">,</span> <span class="s2">&quot;triangle.dgf&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <p>We start with a triangular grid</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
@@ -620,20 +616,17 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/euler_nb_13_0.jpg" src="_images/euler_nb_13_0.jpg" />
-</div>
-</div>
 <p>Initial conditions for a radial Riemann problem</p>
 <p>First solved on a triangle grid and minmod limiter</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="n">conditional</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.1</span><span class="p">,</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.5</span><span class="p">]),</span>
+                                   <span class="n">as_vector</span><span class="p">([</span><span class="mf">0.125</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.25</span><span class="p">]))</span>
+
+<span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
 <span class="n">res</span><span class="p">[</span><span class="s2">&quot;simplex (minmod)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">evolve</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">u_h</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -643,17 +636,18 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.10067226533061213
-0.20011688589049687
-0.3006285980734703
+0.10067226533061212
+0.20011688589049684
+0.30062859807347025
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/euler_nb_15_1.jpg" src="_images/euler_nb_15_1.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 1500x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p>Now a triangle grid without limiter (which of course fails)</p>
 <div class="nbinput docutils container">
@@ -674,15 +668,15 @@ This document is part of the dune-fem tutorial
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 8.089619106880421e+307
-SOLUTION NOT VALID
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/euler_nb_17_1.jpg" src="_images/euler_nb_17_1.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 1500x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p>Now a finite volume method first without reconstruction on the triangle grid</p>
 <div class="nbinput docutils container">
@@ -709,8 +703,9 @@ SOLUTION NOT VALID
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/euler_nb_19_1.jpg" src="_images/euler_nb_19_1.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 1500x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p>and a finite volume method with reconstruction</p>
 <div class="nbinput docutils container">
@@ -728,20 +723,21 @@ SOLUTION NOT VALID
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.10084269412206702
-0.2018989967725324
-0.3019024714106266
+0.10084269412206748
+0.20189899677252915
+0.3019024714069779
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/euler_nb_21_1.jpg" src="_images/euler_nb_21_1.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 1500x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p>Using a polygonal grid (dual grid of previous grid)</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
@@ -754,13 +750,6 @@ SOLUTION NOT VALID
 <span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">space</span> <span class="o">=</span> <span class="n">getSpace</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span> <span class="p">)</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/euler_nb_23_0.jpg" src="_images/euler_nb_23_0.jpg" />
 </div>
 </div>
 <p>Solution with limiter - fails as above without</p>
@@ -787,8 +776,9 @@ SOLUTION NOT VALID
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/euler_nb_25_1.jpg" src="_images/euler_nb_25_1.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 1500x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p>Solutions along the diagonal</p>
 <div class="nbinput docutils container">

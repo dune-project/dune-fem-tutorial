@@ -476,7 +476,7 @@ This document is part of the dune-fem tutorial
 </div>
 <p>The C++ code must contain a function returning a function object (e.g. a <code class="docutils literal notranslate"><span class="pre">lambda</span></code>) with the signature <code class="docutils literal notranslate"><span class="pre">(element,localCoordinate)</span></code>. This generating function must be a template function with the first template being <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">GridView</span></code> The return value of this <code class="docutils literal notranslate"><span class="pre">lambda</span></code> is either a <code class="docutils literal notranslate"><span class="pre">double</span></code> or a <code class="docutils literal notranslate"><span class="pre">Dune::FieldVector&lt;double,R&gt;</span></code>. The generating function can have parameters of their own which can be set when constructing the grid function. The first example takes a double parameter <code class="docutils literal notranslate"><span class="pre">a</span></code> which
 we set to <code class="docutils literal notranslate"><span class="pre">2</span></code>:</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -495,13 +495,6 @@ we set to <code class="docutils literal notranslate"><span class="pre">2</span><
 <span class="n">exactCpp</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;aTimesExact&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="mf">2.</span><span class="p">])</span>
 <span class="n">exactCpp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/cppfunctions_nb_3_0.jpg" src="_images/cppfunctions_nb_3_0.jpg" />
 </div>
 </div>
 <p>Let us implement the same function using <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> with an ufl expression and compare the two.</p>
@@ -571,24 +564,17 @@ that an UFL expression can not be directly passed in - it first needs to be conv
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/cppfunctions_nb_9_0.jpg" src="_images/cppfunctions_nb_9_0.jpg" />
-</div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-11.0
+10.999999999999998
 </pre></div></div>
 </div>
 <p>In the above example there is no advantage of using the C++ code over the code generated based on an equivalent UFL expression. For more complicated functions e.g. with many if statements, loops, or based on more information from the given element like it’s neighbors the expressibility of UFL might not be sufficient or would lead to hard to read code. In these cases directly providing C++ code can be a reasonable alternative.</p>
 <p>We conclude with the example from the <a class="reference internal" href="boundary_nb.html"><span class="doc">boundary conditions</span></a> section but now defining the Dirichlet boundary conditions using a C++ code snippet.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
@@ -630,20 +616,6 @@ that an UFL expression can not be directly passed in - it first needs to be conv
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
                <span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;orientation&quot;</span><span class="p">:</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="s2">&quot;ticks&quot;</span><span class="p">:</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)})</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/cppfunctions_nb_12_0.jpg" src="_images/cppfunctions_nb_12_0.jpg" />
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/cppfunctions_nb_12_1.jpg" src="_images/cppfunctions_nb_12_1.jpg" />
 </div>
 </div>
 </section>
