@@ -29,11 +29,16 @@ jobs:
   builddocu:
     runs-on: ubuntu-latest
     steps:
+      - name: echo distinct ID ${{ github.event.inputs.distinct_id }}
+        if: github.event.inputs.distinct_id != ''
+        run: echo ${{ github.event.inputs.distinct_id }}
       # check documentation from version branch
       - uses: actions/checkout@v4
       #  with:
       #    ref: ${{ github.event.inputs.version }}
       - uses: actions/setup-python@v5
+        with:
+          python-version: 3.14
       # install packages
       - name: Install dependencies
         run: |
