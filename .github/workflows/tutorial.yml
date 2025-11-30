@@ -17,6 +17,11 @@ on:
         description: keep older versions [true]
         required: true
         default: true
+      deploy:
+        type: boolean
+        description: deploy web pages [true]
+        required: true
+        default: true
       # needed only for dispatching from other repo
       distinct_id:
         required: false
@@ -100,7 +105,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         # only deploying on main branch
-        if: ${{ github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' }}
+        if: ${{ github.event.inputs.deploy && github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
