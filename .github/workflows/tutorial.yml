@@ -77,7 +77,7 @@ jobs:
           # find other versions
           echo $BRANCH > latest.txt
           cd ${{ github.event.repository.name }}
-          ls -dvr * >> ../latest.txt
+          ls -dvr v* u* >> ../latest.txt
           # cleanup 
           cd ..
           rm -rf ${{ github.event.repository.name }}
