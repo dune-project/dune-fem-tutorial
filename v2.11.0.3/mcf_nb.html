@@ -245,7 +245,7 @@
 <li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening-h-adaptation">Dynamic Local Grid Refinement and Coarsening (h-adaptation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening">Dynamic Local Grid Refinement and Coarsening</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
 </ul>
@@ -265,7 +265,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-on-moving-grids-r-adaptation">Overview on moving grids (r-adaptation)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gridviews_and_adaptivity.html#evolving-domains">Evolving Domains</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Moving surface grid: flow under mean curvature</a></li>
 <li class="toctree-l3"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
 </ul>
@@ -458,7 +458,7 @@ This document is part of the dune-fem tutorial
 </div>
 <section id="Moving-surface-grid:-flow-under-mean-curvature">
 <span id="index-2"></span><span id="index-1"></span><span id="index-0"></span><h1>Moving surface grid: flow under mean curvature<a class="headerlink" href="#Moving-surface-grid:-flow-under-mean-curvature" title="Link to this heading"></a></h1>
-<p>This example uses a moving grid.</p>
+<p>This example uses a <a class="reference internal" href="gridviews_and_adaptivity.html#evolving-domains"><span class="std std-ref">moving grid</span></a>.</p>
 <p>Mean curvature flow is a specific example of a geometric evolution equation where the evolution is governed by the mean curvature <span class="math notranslate nohighlight">\(H\)</span>. One real-life example of this is in how soap films change over time, although it can also be applied to image processing (e.g. <span id="id1">[<a class="reference internal" href="index.html#id11" title="Ravi Malladi and James A. Sethian. Image processing: flows under min/max curvature and mean curvature. Graphical models and image processing, 58(2):127–141, 1996.">MS96</a>]</span>). Assume we can define a reference surface <span class="math notranslate nohighlight">\(\Gamma_0\)</span> such that we can write the evolving surface <span class="math notranslate nohighlight">\(\Gamma(t)\)</span> in the form <span class="math">\begin{gather*}
 \Gamma(t) = X(t,\Gamma_0).
 \end{gather*}</span> It is now possible to show that the vector valued function <span class="math notranslate nohighlight">\(X=X(t,x)\)</span> with <span class="math notranslate nohighlight">\(x\in\Gamma_0\)</span> satisfies <span class="math">\begin{gather*}
@@ -470,7 +470,7 @@ This document is part of the dune-fem tutorial
 \theta\nabla_{\Gamma^n} U^{n+1} + (1-\theta) I \big)
 \colon\nabla_{\Gamma^n}\varphi
 =0.
-\end{align*}</span> Here <span class="math notranslate nohighlight">\(U^n\)</span> parametrizes <span class="math notranslate nohighlight">\(\Gamma(t^{n+1})\)</span> over <span class="math notranslate nohighlight">\(\Gamma^n:=\Gamma(t^{n})\)</span>, <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix, <span class="math notranslate nohighlight">\(\tau\)</span> is the time step and <span class="math notranslate nohighlight">\(\theta\in[0,1]\)</span> is a discretization parameter. <img alt="3a4e52842949485a860b863ec3b229bd" src="_images/mcf.gif" /></p>
+\end{align*}</span> Here <span class="math notranslate nohighlight">\(U^n\)</span> parametrizes <span class="math notranslate nohighlight">\(\Gamma(t^{n+1})\)</span> over <span class="math notranslate nohighlight">\(\Gamma^n:=\Gamma(t^{n})\)</span>, <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix, <span class="math notranslate nohighlight">\(\tau\)</span> is the time step and <span class="math notranslate nohighlight">\(\theta\in[0,1]\)</span> is a discretization parameter. <img alt="d1b1e307b1554707a94dfc9ffbc121a0" src="_images/mcf.gif" /></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>

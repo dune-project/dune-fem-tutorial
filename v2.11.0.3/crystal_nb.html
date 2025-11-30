@@ -245,7 +245,7 @@
 <li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening-h-adaptation">Dynamic Local Grid Refinement and Coarsening (h-adaptation)</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening">Dynamic Local Grid Refinement and Coarsening</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Adaptive phase field: crystal growth model</a></li>
 </ul>
@@ -265,7 +265,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-on-moving-grids-r-adaptation">Overview on moving grids (r-adaptation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#evolving-domains">Evolving Domains</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
 <li class="toctree-l3"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
 </ul>
@@ -458,7 +458,7 @@ This document is part of the dune-fem tutorial
 </div>
 <section id="Adaptive-phase-field:-crystal-growth-model">
 <span id="index-1"></span><span id="index-0"></span><h1>Adaptive phase field: crystal growth model<a class="headerlink" href="#Adaptive-phase-field:-crystal-growth-model" title="Link to this heading"></a></h1>
-<p>Here we demonstrate crystallisation on the surface of a liquid due to cooling from [&#64;Guyer]. This example uses dynamic grid refinement.</p>
+<p>Here we demonstrate crystallisation on the surface of a liquid due to cooling from [&#64;Guyer]. This example uses <a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening"><span class="std std-ref">dynamic grid refinement</span></a>.</p>
 <p>Let us first set up the grid and the function space. We use the default DoF storage available in <code class="docutils literal notranslate"><span class="pre">dune-fem</span></code> - this can be changed for example to <code class="docutils literal notranslate"><span class="pre">istl</span></code> or <code class="docutils literal notranslate"><span class="pre">petsc</span></code>.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
