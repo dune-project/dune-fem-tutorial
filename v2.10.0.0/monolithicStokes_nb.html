@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monolithic solver (Lagrange and DG formulation) &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -49,14 +49,11 @@
      <span class="caption-text">
      <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
      <li><u><a href="changelog290.html" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="versions.html" style="color:white">Other versions</a></u></li>
      </span>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
 </ul>
@@ -340,12 +337,12 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
 
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">cell</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">FacetNormal</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">cell</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">FacetNormal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
 <span class="n">dim_space</span> <span class="o">=</span> <span class="n">gridView</span><span class="o">.</span><span class="n">dimGrid</span>
@@ -366,9 +363,9 @@ Elements”). This combination is well-known for being LBB-stable / satisfying a
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dS</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">jump</span><span class="p">,</span> <span class="n">avg</span><span class="p">,</span> <span class="n">CellVolume</span><span class="p">,</span> <span class="n">FacetArea</span><span class="p">,</span> <span class="n">MinCellEdgeLength</span><span class="p">,</span> <span class="n">MinFacetEdgeLength</span><span class="p">,</span> <span class="n">conditional</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">Constant</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dS</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">jump</span><span class="p">,</span> <span class="n">avg</span><span class="p">,</span> <span class="n">CellVolume</span><span class="p">,</span> <span class="n">FacetArea</span><span class="p">,</span> <span class="n">MinCellEdgeLength</span><span class="p">,</span> <span class="n">MinFacetEdgeLength</span><span class="p">,</span> <span class="n">conditional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Surface normal on the exterior boundary</span>
 <span class="n">n</span>  <span class="o">=</span> <span class="n">FacetNormal</span><span class="p">(</span><span class="n">cell</span><span class="p">(</span><span class="n">dim_space</span><span class="p">))</span>
@@ -397,7 +394,7 @@ Elements”). This combination is well-known for being LBB-stable / satisfying a
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weak_form_stationary_stokes</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span> <span class="n">dirichlet_velocity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">weak_form_stationary_stokes</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span> <span class="n">dirichlet_velocity</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return weak form for the stationary stokes problem, given a set of trial and test basis</span>
 <span class="sd">    functions for velocity and pressure.</span>
@@ -448,9 +445,9 @@ p &= (x-0.5)\,(y-0.5) \\
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span><span class="p">,</span> <span class="n">BoundaryId</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">as_vector</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">gridFunction</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirichletBC</span><span class="p">,</span> <span class="n">BoundaryId</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">as_vector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">spatial_coordinate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">spatial_coordinate</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -467,7 +464,7 @@ p &= (x-0.5)\,(y-0.5) \\
                       <span class="n">gridView</span><span class="p">,</span>
                       <span class="n">name</span><span class="o">=</span><span class="s2">&quot;analytical_solution_pressure&quot;</span><span class="p">,</span>
                       <span class="n">order</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">f_1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f_1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">256</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">12</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span><span class="mi">12</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
 <span class="n">f_exact</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">as_vector</span><span class="p">([</span><span class="n">f_1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mf">0.5</span><span class="p">),</span> <span class="o">-</span><span class="n">f_1</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)]),</span>
                       <span class="n">gridView</span><span class="p">,</span>
@@ -486,10 +483,10 @@ p &= (x-0.5)\,(y-0.5) \\
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Set up composite space and scheme in CG setting: </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span><span class="p">,</span> <span class="n">composite</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">as_vector</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="n">conditional</span>
-<span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">BoundaryId</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span><span class="p">,</span> <span class="n">composite</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">as_vector</span><span class="p">,</span> <span class="n">eq</span><span class="p">,</span> <span class="n">conditional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">BoundaryId</span>
 
 <span class="n">velocity_order</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">space_velocity</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span>
@@ -664,13 +661,13 @@ number linear iterations: 13
 <span class="sd">&quot;&quot;&quot;</span>
 
 
-<span class="k">def</span> <span class="nf">c_h_cburn</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">c_h_cburn</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Stabilization term from https://doi.org/10.1016/j.cma.2018.07.019 (Eqn. 19)&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">gamma_stab_cburn</span><span class="o">*</span><span class="n">h_int</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">jump</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="o">*</span><span class="n">ne</span><span class="p">,</span> <span class="n">jump</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">*</span><span class="n">ne</span><span class="p">)</span><span class="o">*</span><span class="n">dS</span>
 
 
 
-<span class="k">def</span> <span class="nf">weak_form_stationary_stokes_dg</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span> <span class="n">is_dirichlet_velocity</span><span class="p">,</span> <span class="n">dirichlet_value_velocity</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">weak_form_stationary_stokes_dg</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">mu</span><span class="p">,</span> <span class="n">is_dirichlet_velocity</span><span class="p">,</span> <span class="n">dirichlet_value_velocity</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return weak form for the stationary stokes problem, given a set of trial and test basis</span>
 <span class="sd">    functions for velocity and pressure. The viscous stress is discretized</span>
@@ -724,7 +721,7 @@ number linear iterations: 13
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">penalty_parameter_abkas</span><span class="p">(</span><span class="n">order_discrete_space</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">penalty_parameter_abkas</span><span class="p">(</span><span class="n">order_discrete_space</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Penalty parameter for the interior penalty DG method</span>
 
 <span class="sd">    Formula corresponds to to the heuristic parameter used in Sec. 6.1</span>
@@ -733,7 +730,7 @@ number linear iterations: 13
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="mi">4</span><span class="o">*</span><span class="n">order_discrete_space</span><span class="o">**</span><span class="mi">2</span>
 
-<span class="k">def</span> <span class="nf">penalty_parameter_shabazi</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">order_discrete_space</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">penalty_parameter_shabazi</span><span class="p">(</span><span class="n">view</span><span class="p">,</span> <span class="n">order_discrete_space</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Penalty parameter for the interior penalty DG method</span>
 
 <span class="sd">    Formula corresponds to Remark (4) of https://doi.org/10.1016/j.jcp.2004.11.017</span>
@@ -779,7 +776,7 @@ number linear iterations: 13
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;----------------------&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Set up DG Scheme:&quot;</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">dglagrange</span><span class="p">,</span> <span class="n">composite</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">dglagrange</span><span class="p">,</span> <span class="n">composite</span>
 
 
 <span class="n">velocity_order</span> <span class="o">=</span> <span class="mi">3</span>
@@ -888,11 +885,11 @@ number linear iterations: 15
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">sqrt</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">integrate</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
 
-<span class="k">def</span> <span class="nf">convergence_study</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span> <span class="n">solution_vector</span><span class="p">,</span> <span class="n">refinement_steps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">penalty</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convergence_study</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span> <span class="n">solution_vector</span><span class="p">,</span> <span class="n">refinement_steps</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">penalty</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Executes a sequence of solves with the mesh uniformly refined `refinement_steps` times and</span>
 <span class="sd">    computes the experimental order of convergence (EOC)</span>
@@ -1084,7 +1081,7 @@ Step: 1 , size: 196
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dof_count_taylor_hood_quad_mesh</span><span class="p">(</span><span class="n">velocity_order</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dof_count_taylor_hood_quad_mesh</span><span class="p">(</span><span class="n">velocity_order</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
     <span class="n">pressure_order</span> <span class="o">=</span> <span class="n">velocity_order</span> <span class="o">-</span><span class="mi">1</span>
     <span class="n">number_elements</span> <span class="o">=</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">dim_space</span> <span class="o">=</span> <span class="n">gridView</span><span class="o">.</span><span class="n">dimension</span>
@@ -1142,7 +1139,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

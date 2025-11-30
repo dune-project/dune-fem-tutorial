@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -49,14 +49,11 @@
      <span class="caption-text">
      <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
      <li><u><a href="changelog290.html" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="versions.html" style="color:white">Other versions</a></u></li>
      </span>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
 </ul>
@@ -338,9 +335,9 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -358,7 +355,7 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span>
 <span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
 </pre></div>
@@ -369,7 +366,7 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span>
                  <span class="n">dx</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span> <span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
@@ -386,7 +383,7 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">assemble</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">assemble</span>
 <span class="n">mat</span><span class="p">,</span><span class="n">rhs</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">(</span><span class="n">a</span><span class="o">==</span><span class="n">l</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -396,7 +393,7 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">spsolve</span> <span class="k">as</span> <span class="n">solver</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">spsolve</span> <span class="k">as</span> <span class="n">solver</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">mat</span><span class="o">.</span><span class="n">as_numpy</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">rhs</span><span class="o">.</span><span class="n">as_numpy</span>
@@ -431,7 +428,7 @@ u(x) = \cos(2\pi x_1)\cos(2\pi x_2)
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">integrate</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
 <span class="n">exact</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">e_h</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">-</span><span class="n">exact</span>
 <span class="n">squaredErrors</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">([</span><span class="n">e_h</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">e_h</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">e_h</span><span class="p">))])</span>
@@ -501,7 +498,7 @@ u(x) = \left(\frac{1}{2}(x_1^2 + x_2^2) - \frac{1}{3}(x_1^3 - x_2^3)\right) + 1~
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">conditional</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">div</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">conditional</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">div</span>
 
 <span class="n">exact</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">a</span>   <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">*</span> <span class="n">dx</span>
@@ -517,7 +514,7 @@ u(x) = \left(\frac{1}{2}(x_1^2 + x_2^2) - \frac{1}{3}(x_1^3 - x_2^3)\right) + 1~
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirichletBC</span>
 <span class="n">dbc</span> <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;=</span><span class="mf">1e-8</span><span class="p">)</span>
 <span class="n">mat</span><span class="p">,</span><span class="n">rhs</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">([</span><span class="n">a</span><span class="o">==</span><span class="n">l</span><span class="p">,</span><span class="n">dbc</span><span class="p">])</span>
 </pre></div>
@@ -596,7 +593,7 @@ different ways, including writing your own linear or non-linear solvers, accessi
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
 <span class="n">scheme</span> <span class="o">=</span> <span class="n">solutionScheme</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">l</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">)</span>
 <span class="n">u_h</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span> <span class="c1"># set u_h to zero as initial guess for the Newton solver</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
@@ -645,7 +642,7 @@ we want to solve the same linear problem but with <span class="math notranslate 
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">Constant</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span>
 
 <span class="n">epsilon</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;eps&quot;</span><span class="p">)</span>   <span class="c1"># start with epsilon=1</span>
 <span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span>   <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
@@ -658,7 +655,7 @@ we want to solve the same linear problem but with <span class="math notranslate 
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">w_h</span><span class="p">)</span>
 <span class="n">w_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 
-<span class="kn">from</span> <span class="nn">dune.fem.operator</span> <span class="kn">import</span> <span class="n">galerkin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
 <span class="n">op</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -735,7 +732,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

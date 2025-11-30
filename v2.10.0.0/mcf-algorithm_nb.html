@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mean Curvature Flow (revisited) &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -49,14 +49,11 @@
      <span class="caption-text">
      <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
      <li><u><a href="changelog290.html" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="versions.html" style="color:white">Other versions</a></u></li>
      </span>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
 </ul>
@@ -342,19 +339,19 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">pickle</span>
-<span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">ScalarFormatter</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">ScalarFormatter</span>
 
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">dune.ufl</span>
-<span class="kn">from</span> <span class="nn">dune.generator</span> <span class="kn">import</span> <span class="n">algorithm</span>
-<span class="kn">import</span> <span class="nn">dune.geometry</span> <span class="k">as</span> <span class="nn">geometry</span>
-<span class="kn">import</span> <span class="nn">dune.fem</span> <span class="k">as</span> <span class="nn">fem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.ufl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">algorithm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.geometry</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">geometry</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">fem</span>
 
-<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">ct2</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">ct2</span><span class="p">):</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">ct</span><span class="p">[</span><span class="mi">0</span><span class="p">][:],</span> <span class="n">ct</span><span class="p">[</span><span class="mi">1</span><span class="p">][:],</span><span class="s1">&#39;*-&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;hybrid&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">ct2</span><span class="p">[</span><span class="mi">0</span><span class="p">][:],</span> <span class="n">ct2</span><span class="p">[</span><span class="mi">1</span><span class="p">][:],</span><span class="s1">&#39;*-&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
@@ -391,7 +388,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calcRadius</span><span class="p">(</span><span class="n">surface</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">calcRadius</span><span class="p">(</span><span class="n">surface</span><span class="p">):</span>
     <span class="n">R</span><span class="p">,</span><span class="n">vol</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">surface</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
         <span class="n">rule</span> <span class="o">=</span> <span class="n">geometry</span><span class="o">.</span><span class="n">quadratureRule</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
@@ -430,10 +427,10 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">geometryGridView</span> <span class="k">as</span> <span class="n">geoGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span> <span class="k">as</span> <span class="n">solutionSpace</span>
-<span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
-<span class="k">def</span> <span class="nf">calculate</span><span class="p">(</span><span class="n">use_cpp</span><span class="p">,</span> <span class="n">gridView</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometryGridView</span> <span class="k">as</span> <span class="n">geoGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span> <span class="k">as</span> <span class="n">solutionSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate</span><span class="p">(</span><span class="n">use_cpp</span><span class="p">,</span> <span class="n">gridView</span><span class="p">):</span>
     <span class="c1"># space on Gamma_0 to describe position of Gamma(t)</span>
     <span class="n">space</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="n">gridView</span><span class="o">.</span><span class="n">dimWorld</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
     <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
@@ -492,7 +489,7 @@ This document is part of the dune-fem tutorial
             <span class="n">dt</span><span class="o">.</span><span class="n">value</span> <span class="o">/=</span> <span class="mi">2</span>
     <span class="n">eocs</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="mi">0</span><span class="p">:][:</span><span class="n">numberOfLoops</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">errors</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span> <span class="o">/</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
         <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="n">gridSizes</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="n">errors</span><span class="p">,</span> <span class="s2">&quot;eoc&quot;</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">eocs</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="s1">&#39;iterations&#39;</span><span class="p">:</span> <span class="n">totalIterations</span><span class="p">}</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="n">numberOfLoops</span><span class="p">),</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="s1">&#39;eoc&#39;</span><span class="p">,</span> <span class="s1">&#39;iterations&#39;</span><span class="p">])</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
@@ -510,7 +507,7 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set up reference domain Gamma_0</span>
 <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span><span class="s2">&quot;sphere.dgf&quot;</span><span class="p">,</span> <span class="n">dimgrid</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dimworld</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">results</span> <span class="o">+=</span> <span class="p">[</span><span class="n">calculate</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridView</span><span class="p">)]</span>
 
@@ -577,7 +574,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 
