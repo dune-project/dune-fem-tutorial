@@ -1,9 +1,9 @@
 .. dune-fem python documentation master file, created by
    Andreas Dedner on Mon Mai 20 2019.
 
-###################################################
-Welcome to the dune-fem tutorial (for version 2.11)
-###################################################
+#######################################################
+Welcome to the dune-fem tutorial (for version 'latest')
+#######################################################
 
 This module brings python scripting support to `Dune`_.
 This version describes the bindings for the development version

@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "088c756f",
+   "id": "9e9046a7",
    "metadata": {},
    "source": [
     ".. index:: Equations; Cahn-Hilliard\n",
@@ -16,13 +16,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "a3c576c3",
+   "id": "28e189ec",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-30T13:31:03.128240Z",
-     "iopub.status.busy": "2025-11-30T13:31:03.128054Z",
-     "iopub.status.idle": "2025-11-30T13:31:04.461917Z",
-     "shell.execute_reply": "2025-11-30T13:31:04.460902Z"
+     "iopub.execute_input": "2025-11-30T19:02:24.504793Z",
+     "iopub.status.busy": "2025-11-30T19:02:24.504471Z",
+     "iopub.status.idle": "2025-11-30T19:02:25.731743Z",
+     "shell.execute_reply": "2025-11-30T19:02:25.730795Z"
     }
    },
    "outputs": [],
@@ -48,7 +48,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1229421f",
+   "id": "2ef1ba8e",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -59,13 +59,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "3b8cf59f",
+   "id": "15683faf",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-30T13:31:04.463963Z",
-     "iopub.status.busy": "2025-11-30T13:31:04.463692Z",
-     "iopub.status.idle": "2025-11-30T13:31:05.935740Z",
-     "shell.execute_reply": "2025-11-30T13:31:05.934777Z"
+     "iopub.execute_input": "2025-11-30T19:02:25.733957Z",
+     "iopub.status.busy": "2025-11-30T19:02:25.733599Z",
+     "iopub.status.idle": "2025-11-30T19:02:26.902830Z",
+     "shell.execute_reply": "2025-11-30T19:02:26.901936Z"
     }
    },
    "outputs": [],
@@ -79,7 +79,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "67687818",
+   "id": "0be6037e",
    "metadata": {},
    "source": [
     "To define the mathematical model, let $\\psi\\colon{\\mathbb R} \\rightarrow\n",
@@ -103,13 +103,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "57230648",
+   "id": "6ffccf7b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-30T13:31:05.937942Z",
-     "iopub.status.busy": "2025-11-30T13:31:05.937756Z",
-     "iopub.status.idle": "2025-11-30T13:31:05.948539Z",
-     "shell.execute_reply": "2025-11-30T13:31:05.947767Z"
+     "iopub.execute_input": "2025-11-30T19:02:26.905231Z",
+     "iopub.status.busy": "2025-11-30T19:02:26.905025Z",
+     "iopub.status.idle": "2025-11-30T19:02:26.915213Z",
+     "shell.execute_reply": "2025-11-30T19:02:26.914434Z"
     }
    },
    "outputs": [],
@@ -139,7 +139,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ee7bcc3f",
+   "id": "1f30941f",
    "metadata": {},
    "source": [
     "Next we construct the scheme providing some suitable expressions to stabilize the method"
@@ -148,13 +148,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "1d4ccb24",
+   "id": "a06d5ae7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-30T13:31:05.950486Z",
-     "iopub.status.busy": "2025-11-30T13:31:05.950277Z",
-     "iopub.status.idle": "2025-11-30T13:31:06.044574Z",
-     "shell.execute_reply": "2025-11-30T13:31:06.043674Z"
+     "iopub.execute_input": "2025-11-30T19:02:26.916824Z",
+     "iopub.status.busy": "2025-11-30T19:02:26.916625Z",
+     "iopub.status.idle": "2025-11-30T19:02:27.000324Z",
+     "shell.execute_reply": "2025-11-30T19:02:26.999543Z"
     },
     "lines_to_next_cell": 1
    },
@@ -174,7 +174,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6b3d7f01",
+   "id": "82bbeba6",
    "metadata": {},
    "source": [
     "To avoid problems with over- and undershoots we project the initial\n",
@@ -185,13 +185,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "7abd00c4",
+   "id": "614ce6d5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-30T13:31:06.046578Z",
-     "iopub.status.busy": "2025-11-30T13:31:06.046404Z",
-     "iopub.status.idle": "2025-11-30T13:31:06.169875Z",
-     "shell.execute_reply": "2025-11-30T13:31:06.169036Z"
+     "iopub.execute_input": "2025-11-30T19:02:27.002387Z",
+     "iopub.status.busy": "2025-11-30T19:02:27.002211Z",
+     "iopub.status.idle": "2025-11-30T19:02:27.106296Z",
+     "shell.execute_reply": "2025-11-30T19:02:27.105413Z"
     },
     "lines_to_next_cell": 2
    },
@@ -208,7 +208,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ac485c4d",
+   "id": "0a2ef529",
    "metadata": {},
    "source": [
     "Finally the time loop - for the final coarsening phase (time greater than 0.8)\n",
@@ -218,13 +218,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "35954678",
+   "id": "1f9e25d4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-30T13:31:06.172045Z",
-     "iopub.status.busy": "2025-11-30T13:31:06.171872Z",
-     "iopub.status.idle": "2025-11-30T13:32:19.938649Z",
-     "shell.execute_reply": "2025-11-30T13:32:19.937722Z"
+     "iopub.execute_input": "2025-11-30T19:02:27.108428Z",
+     "iopub.status.busy": "2025-11-30T19:02:27.108250Z",
+     "iopub.status.idle": "2025-11-30T19:03:46.540049Z",
+     "shell.execute_reply": "2025-11-30T19:03:46.539140Z"
     }
    },
    "outputs": [
@@ -232,63 +232,63 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 1 ] 0.09999999999999999 0.01 0.21091056562040866 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.692570182, 0.425501371, 0.26706881099999996]}\n"
+      "[ 1 ] 0.09999999999999999 0.01 0.21091056562040933 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.771506356, 0.475468483, 0.29603787299999995]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 2 ] 0.20000000000000004 0.01 0.15979702768266893 {'converged': True, 'iterations': 3, 'linear_iterations': 3, 'timing': [1.020875671, 0.649583266, 0.37129240499999994]}\n"
+      "[ 2 ] 0.20000000000000004 0.01 0.15979702768267395 {'converged': True, 'iterations': 3, 'linear_iterations': 3, 'timing': [1.085804232, 0.714393764, 0.3714104680000001]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 3 ] 0.3000000000000001 0.01 0.14625128437424634 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.689207014, 0.422010299, 0.267196715]}\n"
+      "[ 3 ] 0.3000000000000001 0.01 0.14625128437424803 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.764796465, 0.479205094, 0.285591371]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 4 ] 0.4000000000000002 0.01 0.13650640507974152 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.688026041, 0.422084111, 0.26594193]}\n"
+      "[ 4 ] 0.4000000000000002 0.01 0.1365064050797431 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.748730562, 0.47455589, 0.274174672]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 5 ] 0.5000000000000002 0.01 0.12678192004910205 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.690521026, 0.42321894800000004, 0.26730207799999994]}\n"
+      "[ 5 ] 0.5000000000000002 0.01 0.12678192004910352 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.756686055, 0.474980729, 0.281705326]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 6 ] 0.6000000000000003 0.01 0.11686029348490562 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.686268115, 0.421711152, 0.264556963]}\n"
+      "[ 6 ] 0.6000000000000003 0.01 0.1168602934849072 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.754514029, 0.479574438, 0.274939591]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 7 ] 1.1000000000000008 0.05 0.08265470257362995 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.685606601, 0.42553658, 0.26007002100000004]}\n"
+      "[ 7 ] 1.1000000000000008 0.05 0.0826547025736299 {'converged': True, 'iterations': 2, 'linear_iterations': 2, 'timing': [0.77239569, 0.477792116, 0.294603574]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 8 ] 1.6000000000000012 0.05 0.08265484990090013 {'converged': True, 'iterations': 1, 'linear_iterations': 1, 'timing': [0.362965708, 0.20647087600000003, 0.15649483199999997]}\n"
+      "[ 8 ] 1.6000000000000012 0.05 0.08265484990090027 {'converged': True, 'iterations': 1, 'linear_iterations': 1, 'timing': [0.389562385, 0.232091093, 0.157471292]}\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[ 9 ] 2.100000000000001 0.05 0.08265485993702579 {'converged': True, 'iterations': 1, 'linear_iterations': 1, 'timing': [0.354175508, 0.20369177400000002, 0.150483734]}\n"
+      "[ 9 ] 2.100000000000001 0.05 0.08265485993702576 {'converged': True, 'iterations': 1, 'linear_iterations': 1, 'timing': [0.382610142, 0.231384439, 0.151225703]}\n"
      ]
     },
     {

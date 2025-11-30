@@ -651,7 +651,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.2066282429354233, 0.26983786822365224)
+Polygon diameters: (0.22799091032975688, 0.27144570205914875)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -722,11 +722,11 @@ Polygon diameters: (0.2066282429354233, 0.26983786822365224)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.01874745631506846 H^1:  0.3771087585232039 54
-method ( dg ): dofs:  525 L^2:  0.01309784557189704 H^1:  0.3470037405675463 1728
-method ( vem-conforming ): dofs:  102 L^2:  0.021132901432304858 H^1:  0.33335414372644023 29
-method ( vem-nonconforming ): dofs:  151 L^2:  0.019183583165522503 H^1:  0.3457136173245094 32
-method ( bb-dg ): dofs:  150 L^2:  0.01803588475191578 H^1:  0.35995539647690084 86
+method ( lagrange ): dofs:  102 L^2:  0.01933553328694711 H^1:  0.37772016975399364 47
+method ( dg ): dofs:  525 L^2:  0.013321310511394943 H^1:  0.3495564137828735 450
+method ( vem-conforming ): dofs:  102 L^2:  0.022311317248164007 H^1:  0.34600533728806687 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019941174621940127 H^1:  0.356247635788773 31
+method ( bb-dg ): dofs:  150 L^2:  0.01995470266753593 H^1:  0.37373706821509173 82
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -771,7 +771,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.01803588475191578 H^1:  0.35995539647690084
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.01160047742998399), np.float64(0.1583348643326575)]
+non linear problem: [np.float64(0.010758610750885642), np.float64(0.15608977717895278)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -947,7 +947,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(26.406059030758556), np.float64(148.69477049365736)]
+bi-laplace errors: [np.float64(31.28463170285838), np.float64(163.83301001199973)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
