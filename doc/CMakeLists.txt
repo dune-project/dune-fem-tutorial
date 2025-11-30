@@ -6,7 +6,7 @@ landlab_descr.rst twophaseflow_descr.rst ddfem_descr.rst
 mmesh_descr.rst todo.rst citing.rst
 corepy.rst installation.rst overview.rst
 stokes.rst furtherexamples.rst nextsteps.rst furthertopics.rst
-inforesources.rst userprojects.rst
+inforesources.rst userprojects.rst versions.rst
 gridviews_and_adaptivity.rst cpp.rst developers.rst slurmbatchscript.rst
 changelog.rst changelog290.rst changelog210.rst
 scheme_api.rst
