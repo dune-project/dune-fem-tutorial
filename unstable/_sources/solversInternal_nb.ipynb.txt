@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "6bb2833f",
+   "id": "fd621390",
    "metadata": {},
    "source": [
     "\n",
@@ -43,13 +43,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "d4da713d",
+   "id": "8041486c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:15:31.899975Z",
-     "iopub.status.busy": "2025-11-29T18:15:31.899713Z",
-     "iopub.status.idle": "2025-11-29T18:15:33.726748Z",
-     "shell.execute_reply": "2025-11-29T18:15:33.725806Z"
+     "iopub.execute_input": "2025-11-29T23:11:47.604484Z",
+     "iopub.status.busy": "2025-11-29T23:11:47.604212Z",
+     "iopub.status.idle": "2025-11-29T23:11:49.471314Z",
+     "shell.execute_reply": "2025-11-29T23:11:49.470268Z"
     },
     "lines_to_next_cell": 1
    },
@@ -83,7 +83,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "620ce7c3",
+   "id": "2cc84e29",
    "metadata": {},
    "source": [
     "When creating a scheme, it is possible to set the linear solver as well as\n",
@@ -102,13 +102,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "f39a23cf",
+   "id": "1c348ee5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:15:33.729082Z",
-     "iopub.status.busy": "2025-11-29T18:15:33.728797Z",
-     "iopub.status.idle": "2025-11-29T18:15:33.812532Z",
-     "shell.execute_reply": "2025-11-29T18:15:33.811741Z"
+     "iopub.execute_input": "2025-11-29T23:11:49.473368Z",
+     "iopub.status.busy": "2025-11-29T23:11:49.473093Z",
+     "iopub.status.idle": "2025-11-29T23:11:49.560231Z",
+     "shell.execute_reply": "2025-11-29T23:11:49.559294Z"
     }
    },
    "outputs": [],
@@ -125,7 +125,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0eb2ba72",
+   "id": "0d39ce37",
    "metadata": {},
    "source": [
     ".. tip:: we use Krylov methods like `cg` and `gmres` in this section to\n",
@@ -140,13 +140,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "6c7951d3",
+   "id": "724e1c7f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:15:33.814997Z",
-     "iopub.status.busy": "2025-11-29T18:15:33.814602Z",
-     "iopub.status.idle": "2025-11-29T18:16:06.086296Z",
-     "shell.execute_reply": "2025-11-29T18:16:06.085579Z"
+     "iopub.execute_input": "2025-11-29T23:11:49.562271Z",
+     "iopub.status.busy": "2025-11-29T23:11:49.562092Z",
+     "iopub.status.idle": "2025-11-29T23:12:21.646724Z",
+     "shell.execute_reply": "2025-11-29T23:12:21.645906Z"
     },
     "lines_to_next_cell": 1
    },
@@ -156,7 +156,7 @@
      "output_type": "stream",
      "text": [
       "Default L^2, H^1 error: 1.20362e-06, 1.83003e-04 \n",
-      "\t solver info= {'converged': True, 'iterations': 4, 'linear_iterations': 252, 'timing': [0.027086126, 0.008276073, 0.018810053]}\n"
+      "\t solver info= {'converged': True, 'iterations': 4, 'linear_iterations': 252, 'timing': [0.026343372, 0.008105264000000001, 0.018238108]}\n"
      ]
     },
     {
@@ -179,7 +179,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "71b905f3",
+   "id": "4301cd72",
    "metadata": {},
    "source": [
     "\n",
@@ -195,13 +195,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "9c9f1ec7",
+   "id": "4942fa61",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:16:06.088744Z",
-     "iopub.status.busy": "2025-11-29T18:16:06.088408Z",
-     "iopub.status.idle": "2025-11-29T18:16:38.167402Z",
-     "shell.execute_reply": "2025-11-29T18:16:38.166127Z"
+     "iopub.execute_input": "2025-11-29T23:12:21.648654Z",
+     "iopub.status.busy": "2025-11-29T23:12:21.648445Z",
+     "iopub.status.idle": "2025-11-29T23:12:53.806615Z",
+     "shell.execute_reply": "2025-11-29T23:12:53.805363Z"
     }
    },
    "outputs": [
@@ -252,7 +252,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ae3c0119",
+   "id": "39063179",
    "metadata": {},
    "source": [
     ".. tip:: The iterative linear solvers use the provided target discrete\n",
@@ -262,7 +262,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e8b26d59",
+   "id": "00447fb9",
    "metadata": {},
    "source": [
     "A second version using a linearization of the non-linear problem\n",
@@ -274,13 +274,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "85b99e49",
+   "id": "f1c5e6d9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:16:38.170032Z",
-     "iopub.status.busy": "2025-11-29T18:16:38.169824Z",
-     "iopub.status.idle": "2025-11-29T18:16:38.669988Z",
-     "shell.execute_reply": "2025-11-29T18:16:38.668786Z"
+     "iopub.execute_input": "2025-11-29T23:12:53.809318Z",
+     "iopub.status.busy": "2025-11-29T23:12:53.809103Z",
+     "iopub.status.idle": "2025-11-29T23:12:54.310704Z",
+     "shell.execute_reply": "2025-11-29T23:12:54.309559Z"
     }
    },
    "outputs": [
@@ -357,7 +357,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "021f1ed6",
+   "id": "3058dc37",
    "metadata": {},
    "source": [
     ".. tip:: the parameters used to tweak the linear solver set when constructing\n",
@@ -373,13 +373,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "83b13500",
+   "id": "58b76253",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:16:38.673100Z",
-     "iopub.status.busy": "2025-11-29T18:16:38.672270Z",
-     "iopub.status.idle": "2025-11-29T18:17:10.844247Z",
-     "shell.execute_reply": "2025-11-29T18:17:10.843366Z"
+     "iopub.execute_input": "2025-11-29T23:12:54.313454Z",
+     "iopub.status.busy": "2025-11-29T23:12:54.313242Z",
+     "iopub.status.idle": "2025-11-29T23:13:26.524283Z",
+     "shell.execute_reply": "2025-11-29T23:13:26.523100Z"
     }
    },
    "outputs": [
@@ -405,7 +405,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5686b4d6",
+   "id": "6ce5b22b",
    "metadata": {},
    "source": [
     "Since we setup the `scheme` using `solver=\"cg\"` calling the `solve`\n",
@@ -417,13 +417,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "f7973f8a",
+   "id": "dcd24dd5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:17:10.846528Z",
-     "iopub.status.busy": "2025-11-29T18:17:10.846311Z",
-     "iopub.status.idle": "2025-11-29T18:17:10.863303Z",
-     "shell.execute_reply": "2025-11-29T18:17:10.862513Z"
+     "iopub.execute_input": "2025-11-29T23:13:26.526082Z",
+     "iopub.status.busy": "2025-11-29T23:13:26.525896Z",
+     "iopub.status.idle": "2025-11-29T23:13:26.542388Z",
+     "shell.execute_reply": "2025-11-29T23:13:26.541562Z"
     }
    },
    "outputs": [
@@ -431,7 +431,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "{'converged': True, 'iterations': 0, 'linear_iterations': 213, 'timing': [0.012301824, 0.002930637, 0.009371187]}\n"
+      "{'converged': True, 'iterations': 0, 'linear_iterations': 213, 'timing': [0.012288642, 0.002888654, 0.009399988000000001]}\n"
      ]
     }
    ],
@@ -443,7 +443,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b4cb48e7",
+   "id": "4c9d10c2",
    "metadata": {},
    "source": [
     ".. tip:: since the problem is linear the Newton method produces no real overhead."
@@ -451,7 +451,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "77490418",
+   "id": "849410f7",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -473,13 +473,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "06bd9341",
+   "id": "b76aba37",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:17:10.865399Z",
-     "iopub.status.busy": "2025-11-29T18:17:10.865192Z",
-     "iopub.status.idle": "2025-11-29T18:17:43.165217Z",
-     "shell.execute_reply": "2025-11-29T18:17:43.163699Z"
+     "iopub.execute_input": "2025-11-29T23:13:26.544963Z",
+     "iopub.status.busy": "2025-11-29T23:13:26.544762Z",
+     "iopub.status.idle": "2025-11-29T23:13:58.793453Z",
+     "shell.execute_reply": "2025-11-29T23:13:58.792877Z"
     }
    },
    "outputs": [],
@@ -494,7 +494,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cd17e469",
+   "id": "7f7ff559",
    "metadata": {},
    "source": [
     "So far everything is as before. Dirichlet boundary conditions\n",
@@ -512,13 +512,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "9474828c",
+   "id": "9d75b8c7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:17:43.167188Z",
-     "iopub.status.busy": "2025-11-29T18:17:43.166959Z",
-     "iopub.status.idle": "2025-11-29T18:17:43.388842Z",
-     "shell.execute_reply": "2025-11-29T18:17:43.388006Z"
+     "iopub.execute_input": "2025-11-29T23:13:58.796270Z",
+     "iopub.status.busy": "2025-11-29T23:13:58.796056Z",
+     "iopub.status.idle": "2025-11-29T23:13:59.019479Z",
+     "shell.execute_reply": "2025-11-29T23:13:59.018656Z"
     }
    },
    "outputs": [
@@ -547,7 +547,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "dd23e6c3",
+   "id": "8687fe58",
    "metadata": {},
    "source": [
     "Let's revisit our two implementations of the Newton method discussed\n",
@@ -557,13 +557,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "52e975e9",
+   "id": "6259fa43",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:17:43.390750Z",
-     "iopub.status.busy": "2025-11-29T18:17:43.390544Z",
-     "iopub.status.idle": "2025-11-29T18:17:43.467321Z",
-     "shell.execute_reply": "2025-11-29T18:17:43.466500Z"
+     "iopub.execute_input": "2025-11-29T23:13:59.021635Z",
+     "iopub.status.busy": "2025-11-29T23:13:59.021419Z",
+     "iopub.status.idle": "2025-11-29T23:13:59.100486Z",
+     "shell.execute_reply": "2025-11-29T23:13:59.099680Z"
     }
    },
    "outputs": [],
@@ -573,7 +573,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "792f2d1e",
+   "id": "ae989345",
    "metadata": {},
    "source": [
     "First version with `scheme.linear`:"
@@ -582,13 +582,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "b3b9d322",
+   "id": "8b632c21",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:17:43.469392Z",
-     "iopub.status.busy": "2025-11-29T18:17:43.469096Z",
-     "iopub.status.idle": "2025-11-29T18:18:15.485202Z",
-     "shell.execute_reply": "2025-11-29T18:18:15.484418Z"
+     "iopub.execute_input": "2025-11-29T23:13:59.102731Z",
+     "iopub.status.busy": "2025-11-29T23:13:59.102517Z",
+     "iopub.status.idle": "2025-11-29T23:14:31.331544Z",
+     "shell.execute_reply": "2025-11-29T23:14:31.330097Z"
     }
    },
    "outputs": [
@@ -610,7 +610,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b12901c6",
+   "id": "4584c992",
    "metadata": {},
    "source": [
     "and using the `linearized` operator:"
@@ -619,13 +619,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "b747305f",
+   "id": "91fd0b41",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:18:15.487370Z",
-     "iopub.status.busy": "2025-11-29T18:18:15.487162Z",
-     "iopub.status.idle": "2025-11-29T18:18:47.367174Z",
-     "shell.execute_reply": "2025-11-29T18:18:47.366609Z"
+     "iopub.execute_input": "2025-11-29T23:14:31.334201Z",
+     "iopub.status.busy": "2025-11-29T23:14:31.333982Z",
+     "iopub.status.idle": "2025-11-29T23:15:03.426045Z",
+     "shell.execute_reply": "2025-11-29T23:15:03.425207Z"
     }
    },
    "outputs": [
@@ -652,7 +652,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d968b798",
+   "id": "e6ad7d68",
    "metadata": {},
    "source": [
     "## Other internal solvers (petsc)\n",
@@ -666,13 +666,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "fe6dd61d",
+   "id": "f393968d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:18:47.369415Z",
-     "iopub.status.busy": "2025-11-29T18:18:47.369212Z",
-     "iopub.status.idle": "2025-11-29T18:18:47.375222Z",
-     "shell.execute_reply": "2025-11-29T18:18:47.374309Z"
+     "iopub.execute_input": "2025-11-29T23:15:03.428191Z",
+     "iopub.status.busy": "2025-11-29T23:15:03.427985Z",
+     "iopub.status.idle": "2025-11-29T23:15:03.434613Z",
+     "shell.execute_reply": "2025-11-29T23:15:03.433778Z"
     }
    },
    "outputs": [],
@@ -688,7 +688,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "85f2ca70",
+   "id": "7bfe27b1",
    "metadata": {},
    "source": [
     "We provide internal bindings to parts of the PETSc package and show this\n",
@@ -711,13 +711,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "9455140a",
+   "id": "1eec0618",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:18:47.376843Z",
-     "iopub.status.busy": "2025-11-29T18:18:47.376637Z",
-     "iopub.status.idle": "2025-11-29T18:19:19.410570Z",
-     "shell.execute_reply": "2025-11-29T18:19:19.409268Z"
+     "iopub.execute_input": "2025-11-29T23:15:03.436208Z",
+     "iopub.status.busy": "2025-11-29T23:15:03.436041Z",
+     "iopub.status.idle": "2025-11-29T23:15:35.673761Z",
+     "shell.execute_reply": "2025-11-29T23:15:35.672623Z"
     }
    },
    "outputs": [
@@ -726,7 +726,7 @@
      "output_type": "stream",
      "text": [
       "PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04 \n",
-      "\t solver info= {'converged': True, 'iterations': 4, 'linear_iterations': 22, 'timing': [0.05198893, 0.025444422, 0.026544508]}\n"
+      "\t solver info= {'converged': True, 'iterations': 4, 'linear_iterations': 22, 'timing': [0.052214518, 0.02601463, 0.026199888]}\n"
      ]
     }
    ],
@@ -744,7 +744,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5823534c",
+   "id": "dc571199",
    "metadata": {},
    "source": [
     "## Other internal solvers (istl)\n",
@@ -762,13 +762,13 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "6d1f98ed",
+   "id": "9b5d5505",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:19:19.413775Z",
-     "iopub.status.busy": "2025-11-29T18:19:19.412992Z",
-     "iopub.status.idle": "2025-11-29T18:19:51.497975Z",
-     "shell.execute_reply": "2025-11-29T18:19:51.496835Z"
+     "iopub.execute_input": "2025-11-29T23:15:35.676656Z",
+     "iopub.status.busy": "2025-11-29T23:15:35.676343Z",
+     "iopub.status.idle": "2025-11-29T23:16:08.133670Z",
+     "shell.execute_reply": "2025-11-29T23:16:08.132445Z"
     }
    },
    "outputs": [
@@ -777,7 +777,7 @@
      "output_type": "stream",
      "text": [
       "Dune-Istl L^2, H^1 error: 1.17597e-06, 1.83002e-04 \n",
-      "\t solver info= {'converged': True, 'iterations': 4, 'linear_iterations': 42, 'timing': [0.315050593, 0.028483628999999996, 0.286566964]}\n"
+      "\t solver info= {'converged': True, 'iterations': 4, 'linear_iterations': 42, 'timing': [0.305807792, 0.026154272, 0.27965352000000004]}\n"
      ]
     }
    ],
@@ -793,7 +793,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "73de0154",
+   "id": "c075df11",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -816,13 +816,13 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "d80e0878",
+   "id": "12536ad2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:19:51.500185Z",
-     "iopub.status.busy": "2025-11-29T18:19:51.499979Z",
-     "iopub.status.idle": "2025-11-29T18:20:23.704901Z",
-     "shell.execute_reply": "2025-11-29T18:20:23.703201Z"
+     "iopub.execute_input": "2025-11-29T23:16:08.136436Z",
+     "iopub.status.busy": "2025-11-29T23:16:08.136223Z",
+     "iopub.status.idle": "2025-11-29T23:16:40.222080Z",
+     "shell.execute_reply": "2025-11-29T23:16:40.221593Z"
     }
    },
    "outputs": [
@@ -864,7 +864,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b5bb9eec",
+   "id": "55f09121",
    "metadata": {},
    "source": [
     "We use the `pprint` (pretty print) module if available to get nicer\n",
@@ -874,13 +874,13 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "6e801374",
+   "id": "e638246f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:20:23.707076Z",
-     "iopub.status.busy": "2025-11-29T18:20:23.706864Z",
-     "iopub.status.idle": "2025-11-29T18:20:23.711906Z",
-     "shell.execute_reply": "2025-11-29T18:20:23.711041Z"
+     "iopub.execute_input": "2025-11-29T23:16:40.224423Z",
+     "iopub.status.busy": "2025-11-29T23:16:40.224223Z",
+     "iopub.status.idle": "2025-11-29T23:16:40.229130Z",
+     "shell.execute_reply": "2025-11-29T23:16:40.228292Z"
     }
    },
    "outputs": [
@@ -888,7 +888,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "{'default': {('fem.dofmanager.clearresizedarrays', 'true'), ('fem.dofmanager.memoryfactor', '1.1'), ('fem.threads.communicationthread', 'false')},\n",
+      "{'default': {('fem.dofmanager.memoryfactor', '1.1'), ('fem.dofmanager.clearresizedarrays', 'true'), ('fem.threads.communicationthread', 'false')},\n",
       " 'log-jacobi': {('fem.solver.linear.maxiterations', '2147483647'),\n",
       "                ('fem.solver.linear.preconditioning.iterations', '1'),\n",
       "                ('fem.solver.linear.preconditioning.relaxation', '1.1'),\n",
@@ -921,7 +921,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3c8de080",
+   "id": "a00ad58e",
    "metadata": {},
    "source": [
     "Note above that all parameters are printed including some default ones\n",
@@ -936,13 +936,13 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "id": "a2a33ecd",
+   "id": "7e3bf642",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:20:23.713557Z",
-     "iopub.status.busy": "2025-11-29T18:20:23.713379Z",
-     "iopub.status.idle": "2025-11-29T18:20:23.716966Z",
-     "shell.execute_reply": "2025-11-29T18:20:23.716231Z"
+     "iopub.execute_input": "2025-11-29T23:16:40.230852Z",
+     "iopub.status.busy": "2025-11-29T23:16:40.230693Z",
+     "iopub.status.idle": "2025-11-29T23:16:40.234182Z",
+     "shell.execute_reply": "2025-11-29T23:16:40.233371Z"
     }
    },
    "outputs": [
@@ -976,7 +976,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6b18bc24",
+   "id": "fe705c5b",
    "metadata": {},
    "source": [
     "One can easily reuse these parameters to construct another scheme by\n",
@@ -991,13 +991,13 @@
   {
    "cell_type": "code",
    "execution_count": 19,
-   "id": "dd9f7288",
+   "id": "3584e8e4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:20:23.718837Z",
-     "iopub.status.busy": "2025-11-29T18:20:23.718659Z",
-     "iopub.status.idle": "2025-11-29T18:20:56.520458Z",
-     "shell.execute_reply": "2025-11-29T18:20:56.519111Z"
+     "iopub.execute_input": "2025-11-29T23:16:40.235732Z",
+     "iopub.status.busy": "2025-11-29T23:16:40.235570Z",
+     "iopub.status.idle": "2025-11-29T23:17:12.415934Z",
+     "shell.execute_reply": "2025-11-29T23:17:12.415362Z"
     }
    },
    "outputs": [
@@ -1037,7 +1037,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "46fc9c9a",
+   "id": "c2d638aa",
    "metadata": {},
    "source": [
     ".. tip:: To get information about available values for some parameters\n",
@@ -1048,13 +1048,13 @@
   {
    "cell_type": "code",
    "execution_count": 20,
-   "id": "f07b5a74",
+   "id": "a3fcdc60",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:20:56.523029Z",
-     "iopub.status.busy": "2025-11-29T18:20:56.522821Z",
-     "iopub.status.idle": "2025-11-29T18:20:56.570167Z",
-     "shell.execute_reply": "2025-11-29T18:20:56.569289Z"
+     "iopub.execute_input": "2025-11-29T23:17:12.418125Z",
+     "iopub.status.busy": "2025-11-29T23:17:12.417921Z",
+     "iopub.status.idle": "2025-11-29T23:17:12.464489Z",
+     "shell.execute_reply": "2025-11-29T23:17:12.463600Z"
     }
    },
    "outputs": [
@@ -1084,7 +1084,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6f896059",
+   "id": "5a5bb2df",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -1104,13 +1104,13 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "id": "64361d2c",
+   "id": "444021da",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:20:56.572049Z",
-     "iopub.status.busy": "2025-11-29T18:20:56.571856Z",
-     "iopub.status.idle": "2025-11-29T18:20:56.575349Z",
-     "shell.execute_reply": "2025-11-29T18:20:56.574572Z"
+     "iopub.execute_input": "2025-11-29T23:17:12.466382Z",
+     "iopub.status.busy": "2025-11-29T23:17:12.466203Z",
+     "iopub.status.idle": "2025-11-29T23:17:12.469794Z",
+     "shell.execute_reply": "2025-11-29T23:17:12.469020Z"
     }
    },
    "outputs": [],
@@ -1120,7 +1120,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3503fb24",
+   "id": "ee5f9573",
    "metadata": {},
    "source": [
     "Switching is as simple as passing `storage='istl'` or  `storage='petsc'`.\n",
@@ -1142,7 +1142,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c0b8b9bc",
+   "id": "885facb2",
    "metadata": {},
    "source": [
     ".. index:: Solvers; Parameters\n",
@@ -1159,13 +1159,13 @@
   {
    "cell_type": "code",
    "execution_count": 22,
-   "id": "46e8b599",
+   "id": "81dcb17f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:20:56.577173Z",
-     "iopub.status.busy": "2025-11-29T18:20:56.576986Z",
-     "iopub.status.idle": "2025-11-29T18:20:56.582791Z",
-     "shell.execute_reply": "2025-11-29T18:20:56.581834Z"
+     "iopub.execute_input": "2025-11-29T23:17:12.471746Z",
+     "iopub.status.busy": "2025-11-29T23:17:12.471571Z",
+     "iopub.status.idle": "2025-11-29T23:17:12.477298Z",
+     "shell.execute_reply": "2025-11-29T23:17:12.476522Z"
     }
    },
    "outputs": [

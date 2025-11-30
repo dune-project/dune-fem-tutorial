@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "f9aa3dc7",
+   "id": "62b935cf",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -29,13 +29,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "c36c291d",
+   "id": "08302fa7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:18:27.998128Z",
-     "iopub.status.busy": "2025-11-29T18:18:27.997943Z",
-     "iopub.status.idle": "2025-11-29T18:18:29.745714Z",
-     "shell.execute_reply": "2025-11-29T18:18:29.744772Z"
+     "iopub.execute_input": "2025-11-29T23:13:05.042142Z",
+     "iopub.status.busy": "2025-11-29T23:13:05.041944Z",
+     "iopub.status.idle": "2025-11-29T23:13:06.811460Z",
+     "shell.execute_reply": "2025-11-29T23:13:06.810629Z"
     }
    },
    "outputs": [],
@@ -65,7 +65,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5f93b39b",
+   "id": "4eddff98",
    "metadata": {},
    "source": [
     "\n",
@@ -75,13 +75,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "9c6a2b4c",
+   "id": "340f2bc3",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:18:29.747895Z",
-     "iopub.status.busy": "2025-11-29T18:18:29.747600Z",
-     "iopub.status.idle": "2025-11-29T18:18:29.758483Z",
-     "shell.execute_reply": "2025-11-29T18:18:29.757709Z"
+     "iopub.execute_input": "2025-11-29T23:13:06.813910Z",
+     "iopub.status.busy": "2025-11-29T23:13:06.813639Z",
+     "iopub.status.idle": "2025-11-29T23:13:06.824214Z",
+     "shell.execute_reply": "2025-11-29T23:13:06.823486Z"
     }
    },
    "outputs": [],
@@ -120,7 +120,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "dd96f86a",
+   "id": "98be49d3",
    "metadata": {},
    "source": [
     "We solve the problem as in previous examples"
@@ -129,13 +129,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "4bb32eb3",
+   "id": "2d5928c1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:18:29.760251Z",
-     "iopub.status.busy": "2025-11-29T18:18:29.760072Z",
-     "iopub.status.idle": "2025-11-29T18:18:30.336229Z",
-     "shell.execute_reply": "2025-11-29T18:18:30.335098Z"
+     "iopub.execute_input": "2025-11-29T23:13:06.826194Z",
+     "iopub.status.busy": "2025-11-29T23:13:06.826000Z",
+     "iopub.status.idle": "2025-11-29T23:13:07.395577Z",
+     "shell.execute_reply": "2025-11-29T23:13:07.394674Z"
     },
     "nbsphinx-thumbnail": {
      "tooltip": "Discontinuous Galerkin method for advection dominated problems"
@@ -170,7 +170,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "fc580267",
+   "id": "72bb5ba8",
    "metadata": {},
    "source": [
     "So far the example was not really advection dominated so we now\n",
@@ -180,13 +180,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "a2d6adfb",
+   "id": "3315dd9b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:18:30.338277Z",
-     "iopub.status.busy": "2025-11-29T18:18:30.337869Z",
-     "iopub.status.idle": "2025-11-29T18:19:02.771176Z",
-     "shell.execute_reply": "2025-11-29T18:19:02.770325Z"
+     "iopub.execute_input": "2025-11-29T23:13:07.397338Z",
+     "iopub.status.busy": "2025-11-29T23:13:07.397146Z",
+     "iopub.status.idle": "2025-11-29T23:13:38.290638Z",
+     "shell.execute_reply": "2025-11-29T23:13:38.289728Z"
     }
    },
    "outputs": [
@@ -218,7 +218,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b774b46a",
+   "id": "972ef5c0",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -243,13 +243,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "00ba3247",
+   "id": "0ca8a9ab",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:19:02.773084Z",
-     "iopub.status.busy": "2025-11-29T18:19:02.772894Z",
-     "iopub.status.idle": "2025-11-29T18:19:02.836502Z",
-     "shell.execute_reply": "2025-11-29T18:19:02.835626Z"
+     "iopub.execute_input": "2025-11-29T23:13:38.292431Z",
+     "iopub.status.busy": "2025-11-29T23:13:38.292247Z",
+     "iopub.status.idle": "2025-11-29T23:13:38.355964Z",
+     "shell.execute_reply": "2025-11-29T23:13:38.355073Z"
     }
    },
    "outputs": [],
@@ -263,7 +263,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7c4588cb",
+   "id": "410a514f",
    "metadata": {},
    "source": [
     "The space discretization uses the same upwind flux discussed already for the\n",
@@ -300,13 +300,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "a232ff76",
+   "id": "1abc58cc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:19:02.838980Z",
-     "iopub.status.busy": "2025-11-29T18:19:02.838777Z",
-     "iopub.status.idle": "2025-11-29T18:19:02.845128Z",
-     "shell.execute_reply": "2025-11-29T18:19:02.844239Z"
+     "iopub.execute_input": "2025-11-29T23:13:38.357611Z",
+     "iopub.status.busy": "2025-11-29T23:13:38.357437Z",
+     "iopub.status.idle": "2025-11-29T23:13:38.363491Z",
+     "shell.execute_reply": "2025-11-29T23:13:38.362670Z"
     }
    },
    "outputs": [],
@@ -333,7 +333,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e495d8b2",
+   "id": "ccae780f",
    "metadata": {},
    "source": [
     "We could use the standard approach based on the `dune.fem.operator.galerkin` construction\n",
@@ -344,13 +344,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "04afeb00",
+   "id": "83747e91",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:19:02.847053Z",
-     "iopub.status.busy": "2025-11-29T18:19:02.846813Z",
-     "iopub.status.idle": "2025-11-29T18:19:02.915220Z",
-     "shell.execute_reply": "2025-11-29T18:19:02.914397Z"
+     "iopub.execute_input": "2025-11-29T23:13:38.365201Z",
+     "iopub.status.busy": "2025-11-29T23:13:38.365002Z",
+     "iopub.status.idle": "2025-11-29T23:13:38.428101Z",
+     "shell.execute_reply": "2025-11-29T23:13:38.427179Z"
     }
    },
    "outputs": [],
@@ -361,7 +361,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2349c161",
+   "id": "41a3a1fa",
    "metadata": {},
    "source": [
     "So `op(uh,res)` applies the given operator to `uh`,\n",
@@ -381,13 +381,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "c3a16e62",
+   "id": "1b30017e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:19:02.917840Z",
-     "iopub.status.busy": "2025-11-29T18:19:02.917602Z",
-     "iopub.status.idle": "2025-11-29T18:19:03.310042Z",
-     "shell.execute_reply": "2025-11-29T18:19:03.309124Z"
+     "iopub.execute_input": "2025-11-29T23:13:38.429760Z",
+     "iopub.status.busy": "2025-11-29T23:13:38.429560Z",
+     "iopub.status.idle": "2025-11-29T23:13:38.794854Z",
+     "shell.execute_reply": "2025-11-29T23:13:38.793961Z"
     }
    },
    "outputs": [
@@ -439,7 +439,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2752bb41",
+   "id": "3c32e12f",
    "metadata": {},
    "source": [
     "\n",

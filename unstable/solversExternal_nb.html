@@ -577,7 +577,7 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.lines.Line2D at 0x7f770f7d12b0&gt;
+&lt;matplotlib.lines.Line2D at 0x7efe9be992b0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -799,7 +799,7 @@ Scipy-2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 <section id="Using-scikit-umfpack">
 <span id="index-1"></span><h2>Using scikit-umfpack<a class="headerlink" href="#Using-scikit-umfpack" title="Link to this heading"></a></h2>
 <p>While <code class="docutils literal notranslate"><span class="pre">umfpack</span></code> can be used as a direct <a class="reference internal" href="solversInternal_nb.html"><span class="doc">internal solver</span></a> a more fine grained usage is sometimes available through the Python binding for <code class="docutils literal notranslate"><span class="pre">umfpack</span></code> available through the <code class="docutils literal notranslate"><span class="pre">scikit</span></code> package. which needs to be installed for the following to run:</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
@@ -810,14 +810,6 @@ Scipy-2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
     <span class="n">um</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-can not import scikits.umfpacl
-</pre></div></div>
 </div>
 <p>We will demonstrate the usage by solving our non-linear problem with a hand written Newton method assuming that the symbolic decomposition of the system matrix can be reused in each step:</p>
 <p>if um: class Scheme3: def <strong>init</strong>(self, op): self.model = op.model self.jacobian = op.linear() self.op = op self.umfpack = um.UmfpackContext() # Use default ‘di’ family of UMFPACK routines. self.umfpack.symbolic( self.jacobian.as_numpy )</p>
@@ -1013,7 +1005,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 29, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

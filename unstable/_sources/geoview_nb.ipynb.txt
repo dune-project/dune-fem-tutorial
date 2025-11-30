@@ -2,20 +2,20 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "188be816",
+   "id": "cb041677",
    "metadata": {},
    "source": []
   },
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "f4fe064e",
+   "id": "854acc7d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:22:39.586107Z",
-     "iopub.status.busy": "2025-11-29T18:22:39.585925Z",
-     "iopub.status.idle": "2025-11-29T18:22:40.818443Z",
-     "shell.execute_reply": "2025-11-29T18:22:40.817228Z"
+     "iopub.execute_input": "2025-11-29T23:17:03.226493Z",
+     "iopub.status.busy": "2025-11-29T23:17:03.226231Z",
+     "iopub.status.idle": "2025-11-29T23:17:04.435227Z",
+     "shell.execute_reply": "2025-11-29T23:17:04.434334Z"
     }
    },
    "outputs": [],
@@ -36,13 +36,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "b6c2eaad",
+   "id": "9c218003",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:22:40.820571Z",
-     "iopub.status.busy": "2025-11-29T18:22:40.820263Z",
-     "iopub.status.idle": "2025-11-29T18:22:40.898093Z",
-     "shell.execute_reply": "2025-11-29T18:22:40.897209Z"
+     "iopub.execute_input": "2025-11-29T23:17:04.437717Z",
+     "iopub.status.busy": "2025-11-29T23:17:04.437451Z",
+     "iopub.status.idle": "2025-11-29T23:17:04.511685Z",
+     "shell.execute_reply": "2025-11-29T23:17:04.510863Z"
     }
    },
    "outputs": [
@@ -63,7 +63,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ed46e9d0",
+   "id": "69d8db41",
    "metadata": {},
    "source": [
     "In a second example we embed a 1D interval into 3D:"
@@ -72,13 +72,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "a17934c4",
+   "id": "557d44f1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:22:40.900030Z",
-     "iopub.status.busy": "2025-11-29T18:22:40.899838Z",
-     "iopub.status.idle": "2025-11-29T18:22:41.001997Z",
-     "shell.execute_reply": "2025-11-29T18:22:41.001155Z"
+     "iopub.execute_input": "2025-11-29T23:17:04.513428Z",
+     "iopub.status.busy": "2025-11-29T23:17:04.513237Z",
+     "iopub.status.idle": "2025-11-29T23:17:04.607206Z",
+     "shell.execute_reply": "2025-11-29T23:17:04.606365Z"
     }
    },
    "outputs": [],
@@ -93,7 +93,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9c0ee852",
+   "id": "da4a5e96",
    "metadata": {},
    "source": [
     "Note: currently plotting for 1d grids is not implemented\n",
@@ -104,13 +104,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "1ab4ef47",
+   "id": "b5bc8b6a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:22:41.004354Z",
-     "iopub.status.busy": "2025-11-29T18:22:41.004154Z",
-     "iopub.status.idle": "2025-11-29T18:23:31.845444Z",
-     "shell.execute_reply": "2025-11-29T18:23:31.844427Z"
+     "iopub.execute_input": "2025-11-29T23:17:04.608990Z",
+     "iopub.status.busy": "2025-11-29T23:17:04.608815Z",
+     "iopub.status.idle": "2025-11-29T23:17:51.643672Z",
+     "shell.execute_reply": "2025-11-29T23:17:51.642852Z"
     }
    },
    "outputs": [

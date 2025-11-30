@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "55741479",
+   "id": "520165eb",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; Level grid views\n",
@@ -13,13 +13,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "9a1b8b86",
+   "id": "f5521290",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-11-29T18:56:49.085390Z",
-     "iopub.status.busy": "2025-11-29T18:56:49.085215Z",
-     "iopub.status.idle": "2025-11-29T18:56:49.940408Z",
-     "shell.execute_reply": "2025-11-29T18:56:49.939395Z"
+     "iopub.execute_input": "2025-11-29T23:48:26.850990Z",
+     "iopub.status.busy": "2025-11-29T23:48:26.850732Z",
+     "iopub.status.idle": "2025-11-29T23:48:27.694927Z",
+     "shell.execute_reply": "2025-11-29T23:48:27.693994Z"
     }
    },
    "outputs": [
