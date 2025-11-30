@@ -48,14 +48,11 @@
      <span class="caption-text">
      <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
      <li><u><a href="changelog210.html" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="versions.html" style="color:white">Other versions</a></u></li>
      </span>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
 </ul>
@@ -244,7 +241,7 @@
 <li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#dynamic-local-grid-refinement-and-coarsening-h-adaptation">Dynamic Local Grid Refinement and Coarsening (h-adaptation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic-local-grid-refinement-and-coarsening">Dynamic Local Grid Refinement and Coarsening</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
 </ul>
@@ -264,7 +261,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#overview-on-moving-grids-r-adaptation">Overview on moving grids (r-adaptation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#evolving-domains">Evolving Domains</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
 <li class="toctree-l3"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
 </ul>
@@ -402,6 +399,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inforesources.html">Keyword index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
@@ -452,7 +450,7 @@
 <section id="grid-views-and-adaptivity">
 <span id="index-1"></span><span id="index-0"></span><h1>Grid views and adaptivity<a class="headerlink" href="#grid-views-and-adaptivity" title="Link to this heading"></a></h1>
 <section id="overview-and-some-basic-grid-views-level-and-filtered">
-<h2>Overview and some basic grid views (level and filtered)<a class="headerlink" href="#overview-and-some-basic-grid-views-level-and-filtered" title="Link to this heading"></a></h2>
+<span id="filter-label"></span><h2>Overview and some basic grid views (level and filtered)<a class="headerlink" href="#overview-and-some-basic-grid-views-level-and-filtered" title="Link to this heading"></a></h2>
 <p>When constructing a grid, the object returned to Python is always the so
 called <code class="docutils literal notranslate"><span class="pre">LeafGridView</span></code>. Without any refinement this is simply a view on all
 the elements of the grid. As soon as the grid is refined the leaf grid view changes
@@ -497,8 +495,8 @@ set with indices restricted to the elements in the filter.</p></li>
 </ul>
 </div>
 </section>
-<section id="dynamic-local-grid-refinement-and-coarsening-h-adaptation">
-<h2>Dynamic Local Grid Refinement and Coarsening (h-adaptation)<a class="headerlink" href="#dynamic-local-grid-refinement-and-coarsening-h-adaptation" title="Link to this heading"></a></h2>
+<section id="dynamic-local-grid-refinement-and-coarsening">
+<span id="adapt-label"></span><h2>Dynamic Local Grid Refinement and Coarsening<a class="headerlink" href="#dynamic-local-grid-refinement-and-coarsening" title="Link to this heading"></a></h2>
 <p>For refining and coarsening a grid locally the <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> module provides a
 function <code class="docutils literal notranslate"><span class="pre">gridAdapt</span></code>. The storage of <strong>all</strong> discrete functions will be
 automatically resized to accommodate the changes in the hierarchical grid those
@@ -614,7 +612,7 @@ bindings it is also fairly easy to implement a custom marking strategy in C++ an
 </div>
 </section>
 <section id="overview-on-adaptivity-for-spaces-p-adaptation">
-<h2>Overview on adaptivity for spaces (p-adaptation)<a class="headerlink" href="#overview-on-adaptivity-for-spaces-p-adaptation" title="Link to this heading"></a></h2>
+<span id="padapt-label"></span><h2>Overview on adaptivity for spaces (p-adaptation)<a class="headerlink" href="#overview-on-adaptivity-for-spaces-p-adaptation" title="Link to this heading"></a></h2>
 <p>For adjusting the polynomial degree of a discrete function space locally (on each element separately)
 the <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> module provides a function <code class="docutils literal notranslate"><span class="pre">spaceAdapt</span></code>. The storage of <strong>all</strong> discrete functions created over this space
 will be automatically resized to accommodate the changes in the space that is adapted.</p>
@@ -704,9 +702,10 @@ signature:</p>
 </ul>
 </div>
 </section>
-<section id="overview-on-moving-grids-r-adaptation">
-<h2>Overview on moving grids (r-adaptation)<a class="headerlink" href="#overview-on-moving-grids-r-adaptation" title="Link to this heading"></a></h2>
-<p>An example of <cite>r-adaptation</cite> for a two-phase flow problem in porous media is found
+<section id="evolving-domains">
+<span id="geom-label"></span><h2>Evolving Domains<a class="headerlink" href="#evolving-domains" title="Link to this heading"></a></h2>
+<p>Moving grids are also sometimes referred to as <strong>r-adaptation</strong>.
+An example of <cite>r-adaptation</cite> for a two-phase flow problem in porous media is found
 on the <a class="reference external" href="https://dune-mmesh.readthedocs.io/en/latest/examples/moving.html">Dune-MMesh</a> documentation page.</p>
 <p>As mentioned above DUNE-FEM provides a grid view that makes it easy to
 exchange the geometry of each entity in the grid. To setup such a grid view

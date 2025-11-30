@@ -7,6 +7,9 @@
 Grid views and adaptivity
 ###############################################
 
+
+.. _filter-label:
+
 =======================================================
 Overview and some basic grid views (level and filtered)
 =======================================================
@@ -63,9 +66,12 @@ further in this chapter:
 
    filteredgridview_nb
 
-===========================================================
-Dynamic Local Grid Refinement and Coarsening (h-adaptation)
-===========================================================
+
+.. _adapt-label:
+
+============================================
+Dynamic Local Grid Refinement and Coarsening
+============================================
 
 For refining and coarsening a grid locally the ``dune.fem`` module provides a
 function ``gridAdapt``. The storage of **all** discrete functions will be
@@ -195,6 +201,8 @@ bindings it is also fairly easy to implement a custom marking strategy in C++ an
     # pass None for marker to avoid further marking
     fem.gridAdapt(None, [u1,u2,...,uN])
 
+.. _padapt-label:
+
 =================================================
 Overview on adaptivity for spaces (p-adaptation)
 =================================================
@@ -286,10 +294,13 @@ An example where p-adaptation is used can be found here:
    twophaseflow_descr
 
 
-=================================================
-Overview on moving grids (r-adaptation)
-=================================================
+.. _geom-label:
 
+================
+Evolving Domains
+================
+
+Moving grids are also sometimes referred to as **r-adaptation**.
 An example of `r-adaptation` for a two-phase flow problem in porous media is found
 on the `Dune-MMesh`_ documentation page.
 

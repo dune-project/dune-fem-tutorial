@@ -8,6 +8,7 @@
    contributions
    additional
    changelog
+   versions
 
 
 #############

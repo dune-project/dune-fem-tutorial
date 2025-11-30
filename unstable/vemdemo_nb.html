@@ -49,14 +49,11 @@
      <span class="caption-text">
      <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
      <li><u><a href="changelog210.html" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="versions.html" style="color:white">Other versions</a></u></li>
      </span>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Versions</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
 </ul>
@@ -245,7 +242,7 @@
 <li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening-h-adaptation">Dynamic Local Grid Refinement and Coarsening (h-adaptation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening">Dynamic Local Grid Refinement and Coarsening</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
 <li class="toctree-l3"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
 </ul>
@@ -265,7 +262,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-on-moving-grids-r-adaptation">Overview on moving grids (r-adaptation)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#evolving-domains">Evolving Domains</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
 <li class="toctree-l3"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
 </ul>
@@ -403,6 +400,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="inforesources.html">Keyword index</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
@@ -653,7 +651,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.20861817075454125, 0.27371479557820927)
+Polygon diameters: (0.2066282429354233, 0.26983786822365224)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -724,11 +722,11 @@ Polygon diameters: (0.20861817075454125, 0.27371479557820927)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.01798548331856821 H^1:  0.36232002685131237 59
-method ( dg ): dofs:  522 L^2:  0.012027648394843136 H^1:  0.33537408516742956 670
-method ( vem-conforming ): dofs:  102 L^2:  0.021243937449568658 H^1:  0.3371985482158915 30
-method ( vem-nonconforming ): dofs:  151 L^2:  0.01941195042665683 H^1:  0.3505101202766278 32
-method ( bb-dg ): dofs:  150 L^2:  0.02008319030236639 H^1:  0.3686869537853158 85
+method ( lagrange ): dofs:  102 L^2:  0.01874745631506846 H^1:  0.3771087585232039 54
+method ( dg ): dofs:  525 L^2:  0.01309784557189704 H^1:  0.3470037405675463 1728
+method ( vem-conforming ): dofs:  102 L^2:  0.021132901432304858 H^1:  0.33335414372644023 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019183583165522503 H^1:  0.3457136173245094 32
+method ( bb-dg ): dofs:  150 L^2:  0.01803588475191578 H^1:  0.35995539647690084 86
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -773,7 +771,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.02008319030236639 H^1:  0.3686869537853158 
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.010347187199960793), np.float64(0.15415768009757938)]
+non linear problem: [np.float64(0.01160047742998399), np.float64(0.1583348643326575)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -949,7 +947,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(27.622895041754244), np.float64(152.10638503664237)]
+bi-laplace errors: [np.float64(26.406059030758556), np.float64(148.69477049365736)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
