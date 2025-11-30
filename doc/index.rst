@@ -42,11 +42,6 @@ Table of Content
 ################
 
 .. toctree::
-   :caption: Versions
-
-   versions
-
-.. toctree::
    :caption: Overview
 
    overview
