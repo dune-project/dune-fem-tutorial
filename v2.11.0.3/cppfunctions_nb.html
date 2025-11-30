@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>C++ Based Grid Functions &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -465,11 +465,11 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span>
-<span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotComponents</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span><span class="p">,</span> <span class="n">ticker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotComponents</span>
 
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -480,7 +480,7 @@ we set to <code class="docutils literal notranslate"><span class="pre">2</span><
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">gridFunction</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
 <span class="n">code</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">#include &lt;cmath&gt;</span>
 <span class="s2">#include &lt;dune/common/fvector.hh&gt;</span>
@@ -509,9 +509,9 @@ we set to <code class="docutils literal notranslate"><span class="pre">2</span><
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">SpatialCoordinate</span>
-<span class="kn">import</span> <span class="nn">dune.ufl</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">integrate</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpatialCoordinate</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.ufl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">exact</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="n">exact_gf</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ufl&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -545,7 +545,7 @@ that an UFL expression can not be directly passed in - it first needs to be conv
 <span class="s2">  };</span>
 <span class="s2">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
-<span class="kn">from</span> <span class="nn">dune.common</span> <span class="kn">import</span> <span class="n">FieldVector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">FieldVector</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">FieldVector</span><span class="p">([</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">exactCpp2</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">code2</span><span class="p">,</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;aTimesExact&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">exact_gf</span><span class="p">,</span><span class="n">a</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span> <span class="n">integrate</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">exactCpp</span><span class="o">-</span><span class="n">exactCpp2</span><span class="p">))</span> <span class="p">)</span>
@@ -592,11 +592,11 @@ that an UFL expression can not be directly passed in - it first needs to be conv
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span> <span class="k">as</span> <span class="n">solutionSpace</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span>\
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span> <span class="k">as</span> <span class="n">solutionSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span>\
                 <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
-<span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span><span class="p">,</span> <span class="n">Constant</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirichletBC</span><span class="p">,</span> <span class="n">Constant</span>
 
 <span class="n">vecSpace</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">vec</span> <span class="o">=</span> <span class="n">vecSpace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
@@ -667,7 +667,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

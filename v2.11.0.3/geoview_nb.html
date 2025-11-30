@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>&lt;no title&gt; &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -454,12 +454,12 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">as_vector</span>
-<span class="kn">import</span> <span class="nn">dune.ufl</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span>
-<span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">geometryGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">gridFunction</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">as_vector</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.ufl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometryGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
 <span class="n">square</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">transform</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">([</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">])</span>
@@ -488,7 +488,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">sin</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">sin</span>
 <span class="n">square</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">25</span><span class="p">],[</span><span class="mi">100</span><span class="p">])</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">transform</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">([</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span><span class="o">*</span><span class="p">(</span><span class="mi">25</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span>
@@ -502,7 +502,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">gridView</span><span class="o">=</span><span class="n">spiral</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -531,7 +531,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

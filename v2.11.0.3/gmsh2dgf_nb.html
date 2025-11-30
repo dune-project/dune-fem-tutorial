@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Converting gmsh to DGF &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -462,7 +462,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gmsh2DGF</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">bndDomain</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bndSegments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">periodic</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">computeFirstIndex</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">gmsh2DGF</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">bndDomain</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">bndSegments</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">periodic</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">computeFirstIndex</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameter:</span>
 <span class="sd">       points      array(list) of points of length dim</span>
@@ -476,7 +476,7 @@ This document is part of the dune-fem tutorial
 <span class="sd">    Returns</span>
 <span class="sd">        String containing the mesh description in DGF format.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
     <span class="k">if</span> <span class="n">dim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="s2">&quot;tetra&quot;</span> <span class="ow">in</span> <span class="n">cells</span> <span class="ow">or</span> <span class="s2">&quot;hexa&quot;</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">:</span>
@@ -566,7 +566,7 @@ This document is part of the dune-fem tutorial
     <span class="k">return</span> <span class="n">dgf</span>
 
 <span class="c1"># a simple projection for boundary ids</span>
-<span class="k">def</span> <span class="nf">projectBoundaryIds</span><span class="p">(</span> <span class="n">gridView</span> <span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">projectBoundaryIds</span><span class="p">(</span> <span class="n">gridView</span> <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parameter:</span>
 <span class="sd">       gridView     a grid view to project boundary ids for</span>
@@ -575,9 +575,9 @@ This document is part of the dune-fem tutorial
 <span class="sd">       a piecewise discrete function containing values corresponding to</span>
 <span class="sd">       adjacent boundaries. `0` refers to interior elements.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="kn">import</span> <span class="nn">io</span><span class="o">,</span> <span class="nn">sys</span>
-    <span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">finiteVolume</span>
-    <span class="kn">from</span> <span class="nn">dune.generator</span> <span class="kn">import</span> <span class="n">algorithm</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">io</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">finiteVolume</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dune.generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">algorithm</span>
 
     <span class="n">code</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    #include &lt;dune/fem/misc/boundaryidprovider.hh&gt;</span>
@@ -630,7 +630,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

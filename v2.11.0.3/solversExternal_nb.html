@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alternative Solvers (e.g. Scipy, Petsc) &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -466,13 +466,13 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">integrate</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span> \
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span> \
                 <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">conditional</span>
 
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">])</span>
@@ -487,7 +487,7 @@ This document is part of the dune-fem tutorial
 <span class="n">bg</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">exact</span><span class="p">),</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
 
 <span class="c1"># simple function to show the result of a simulation</span>
-<span class="k">def</span> <span class="nf">printResult</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="n">info</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">printResult</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="n">info</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="s2">&quot;L^2, H^1 error:&quot;</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">{:0.5e}</span><span class="s1">, </span><span class="si">{:0.5e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                  <span class="o">*</span><span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">integrate</span><span class="p">([</span><span class="n">error</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">error</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">error</span><span class="p">))])</span> <span class="p">]),</span>
           <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;solver info=&quot;</span><span class="p">,</span><span class="n">info</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -499,8 +499,8 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.operator</span> <span class="kn">import</span> <span class="n">galerkin</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirichletBC</span>
 <span class="n">operator</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">-</span> <span class="p">(</span><span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">),</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
 </pre></div>
 </div>
@@ -638,18 +638,18 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">cg</span>
-<span class="k">class</span> <span class="nc">Scheme1</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">cg</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Scheme1</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="c1"># create a copy of target for the residual</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
         <span class="n">initialGuess</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial-guess&quot;</span><span class="p">)</span>
@@ -712,33 +712,33 @@ Scipy-1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton_krylov</span>
-<span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">LinearOperator</span><span class="p">,</span><span class="n">spilu</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">newton_krylov</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearOperator</span><span class="p">,</span><span class="n">spilu</span>
 
-<span class="k">class</span> <span class="nc">Scheme2</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Scheme2</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">model</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="nf">linCallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">linCallback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linIter</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">def</span> <span class="nf">linSolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">linSolver</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">cg</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span><span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">linCallback</span><span class="p">)</span>
 
     <span class="c1"># non linear function</span>
-    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
         <span class="c1"># the following converts a given numpy array</span>
         <span class="c1"># into a discrete function over the given space</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domainSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="n">dofVector</span><span class="o">=</span><span class="n">x_coeff</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">as_numpy</span>
-    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">fx</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Newton residual:&quot;</span><span class="p">,</span><span class="n">fx</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">fx</span><span class="p">))</span>
 
     <span class="c1"># class for the derivative DS of S</span>
-    <span class="k">class</span> <span class="nc">Df</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Df</span><span class="p">(</span><span class="n">LinearOperator</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x_coeff</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">x_coeff</span><span class="o">.</span><span class="n">dtype</span>
@@ -747,17 +747,17 @@ Scipy-1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
             <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">x_coeff</span><span class="p">,</span><span class="kc">None</span><span class="p">)</span>
         <span class="c1"># reassemble the matrix DF(u) given a DoF vector for u</span>
-        <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domainSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span> <span class="n">dofVector</span><span class="o">=</span><span class="n">x_coeff</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">invJac</span> <span class="o">=</span> <span class="n">spilu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">as_numpy</span><span class="o">.</span><span class="n">tocsc</span><span class="p">())</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="c1"># compute DS(u)^{-1}x for a given DoF vector x</span>
-        <span class="k">def</span> <span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_matvec</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_coeff</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">invJac</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">x_coeff</span><span class="p">)</span>
 
 
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
         <span class="n">sol_coeff</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">as_numpy</span>
         <span class="n">M</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Df</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">,</span><span class="n">sol_coeff</span><span class="p">)</span>
@@ -804,7 +804,7 @@ Scipy-2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">scikits.umfpack</span> <span class="k">as</span> <span class="nn">um</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">scikits.umfpack</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">um</span>
 <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;can not import scikits.umfpacl &quot;</span><span class="p">)</span>
     <span class="n">um</span> <span class="o">=</span> <span class="kc">None</span>
@@ -850,7 +850,7 @@ u_h.plot()
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.common.checkconfiguration</span> <span class="kn">import</span> <span class="n">assertCMakeHave</span><span class="p">,</span> <span class="n">ConfigurationError</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.common.checkconfiguration</span><span class="w"> </span><span class="kn">import</span> <span class="n">assertCMakeHave</span><span class="p">,</span> <span class="n">ConfigurationError</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">assertCMakeHave</span><span class="p">(</span><span class="s2">&quot;HAVE_PETSC&quot;</span><span class="p">)</span>
     <span class="n">petsc</span> <span class="o">=</span> <span class="kc">True</span>
@@ -858,10 +858,10 @@ u_h.plot()
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dune not configured with petsc - skipping example&quot;</span><span class="p">)</span>
     <span class="n">petsc</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">sys</span>
-    <span class="kn">import</span> <span class="nn">petsc4py</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">petsc4py</span>
     <span class="n">petsc4py</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
-    <span class="kn">from</span> <span class="nn">petsc4py</span> <span class="kn">import</span> <span class="n">PETSc</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">petsc4py</span><span class="w"> </span><span class="kn">import</span> <span class="n">PETSc</span>
 <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;petsc4py module not found -- skipping example&quot;</span><span class="p">)</span>
     <span class="n">petsc4py</span> <span class="o">=</span> <span class="kc">None</span>
@@ -881,8 +881,8 @@ u_h.plot()
     <span class="n">opPetsc</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span><span class="o">==</span><span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">,</span><span class="n">DirichletBC</span><span class="p">(</span><span class="n">spacePetsc</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="mi">2</span><span class="p">)],</span>
                        <span class="n">domainSpace</span><span class="o">=</span><span class="n">spacePetsc</span><span class="p">,</span><span class="n">rangeSpace</span><span class="o">=</span><span class="n">spacePetsc</span><span class="p">)</span>
 
-    <span class="k">class</span> <span class="nc">Scheme4</span><span class="p">:</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Scheme4</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span> <span class="o">=</span> <span class="n">PETSc</span><span class="o">.</span><span class="n">KSP</span><span class="p">()</span>
@@ -897,7 +897,7 @@ u_h.plot()
             <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setOperators</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">as_petsc</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setInitialGuessNonzero</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ksp</span><span class="o">.</span><span class="n">setFromOptions</span><span class="p">()</span>
-        <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
             <span class="n">res</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
             <span class="n">dh</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;direction&quot;</span><span class="p">)</span>
             <span class="n">sol_coeff</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">as_petsc</span>
@@ -950,8 +950,8 @@ PETSc4py 1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">petsc4py</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">petsc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">class</span> <span class="nc">Scheme5</span><span class="p">:</span>
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Scheme5</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">op</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">res</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">rangeSpace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
@@ -965,18 +965,18 @@ PETSc4py 1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
             <span class="n">petsc_options</span><span class="p">[</span><span class="s1">&#39;pc_hypre_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;boomeramg&#39;</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">setFromOptions</span><span class="p">()</span>
 
-        <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
             <span class="c1"># setup discrete function using the provide petsc vectors</span>
             <span class="n">inDF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domainSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span><span class="n">dofVector</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
             <span class="n">outDF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">rangeSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span><span class="n">dofVector</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="n">inDF</span><span class="p">,</span><span class="n">outDF</span><span class="p">)</span>
 
-        <span class="k">def</span> <span class="nf">Df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">Df</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">snes</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
             <span class="n">inDF</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">domainSpace</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="s2">&quot;tmp&quot;</span><span class="p">,</span><span class="n">dofVector</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">op</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">inDF</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">PETSc</span><span class="o">.</span><span class="n">Mat</span><span class="o">.</span><span class="n">Structure</span><span class="o">.</span><span class="n">SAME_NONZERO_PATTERN</span>
 
-        <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
             <span class="n">sol_coeff</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">as_petsc</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">snes</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">res</span><span class="o">.</span><span class="n">as_petsc</span><span class="p">,</span> <span class="n">sol_coeff</span><span class="p">)</span>
@@ -1029,7 +1029,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

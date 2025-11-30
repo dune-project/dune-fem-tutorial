@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cahn-Hilliard &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -464,20 +464,20 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">dune.vem</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">dune.vem</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example needs &#39;dune.vem&#39; - skipping&quot;</span><span class="p">)</span>
-    <span class="kn">import</span> <span class="nn">sys</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">cartesianDomain</span><span class="p">,</span> <span class="n">gridFunction</span>
-<span class="kn">import</span> <span class="nn">dune.fem</span>
-<span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">discreteFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span><span class="p">,</span> <span class="n">gridFunction</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.fem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">discreteFunction</span>
 
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">dune.ufl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.ufl</span>
 
 <span class="n">dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">threading</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="mi">4</span>
 </pre></div>
@@ -555,7 +555,7 @@ u(\cdot,0) = u_0(\cdot)  \quad &\text{in} \ \Omega,\\
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">initial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">initial</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>
     <span class="n">g0</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">T</span><span class="p">:</span> <span class="n">conditional</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="o">&lt;-</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">conditional</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="o">&gt;</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x0</span><span class="p">))</span><span class="o">**</span><span class="mi">3</span><span class="p">))</span>
     <span class="n">G</span>  <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">T</span><span class="p">:</span> <span class="n">g0</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x0</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">g0</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y0</span><span class="p">,</span><span class="n">T</span><span class="p">)</span>
@@ -637,7 +637,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

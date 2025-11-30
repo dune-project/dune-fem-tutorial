@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dune-MMesh: Solving a Mixed-dimensional PDE &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -468,7 +468,7 @@ This document is part of the dune-fem tutorial
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;horizontal.msh&quot;</span>
 <span class="n">h</span> <span class="o">=</span> <span class="mf">0.02</span>
 <span class="n">hf</span> <span class="o">=</span> <span class="mf">0.01</span>
-<span class="kn">import</span> <span class="nn">gmsh</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gmsh</span>
 <span class="n">gmsh</span><span class="o">.</span><span class="n">initialize</span><span class="p">()</span>
 <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;General.Verbosity&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">gmsh</span><span class="o">.</span><span class="n">option</span><span class="o">.</span><span class="n">setNumber</span><span class="p">(</span><span class="s2">&quot;Mesh.MshFileVersion&quot;</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
@@ -502,8 +502,8 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">reader</span>
-<span class="kn">from</span> <span class="nn">dune.mmesh</span> <span class="kn">import</span> <span class="n">mmesh</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">reader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.mmesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">mmesh</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">mmesh</span><span class="p">((</span><span class="n">reader</span><span class="o">.</span><span class="n">gmsh</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">igridView</span> <span class="o">=</span> <span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">interfaceGrid</span>
 </pre></div>
@@ -514,9 +514,9 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">Constant</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">dglagrange</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">dglagrange</span>
 
 <span class="n">space</span> <span class="o">=</span> <span class="n">dglagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
@@ -546,7 +546,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.mmesh</span> <span class="kn">import</span> <span class="n">interfaceIndicator</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.mmesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">interfaceIndicator</span>
 <span class="n">I</span> <span class="o">=</span> <span class="n">interfaceIndicator</span><span class="p">(</span><span class="n">igridView</span><span class="p">)</span>
 
 <span class="n">beta</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">1e2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;beta&quot;</span><span class="p">)</span>
@@ -582,7 +582,7 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">omega</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">1e-6</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;omega&quot;</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">dune.mmesh</span> <span class="kn">import</span> <span class="n">skeleton</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.mmesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">skeleton</span>
 <span class="n">sk</span> <span class="o">=</span> <span class="n">avg</span><span class="p">(</span><span class="n">skeleton</span><span class="p">(</span><span class="n">iuh</span><span class="p">))</span>
 <span class="n">a</span> <span class="o">+=</span> <span class="o">-</span><span class="p">(</span><span class="n">sk</span> <span class="o">-</span> <span class="n">u</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">v</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">I</span><span class="o">*</span><span class="n">dS</span>
 <span class="n">a</span> <span class="o">+=</span> <span class="o">-</span><span class="p">(</span><span class="n">sk</span> <span class="o">-</span> <span class="n">u</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">v</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)</span> <span class="o">*</span> <span class="n">I</span><span class="o">*</span><span class="n">dS</span>
@@ -594,7 +594,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.mmesh</span> <span class="kn">import</span> <span class="n">trace</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.mmesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">trace</span>
 <span class="n">tr</span>  <span class="o">=</span> <span class="n">trace</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span>
 <span class="n">ia</span>  <span class="o">=</span> <span class="p">(</span><span class="n">iu</span> <span class="o">-</span> <span class="n">tr</span><span class="p">(</span><span class="s1">&#39;+&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">iv</span> <span class="o">*</span> <span class="n">dx</span>
 <span class="n">ia</span> <span class="o">+=</span> <span class="p">(</span><span class="n">iu</span> <span class="o">-</span> <span class="n">tr</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">iv</span> <span class="o">*</span> <span class="n">dx</span>
@@ -606,11 +606,11 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
 <span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
 <span class="n">ischeme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">ia</span> <span class="o">==</span> <span class="n">ib</span><span class="p">])</span>
 
-<span class="kn">from</span> <span class="nn">dune.mmesh</span> <span class="kn">import</span> <span class="n">monolithicSolve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.mmesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">monolithicSolve</span>
 <span class="n">monolithicSolve</span><span class="p">(</span><span class="n">schemes</span><span class="o">=</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span> <span class="n">ischeme</span><span class="p">),</span> <span class="n">targets</span><span class="o">=</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">iuh</span><span class="p">),</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">assert</span><span class="p">(</span> <span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">iuh</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.143</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-3</span> <span class="p">)</span>
@@ -630,8 +630,8 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
 
 <span class="n">figure</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">figure</span><span class="p">,</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -667,7 +667,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

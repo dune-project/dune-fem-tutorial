@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mixed method for the Poisson equation &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -481,13 +481,13 @@ H_0(\mathop{\mathrm{Div}},\Omega):=\{\sigma\in H(\mathop{\mathrm{Div}},\Omega)\c
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span>
-<span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluSimplexGrid</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">dgonb</span><span class="p">,</span> <span class="n">dglegendre</span><span class="p">,</span> <span class="n">raviartThomas</span><span class="p">,</span> <span class="n">bdm</span>
-<span class="k">def</span> <span class="nf">getGridSpace</span><span class="p">(</span><span class="n">element</span><span class="p">,</span><span class="n">space</span><span class="p">,</span><span class="n">order</span><span class="p">):</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluSimplexGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">dgonb</span><span class="p">,</span> <span class="n">dglegendre</span><span class="p">,</span> <span class="n">raviartThomas</span><span class="p">,</span> <span class="n">bdm</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getGridSpace</span><span class="p">(</span><span class="n">element</span><span class="p">,</span><span class="n">space</span><span class="p">,</span><span class="n">order</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="s2">&quot;simplex&quot;</span><span class="p">:</span>
         <span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)]</span>
         <span class="n">triangles</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span> <span class="p">]</span>
@@ -512,12 +512,12 @@ H_0(\mathop{\mathrm{Div}},\Omega):=\{\sigma\in H(\mathop{\mathrm{Div}},\Omega)\c
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="p">(</span><span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span>
                  <span class="n">div</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">grad</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span>
-<span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">assemble</span><span class="p">,</span> <span class="n">integrate</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">gridFunction</span>
-<span class="k">def</span> <span class="nf">getMatrices</span><span class="p">(</span><span class="n">spaceHDiv</span><span class="p">,</span> <span class="n">spaceDG</span><span class="p">,</span> <span class="n">dirichlet</span><span class="p">):</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirichletBC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">assemble</span><span class="p">,</span> <span class="n">integrate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getMatrices</span><span class="p">(</span><span class="n">spaceHDiv</span><span class="p">,</span> <span class="n">spaceDG</span><span class="p">,</span> <span class="n">dirichlet</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">spaceHDiv</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dirichlet</span><span class="p">:</span>
         <span class="n">exSol</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -555,12 +555,12 @@ H_0(\mathop{\mathrm{Div}},\Omega):=\{\sigma\in H(\mathop{\mathrm{Div}},\Omega)\c
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.sparse.linalg</span> <span class="kn">import</span> <span class="n">cg</span><span class="p">,</span> <span class="n">splu</span><span class="p">,</span> <span class="n">LinearOperator</span>
-<span class="k">def</span> <span class="nf">schur_op</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">BT</span><span class="p">,</span><span class="n">invA</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">cg</span><span class="p">,</span> <span class="n">splu</span><span class="p">,</span> <span class="n">LinearOperator</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">schur_op</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">BT</span><span class="p">,</span><span class="n">invA</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">BT</span> <span class="o">@</span> <span class="n">x</span>
     <span class="n">y2</span> <span class="o">=</span> <span class="n">invA</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">B</span> <span class="o">@</span> <span class="n">y2</span>
-<span class="k">def</span> <span class="nf">solveSys</span><span class="p">(</span><span class="n">invA</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">BT</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span><span class="n">rhs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solveSys</span><span class="p">(</span><span class="n">invA</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">BT</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span><span class="n">rhs</span><span class="p">):</span>
     <span class="n">schur_comp</span> <span class="o">=</span> <span class="n">LinearOperator</span><span class="p">(</span> <span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
                                  <span class="n">matvec</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">schur_op</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="n">BT</span><span class="p">,</span><span class="n">invA</span><span class="p">,</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
     <span class="n">target</span><span class="p">[:],</span> <span class="n">info</span> <span class="o">=</span> <span class="n">cg</span><span class="p">(</span><span class="n">schur_comp</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="n">target</span><span class="p">)</span>
@@ -572,7 +572,7 @@ H_0(\mathop{\mathrm{Div}},\Omega):=\{\sigma\in H(\mathop{\mathrm{Div}},\Omega)\c
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulate</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">spaceHDiv</span><span class="p">,</span> <span class="n">spaceDG</span><span class="p">,</span> <span class="n">dirichlet</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simulate</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">spaceHDiv</span><span class="p">,</span> <span class="n">spaceDG</span><span class="p">,</span> <span class="n">dirichlet</span><span class="p">):</span>
     <span class="n">gradSol</span> <span class="o">=</span> <span class="n">spaceHDiv</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;gradSol&quot;</span><span class="p">)</span>
     <span class="n">sol</span> <span class="o">=</span> <span class="n">spaceDG</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;sol&quot;</span><span class="p">)</span>
 
@@ -858,7 +858,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

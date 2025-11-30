@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Grid views and adaptivity &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
@@ -523,8 +523,8 @@ by providing an additional argument <cite>loadBalance=False</cite> as described 
 discrete spaces were constructed over an <code class="docutils literal notranslate"><span class="pre">adaptiveLeafGridView</span></code>.</p>
 </div>
 <p>So the code has to be modified for example as follows</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">adaptiveLeafGridView</span> <span class="k">as</span> <span class="n">adaptiveGridView</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">adaptiveLeafGridView</span> <span class="k">as</span> <span class="n">adaptiveGridView</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">adaptiveGridView</span><span class="p">(</span> <span class="n">leafGridView</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -537,7 +537,7 @@ underlying buffer change will not have been registered.</p>
 </div>
 <p>The module <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> provides an object for marking elements for
 refinement/coarsening:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">GridMarker</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridMarker</span>
 <span class="n">marker</span> <span class="o">=</span> <span class="n">GridMarker</span><span class="p">(</span> <span class="n">indicator</span><span class="p">,</span> <span class="c1"># grid function to be evaluated at cell center</span>
                      <span class="n">refineTolerance</span><span class="p">,</span> <span class="n">coarsenTolerance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># tolerances (float or callable returning float)</span>
                      <span class="n">minLevel</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">maxLevel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>    <span class="c1"># min and max level allowed</span>
@@ -565,8 +565,8 @@ in the above <code class="docutils literal notranslate"><span class="pre">GridMa
 providing a callback to the <code class="docutils literal notranslate"><span class="pre">gridAdapt</span></code> function with the following
 signature:</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">Marker</span>
-<span class="k">def</span> <span class="nf">marker</span><span class="p">(</span> <span class="n">E</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Marker</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">Marker</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">marker</span><span class="p">(</span> <span class="n">E</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Marker</span>
     <span class="k">if</span> <span class="n">refine</span> <span class="n">E</span><span class="p">:</span> <span class="c1"># if condition for refinement true</span>
         <span class="k">return</span> <span class="n">Marker</span><span class="o">.</span><span class="n">Refine</span>
     <span class="k">elif</span> <span class="n">coarsen</span> <span class="n">E</span><span class="p">:</span> <span class="c1"># if condition for coarsening true</span>
@@ -605,7 +605,7 @@ optimize the grid with respect to the error at a given point.</p>
 <p>While these
 examples can be implemented completely using the available Python
 bindings it is also fairly easy to implement a custom marking strategy in C++ and mark the grid before <code class="docutils literal notranslate"><span class="pre">gridAdapt</span></code> is called.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.generator</span> <span class="kn">import</span> <span class="n">algorithm</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.generator</span><span class="w"> </span><span class="kn">import</span> <span class="n">algorithm</span>
 <span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;mymarking.hh&#39;</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">uN</span> <span class="p">)</span>
 
 <span class="c1"># pass None for marker to avoid further marking</span>
@@ -637,8 +637,8 @@ only the case for a handful of space. This can be checked with
 Spaces that support <strong>hp</strong> adaptation typically have a <strong>hp</strong> in the name, e.g <code class="docutils literal notranslate"><span class="pre">lagrangehp</span></code>.</p>
 </div>
 <p>So the code has to be modified for example as follows</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">adaptiveLeafGridView</span> <span class="k">as</span> <span class="n">adaptiveGridView</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">adaptiveLeafGridView</span> <span class="k">as</span> <span class="n">adaptiveGridView</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">adaptiveGridView</span><span class="p">(</span> <span class="n">leafGridView</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span> <span class="p">)</span>
 </pre></div>
 </div>
@@ -656,7 +656,7 @@ is either an instance of <code class="docutils literal notranslate"><span class=
 </div>
 <p>The module <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> provides an object for marking spaces for
 p-refinement/p-coarsening:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">SpaceMarker</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpaceMarker</span>
 <span class="n">marker</span> <span class="o">=</span> <span class="n">SpaceMarker</span><span class="p">(</span> <span class="n">indicator</span><span class="p">,</span> <span class="c1"># grid function to be evaluated at cell center</span>
                       <span class="n">refineTolerance</span><span class="p">,</span> <span class="n">coarsenTolerance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># tolerances (float or callable returning float)</span>
                       <span class="n">minOrder</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># minimal order to be assumed (in [0, space.order)</span>
@@ -675,7 +675,7 @@ if the value is less than <code class="docutils literal notranslate"><span class
 providing a callback to the <code class="docutils literal notranslate"><span class="pre">spaceAdapt</span></code> function with the following
 signature:</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">marker</span><span class="p">(</span> <span class="n">E</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">marker</span><span class="p">(</span> <span class="n">E</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
     <span class="c1"># current polynomial degree for E</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">localOrder</span><span class="p">(</span> <span class="n">E</span> <span class="p">)</span>
     <span class="k">if</span> <span class="n">increase</span> <span class="n">degree</span> <span class="ow">and</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">maxOrder</span><span class="p">:</span> <span class="c1"># if condition for refinement</span>
@@ -718,12 +718,12 @@ Note that the topology of the
 grid does not change, i.e., how entities are connected with each other.
 The following shows an example of how to change a grid of the unit square
 into a grid of a diamond shape:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">as_vector</span>
-<span class="kn">import</span> <span class="nn">dune.ufl</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">structuredGrid</span>
-<span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">geometryGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">gridFunction</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">as_vector</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.ufl</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">geometryGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
 <span class="n">square</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">transform</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">([</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">])</span>
@@ -736,7 +736,7 @@ into a grid of a diamond shape:</p>
 </div>
 <img alt="_images/geoview_nb_2_01.jpg" src="_images/geoview_nb_2_01.jpg" />
 <p>In a second example we embed a 1D interval into 3D:</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">sin</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">sin</span>
 <span class="n">square</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">25</span><span class="p">],[</span><span class="mi">100</span><span class="p">])</span>
 <span class="n">theta</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="mi">1</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">transform</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">([</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span><span class="o">*</span><span class="p">(</span><span class="mi">25</span><span class="o">-</span><span class="n">theta</span><span class="p">)</span>
@@ -746,7 +746,7 @@ into a grid of a diamond shape:</p>
 </div>
 <p>Note: currently plotting for 1d grids is not implemented spiral.plot()
 but we can plot some grid function, e.g., given by ufl expressions</p>
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.plotting</span> <span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
 <span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">gridView</span><span class="o">=</span><span class="n">spiral</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -782,7 +782,7 @@ surface:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

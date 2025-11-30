@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Parallelization &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -468,7 +468,7 @@ backends</span></a> to, for example, use the thread parallel solvers from scipy.
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem</span> <span class="kn">import</span> <span class="n">threading</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">threading</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using&quot;</span><span class="p">,</span><span class="n">threading</span><span class="o">.</span><span class="n">use</span><span class="p">,</span><span class="s2">&quot;threads&quot;</span><span class="p">)</span>
 <span class="n">threading</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1"># use 4 threads</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using&quot;</span><span class="p">,</span><span class="n">threading</span><span class="o">.</span><span class="n">use</span><span class="p">,</span><span class="s2">&quot;threads&quot;</span><span class="p">)</span>
@@ -521,8 +521,8 @@ Using 22 threads
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">dune.common</span> <span class="kn">import</span> <span class="n">comm</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">comm</span>
 <span class="c1"># print can be used as before but will only produce output on rank 0</span>
 <span class="nb">print</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="nb">print</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">comm</span><span class="o">.</span><span class="n">rank</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="kc">None</span>
 </pre></div>
@@ -543,9 +543,9 @@ Using 22 threads
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluCubeGrid</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">cartesianDomain</span>
-<span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">partitionFunction</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluCubeGrid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">partitionFunction</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span><span class="mi">40</span><span class="p">],</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">aluCubeGrid</span><span class="p">(</span> <span class="n">domain</span><span class="p">,</span> <span class="n">lbMethod</span><span class="o">=</span><span class="mi">9</span> <span class="p">)</span>
 
@@ -646,7 +646,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 

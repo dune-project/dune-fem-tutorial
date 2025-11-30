@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FilteredGridView examples &mdash; Tutorial for version 2.11-git</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
@@ -464,12 +464,12 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">dot</span>
-<span class="kn">from</span> <span class="nn">dune.grid</span> <span class="kn">import</span> <span class="n">cartesianDomain</span>
-<span class="kn">from</span> <span class="nn">dune.alugrid</span> <span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.view</span> <span class="kn">import</span> <span class="n">filteredGridView</span>
-<span class="kn">from</span> <span class="nn">dune.fem.space</span> <span class="kn">import</span> <span class="n">lagrange</span>
-<span class="kn">from</span> <span class="nn">dune.fem.utility</span> <span class="kn">import</span> <span class="n">inspectBoundaryIds</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">dot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluConformGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.view</span><span class="w"> </span><span class="kn">import</span> <span class="n">filteredGridView</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.utility</span><span class="w"> </span><span class="kn">import</span> <span class="n">inspectBoundaryIds</span>
 </pre></div>
 </div>
 </div>
@@ -516,7 +516,7 @@ number of dofs: 5151 integral over original domain 1.3333333333333286
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">filterIds</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">filterIds</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
     <span class="n">r</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">center</span><span class="o">.</span><span class="n">two_norm</span>
     <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
         <span class="k">return</span> <span class="mi">10</span>
@@ -720,9 +720,9 @@ number of dofs: 2979 integral over filtered domain 20 1.083964586666667
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.ufl</span> <span class="kn">import</span> <span class="n">DirichletBC</span>
-<span class="kn">from</span> <span class="nn">dune.fem.scheme</span> <span class="kn">import</span> <span class="n">galerkin</span>
-<span class="kn">from</span> <span class="nn">ufl</span> <span class="kn">import</span> <span class="p">(</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span> <span class="n">conditional</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DirichletBC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span> <span class="n">conditional</span><span class="p">,</span>
                   <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span> <span class="p">)</span>
 
 <span class="n">exact</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
@@ -753,7 +753,7 @@ number of dofs: 2979 integral over filtered domain 20 1.083964586666667
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dune.fem.function</span> <span class="kn">import</span> <span class="n">gridFunction</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
 <span class="n">gridFunction</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span><span class="n">gridView</span><span class="o">=</span><span class="n">filteredView10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -810,7 +810,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Nov 28, 2025.
+      <span class="lastupdated">Last updated on Nov 30, 2025.
       </span></p>
   </div>
 
