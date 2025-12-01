@@ -11,13 +11,13 @@ From PyPi
    points. In general white spaces in filenames and folder names should be
    avoided.
 
-By far the easiest way to get access to `Dune` is by installing into a
-virtual environment using `pip`. In some folder e.g. `Dune` setup a virtual
+By far the easiest way to get access to **Dune** is by installing into a
+virtual environment using ``pip``. In some folder e.g. **Dune** setup a virtual
 environment and activate it
 
 .. code-block:: bash
 
-  python3 -m venv dune-env  
+  python3 -m venv dune-env
   source dune-env/bin/activate
 
 Then download and build `Dune` (note that this takes some time to have
@@ -178,10 +178,10 @@ Requirements
 
 The following dependencies are needed for Dune-Fem python binding:
 
-* At least C++17 compatible C++ compiler (e.g. g++ 9 or later)
-* python (3.7 or later)
+* At least C++17 compatible C++ compiler (e.g. g++ 10 or later)
+* python (3.9 or later)
 
-* **Required** Dune modules (release 2.9 or later)
+* **Required** Dune modules (same version, latest is recommended)
 
   * dune-common (https://gitlab.dune-project.org/core/dune-common.git)
   * dune-geometry (https://gitlab.dune-project.org/core/dune-geometry.git)
@@ -192,16 +192,16 @@ The following dependencies are needed for Dune-Fem python binding:
   * dune-fem (https://gitlab.dune-project.org/dune-fem/dune-fem.git)
 
 
-* **Optional** Dune modules (release 2.9 or later)
-   
+* **Optional** Dune modules (same version, latest is recommended)
+
   * dune-spgrid (https://gitlab.dune-project.org/extensions/dune-spgrid.git)
   * dune-polygongrid (https://gitlab.dune-project.org/extensions/dune-polygongrid.git)
   * dune-fem-dg (https://gitlab.dune-project.org/dune-fem/dune-fem-dg.git)
   * dune-vem (https://gitlab.dune-project.org/dune-fem/dune-vem.git)
 
 The optional Dune modules are only need for the parts of the tutorial discussing extension modules.
-  
-  
+
+
 **********************************
 Building the Required Dune Modules
 **********************************
@@ -213,8 +213,8 @@ links to general instructions on how to `build Dune modules`_.
 .. _build Dune with Python support: https://dune-project.org/doc/installation/installation-pythonbindings/
 .. _dune-fem-dg: https://gitlab.dune-project.org/dune-fem/dune-fem-dg
 .. _example script: https://gitlab.dune-project.org/dune-fem/dune-fem-dg/-/blob/master/scripts/build-dune-fem-dg.sh?ref_type=heads
-   
-The `dune-fem-dg`_ module offers an `example script`_ to build all required modules from source. 
+
+The `dune-fem-dg`_ module offers an `example script`_ to build all required modules from source.
 
 Test your completed installation by opening a Python terminal and running
 
@@ -237,7 +237,7 @@ Troubleshooting
 ###############
 
 * **Issue with C++ compiler:**
-  If the gnu compiler is used, version needs to be 7 or later. This can be checked in terminal with
+  If the gnu compiler is used, version needs to be 10 or later. This can be checked in terminal with
 
   .. code-block:: bash
 
@@ -287,7 +287,7 @@ Troubleshooting
 
     make uninstall
 
-  in the original MPI install directory, followed by removing the folder. It will then be necessary to reinstall Open MPI and Dune. It may also be necessary to direct mpi4py to the new MPI installation. It is possible to check whether this is a problem by running python and trying out 
+  in the original MPI install directory, followed by removing the folder. It will then be necessary to reinstall Open MPI and Dune. It may also be necessary to direct mpi4py to the new MPI installation. It is possible to check whether this is a problem by running python and trying out
 
   .. code-block:: python
 
@@ -333,7 +333,7 @@ Troubleshooting
   version of `petsc`. An runtime exception will be thrown if some
   incompatibility is detected. The simplest way to avoid any issues is to
   set the `PETSC_DIR` environment variable during the building, e.g., `pip`
-  installation of the `dune` packages and running the scripts. 
+  installation of the `dune` packages and running the scripts.
   The following gives an example of how to first install `petsc` and
   `petsc4py` into a virtual environment and then install `dune-fem`.
   Assuming that the virtual environment with `python` version `X.Y`

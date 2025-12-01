@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "a6aad527",
+   "id": "29f46e0c",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -22,13 +22,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "9d11923a",
+   "id": "b41f6ab7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:16.743077Z",
-     "iopub.status.busy": "2025-12-01T09:03:16.742886Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.614452Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.613518Z"
+     "iopub.execute_input": "2025-12-01T11:38:43.976990Z",
+     "iopub.status.busy": "2025-12-01T11:38:43.976818Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.813877Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.812855Z"
     },
     "lines_to_next_cell": 2
    },
@@ -53,7 +53,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c7143643",
+   "id": "bdde8a90",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -90,13 +90,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "da181a98",
+   "id": "a3c946c8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.616759Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.616462Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.619937Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.619041Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.815910Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.815609Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.819135Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.818202Z"
     },
     "lines_to_next_cell": 2
    },
@@ -112,7 +112,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b290481c",
+   "id": "84ed1e08",
    "metadata": {},
    "source": [
     "We define the initial data and create a function from it.\n",
@@ -122,13 +122,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "a30adc9d",
+   "id": "a70ee8d6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.621645Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.621470Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.692639Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.691705Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.820707Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.820512Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.890108Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.889115Z"
     },
     "lines_to_next_cell": 2
    },
@@ -144,7 +144,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "69513323",
+   "id": "faf2520b",
    "metadata": {},
    "source": [
     "As we will be discretizing in time,\n",
@@ -156,13 +156,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "50155225",
+   "id": "da480ee7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.694706Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.694518Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.697961Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.697178Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.891917Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.891731Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.895117Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.894330Z"
     }
    },
    "outputs": [],
@@ -176,7 +176,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f7545576",
+   "id": "f6fd6311",
    "metadata": {},
    "source": [
     "For the numerical scheme, we discretize the time derivatives in the usual way, and we obtain the weak form by multiplying by a test function and integrating by parts. We also express the system using vectors.\n",
@@ -205,13 +205,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "e2fbcf6d",
+   "id": "ec86c985",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.699665Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.699481Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.703030Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.702128Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.896995Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.896826Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.900228Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.899283Z"
     }
    },
    "outputs": [],
@@ -222,7 +222,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5f90af97",
+   "id": "8245b8c1",
    "metadata": {},
    "source": [
     "For the left hand side we have the spatial derivatives and the implicit parts."
@@ -231,13 +231,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "75c11b64",
+   "id": "c25e90e7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.704684Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.704499Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.712262Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.711457Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.901918Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.901739Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.909652Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.908745Z"
     },
     "lines_to_next_cell": 2
    },
@@ -268,7 +268,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d60198d4",
+   "id": "5806e4e5",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -279,13 +279,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "dc680a42",
+   "id": "a8b9ee5c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.713929Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.713745Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.792688Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.791723Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.911229Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.911064Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.989163Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.988072Z"
     },
     "lines_to_next_cell": 2
    },
@@ -303,7 +303,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b6c01fb9",
+   "id": "6441ecfe",
    "metadata": {},
    "source": [
     "We set up the adaptive method. We start with a marking strategy based on the value of the gradient of the phase field variable."
@@ -312,13 +312,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "002ca979",
+   "id": "dc26f51d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.794511Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.794327Z",
-     "iopub.status.idle": "2025-12-01T09:03:18.797740Z",
-     "shell.execute_reply": "2025-12-01T09:03:18.796932Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.990890Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.990699Z",
+     "iopub.status.idle": "2025-12-01T11:38:45.993902Z",
+     "shell.execute_reply": "2025-12-01T11:38:45.993205Z"
     },
     "lines_to_next_cell": 0
    },
@@ -329,7 +329,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c55837cc",
+   "id": "9b29bbf6",
    "metadata": {},
    "source": [
     ".. index:: Adaptation; Marking for h-Adaptation (fast)\n",
@@ -340,13 +340,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "afe98065",
+   "id": "54a0ad58",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:18.799410Z",
-     "iopub.status.busy": "2025-12-01T09:03:18.799235Z",
-     "iopub.status.idle": "2025-12-01T09:03:19.040886Z",
-     "shell.execute_reply": "2025-12-01T09:03:19.039880Z"
+     "iopub.execute_input": "2025-12-01T11:38:45.995733Z",
+     "iopub.status.busy": "2025-12-01T11:38:45.995523Z",
+     "iopub.status.idle": "2025-12-01T11:38:46.251724Z",
+     "shell.execute_reply": "2025-12-01T11:38:46.250865Z"
     },
     "lines_to_next_cell": 2
    },
@@ -380,7 +380,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "45141854",
+   "id": "a0a656cb",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -391,13 +391,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "d6867ccb",
+   "id": "f1ebc904",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:19.042836Z",
-     "iopub.status.busy": "2025-12-01T09:03:19.042622Z",
-     "iopub.status.idle": "2025-12-01T09:03:19.046188Z",
-     "shell.execute_reply": "2025-12-01T09:03:19.045368Z"
+     "iopub.execute_input": "2025-12-01T11:38:46.253613Z",
+     "iopub.status.busy": "2025-12-01T11:38:46.253407Z",
+     "iopub.status.idle": "2025-12-01T11:38:46.256790Z",
+     "shell.execute_reply": "2025-12-01T11:38:46.256025Z"
     },
     "lines_to_next_cell": 1
    },
@@ -414,7 +414,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8decf73d",
+   "id": "4f627c1d",
    "metadata": {},
    "source": [
     ".. index:: Grids; Visualization time series\n",
@@ -436,13 +436,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "f260f722",
+   "id": "71bc397e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:19.047852Z",
-     "iopub.status.busy": "2025-12-01T09:03:19.047677Z",
-     "iopub.status.idle": "2025-12-01T09:03:19.295130Z",
-     "shell.execute_reply": "2025-12-01T09:03:19.294017Z"
+     "iopub.execute_input": "2025-12-01T11:38:46.258805Z",
+     "iopub.status.busy": "2025-12-01T11:38:46.258479Z",
+     "iopub.status.idle": "2025-12-01T11:38:46.502245Z",
+     "shell.execute_reply": "2025-12-01T11:38:46.501307Z"
     },
     "lines_to_next_cell": 2
    },
@@ -468,7 +468,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e440f4c7",
+   "id": "aa89ecf6",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -479,13 +479,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "5e10601b",
+   "id": "a8f3a297",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:19.296924Z",
-     "iopub.status.busy": "2025-12-01T09:03:19.296717Z",
-     "iopub.status.idle": "2025-12-01T09:03:19.299721Z",
-     "shell.execute_reply": "2025-12-01T09:03:19.298884Z"
+     "iopub.execute_input": "2025-12-01T11:38:46.504321Z",
+     "iopub.status.busy": "2025-12-01T11:38:46.504122Z",
+     "iopub.status.idle": "2025-12-01T11:38:46.507121Z",
+     "shell.execute_reply": "2025-12-01T11:38:46.506289Z"
     }
    },
    "outputs": [],
@@ -496,7 +496,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4f9d51de",
+   "id": "20d6382e",
    "metadata": {},
    "source": [
     "Finally, we set up the time loop and solve the problem -\n",
@@ -508,13 +508,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "7531544d",
+   "id": "6b585f12",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T09:03:19.301463Z",
-     "iopub.status.busy": "2025-12-01T09:03:19.301280Z",
-     "iopub.status.idle": "2025-12-01T09:04:03.643361Z",
-     "shell.execute_reply": "2025-12-01T09:04:03.642267Z"
+     "iopub.execute_input": "2025-12-01T11:38:46.508801Z",
+     "iopub.status.busy": "2025-12-01T11:38:46.508623Z",
+     "iopub.status.idle": "2025-12-01T11:39:29.194180Z",
+     "shell.execute_reply": "2025-12-01T11:39:29.193090Z"
     }
    },
    "outputs": [

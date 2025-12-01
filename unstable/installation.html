@@ -452,8 +452,8 @@ contain white spaces</strong> since this will break the installation at various
 points. In general white spaces in filenames and folder names should be
 avoided.</p>
 </div>
-<p>By far the easiest way to get access to <cite>Dune</cite> is by installing into a
-virtual environment using <cite>pip</cite>. In some folder e.g. <cite>Dune</cite> setup a virtual
+<p>By far the easiest way to get access to <strong>Dune</strong> is by installing into a
+virtual environment using <code class="docutils literal notranslate"><span class="pre">pip</span></code>. In some folder e.g. <strong>Dune</strong> setup a virtual
 environment and activate it</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>dune-env
 <span class="nb">source</span><span class="w"> </span>dune-env/bin/activate
@@ -589,9 +589,9 @@ activated.</p>
 <h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
 <p>The following dependencies are needed for Dune-Fem python binding:</p>
 <ul class="simple">
-<li><p>At least C++17 compatible C++ compiler (e.g. g++ 9 or later)</p></li>
-<li><p>python (3.7 or later)</p></li>
-<li><p><strong>Required</strong> Dune modules (release 2.9 or later)</p>
+<li><p>At least C++17 compatible C++ compiler (e.g. g++ 10 or later)</p></li>
+<li><p>python (3.9 or later)</p></li>
+<li><p><strong>Required</strong> Dune modules (same version, latest is recommended)</p>
 <ul>
 <li><p>dune-common (<a class="reference external" href="https://gitlab.dune-project.org/core/dune-common.git">https://gitlab.dune-project.org/core/dune-common.git</a>)</p></li>
 <li><p>dune-geometry (<a class="reference external" href="https://gitlab.dune-project.org/core/dune-geometry.git">https://gitlab.dune-project.org/core/dune-geometry.git</a>)</p></li>
@@ -602,7 +602,7 @@ activated.</p>
 <li><p>dune-fem (<a class="reference external" href="https://gitlab.dune-project.org/dune-fem/dune-fem.git">https://gitlab.dune-project.org/dune-fem/dune-fem.git</a>)</p></li>
 </ul>
 </li>
-<li><p><strong>Optional</strong> Dune modules (release 2.9 or later)</p>
+<li><p><strong>Optional</strong> Dune modules (same version, latest is recommended)</p>
 <ul>
 <li><p>dune-spgrid (<a class="reference external" href="https://gitlab.dune-project.org/extensions/dune-spgrid.git">https://gitlab.dune-project.org/extensions/dune-spgrid.git</a>)</p></li>
 <li><p>dune-polygongrid (<a class="reference external" href="https://gitlab.dune-project.org/extensions/dune-polygongrid.git">https://gitlab.dune-project.org/extensions/dune-polygongrid.git</a>)</p></li>
@@ -637,7 +637,7 @@ get a colored figure and are hopefully ready to go…</p>
 <h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
 <ul>
 <li><p><strong>Issue with C++ compiler:</strong>
-If the gnu compiler is used, version needs to be 7 or later. This can be checked in terminal with</p>
+If the gnu compiler is used, version needs to be 10 or later. This can be checked in terminal with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>--version
 </pre></div>
 </div>
