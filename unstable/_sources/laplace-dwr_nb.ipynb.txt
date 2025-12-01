@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "55fe33f1",
+   "id": "2f8dcbb8",
    "metadata": {},
    "source": [
     "# Dual Weighted Reisdual Estimate\n",
@@ -29,13 +29,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "171c61a2",
+   "id": "20424eb9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:00:45.832345Z",
-     "iopub.status.busy": "2025-12-01T00:00:45.832049Z",
-     "iopub.status.idle": "2025-12-01T00:00:46.923771Z",
-     "shell.execute_reply": "2025-12-01T00:00:46.922794Z"
+     "iopub.execute_input": "2025-12-01T08:46:47.701359Z",
+     "iopub.status.busy": "2025-12-01T08:46:47.701148Z",
+     "iopub.status.idle": "2025-12-01T08:46:48.792960Z",
+     "shell.execute_reply": "2025-12-01T08:46:48.791949Z"
     }
    },
    "outputs": [],
@@ -69,7 +69,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "72c7c82b",
+   "id": "bf83dbdc",
    "metadata": {},
    "source": [
     "We first define the domain and set up the grid and space.\n",
@@ -86,13 +86,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "6ee12abc",
+   "id": "cc4d59df",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:00:46.926336Z",
-     "iopub.status.busy": "2025-12-01T00:00:46.926046Z",
-     "iopub.status.idle": "2025-12-01T00:00:47.804225Z",
-     "shell.execute_reply": "2025-12-01T00:00:47.803246Z"
+     "iopub.execute_input": "2025-12-01T08:46:48.795508Z",
+     "iopub.status.busy": "2025-12-01T08:46:48.795229Z",
+     "iopub.status.idle": "2025-12-01T08:46:49.687864Z",
+     "shell.execute_reply": "2025-12-01T08:46:49.686933Z"
     }
    },
    "outputs": [],
@@ -131,7 +131,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f43a7396",
+   "id": "07eb19e0",
    "metadata": {},
    "source": [
     "Now we can setup the functional which will be $J(v)=v(P)$ where\n",
@@ -150,13 +150,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "b07ca6db",
+   "id": "6efc9310",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:00:47.806321Z",
-     "iopub.status.busy": "2025-12-01T00:00:47.805989Z",
-     "iopub.status.idle": "2025-12-01T00:01:20.699192Z",
-     "shell.execute_reply": "2025-12-01T00:01:20.698122Z"
+     "iopub.execute_input": "2025-12-01T08:46:49.690195Z",
+     "iopub.status.busy": "2025-12-01T08:46:49.689836Z",
+     "iopub.status.idle": "2025-12-01T08:47:24.498832Z",
+     "shell.execute_reply": "2025-12-01T08:47:24.497868Z"
     },
     "lines_to_next_cell": 1
    },
@@ -189,7 +189,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "28e20b8d",
+   "id": "e565bd58",
    "metadata": {},
    "source": [
     "Next we define the actual estimator:"
@@ -198,13 +198,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "92793702",
+   "id": "327d9b1d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:01:20.700918Z",
-     "iopub.status.busy": "2025-12-01T00:01:20.700729Z",
-     "iopub.status.idle": "2025-12-01T00:01:20.827026Z",
-     "shell.execute_reply": "2025-12-01T00:01:20.826379Z"
+     "iopub.execute_input": "2025-12-01T08:47:24.500649Z",
+     "iopub.status.busy": "2025-12-01T08:47:24.500465Z",
+     "iopub.status.idle": "2025-12-01T08:47:24.633095Z",
+     "shell.execute_reply": "2025-12-01T08:47:24.632252Z"
     }
    },
    "outputs": [],
@@ -225,7 +225,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3650cbbd",
+   "id": "57319724",
    "metadata": {},
    "source": [
     "Let us solve over a loop (solve,estimate,mark) and plot the solutions side by side."
@@ -234,13 +234,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "7422e7e0",
+   "id": "c8f8ac4f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:01:20.829348Z",
-     "iopub.status.busy": "2025-12-01T00:01:20.829158Z",
-     "iopub.status.idle": "2025-12-01T00:01:20.834955Z",
-     "shell.execute_reply": "2025-12-01T00:01:20.834148Z"
+     "iopub.execute_input": "2025-12-01T08:47:24.635512Z",
+     "iopub.status.busy": "2025-12-01T08:47:24.635310Z",
+     "iopub.status.idle": "2025-12-01T08:47:24.641027Z",
+     "shell.execute_reply": "2025-12-01T08:47:24.640246Z"
     },
     "lines_to_next_cell": 1
    },
@@ -283,13 +283,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "c837bd68",
+   "id": "c0a4f9d2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:01:20.836827Z",
-     "iopub.status.busy": "2025-12-01T00:01:20.836641Z",
-     "iopub.status.idle": "2025-12-01T00:01:24.186842Z",
-     "shell.execute_reply": "2025-12-01T00:01:24.185939Z"
+     "iopub.execute_input": "2025-12-01T08:47:24.642819Z",
+     "iopub.status.busy": "2025-12-01T08:47:24.642645Z",
+     "iopub.status.idle": "2025-12-01T08:47:28.004334Z",
+     "shell.execute_reply": "2025-12-01T08:47:28.003395Z"
     },
     "nbsphinx-thumbnail": {
      "tooltip": "Goal oriented local adaptivity"
@@ -314,7 +314,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2321da1b",
+   "id": "c3be40ed",
    "metadata": {},
    "source": [
     "Here is a table with the number of dofs, the estimated, and actual error:"
@@ -323,13 +323,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "76214e17",
+   "id": "79fc32ab",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:01:24.188745Z",
-     "iopub.status.busy": "2025-12-01T00:01:24.188558Z",
-     "iopub.status.idle": "2025-12-01T00:01:24.368990Z",
-     "shell.execute_reply": "2025-12-01T00:01:24.367868Z"
+     "iopub.execute_input": "2025-12-01T08:47:28.006424Z",
+     "iopub.status.busy": "2025-12-01T08:47:28.006244Z",
+     "iopub.status.idle": "2025-12-01T08:47:28.183802Z",
+     "shell.execute_reply": "2025-12-01T08:47:28.182656Z"
     }
    },
    "outputs": [
@@ -351,7 +351,7 @@
       "10   683  7.516479e-05  7.362659e-05\n",
       "11   850  5.330570e-05  5.429483e-05\n",
       "12  1004  3.553725e-05  3.468638e-05\n",
-      "13  1244  2.496926e-05  2.534816e-05\n",
+      "13  1244  2.496925e-05  2.534828e-05\n",
       "14  1512  1.618306e-05  1.537468e-05\n",
       "15  1808  1.172941e-05  1.153418e-05\n",
       "16  2153  7.847327e-06  7.614604e-06\n",
@@ -377,7 +377,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "40d60c71",
+   "id": "ac4d88bc",
    "metadata": {},
    "source": [
     "Let's take a close up look of the refined region around the point of\n",
@@ -387,13 +387,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "61bc30bc",
+   "id": "71138bbe",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T00:01:24.370892Z",
-     "iopub.status.busy": "2025-12-01T00:01:24.370629Z",
-     "iopub.status.idle": "2025-12-01T00:01:26.174723Z",
-     "shell.execute_reply": "2025-12-01T00:01:26.173743Z"
+     "iopub.execute_input": "2025-12-01T08:47:28.185646Z",
+     "iopub.status.busy": "2025-12-01T08:47:28.185382Z",
+     "iopub.status.idle": "2025-12-01T08:47:30.024258Z",
+     "shell.execute_reply": "2025-12-01T08:47:30.023295Z"
     }
    },
    "outputs": [
