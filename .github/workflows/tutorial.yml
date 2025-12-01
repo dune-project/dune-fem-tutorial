@@ -77,7 +77,7 @@ jobs:
           # find other versions
           echo $BRANCH > latest.txt
           cd ${{ github.event.repository.name }}
-          ls -dvr v* u* >> ../latest.txt
+          ls -dvr v*/ u*/ >> ../latest.txt
           # cleanup 
           cd ..
           rm -rf ${{ github.event.repository.name }}
@@ -97,6 +97,8 @@ jobs:
 
           # build docu
           sphinx-build ${{ github.event.repository.name }}/doc versions/$BRANCH
+          mv versions/$BRANCH/versions.html versions
+          ln -s ../versions.html versions/$BRANCH/versions.html
 
           echo "Setting link to latest documentation for $LATEST"
           # write redirect index.html
