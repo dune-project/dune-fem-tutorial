@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "3c6dd5e8",
+   "id": "a7542235",
    "metadata": {},
    "source": [
     "# Navier-Stokes: flow around a cylinder\n",
@@ -14,13 +14,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "672def60",
+   "id": "a2a56f33",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:35.593336Z",
-     "iopub.status.busy": "2025-12-02T14:37:35.593152Z",
-     "iopub.status.idle": "2025-12-02T14:37:36.951205Z",
-     "shell.execute_reply": "2025-12-02T14:37:36.950315Z"
+     "iopub.execute_input": "2025-12-02T19:05:01.055022Z",
+     "iopub.status.busy": "2025-12-02T19:05:01.054759Z",
+     "iopub.status.idle": "2025-12-02T19:05:02.422650Z",
+     "shell.execute_reply": "2025-12-02T19:05:02.421718Z"
     }
    },
    "outputs": [],
@@ -54,7 +54,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "66a5f158",
+   "id": "bb19489f",
    "metadata": {},
    "source": [
     "Setup parameters for simulation:"
@@ -63,13 +63,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "d63237a2",
+   "id": "5d1262d2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:36.953834Z",
-     "iopub.status.busy": "2025-12-02T14:37:36.953492Z",
-     "iopub.status.idle": "2025-12-02T14:37:36.957167Z",
-     "shell.execute_reply": "2025-12-02T14:37:36.956264Z"
+     "iopub.execute_input": "2025-12-02T19:05:02.424839Z",
+     "iopub.status.busy": "2025-12-02T19:05:02.424545Z",
+     "iopub.status.idle": "2025-12-02T19:05:02.428123Z",
+     "shell.execute_reply": "2025-12-02T19:05:02.427287Z"
     }
    },
    "outputs": [],
@@ -82,7 +82,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "33b750a9",
+   "id": "301fa43b",
    "metadata": {},
    "source": [
     "Use pygmsh to define domain with cylinder"
@@ -91,13 +91,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "c9e5f10a",
+   "id": "5136360f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:36.958874Z",
-     "iopub.status.busy": "2025-12-02T14:37:36.958702Z",
-     "iopub.status.idle": "2025-12-02T14:37:37.066688Z",
-     "shell.execute_reply": "2025-12-02T14:37:37.065778Z"
+     "iopub.execute_input": "2025-12-02T19:05:02.429711Z",
+     "iopub.status.busy": "2025-12-02T19:05:02.429525Z",
+     "iopub.status.idle": "2025-12-02T19:05:02.531904Z",
+     "shell.execute_reply": "2025-12-02T19:05:02.530861Z"
     }
    },
    "outputs": [
@@ -138,7 +138,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "10146904",
+   "id": "02fcf409",
    "metadata": {},
    "source": [
     "Setup spaces for Taylor-Hood and required discrete functions and UFL\n",
@@ -148,13 +148,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "c6d2ef36",
+   "id": "2bc77726",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:37.068503Z",
-     "iopub.status.busy": "2025-12-02T14:37:37.068326Z",
-     "iopub.status.idle": "2025-12-02T14:37:37.627422Z",
-     "shell.execute_reply": "2025-12-02T14:37:37.626642Z"
+     "iopub.execute_input": "2025-12-02T19:05:02.533628Z",
+     "iopub.status.busy": "2025-12-02T19:05:02.533432Z",
+     "iopub.status.idle": "2025-12-02T19:05:03.086842Z",
+     "shell.execute_reply": "2025-12-02T19:05:03.085875Z"
     }
    },
    "outputs": [],
@@ -177,7 +177,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3fd9aaf6",
+   "id": "0e3ea149",
    "metadata": {},
    "source": [
     "Now setup model - one time step is split into three linear parts.\n",
@@ -187,13 +187,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "d57d7fd6",
+   "id": "81172f4a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:37.629887Z",
-     "iopub.status.busy": "2025-12-02T14:37:37.629694Z",
-     "iopub.status.idle": "2025-12-02T14:37:37.635521Z",
-     "shell.execute_reply": "2025-12-02T14:37:37.634621Z"
+     "iopub.execute_input": "2025-12-02T19:05:03.088657Z",
+     "iopub.status.busy": "2025-12-02T19:05:03.088439Z",
+     "iopub.status.idle": "2025-12-02T19:05:03.094295Z",
+     "shell.execute_reply": "2025-12-02T19:05:03.093414Z"
     }
    },
    "outputs": [],
@@ -219,7 +219,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "77d621f0",
+   "id": "1ca6b30e",
    "metadata": {},
    "source": [
     "Step 1:"
@@ -228,13 +228,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "039a7724",
+   "id": "b3199cb6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:37.637278Z",
-     "iopub.status.busy": "2025-12-02T14:37:37.637100Z",
-     "iopub.status.idle": "2025-12-02T14:37:37.723759Z",
-     "shell.execute_reply": "2025-12-02T14:37:37.722811Z"
+     "iopub.execute_input": "2025-12-02T19:05:03.095904Z",
+     "iopub.status.busy": "2025-12-02T19:05:03.095725Z",
+     "iopub.status.idle": "2025-12-02T19:05:03.178711Z",
+     "shell.execute_reply": "2025-12-02T19:05:03.177877Z"
     }
    },
    "outputs": [],
@@ -250,7 +250,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1a448f41",
+   "id": "269d5061",
    "metadata": {},
    "source": [
     "Step 2:"
@@ -259,13 +259,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "68727f57",
+   "id": "1c40f165",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:37.725779Z",
-     "iopub.status.busy": "2025-12-02T14:37:37.725602Z",
-     "iopub.status.idle": "2025-12-02T14:37:37.794223Z",
-     "shell.execute_reply": "2025-12-02T14:37:37.793495Z"
+     "iopub.execute_input": "2025-12-02T19:05:03.180425Z",
+     "iopub.status.busy": "2025-12-02T19:05:03.180253Z",
+     "iopub.status.idle": "2025-12-02T19:05:03.246888Z",
+     "shell.execute_reply": "2025-12-02T19:05:03.245915Z"
     }
    },
    "outputs": [],
@@ -279,7 +279,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "81d3a700",
+   "id": "f9231c0b",
    "metadata": {},
    "source": [
     "Step 3:"
@@ -288,13 +288,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "5a808f36",
+   "id": "4b90fb95",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:37.796415Z",
-     "iopub.status.busy": "2025-12-02T14:37:37.796238Z",
-     "iopub.status.idle": "2025-12-02T14:37:37.867569Z",
-     "shell.execute_reply": "2025-12-02T14:37:37.866491Z"
+     "iopub.execute_input": "2025-12-02T19:05:03.248477Z",
+     "iopub.status.busy": "2025-12-02T19:05:03.248302Z",
+     "iopub.status.idle": "2025-12-02T19:05:03.316652Z",
+     "shell.execute_reply": "2025-12-02T19:05:03.315895Z"
     },
     "lines_to_next_cell": 1
    },
@@ -310,7 +310,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1bacbf11",
+   "id": "dba5c785",
    "metadata": {},
    "source": [
     "Next we assemble the matrices for all three steps and precompute the LU\n",
@@ -320,13 +320,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "64690d12",
+   "id": "df1095ec",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:37:37.869490Z",
-     "iopub.status.busy": "2025-12-02T14:37:37.869281Z",
-     "iopub.status.idle": "2025-12-02T14:38:10.480820Z",
-     "shell.execute_reply": "2025-12-02T14:38:10.479796Z"
+     "iopub.execute_input": "2025-12-02T19:05:03.318608Z",
+     "iopub.status.busy": "2025-12-02T19:05:03.318411Z",
+     "iopub.status.idle": "2025-12-02T19:05:34.703312Z",
+     "shell.execute_reply": "2025-12-02T19:05:34.702528Z"
     },
     "lines_to_next_cell": 1
    },
@@ -350,7 +350,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ea783e15",
+   "id": "605bf94b",
    "metadata": {},
    "source": [
     "To show the solution we make use of the _animate_ module of _matplotlib_.\n",
@@ -360,13 +360,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "b8628793",
+   "id": "285f2138",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:38:10.482683Z",
-     "iopub.status.busy": "2025-12-02T14:38:10.482475Z",
-     "iopub.status.idle": "2025-12-02T14:38:10.488252Z",
-     "shell.execute_reply": "2025-12-02T14:38:10.487319Z"
+     "iopub.execute_input": "2025-12-02T19:05:34.705561Z",
+     "iopub.status.busy": "2025-12-02T19:05:34.705390Z",
+     "iopub.status.idle": "2025-12-02T19:05:34.711132Z",
+     "shell.execute_reply": "2025-12-02T19:05:34.710272Z"
     },
     "lines_to_next_cell": 1
    },
@@ -410,7 +410,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6faefcf4",
+   "id": "a00f081b",
    "metadata": {},
    "source": [
     "And generate the movie:"
@@ -419,13 +419,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "4ee2ef74",
+   "id": "bb24f00a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:38:10.489910Z",
-     "iopub.status.busy": "2025-12-02T14:38:10.489699Z",
-     "iopub.status.idle": "2025-12-02T14:39:56.732515Z",
-     "shell.execute_reply": "2025-12-02T14:39:56.731746Z"
+     "iopub.execute_input": "2025-12-02T19:05:34.712713Z",
+     "iopub.status.busy": "2025-12-02T19:05:34.712515Z",
+     "iopub.status.idle": "2025-12-02T19:07:15.837532Z",
+     "shell.execute_reply": "2025-12-02T19:07:15.836653Z"
     },
     "lines_to_next_cell": 0
    },
@@ -482,7 +482,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c0003f6a",
+   "id": "82859123",
    "metadata": {},
    "source": [
     "... if the movie is not showing you might have to rerun the notebook ...\n",
@@ -493,13 +493,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "2fc8feec",
+   "id": "31461ff5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T14:39:56.734689Z",
-     "iopub.status.busy": "2025-12-02T14:39:56.734477Z",
-     "iopub.status.idle": "2025-12-02T14:39:56.953296Z",
-     "shell.execute_reply": "2025-12-02T14:39:56.952270Z"
+     "iopub.execute_input": "2025-12-02T19:07:15.839561Z",
+     "iopub.status.busy": "2025-12-02T19:07:15.839381Z",
+     "iopub.status.idle": "2025-12-02T19:07:16.052425Z",
+     "shell.execute_reply": "2025-12-02T19:07:16.051604Z"
     }
    },
    "outputs": [
