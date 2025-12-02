@@ -2,7 +2,7 @@
    Andreas Dedner on Mon Mai 20 2019.
 
 #######################################################
-Welcome to the dune-fem tutorial (for version 'latest')
+Welcome to the dune-fem tutorial (for version 2.11.0.4)
 #######################################################
 
 This module brings python scripting support to `Dune`_.
