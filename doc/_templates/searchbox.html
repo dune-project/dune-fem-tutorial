@@ -1,0 +1,14 @@
+{%- if 'singlehtml' not in builder %}
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="{{ pathto('search') }}" method="get">
+    <input type="text" name="q" placeholder="{{ _('Search docs') }}" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="{{pathto('genindex.html', 1)}}" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="{{pathto('changelog210.html', 1)}}" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="{{pathto('https://dune-project.github.io/dune-fem-tutorial/v2.11.0.3/versions.html', 1)}}" style="color:white">Other versions</a></u></li>
+     </span>
+</div>
+{%- endif %}
