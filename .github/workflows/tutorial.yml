@@ -99,11 +99,12 @@ jobs:
 
           # build docu
           sphinx-build ${{ github.event.repository.name }}/doc versions/$BRANCH
-          mv versions/$BRANCH/versions.html versions/unstable/versions.html || true # avoid error if $BRANCH==unstable
 
           echo "Setting link to latest documentation for $LATEST"
           # write redirect index.html
           echo "<meta http-equiv=\"refresh\" content=\"0; url=https://dune-project.github.io/dune-fem-tutorial/$LATEST\" />" > versions/index.html
+          # write redirect versions.html
+          echo "<meta http-equiv=\"refresh\" content=\"0; url=https://dune-project.github.io/dune-fem-tutorial/$LATEST/versions.html\" />" > versions/versions.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
