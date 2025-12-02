@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "94930cdf",
+   "id": "d0a6f618",
    "metadata": {},
    "source": [
     "# Overview\n",
@@ -41,13 +41,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "cb623693",
+   "id": "637dbac4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:58.309029Z",
-     "iopub.status.busy": "2025-12-01T21:25:58.308840Z",
-     "iopub.status.idle": "2025-12-01T21:25:59.388907Z",
-     "shell.execute_reply": "2025-12-01T21:25:59.387874Z"
+     "iopub.execute_input": "2025-12-02T11:07:11.326002Z",
+     "iopub.status.busy": "2025-12-02T11:07:11.325837Z",
+     "iopub.status.idle": "2025-12-02T11:07:12.393514Z",
+     "shell.execute_reply": "2025-12-02T11:07:12.392686Z"
     }
    },
    "outputs": [
@@ -73,7 +73,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ae5bb0fb",
+   "id": "711315e3",
    "metadata": {},
    "source": [
     "The `FieldVector` and `FieldMatrix` classes are heavily used in the grid\n",
@@ -85,13 +85,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "b6db11d6",
+   "id": "ff333608",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:59.390860Z",
-     "iopub.status.busy": "2025-12-01T21:25:59.390581Z",
-     "iopub.status.idle": "2025-12-01T21:25:59.408418Z",
-     "shell.execute_reply": "2025-12-01T21:25:59.407566Z"
+     "iopub.execute_input": "2025-12-02T11:07:12.395721Z",
+     "iopub.status.busy": "2025-12-02T11:07:12.395461Z",
+     "iopub.status.idle": "2025-12-02T11:07:12.413645Z",
+     "shell.execute_reply": "2025-12-02T11:07:12.412809Z"
     }
    },
    "outputs": [
@@ -119,7 +119,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6e1f33af",
+   "id": "b27094a5",
    "metadata": {},
    "source": [
     "We can also obtain all weights and points stored in numpy arrays which\n",
@@ -129,13 +129,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "73b78b16",
+   "id": "3ddbcf4a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:59.410029Z",
-     "iopub.status.busy": "2025-12-01T21:25:59.409861Z",
-     "iopub.status.idle": "2025-12-01T21:25:59.413943Z",
-     "shell.execute_reply": "2025-12-01T21:25:59.413048Z"
+     "iopub.execute_input": "2025-12-02T11:07:12.415256Z",
+     "iopub.status.busy": "2025-12-02T11:07:12.415083Z",
+     "iopub.status.idle": "2025-12-02T11:07:12.419115Z",
+     "shell.execute_reply": "2025-12-02T11:07:12.418344Z"
     }
    },
    "outputs": [
@@ -157,7 +157,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e594b85a",
+   "id": "0dffbb44",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -177,13 +177,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "6c4f993c",
+   "id": "617ccc18",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:59.415684Z",
-     "iopub.status.busy": "2025-12-01T21:25:59.415492Z",
-     "iopub.status.idle": "2025-12-01T21:25:59.470393Z",
-     "shell.execute_reply": "2025-12-01T21:25:59.469642Z"
+     "iopub.execute_input": "2025-12-02T11:07:12.420858Z",
+     "iopub.status.busy": "2025-12-02T11:07:12.420659Z",
+     "iopub.status.idle": "2025-12-02T11:07:12.475105Z",
+     "shell.execute_reply": "2025-12-02T11:07:12.474199Z"
     }
    },
    "outputs": [],
@@ -195,7 +195,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0b217019",
+   "id": "b5e5d76c",
    "metadata": {},
    "source": [
     "Let's visualize the grid and then globally refine it once"
@@ -204,13 +204,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "c08d2c23",
+   "id": "0851b104",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:59.472730Z",
-     "iopub.status.busy": "2025-12-01T21:25:59.472540Z",
-     "iopub.status.idle": "2025-12-01T21:25:59.603696Z",
-     "shell.execute_reply": "2025-12-01T21:25:59.602856Z"
+     "iopub.execute_input": "2025-12-02T11:07:12.476818Z",
+     "iopub.status.busy": "2025-12-02T11:07:12.476638Z",
+     "iopub.status.idle": "2025-12-02T11:07:12.607611Z",
+     "shell.execute_reply": "2025-12-02T11:07:12.606804Z"
     }
    },
    "outputs": [
@@ -243,7 +243,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0273c03d",
+   "id": "f3bc2da0",
    "metadata": {},
    "source": [
     "The `dune.alugrid` module provides 2d and 3d unstructured grids (both\n",
@@ -257,13 +257,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "0f35dd86",
+   "id": "f6543e0b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:59.605550Z",
-     "iopub.status.busy": "2025-12-01T21:25:59.605278Z",
-     "iopub.status.idle": "2025-12-01T21:25:59.806466Z",
-     "shell.execute_reply": "2025-12-01T21:25:59.805674Z"
+     "iopub.execute_input": "2025-12-02T11:07:12.609538Z",
+     "iopub.status.busy": "2025-12-02T11:07:12.609261Z",
+     "iopub.status.idle": "2025-12-02T11:07:12.806179Z",
+     "shell.execute_reply": "2025-12-02T11:07:12.805268Z"
     }
    },
    "outputs": [
@@ -310,7 +310,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "47618510",
+   "id": "3f4f24a5",
    "metadata": {},
    "source": [
     "We can also provide the number of levels to refine to the `globalRefine`\n",
@@ -320,13 +320,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "db0e654c",
+   "id": "0da02325",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:59.808638Z",
-     "iopub.status.busy": "2025-12-01T21:25:59.808425Z",
-     "iopub.status.idle": "2025-12-01T21:25:59.934519Z",
-     "shell.execute_reply": "2025-12-01T21:25:59.933672Z"
+     "iopub.execute_input": "2025-12-02T11:07:12.808011Z",
+     "iopub.status.busy": "2025-12-02T11:07:12.807834Z",
+     "iopub.status.idle": "2025-12-02T11:07:12.932487Z",
+     "shell.execute_reply": "2025-12-02T11:07:12.931631Z"
     }
    },
    "outputs": [
@@ -364,7 +364,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d43fdc30",
+   "id": "875c6720",
    "metadata": {},
    "source": [
     "The `dune.grid.yaspGrid` grid manager also provides the option to construct\n",
@@ -376,13 +376,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "d730325b",
+   "id": "ad9d4005",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:25:59.936220Z",
-     "iopub.status.busy": "2025-12-01T21:25:59.936040Z",
-     "iopub.status.idle": "2025-12-01T21:26:00.044424Z",
-     "shell.execute_reply": "2025-12-01T21:26:00.043599Z"
+     "iopub.execute_input": "2025-12-02T11:07:12.934514Z",
+     "iopub.status.busy": "2025-12-02T11:07:12.934328Z",
+     "iopub.status.idle": "2025-12-02T11:07:13.043218Z",
+     "shell.execute_reply": "2025-12-02T11:07:13.042379Z"
     }
    },
    "outputs": [
@@ -406,7 +406,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0792b986",
+   "id": "21f8a807",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; Dictionaries\n",
@@ -419,13 +419,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "b5b6dc4b",
+   "id": "179688f5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:00.046396Z",
-     "iopub.status.busy": "2025-12-01T21:26:00.046219Z",
-     "iopub.status.idle": "2025-12-01T21:26:00.196019Z",
-     "shell.execute_reply": "2025-12-01T21:26:00.195222Z"
+     "iopub.execute_input": "2025-12-02T11:07:13.044963Z",
+     "iopub.status.busy": "2025-12-02T11:07:13.044785Z",
+     "iopub.status.idle": "2025-12-02T11:07:13.193189Z",
+     "shell.execute_reply": "2025-12-02T11:07:13.192197Z"
     }
    },
    "outputs": [
@@ -461,7 +461,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f93df4e2",
+   "id": "cdd17cb6",
    "metadata": {},
    "source": [
     "\n",
@@ -471,7 +471,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "192251a0",
+   "id": "aeaa42fa",
    "metadata": {},
    "source": [
     ".. index:: Adaptation; h-refinement\n",
@@ -484,13 +484,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "c7a8ceb5",
+   "id": "410c037c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:00.197749Z",
-     "iopub.status.busy": "2025-12-01T21:26:00.197552Z",
-     "iopub.status.idle": "2025-12-01T21:26:00.509662Z",
-     "shell.execute_reply": "2025-12-01T21:26:00.508801Z"
+     "iopub.execute_input": "2025-12-02T11:07:13.194973Z",
+     "iopub.status.busy": "2025-12-02T11:07:13.194789Z",
+     "iopub.status.idle": "2025-12-02T11:07:13.510474Z",
+     "shell.execute_reply": "2025-12-02T11:07:13.509683Z"
     }
    },
    "outputs": [
@@ -553,7 +553,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8c902cc6",
+   "id": "c450da11",
    "metadata": {},
    "source": [
     ".. tip:: If discrete functions based on the `dune.fem` spaces have been\n",
@@ -567,7 +567,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "402e8d91",
+   "id": "ef8f43d5",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -581,13 +581,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "f1529a9e",
+   "id": "5be0cca0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:00.511694Z",
-     "iopub.status.busy": "2025-12-01T21:26:00.511495Z",
-     "iopub.status.idle": "2025-12-01T21:26:00.517248Z",
-     "shell.execute_reply": "2025-12-01T21:26:00.516359Z"
+     "iopub.execute_input": "2025-12-02T11:07:13.512395Z",
+     "iopub.status.busy": "2025-12-02T11:07:13.512187Z",
+     "iopub.status.idle": "2025-12-02T11:07:13.518537Z",
+     "shell.execute_reply": "2025-12-02T11:07:13.517536Z"
     },
     "lines_to_next_cell": 1
    },
@@ -632,7 +632,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b5c6c58d",
+   "id": "32972731",
    "metadata": {},
    "source": [
     "In the above we have used the geometry method on the entity which\n",
@@ -646,7 +646,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3357c97a",
+   "id": "21790dee",
    "metadata": {},
    "source": [
     "\n",
@@ -667,13 +667,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "d04c6844",
+   "id": "b7844b09",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:00.518895Z",
-     "iopub.status.busy": "2025-12-01T21:26:00.518695Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.086377Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.085478Z"
+     "iopub.execute_input": "2025-12-02T11:07:13.520198Z",
+     "iopub.status.busy": "2025-12-02T11:07:13.520018Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.081724Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.080800Z"
     }
    },
    "outputs": [
@@ -729,7 +729,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7730163e",
+   "id": "edeaff1a",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -744,13 +744,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "60ce57fe",
+   "id": "92045cad",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.088175Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.087980Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.102162Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.101228Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.083587Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.083404Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.097406Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.096641Z"
     }
    },
    "outputs": [
@@ -776,7 +776,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "89967618",
+   "id": "a0849fb7",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -790,13 +790,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "a9279179",
+   "id": "8e33000f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.103873Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.103695Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.110834Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.109872Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.099436Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.099137Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.106429Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.105649Z"
     }
    },
    "outputs": [
@@ -822,7 +822,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c65ab1f5",
+   "id": "9a9953fa",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -833,13 +833,13 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "00fd47c5",
+   "id": "ecf77d4a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.112436Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.112265Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.146395Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.145401Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.108116Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.107948Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.140939Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.140035Z"
     }
    },
    "outputs": [
@@ -877,7 +877,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "fc0434d2",
+   "id": "04e42e32",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -892,7 +892,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1e7738f9",
+   "id": "fd5611eb",
    "metadata": {},
    "source": [
     ".. index:: Grids; Attaching data\n",
@@ -920,13 +920,13 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "7fec5ad4",
+   "id": "fa9183eb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.148164Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.147973Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.175237Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.174335Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.142560Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.142391Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.168364Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.167649Z"
     }
    },
    "outputs": [
@@ -946,7 +946,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "27b7cd0f",
+   "id": "97c24eb7",
    "metadata": {},
    "source": [
     "We can also use the reference element types from `dune.geometry` to\n",
@@ -956,13 +956,13 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "8a8be804",
+   "id": "0238e02f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.176964Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.176775Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.180062Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.179285Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.170125Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.169845Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.173138Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.172252Z"
     },
     "lines_to_next_cell": 1
    },
@@ -974,7 +974,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e2d0973c",
+   "id": "7f7f7f4a",
    "metadata": {},
    "source": [
     "Finally here is an example of using the mapper to attach one degree of\n",
@@ -985,13 +985,13 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "id": "676d8cfd",
+   "id": "e56be3b5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.181771Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.181565Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.186776Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.185931Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.174664Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.174501Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.179389Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.178672Z"
     },
     "lines_to_next_cell": 1
    },
@@ -1014,7 +1014,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "772fb44d",
+   "id": "7d9164ee",
    "metadata": {},
    "source": [
     "We can use a grid function to compute the error of the Lagrange\n",
@@ -1024,13 +1024,13 @@
   {
    "cell_type": "code",
    "execution_count": 19,
-   "id": "c0418ee4",
+   "id": "28256c77",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.189593Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.189417Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.196655Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.195877Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.181045Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.180882Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.187887Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.187086Z"
     }
    },
    "outputs": [
@@ -1052,7 +1052,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ef113802",
+   "id": "e5419408",
    "metadata": {},
    "source": [
     ".. tip:: the mapper describe here provides a slightly extended interface\n",
@@ -1066,13 +1066,13 @@
   {
    "cell_type": "code",
    "execution_count": 20,
-   "id": "bb0c8ea7",
+   "id": "334d2403",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.198773Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.198414Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.202621Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.201739Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.189529Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.189352Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.193125Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.192365Z"
     }
    },
    "outputs": [
@@ -1096,7 +1096,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "26a092b3",
+   "id": "8f366149",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -1112,7 +1112,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "159d5849",
+   "id": "909a58de",
    "metadata": {},
    "source": [
     "#### Matplotlib\n",
@@ -1126,13 +1126,13 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "id": "b8e46817",
+   "id": "bbbd4054",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.204208Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.204036Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.833070Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.832239Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.194826Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.194651Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.818134Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.817193Z"
     }
    },
    "outputs": [
@@ -1175,7 +1175,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3398f946",
+   "id": "1125aca6",
    "metadata": {},
    "source": [
     "#### Paraview (vtu/vtk files)\n",
@@ -1186,13 +1186,13 @@
   {
    "cell_type": "code",
    "execution_count": 22,
-   "id": "285e7087",
+   "id": "414de9ae",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.834899Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.834716Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.878782Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.877692Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.820074Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.819895Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.863068Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.862113Z"
     }
    },
    "outputs": [],
@@ -1205,7 +1205,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c20531a1",
+   "id": "e7f1cd1e",
    "metadata": {},
    "source": [
     "Here are pngs generated with paraview from the above output:\n",
@@ -1219,7 +1219,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4f369e6c",
+   "id": "30a84759",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -1233,13 +1233,13 @@
   {
    "cell_type": "code",
    "execution_count": 23,
-   "id": "c182eef1",
+   "id": "b5f6bcc2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T21:26:01.880647Z",
-     "iopub.status.busy": "2025-12-01T21:26:01.880440Z",
-     "iopub.status.idle": "2025-12-01T21:26:01.898488Z",
-     "shell.execute_reply": "2025-12-01T21:26:01.897624Z"
+     "iopub.execute_input": "2025-12-02T11:07:14.864720Z",
+     "iopub.status.busy": "2025-12-02T11:07:14.864551Z",
+     "iopub.status.idle": "2025-12-02T11:07:14.881656Z",
+     "shell.execute_reply": "2025-12-02T11:07:14.880958Z"
     }
    },
    "outputs": [
@@ -1272,7 +1272,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3a2ef780",
+   "id": "484de16e",
    "metadata": {},
    "source": [
     "#### Low level output\n",

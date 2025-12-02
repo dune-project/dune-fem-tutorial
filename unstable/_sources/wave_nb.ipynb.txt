@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "4ce08b18",
+   "id": "26605b2a",
    "metadata": {},
    "source": [
     ".. index:: Equations; Wave Equation\n",
@@ -61,13 +61,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "c9ebe9b0",
+   "id": "ae141e99",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T22:05:12.029788Z",
-     "iopub.status.busy": "2025-12-01T22:05:12.029578Z",
-     "iopub.status.idle": "2025-12-01T22:05:13.092446Z",
-     "shell.execute_reply": "2025-12-01T22:05:13.091416Z"
+     "iopub.execute_input": "2025-12-02T11:45:24.632597Z",
+     "iopub.status.busy": "2025-12-02T11:45:24.632337Z",
+     "iopub.status.idle": "2025-12-02T11:45:25.690205Z",
+     "shell.execute_reply": "2025-12-02T11:45:25.689374Z"
     }
    },
    "outputs": [],
@@ -87,7 +87,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6a1323f1",
+   "id": "08925d8c",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; gmsh (from file)\n",
@@ -104,13 +104,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "3a85f550",
+   "id": "a8a8c42b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T22:05:13.094875Z",
-     "iopub.status.busy": "2025-12-01T22:05:13.094584Z",
-     "iopub.status.idle": "2025-12-01T22:05:14.559829Z",
-     "shell.execute_reply": "2025-12-01T22:05:14.559058Z"
+     "iopub.execute_input": "2025-12-02T11:45:25.693420Z",
+     "iopub.status.busy": "2025-12-02T11:45:25.693116Z",
+     "iopub.status.idle": "2025-12-02T11:45:27.117406Z",
+     "shell.execute_reply": "2025-12-02T11:45:27.116094Z"
     },
     "lines_to_next_cell": 2
    },
@@ -129,7 +129,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7abc3d55",
+   "id": "e2ab5309",
    "metadata": {},
    "source": [
     "Next we define an operator for the stiffness matrix including the\n",
@@ -149,13 +149,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "fd6a9d79",
+   "id": "05f5038b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T22:05:14.562536Z",
-     "iopub.status.busy": "2025-12-01T22:05:14.562015Z",
-     "iopub.status.idle": "2025-12-01T22:05:47.236562Z",
-     "shell.execute_reply": "2025-12-01T22:05:47.235496Z"
+     "iopub.execute_input": "2025-12-02T11:45:27.119372Z",
+     "iopub.status.busy": "2025-12-02T11:45:27.119045Z",
+     "iopub.status.idle": "2025-12-02T11:45:59.180637Z",
+     "shell.execute_reply": "2025-12-02T11:45:59.179814Z"
     }
    },
    "outputs": [],
@@ -177,7 +177,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6ebdc4d6",
+   "id": "285b837e",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -194,13 +194,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "0e41ecd3",
+   "id": "9362bd40",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T22:05:47.238670Z",
-     "iopub.status.busy": "2025-12-01T22:05:47.238453Z",
-     "iopub.status.idle": "2025-12-01T22:05:47.426647Z",
-     "shell.execute_reply": "2025-12-01T22:05:47.425637Z"
+     "iopub.execute_input": "2025-12-02T11:45:59.182889Z",
+     "iopub.status.busy": "2025-12-02T11:45:59.182706Z",
+     "iopub.status.idle": "2025-12-02T11:45:59.360242Z",
+     "shell.execute_reply": "2025-12-02T11:45:59.359405Z"
     }
    },
    "outputs": [],
@@ -211,7 +211,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d42a8dcf",
+   "id": "aff594a6",
    "metadata": {},
    "source": [
     "Another approach is to construct a mass operator $<L[u],\\varphi_i> = \\int_\\Omega u\\varphi_i$\n",
@@ -221,13 +221,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "f635b7c8",
+   "id": "7aafd56a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T22:05:47.428816Z",
-     "iopub.status.busy": "2025-12-01T22:05:47.428527Z",
-     "iopub.status.idle": "2025-12-01T22:05:47.533353Z",
-     "shell.execute_reply": "2025-12-01T22:05:47.532515Z"
+     "iopub.execute_input": "2025-12-02T11:45:59.362366Z",
+     "iopub.status.busy": "2025-12-02T11:45:59.362149Z",
+     "iopub.status.idle": "2025-12-02T11:45:59.464556Z",
+     "shell.execute_reply": "2025-12-02T11:45:59.463936Z"
     }
    },
    "outputs": [],
@@ -243,7 +243,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "75101287",
+   "id": "3b2f1c38",
    "metadata": {},
    "source": [
     "An alternative approach is to use an interpolation quadrature, where the\n",
@@ -258,13 +258,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "6f160a44",
+   "id": "ef35690d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T22:05:47.536030Z",
-     "iopub.status.busy": "2025-12-01T22:05:47.535820Z",
-     "iopub.status.idle": "2025-12-01T22:06:01.717513Z",
-     "shell.execute_reply": "2025-12-01T22:06:01.716692Z"
+     "iopub.execute_input": "2025-12-02T11:45:59.467246Z",
+     "iopub.status.busy": "2025-12-02T11:45:59.467038Z",
+     "iopub.status.idle": "2025-12-02T11:46:13.392470Z",
+     "shell.execute_reply": "2025-12-02T11:46:13.391425Z"
     }
    },
    "outputs": [],
@@ -278,7 +278,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "da11e9fe",
+   "id": "f82c2d74",
    "metadata": {},
    "source": [
     "We can now set up the time loop and perform our explicit time stepping\n",
@@ -293,13 +293,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "828568a1",
+   "id": "c9a4339a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-01T22:06:01.719682Z",
-     "iopub.status.busy": "2025-12-01T22:06:01.719466Z",
-     "iopub.status.idle": "2025-12-01T22:06:16.151007Z",
-     "shell.execute_reply": "2025-12-01T22:06:16.150169Z"
+     "iopub.execute_input": "2025-12-02T11:46:13.394326Z",
+     "iopub.status.busy": "2025-12-02T11:46:13.394116Z",
+     "iopub.status.idle": "2025-12-02T11:46:26.578846Z",
+     "shell.execute_reply": "2025-12-02T11:46:26.577830Z"
     }
    },
    "outputs": [

@@ -49,7 +49,7 @@
      <span class="caption-text">
      <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
      <li><u><a href="changelog210.html" style="color:white">Most recent changes</a></u></li>
-     <li><u><a href="versions.html" style="color:white">Other versions</a></u></li>
+     <li><u><a href="https://dune-project.github.io/dune-fem-tutorial/v2.11.0.3/versions.html" style="color:white">Other versions</a></u></li>
      </span>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -651,7 +651,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.22912636259835428, 0.2675459784636925)
+Polygon diameters: (0.2093980048653099, 0.2776038691072445)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -722,11 +722,11 @@ Polygon diameters: (0.22912636259835428, 0.2675459784636925)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.02047039466161545 H^1:  0.3979500855368982 53
-method ( dg ): dofs:  525 L^2:  0.013757561675985045 H^1:  0.3674010406737165 530
-method ( vem-conforming ): dofs:  102 L^2:  0.02249987843255093 H^1:  0.3447476538351038 30
-method ( vem-nonconforming ): dofs:  151 L^2:  0.020469195807174274 H^1:  0.3572988407017995 32
-method ( bb-dg ): dofs:  150 L^2:  0.021049671715298764 H^1:  0.37333431098104747 85
+method ( lagrange ): dofs:  102 L^2:  0.017258483715240375 H^1:  0.3610358203052139 56
+method ( dg ): dofs:  516 L^2:  0.012448126742051303 H^1:  0.3383918490669422 1901
+method ( vem-conforming ): dofs:  102 L^2:  0.018090375406073524 H^1:  0.3231968268206809 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019091125767953646 H^1:  0.33496168049633834 33
+method ( bb-dg ): dofs:  150 L^2:  0.024677586877413855 H^1:  0.3607679819284278 86
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -771,7 +771,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.021049671715298764 H^1:  0.3733343109810474
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.011176473336148497), np.float64(0.15621795460439997)]
+non linear problem: [np.float64(0.010499966864526688), np.float64(0.1509011555780137)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -947,7 +947,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(29.799169086396073), np.float64(163.0327048913202)]
+bi-laplace errors: [np.float64(29.60605249063674), np.float64(160.80911474916493)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
