@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "4b5addf1",
+   "id": "ab14747c",
    "metadata": {},
    "source": [
     ".. index:: Methods; Adaptive Finite Elements\n",
@@ -29,13 +29,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "3de0544b",
+   "id": "9a60a1e2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:02.955165Z",
-     "iopub.status.busy": "2025-12-02T11:19:02.954981Z",
-     "iopub.status.idle": "2025-12-02T11:19:04.010591Z",
-     "shell.execute_reply": "2025-12-02T11:19:04.009028Z"
+     "iopub.execute_input": "2025-12-02T13:46:59.113317Z",
+     "iopub.status.busy": "2025-12-02T13:46:59.113059Z",
+     "iopub.status.idle": "2025-12-02T13:47:00.173363Z",
+     "shell.execute_reply": "2025-12-02T13:47:00.172376Z"
     },
     "lines_to_next_cell": 2
    },
@@ -74,7 +74,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "255000b4",
+   "id": "ed05a093",
    "metadata": {},
    "source": [
     "We first define the domain and set up the grid and space.\n",
@@ -92,13 +92,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "02170cf4",
+   "id": "ec6f789c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:04.013044Z",
-     "iopub.status.busy": "2025-12-02T11:19:04.012773Z",
-     "iopub.status.idle": "2025-12-02T11:19:04.019032Z",
-     "shell.execute_reply": "2025-12-02T11:19:04.018263Z"
+     "iopub.execute_input": "2025-12-02T13:47:00.175848Z",
+     "iopub.status.busy": "2025-12-02T13:47:00.175587Z",
+     "iopub.status.idle": "2025-12-02T13:47:00.182158Z",
+     "shell.execute_reply": "2025-12-02T13:47:00.181317Z"
     }
    },
    "outputs": [],
@@ -136,7 +136,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5c2ad78e",
+   "id": "a811e812",
    "metadata": {},
    "source": [
     "We will start with computing the $H^1$ error on a sequence of globally\n",
@@ -152,13 +152,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "8a71f6c8",
+   "id": "0579b484",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:04.021059Z",
-     "iopub.status.busy": "2025-12-02T11:19:04.020840Z",
-     "iopub.status.idle": "2025-12-02T11:19:07.242680Z",
-     "shell.execute_reply": "2025-12-02T11:19:07.241653Z"
+     "iopub.execute_input": "2025-12-02T13:47:00.184121Z",
+     "iopub.status.busy": "2025-12-02T13:47:00.183931Z",
+     "iopub.status.idle": "2025-12-02T13:47:03.460610Z",
+     "shell.execute_reply": "2025-12-02T13:47:03.459505Z"
     },
     "lines_to_next_cell": 2
    },
@@ -167,7 +167,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "0 : size= 32 error= 0.1865512227935699\n"
+      "0 : size= 32 error= 0.18655122279357\n"
      ]
     },
     {
@@ -181,56 +181,56 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "2 : size= 144 error= 0.12554948815618466\n"
+      "2 : size= 144 error= 0.12554948815618475\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "3 : size= 296 error= 0.10825248980058115\n"
+      "3 : size= 296 error= 0.10825248980058118\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "4 : size= 608 error= 0.08486347007968989\n"
+      "4 : size= 608 error= 0.08486347007959624\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "5 : size= 1232 error= 0.07320710422512679\n"
+      "5 : size= 1232 error= 0.0732071042251268\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "6 : size= 2496 error= 0.057417159633386415\n"
+      "6 : size= 2496 error= 0.05741715963355974\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "7 : size= 5024 error= 0.0495413358160566\n"
+      "7 : size= 5024 error= 0.04954133581605657\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "8 : size= 10112 error= 0.03886429530585098\n"
+      "8 : size= 10112 error= 0.038864295305854744\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "9 : size= 20288 error= 0.03353671438408598\n"
+      "9 : size= 20288 error= 0.033536714384086015\n"
      ]
     }
    ],
@@ -250,7 +250,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "23fb1ad3",
+   "id": "cc0a9f0e",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -281,13 +281,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "26b33be3",
+   "id": "afbb149a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:07.244727Z",
-     "iopub.status.busy": "2025-12-02T11:19:07.244431Z",
-     "iopub.status.idle": "2025-12-02T11:19:07.409270Z",
-     "shell.execute_reply": "2025-12-02T11:19:07.408347Z"
+     "iopub.execute_input": "2025-12-02T13:47:03.462536Z",
+     "iopub.status.busy": "2025-12-02T13:47:03.462249Z",
+     "iopub.status.idle": "2025-12-02T13:47:03.626052Z",
+     "shell.execute_reply": "2025-12-02T13:47:03.625193Z"
     },
     "lines_to_next_cell": 2
    },
@@ -313,7 +313,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "60454c7e",
+   "id": "74d597aa",
    "metadata": {},
    "source": [
     ".. index:: Adaptation; Doerfler marking\n",
@@ -324,13 +324,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "1caa088a",
+   "id": "b6acaaab",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:07.411617Z",
-     "iopub.status.busy": "2025-12-02T11:19:07.411426Z",
-     "iopub.status.idle": "2025-12-02T11:19:08.482595Z",
-     "shell.execute_reply": "2025-12-02T11:19:08.481641Z"
+     "iopub.execute_input": "2025-12-02T13:47:03.628330Z",
+     "iopub.status.busy": "2025-12-02T13:47:03.628133Z",
+     "iopub.status.idle": "2025-12-02T13:47:04.715386Z",
+     "shell.execute_reply": "2025-12-02T13:47:04.714571Z"
     }
    },
    "outputs": [
@@ -338,42 +338,42 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "2 : size= 38 estimate= 0.8627288181776187 error= 0.1343089543540232\n"
+      "2 : size= 38 estimate= 0.8627288181776004 error= 0.13430895435402318\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "5 : size= 60 estimate= 0.609371637987362 error= 0.08153414250970609\n"
+      "5 : size= 60 estimate= 0.6093716379873625 error= 0.08153414250970607\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "8 : size= 74 estimate= 0.476717841737728 error= 0.055215517740272065\n"
+      "8 : size= 74 estimate= 0.47671784173774456 error= 0.055215517740272065\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "11 : size= 112 estimate= 0.34311569136979353 error= 0.03741185673883575\n"
+      "11 : size= 112 estimate= 0.3431156913698029 error= 0.03741185673883575\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "14 : size= 174 estimate= 0.20313335322236958 error= 0.02299393402889614\n"
+      "14 : size= 174 estimate= 0.20313335322845724 error= 0.02299393402889602\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "17 : size= 316 estimate= 0.11427960569635069 error= 0.013551254946383444\n"
+      "17 : size= 316 estimate= 0.11427960569636048 error= 0.01355125494638345\n"
      ]
     },
     {
@@ -423,7 +423,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "90a08aa3",
+   "id": "e5a86ceb",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -434,13 +434,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "1ad81926",
+   "id": "5dc31020",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:08.484281Z",
-     "iopub.status.busy": "2025-12-02T11:19:08.484108Z",
-     "iopub.status.idle": "2025-12-02T11:19:09.200729Z",
-     "shell.execute_reply": "2025-12-02T11:19:09.199906Z"
+     "iopub.execute_input": "2025-12-02T13:47:04.717280Z",
+     "iopub.status.busy": "2025-12-02T13:47:04.717102Z",
+     "iopub.status.idle": "2025-12-02T13:47:05.445749Z",
+     "shell.execute_reply": "2025-12-02T13:47:05.444883Z"
     }
    },
    "outputs": [
@@ -468,7 +468,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c1a9c229",
+   "id": "a85250be",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -479,13 +479,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "2e86b310",
+   "id": "17ff3b12",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:09.203465Z",
-     "iopub.status.busy": "2025-12-02T11:19:09.203290Z",
-     "iopub.status.idle": "2025-12-02T11:19:09.880638Z",
-     "shell.execute_reply": "2025-12-02T11:19:09.879708Z"
+     "iopub.execute_input": "2025-12-02T13:47:05.448483Z",
+     "iopub.status.busy": "2025-12-02T13:47:05.448305Z",
+     "iopub.status.idle": "2025-12-02T13:47:06.143953Z",
+     "shell.execute_reply": "2025-12-02T13:47:06.143013Z"
     },
     "lines_to_next_cell": 2
    },
@@ -515,7 +515,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "17e85f61",
+   "id": "6a54c11f",
    "metadata": {},
    "source": [
     "Finally, let us compare the globally refined solution and the adaptive\n",
@@ -526,20 +526,20 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "e4896c00",
+   "id": "7c92a429",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-02T11:19:09.882716Z",
-     "iopub.status.busy": "2025-12-02T11:19:09.882520Z",
-     "iopub.status.idle": "2025-12-02T11:19:10.260476Z",
-     "shell.execute_reply": "2025-12-02T11:19:10.259482Z"
+     "iopub.execute_input": "2025-12-02T13:47:06.146240Z",
+     "iopub.status.busy": "2025-12-02T13:47:06.146051Z",
+     "iopub.status.idle": "2025-12-02T13:47:06.534982Z",
+     "shell.execute_reply": "2025-12-02T13:47:06.534056Z"
     }
    },
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "<matplotlib.legend.Legend at 0x7fe080447a10>"
+       "<matplotlib.legend.Legend at 0x7f2d37a33cb0>"
       ]
      },
      "execution_count": 8,
