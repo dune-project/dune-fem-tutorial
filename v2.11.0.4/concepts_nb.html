@@ -1,0 +1,1483 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Concepts (with a time dependent problem) &mdash; Tutorial for version 2.11-git</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Next steps" href="nextsteps.html" />
+    <link rel="prev" title="Introduction" href="dune-fempy_nb.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/dune-python-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="changelog210.html" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="https://dune-project.github.io/dune-fem-tutorial/v2.11.0.3/versions.html" style="color:white">Other versions</a></u></li>
+     </span>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Teasers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="furtherexamples.html">Main Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wave_nb.html">Wave Equation: double slit domain (using mass lumping)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#DG-formulation">DG formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="monolithicStokes_nb.html#id3">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Convergence-rate-check">Convergence rate check</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cylinder_nb.html">Navier-Stokes: flow around a cylinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mixed_poisson_nb.html">Mixed method for the Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evalues_laplace_nb.html">Eigenvalue problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evalues_laplace_nb.html#Eigenvalues-of-the-Neumann-Laplacian">Eigenvalues of the Neumann Laplacian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="evalues_laplace_nb.html#Dirichlet-Eigenvalue-problem">Dirichlet Eigenvalue problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="biharmonic_IPC0_nb.html">Biharmonic problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="biharmonic_IPC0_nb.html#Implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="biharmonic_IPC0_nb.html#Simply-supported-boundary-conditions">Simply supported boundary conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="furtherexamples.html#extension-modules">Extension Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="furtherexamples.html#discontinuous-galerkin-methods-with-dune-fem-dg">Discontinuous Galerkin Methods with DUNE-FEM-DG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="euler_nb.html">Euler System of Gas Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chemical_nb.html">An Advection-Diffusion-Reaction System: Chemical Reaction Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="furtherexamples.html#virtual-element-methods-with-dune-vem">Virtual Element Methods with DUNE-VEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html">Elliptic Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Nonlinear-Elliptic-Problem">Nonlinear Elliptic Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Linear-Elasticity">Linear Elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Fourth-order-problem">Fourth order problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chimpl_nb.html">Cahn-Hilliard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">From PyPi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#additional-external-packages">Additional external packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#testing-the-installation">Testing the installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#hints-for-windows">Hints for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#from-source">From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-the-required-dune-modules">Building the Required Dune Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="dune-fempy_nb.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-Laplace-problem">A Laplace problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Laplace-equation-with-Dirichlet-boundary-conditions">Laplace equation with Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-non-linear-elliptic-problem">A non-linear elliptic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Using-Constant-parameters-and-grid-functions-in-PDEs">Using <code class="docutils literal notranslate"><span class="pre">Constant</span></code> parameters and grid functions in PDEs</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">General Concepts (with a time dependent problem)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Setting-up-the-Grid">Setting up the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Grid-Functions">Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Discrete-Spaces">Discrete Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Discrete-Functions">Discrete Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Operators-and-Schemes">Operators and Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#A-Nonlinear-Time-Dependent-Problem">A Nonlinear Time Dependent Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Listing-Available-Dune-Components">Listing Available Dune Components</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="boundary_nb.html">More General Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Dirichlet-boundary-conditions">Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom">Accessing the Dirichlet degrees of freedom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Neumann-and-Robin-boundary-conditions">Neumann and Robin boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solversInternal_nb.html">Tweaking the (non-) linear solvers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Python-sided-Newton-solver">Python sided Newton solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Handling-Dirichlet-boundary-conditions">Handling Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Other-internal-solvers-(petsc)">Other internal solvers (petsc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Other-internal-solvers-(istl)">Other internal solvers (istl)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Parameters-for-fine-tuning-the-internal-solvers">Parameters for fine-tuning the internal solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Available-solvers-and-parameters">Available solvers and parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solversExternal_nb.html">Alternative Solvers (e.g. Scipy, Petsc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Accessing-underlying-data-structures">Accessing underlying data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Defining-discrete-function-with-given-external-dof-vector">Defining discrete function with given external dof vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-Scipy">Using Scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-scikit-umfpack">Using scikit-umfpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-PETSc4Py">Using PETSc4Py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corepy.html">Using the Full Grid Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Dense-Vectors-and-the-Geometry-Classes">Dense Vectors and the Geometry Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Grid-Construction-and-Basic-Interface">Grid Construction and Basic Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Structured-grids">Structured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Unstructured-grids">Unstructured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Local-grid-adaptivity">Local grid adaptivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dune-corepy_nb.html#Basic-information-and-iterators">Basic information and iterators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Using-grid-functions">Using grid functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Importing-user-defined-C++-code">Importing user defined C++ code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Attaching-Data-to-the-Grid">Attaching Data to the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Output-of-Grid-and-Visualization-of-Data">Output of Grid and Visualization of Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Paraview-(vtu/vtk-files)">Paraview (vtu/vtk files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Mayavi">Mayavi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Low-level-output">Low level output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gridviews_and_adaptivity.html">Grid views and adaptivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-and-some-basic-grid-views-level-and-filtered">Overview and some basic grid views (level and filtered)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="levelgridview_nb.html">LevelGridView examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening">Dynamic Local Grid Refinement and Coarsening</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-on-adaptivity-for-spaces-p-adaptation">Overview on adaptivity for spaces (p-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#evolving-domains">Evolving Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpp.html">Using C++ Code Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Projects using Dune-Fem</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mmesh_descr.html">Mixed-dimensional PDEs: the Dune-MMesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mmesh_nb.html">Dune-MMesh: Solving a Mixed-dimensional PDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="landlab_descr.html">Components for the Landlab software package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview_of_advection_solver_nb.html">Linear Advection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview_of_advection_solver_nb.html#Advection-of-a-Gaussian-%22bump%22-in-2d">Advection of a Gaussian “bump” in 2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-east">Raster grid with advection to the east</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="overview_of_advection_solver_nb.html#Instantiate-component">Instantiate component</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-north">Raster grid with advection to the north</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-southwest">Raster grid with advection to the southwest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-a-non-uniform-advection-field">Raster grid with a non-uniform advection field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Case-of-divergent-velocity">Case of divergent velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="overview_of_advection_solver_nb.html#A-rotating-cone">A rotating cone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html">A Linear Diffusion Overland Flow Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Overview">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Model">Model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Flow-direction,-depth,-and-velocity">Flow direction, depth, and velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Numerical-Methods">Numerical Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#The-component">The component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Example-2:-overland-flow-on-a-DEM">Example 2: overland flow on a DEM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#References">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ddfem_descr.html">DDFEM: Diffuse Domain Python package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Information for C++ Developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#using-a-debugger">Using a debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#list-of-build-specific-environment-variables">List of build specific environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html">Contributing to this tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html#how-to-showcase-your-own-work">How to showcase your own work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional.html">Additional Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog290.html">Since 2.9 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#general-changes">General changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#updating-to-newer-version-of-ufl">Updating to newer version of UFL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#new-clone-method-on-spaces">New <cite>clone</cite> method on spaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#dirichlet-bcs-for-operators-with-different-range-domain-space">Dirichlet BCs for operators with different range/domain space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#changes-to-solver-parameter-keys">Changes to solver parameter keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#added-a-solve-method-to-the-linearization-of-schemes">Added a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method to the linearization of <code class="docutils literal notranslate"><span class="pre">schemes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#updated-dune-fem-scheme-linearized">Updated <code class="docutils literal notranslate"><span class="pre">dune.fem.scheme.linearized</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#add-operator-len-to-spaces">Add operator <code class="docutils literal notranslate"><span class="pre">__len__</span></code> to spaces.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#add-dirichletindices-method-to-operators-and-schemes">Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#extension-of-the-jacobian-method-on-schemes-and-operators">Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#set-non-default-quadratures-in-quadrature-rules">Set non default quadratures in quadrature rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#assembly-function">Assembly function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#improved-pickling-support">Improved Pickling support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#paraview-reader">Paraview Reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#sampler-along-boundary">Sampler along Boundary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">Point sampler returning (entity,local coordinate) for given global coordinate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#improved-boundary-indexing-in-ufl-forms-for-boundary-integrals-and-dirichlet-conditions">Improved Boundary Indexing in UFL Forms (for boundary integrals and Dirichlet conditions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#eisenstatwalker-in-newton-method">Eisenstatwalker in Newton method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#storage-setup-in-scheme">Storage setup in scheme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">Methods on space to return local mapper and for evaluating basis functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#logging-of-parameter-values">Logging of parameter values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-the-rhs-argument-for-scheme-solve">Deprecation of the <code class="docutils literal notranslate"><span class="pre">rhs</span></code> argument for <code class="docutils literal notranslate"><span class="pre">scheme.solve</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-integrate">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-ufl-expression2gf">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-operator-linear">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-space-combinedspace">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#dune-vem">DUNE-VEM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#dirichlet-constraints-for-conforming-c-1-space">Dirichlet constraints for conforming $C^1$ space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#intersection-integrals-now-use-the-edge-projections">Intersection integrals now use the edge projections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog210.html">Since 2.10 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#breaking-changes">Breaking changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#general-changes">General changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#bugfixes">Bugfixes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog210.html#pickling-of-discrete-functions">Pickling of discrete functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inforesources.html">Keyword index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gmsh2dgf_nb.html">Converting gmsh to DGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slurmbatchscript.html">Slurm batch script</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DUNE-FEM Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">General Concepts (with a time dependent problem)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="dune-fempy_nb.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nextsteps.html" class="btn btn-neutral float-right" title="Next steps" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>concepts</em> as <a class="reference download internal" download="" href="_downloads/091a81049963cacb3bf668b6782ac574/concepts_nb.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(_nb.ipynb)</span></code></a> or as <a class="reference download internal" download="" href="_downloads/4c58a2837dcef423737df849811fad02/concepts.py"><code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></a></div>
+</div>
+</div>
+<section id="General-Concepts-(with-a-time-dependent-problem)">
+<h1>General Concepts (with a time dependent problem)<a class="headerlink" href="#General-Concepts-(with-a-time-dependent-problem)" title="Link to this heading"></a></h1>
+<p>In the following we introduce how to construct and use the basic components of a finite element method ending with solving a heat equation. The required steps are:</p>
+<ul class="simple">
+<li><p>constructing a tessellation of the computational domain (<strong>hierarchical grid</strong> and <strong>grid view</strong>)</p></li>
+<li><p>working with functions defined over the grid (<strong>grid functions</strong>)</p></li>
+<li><p>setting up <strong>discrete spaces</strong> and <strong>discrete functions</strong></p></li>
+<li><p>defining the mathematical model to solve (<strong>ufl</strong>)</p></li>
+<li><p>solving the (non linear) system arising from the discretization of the model by the Galerkin method (<strong>scheme</strong>)</p></li>
+</ul>
+<section id="Setting-up-the-Grid">
+<span id="index-0"></span><h2>Setting up the Grid<a class="headerlink" href="#Setting-up-the-Grid" title="Link to this heading"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The goal of a Dune <strong>grid</strong> or <strong>hierarchical grid</strong> is to provide an interface to describe subdivisions (entities or elements for codim 0) of the computational domain <span class="math notranslate nohighlight">\(\Omega\)</span> in a generic way. In the following this is referred to as <code class="docutils literal notranslate"><span class="pre">hierarchicalGrid</span></code>. See <span id="id1">[<a class="reference internal" href="index.html#id23" title="P. Bastian, M. Blatt, M. Dedner, N.-A. Dreier, R. Engwer, Ch. Fritze, C. Gräser, Ch. Grüninger, D. Kempf, R. Klöfkorn, M. Ohlberger, and O. Sander. The Dune framework: Basic concepts and recent developments. CAMWA, 2021. doi:10.1016/j.camwa.2020.06.007.">BBD+21</a>]</span>, Section 3.1, for more details.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Grids can be refined in a hierarchic manner, meaning that elements are subdivided into several smaller elements. The element to be refined is kept in the grid and remains accessible. One can either refine all elements (global refinement) as described below. We will discuss <a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening"><span class="std std-ref">local refinement</span></a> in a later section.</p>
+</div>
+<p>After some general import statements we start our tutorial by setting up a simple Cartesian grid over the domain <span class="math notranslate nohighlight">\(\Omega = [0,1]^2\)</span> subdivided into four intervals in each dimension. We can then show the grid using the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method - note that direct plotting with MatPlotLib is only supported in 2D, other options for visualization, e.g., using ParaView will be discussed later.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">dune.grid.structuredGrid</span></code> function is the simplest way to construct a grid, more complicated (unstructured) grids can be constructed using a dictionary containing the vertices and the element connectivity or by for example providing a <code class="docutils literal notranslate"><span class="pre">gmsh</span></code> file. This will be discussed in later section, see for example here for <a class="reference internal" href="othergrids_nb.html"><span class="doc">a 3d gmsh file</span></a> or here <a class="reference internal" href="dune-corepy_nb.html#Unstructured-grids"><span class="std std-ref">for a simple example using a dictionary</span></a>.</p>
+<span class="target" id="index-1"></span><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span> <span class="k">as</span> <span class="n">leafGridView</span>
+<span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_2_0.jpg" src="_images/concepts_nb_2_0.jpg" />
+</div>
+</div>
+<p>Often the initial grid is a bit coarse - it is very easy to refine it globally.</p>
+<div class="admonition attention" id="index-2">
+<p class="admonition-title">Attention</p>
+<p>A <strong>grid view</strong> object provides read-only access to the entities of all codimensions of a subset of the <code class="docutils literal notranslate"><span class="pre">hierarchical</span> <span class="pre">grid</span></code>. In the following this is called <code class="docutils literal notranslate"><span class="pre">gridView</span></code> and sometimes simply <code class="docutils literal notranslate"><span class="pre">grid</span></code>. See <span id="id2">[<a class="reference internal" href="index.html#id23" title="P. Bastian, M. Blatt, M. Dedner, N.-A. Dreier, R. Engwer, Ch. Fritze, C. Gräser, Ch. Grüninger, D. Kempf, R. Klöfkorn, M. Ohlberger, and O. Sander. The Dune framework: Basic concepts and recent developments. CAMWA, 2021. doi:10.1016/j.camwa.2020.06.007.">BBD+21</a>]</span>, Section 3.1.1, for more details.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The functions constructing a grid generally return a <strong>leaf grid view</strong>, i.e., only contains of a view of the finest grid elements. We also provide some special grid views to for example simulate on <a class="reference internal" href="gridviews_and_adaptivity.html#evolving-domains"><span class="std std-ref">evolving domains</span></a> or to simplify efficient <a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening"><span class="std std-ref">local grid adaptivity</span></a>.</p>
+</div>
+<p>Since a <code class="docutils literal notranslate"><span class="pre">gridView</span></code> can not be changed directly we need to access the underlying <code class="docutils literal notranslate"><span class="pre">hierarchicalGrid</span></code> to perform e.g. grid refinement. So to globally refine the grid call</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_4_0.jpg" src="_images/concepts_nb_4_0.jpg" />
+</div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">level&gt;0</span></code> then the grid is refined down by the given level and <code class="docutils literal notranslate"><span class="pre">level&lt;0</span></code> leads to global coarsening of the grid by the given number of levels (if possible).</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The effect of this refinement will depend on the underlying grid manager. For Cartesian grid for example refining by one level leads a reduction of the grid spacing by 2 while for a bisection grid in <span class="math notranslate nohighlight">\(d\)</span> space dimensions one needs to refine by <span class="math notranslate nohighlight">\(2^{d-1}\)</span> levels to achieve the same effect.</p>
+</div>
+<p>In addition to the <code class="docutils literal notranslate"><span class="pre">globalRefine</span></code> method on the <code class="docutils literal notranslate"><span class="pre">hierarchicalGrid</span></code> <code class="docutils literal notranslate"><span class="pre">dune-fem</span></code> also provides a <code class="docutils literal notranslate"><span class="pre">globalRefine</span></code> function, which takes the <code class="docutils literal notranslate"><span class="pre">level</span></code> as the first argument and a hierarchical grid as second argument. This method can also be used to prolong and restrict discrete functions as will be discussed in <a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening"><span class="std std-ref">a later section</span></a>.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">globalRefine</span>
+<span class="n">globalRefine</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="p">)</span>  <span class="c1"># the first argument is the number of refinements to perform</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">globalRefine</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="p">)</span> <span class="c1"># coarsen again by one level</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_6_0.jpg" src="_images/concepts_nb_6_0.jpg" />
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_6_1.jpg" src="_images/concepts_nb_6_1.jpg" />
+</div>
+</div>
+</section>
+<section id="Grid-Functions">
+<span id="index-3"></span><h2>Grid Functions<a class="headerlink" href="#Grid-Functions" title="Link to this heading"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>A <strong>grid function</strong> is a function that is defined over a given grid view and is evaluated by using an element of this view and local coordinate within that element, e.g., a quadrature point.</p>
+</div>
+<p>For example:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>value = gridFunction(element,localCoordinate)
+</pre></div>
+</div>
+<p>Alternatively one can obtain a <code class="docutils literal notranslate"><span class="pre">LocalFunction</span></code> from a grid function which can be bound to an element and then evaluate via local coordinate:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>localFunction = gridFunction.localFunction()
+for e in grid.elements:
+    localFunction.bind(e)
+    value = localFunction(x)
+    localFunction.unbind()
+</pre></div>
+</div>
+<p>There are multiple ways to construct grid functions. The easiest way it to use UFL expression. Many methods expecting grid functions as argument can also directly handle UFL expression. We can for example integrate a UFL expression over the grid:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpatialCoordinate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">cell</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">cell</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">exact</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">integrate</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">integrate</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span> <span class="n">gridView</span><span class="o">=</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.3333333333333324
+</pre></div></div>
+</div>
+<p id="index-4">and plot them using matplotlib or write a vtk file for postprocessing</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span> <span class="k">as</span> <span class="n">plot</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span> <span class="n">gridView</span><span class="o">=</span><span class="n">gridView</span><span class="p">)</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">writeVTK</span><span class="p">(</span><span class="s1">&#39;exact&#39;</span><span class="p">,</span> <span class="n">pointdata</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;exact&#39;</span><span class="p">:</span> <span class="n">exact</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_10_0.jpg" src="_images/concepts_nb_10_0.jpg" />
+</div>
+</div>
+<p>In some cases it can be necessary to convert a UFL expression into a grid function explicitly - for example to be able to evaluate it over each element in the grid (<a class="reference internal" href="dune-corepy_nb.html"><span class="doc">in a later section</span></a> we provide more detail on how to access the grid interface).</p>
+<div class="admonition note" id="index-5">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">dune.fem.function.gridFunction</span></code> provides different options for constructing grid functions: it can be used as decorator of Python function, provided with a C++ code snippet, or an ufl expression.</p>
+</div>
+<p id="index-6">We will discuss the second usages later and have some example for using C++ code snippets <a class="reference internal" href="cppfunctions_nb.html"><span class="doc">in a later section</span></a>. If the first argument <code class="docutils literal notranslate"><span class="pre">expr</span></code> is a ufl expression then a grid function is generated which can be efficiently evaluated on both the Python and the C++ side.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Especially in time critical parts of the code the usage of <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> is strongly encouraged to speed up simulations.</p>
+</div>
+<p>Like <code class="docutils literal notranslate"><span class="pre">assemble</span></code> and <code class="docutils literal notranslate"><span class="pre">integrate</span></code>, <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> takes two additional arguments <code class="docutils literal notranslate"><span class="pre">order</span></code> and <code class="docutils literal notranslate"><span class="pre">gridView</span></code>. These are required arguments if a code snippet is used or the <code class="docutils literal notranslate"><span class="pre">gridView</span></code> is used as a decorator. If the basis of the grid function is a ufl expression these can be omitted in many cases where they can be determined from the expression itself. See the <a class="reference internal" href="dune-fempy_nb.html"><span class="doc">introduction</span></a> for more detail.</p>
+<p>In the next example the <code class="docutils literal notranslate"><span class="pre">gridView</span></code> argument is required:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
+<span class="n">exact_gf</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ufl&quot;</span><span class="p">)</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">gridView</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+    <span class="n">mass</span> <span class="o">+=</span> <span class="n">exact_gf</span><span class="p">(</span><span class="n">element</span><span class="p">,[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">])</span> <span class="o">*</span> <span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">volume</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.33203125
+</pre></div></div>
+</div>
+<p id="index-7">Another way to obtain a grid function is to use the <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> as decorator. This can be obtained from <code class="docutils literal notranslate"><span class="pre">dune.grid</span></code> but then without UFL support. Using the decorator from <code class="docutils literal notranslate"><span class="pre">dune.fem.function</span></code> the resulting grid function can be used seamlessly within UFL expressions:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
+<span class="nd">@gridFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;callback&quot;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">exactLocal</span><span class="p">(</span><span class="n">element</span><span class="p">,</span><span class="n">xLocal</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">toGlobal</span><span class="p">(</span><span class="n">xLocal</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<p>We can use the same approach but with a function using global coordinates but can then be used like any other grid function:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@gridFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;callback&quot;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">exactGlobal</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">lf</span> <span class="o">=</span> <span class="n">exactGlobal</span><span class="o">.</span><span class="n">localFunction</span><span class="p">()</span>
+
+<span class="n">mass</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">gridView</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+    <span class="n">lf</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+    <span class="n">mass</span> <span class="o">+=</span> <span class="n">lf</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">])</span> <span class="o">*</span> <span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">volume</span>
+    <span class="n">lf</span><span class="o">.</span><span class="n">unbind</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.33203125
+</pre></div></div>
+</div>
+<p id="index-8">As pointed out the <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code> grid function can be used like any other UFL coefficient to form UFL expressions:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">integrate</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">exactLocal</span><span class="p">))</span> <span class="p">)</span>
+<span class="n">gf</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">exactLocal</span><span class="o">+</span><span class="n">exactGlobal</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;ufl&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">gf</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="mi">121</span><span class="p">))</span>
+<span class="n">exactGlobal</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="mi">122</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.0
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_18_1.jpg" src="_images/concepts_nb_18_1.jpg" />
+</div>
+</div>
+<p>Converting UFL expressions to grid functions leads to JIT code generation and is therefore efficient when used in other C++ algorithm (like <code class="docutils literal notranslate"><span class="pre">integrate</span></code>). But more complex control structures are hard to express within UFL. On the other hand using the <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> decorator leads to a callback into Python for each evaluation and is therefore much less efficient. An alternative approach is based on writing small C++ snippets implementing the grid function as described in the section on
+generating <a class="reference internal" href="cppfunctions_nb.html"><span class="doc">C++ Based Grid Functions</span></a>.</p>
+</section>
+<section id="Discrete-Spaces">
+<span id="index-9"></span><h2>Discrete Spaces<a class="headerlink" href="#Discrete-Spaces" title="Link to this heading"></a></h2>
+<p>The grid functions set up so far did not involve any discretization, they are exactly evaluated at the given point. We next discuss functions over finite dimensional (discrete) spaces.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>A <strong>discrete (function) space</strong> is a finite dimensional function space defined over a given grid view. Typically these are Finite Element spaces.</p>
+</div>
+<p>Let us start with a Lagrange finite element space consisting of piecewise quadratic functions (<code class="docutils literal notranslate"><span class="pre">order=2</span></code>):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.space</span><span class="w"> </span><span class="kn">import</span> <span class="n">lagrange</span> <span class="k">as</span> <span class="n">solutionSpace</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>A list of available spaces is shown at the bottom of this page. The main method on the space is <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> that returns an element of the space (a discrete function) applying the natural interpolation into the space to a given (ufl) expression. This is explained in detail in the next section.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In addition to the <code class="docutils literal notranslate"><span class="pre">order</span></code> argument most spaces take an additional <code class="docutils literal notranslate"><span class="pre">dimRange</span></code> argument to construct vector valued spaces <span class="math notranslate nohighlight">\(V^n\)</span>. Note that by default a scalar space is constructed which differs in usage from the space with <code class="docutils literal notranslate"><span class="pre">dimRange=1</span></code>. Discrete function over the latter have to be treated as vector valued functions of dimension one, e.g., instead of <code class="docutils literal notranslate"><span class="pre">uh*uh</span></code> one needs <code class="docutils literal notranslate"><span class="pre">uh[0]*uh[0]</span></code> or <code class="docutils literal notranslate"><span class="pre">ufl.dot(uh,uh)</span></code>.</p>
+</div>
+<p>Two other methods on the discrete spaces worth noting provide access to the local to global dof mapper and evaluate the basis functions.</p>
+<p>First we have the <code class="docutils literal notranslate"><span class="pre">mapper</span></code> method. This returns a callable object which for a given element in the grid, returns the vector of global indices for the basis functions with support on the element:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mapper</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">mapper</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gridView</span><span class="o">.</span><span class="n">elements</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">mapper</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> <span class="k">break</span> <span class="c1"># only show indices for first few elements</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[0, 81, 1, 153, 225, 154, 9, 89, 10]
+[1, 82, 2, 154, 226, 155, 10, 90, 11]
+[2, 83, 3, 155, 227, 156, 11, 91, 12]
+[3, 84, 4, 156, 228, 157, 12, 92, 13]
+[4, 85, 5, 157, 229, 158, 13, 93, 14]
+</pre></div></div>
+</div>
+<p>To access the basis functions with support on an element we provide the method <code class="docutils literal notranslate"><span class="pre">evaluateBasis</span></code>, <code class="docutils literal notranslate"><span class="pre">jacobianBasis</span></code>:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">localPoint</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">]</span> <span class="c1"># this is in the reference element</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gridView</span><span class="o">.</span><span class="n">elements</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span> <span class="n">space</span><span class="o">.</span><span class="n">evaluateBasis</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">localPoint</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> <span class="k">break</span>
+<span class="c1"># The next line fails on MacOS (with a Bus Error 10)</span>
+<span class="c1"># (tested 28/04/2024). Removed for now</span>
+<span class="c1"># print(&quot;convert to a numpy array:&quot;, np.array( space.jacobianBasis(element, localPoint) ) )</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[Dune::FieldVector&lt;1&gt;(0.518400), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(0.129600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(0.006400)]
+[Dune::FieldVector&lt;1&gt;(0.518400), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(0.129600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(0.006400)]
+[Dune::FieldVector&lt;1&gt;(0.518400), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(0.129600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(0.006400)]
+[Dune::FieldVector&lt;1&gt;(0.518400), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(0.129600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(0.006400)]
+[Dune::FieldVector&lt;1&gt;(0.518400), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(0.259200), Dune::FieldVector&lt;1&gt;(0.129600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(-0.057600), Dune::FieldVector&lt;1&gt;(-0.028800), Dune::FieldVector&lt;1&gt;(0.006400)]
+</pre></div></div>
+</div>
+</section>
+<section id="Discrete-Functions">
+<span id="index-10"></span><h2>Discrete Functions<a class="headerlink" href="#Discrete-Functions" title="Link to this heading"></a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>A special type of grid function is a <strong>discrete function</strong> living in a discrete (finite dimensional) space. The main property of a discrete function is that it contains a <strong>dof vector</strong>. <a class="reference internal" href="solversExternal_nb.html"><span class="doc">In a later section</span></a> we will see how to extract the underlying dof vector in the form of a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> or a <code class="docutils literal notranslate"><span class="pre">petsc</span></code> vector.</p>
+</div>
+<p>The easiest way to construct a discrete function is to use the <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> method on the discrete function space to create an initialized discrete function or <code class="docutils literal notranslate"><span class="pre">function</span></code> to create a discrete function initialized with <span class="math notranslate nohighlight">\(\mathbf{0}\)</span>.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># initialized with an analytical expression</span>
+<span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
+
+<span class="c1"># initialized with zeros</span>
+<span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>On an existing discrete function the <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> method can be used to reinitialize it</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mf">2.</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_29_0.jpg" src="_images/concepts_nb_29_0.jpg" />
+</div>
+</div>
+<p>Note that in the last example the Python lambda is used as a callback automatically using the same concept used in the <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> decorator. As pointed out above there are some methods where these conversions are implicit and no explicit generation of a grid function has to be carried out.</p>
+<p>If a discrete function is already available it is possible to call <code class="docutils literal notranslate"><span class="pre">copy</span></code> to obtain further discrete functions:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h_n</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;previous&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, <code class="docutils literal notranslate"><span class="pre">clear</span></code> can be called on a discrete function which sets all coefficient to zero and <code class="docutils literal notranslate"><span class="pre">assign</span></code> can be used to copy all coefficients between two discrete function over the same space:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h_n</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">u_h_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span> <span class="n">u_h</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>All the things we did above with grid functions can be done with discrete functions, e.g., evaluate locally</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">localUh</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">localFunction</span><span class="p">()</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">gridView</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+    <span class="n">localUh</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="c1"># using u_h(element,[0.5,0.5]) also works</span>
+    <span class="n">mass</span> <span class="o">+=</span> <span class="n">localUh</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">])</span> <span class="o">*</span> <span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">volume</span>
+    <span class="n">localUh</span><span class="o">.</span><span class="n">unbind</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.33203125
+</pre></div></div>
+</div>
+<p id="index-12"><span id="index-11"></span>or plot using matplotlib and write a vtk file for postprocessing (using binary data format to reduce size)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">OutputType</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">writeVTK</span><span class="p">(</span><span class="s1">&#39;uh&#39;</span><span class="p">,</span> <span class="n">pointdata</span><span class="o">=</span><span class="p">[</span><span class="n">u_h</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_37_0.jpg" src="_images/concepts_nb_37_0.jpg" />
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The discrete function <code class="docutils literal notranslate"><span class="pre">u_h</span></code> already has a <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute given in the <code class="docutils literal notranslate"><span class="pre">interpolate</span></code> call. This is used by default in the vtk file. An alternative name can be given by using a dictionary as shown previously.</p>
+</div>
+<p>Of course a discrete function can also be used as a coefficient in a UFL expression</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span> <span class="n">integrate</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">u_h</span><span class="p">))</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+3.1323256792013636e-05
+</pre></div></div>
+</div>
+<p>The main difference between a grid function and a discrete function is that the latter has a <code class="docutils literal notranslate"><span class="pre">dofVector</span></code> attached to it. We can iterate over that easily</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">u_h</span><span class="o">.</span><span class="n">dofVector</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0, 1.0071614583333333, 1.0260416666666667, 1.052734375, 1.0833333333333333, 1.1139322916666667, 1.140625, 1.1595052083333333, 1.1666666666666667, 1.0084635416666667, 1.015625, 1.0345052083333333, 1.0611979166666667, 1.091796875, 1.1223958333333333, 1.1490885416666667, 1.16796875, 1.1751302083333335, 1.0364583333333333, 1.0436197916666667, 1.0625, 1.0891927083333333, 1.1197916666666667, 1.150390625, 1.1770833333333333, 1.1959635416666667, 1.203125, 1.087890625, 1.0950520833333333, 1.1139322916666667, 1.140625, 1.1712239583333333, 1.2018229166666667, 1.228515625, 1.2473958333333333, 1.2545572916666667, 1.1666666666666667, 1.173828125, 1.1927083333333333, 1.2194010416666667, 1.25, 1.2805989583333333, 1.3072916666666667, 1.326171875, 1.3333333333333335, 1.2766927083333333, 1.2838541666666665, 1.302734375, 1.3294270833333333, 1.3600260416666667, 1.390625, 1.4173177083333333, 1.4361979166666667, 1.443359375, 1.421875, 1.4290364583333333, 1.4479166666666665, 1.474609375, 1.5052083333333335, 1.5358072916666665, 1.5625, 1.5813802083333335, 1.5885416666666667, 1.6061197916666665, 1.61328125, 1.6321614583333333, 1.6588541666666665, 1.689453125, 1.7200520833333333, 1.7467447916666665, 1.765625, 1.7727864583333335, 1.8333333333333333, 1.8404947916666665, 1.859375, 1.8860677083333333, 1.9166666666666665, 1.947265625, 1.9739583333333333, 1.9928385416666665, 2.0, 1.0018717447916667, 1.015380859375, 1.0386555989583333, 1.0677897135416667, 1.098876953125, 1.1280110677083333, 1.1512858072916667, 1.164794921875, 1.0103352864583333, 1.0238444010416667, 1.047119140625, 1.0762532552083333, 1.1073404947916667, 1.136474609375, 1.1597493489583333, 1.1732584635416667, 1.038330078125, 1.0518391927083333, 1.0751139322916667, 1.104248046875, 1.1353352864583333, 1.1644694010416667, 1.187744140625, 1.2012532552083335, 1.0897623697916667, 1.103271484375, 1.1265462239583333, 1.1556803385416667, 1.186767578125, 1.2159016927083333, 1.2391764322916667, 1.252685546875, 1.1685384114583333, 1.1820475260416667, 1.205322265625, 1.2344563802083333, 1.2655436197916667, 1.294677734375, 1.3179524739583335, 1.3314615885416667, 1.278564453125, 1.2920735677083333, 1.3153483072916665, 1.344482421875, 1.3755696614583333, 1.4047037760416667, 1.427978515625, 1.4414876302083335, 1.4237467447916665, 1.437255859375, 1.4605305989583333, 1.4896647135416665, 1.520751953125, 1.5498860677083335, 1.5731608072916665, 1.586669921875, 1.6079915364583333, 1.6215006510416665, 1.644775390625, 1.6739095052083333, 1.7049967447916665, 1.734130859375, 1.7574055989583335, 1.7709147135416665, 1.835205078125, 1.8487141927083333, 1.8719889322916665, 1.901123046875, 1.9322102864583333, 1.9613444010416665, 1.984619140625, 1.9981282552083335, 1.0020345052083333, 1.0091959635416667, 1.028076171875, 1.0547688802083333, 1.0853678385416667, 1.115966796875, 1.1426595052083333, 1.1615397135416667, 1.168701171875, 1.019775390625, 1.0269368489583333, 1.0458170572916667, 1.072509765625, 1.1031087239583333, 1.1337076822916667, 1.160400390625, 1.1792805989583333, 1.1864420572916667, 1.0590006510416667, 1.066162109375, 1.0850423177083333, 1.1117350260416667, 1.142333984375, 1.1729329427083333, 1.1996256510416667, 1.218505859375, 1.2256673177083335, 1.1236165364583333, 1.1307779947916667, 1.149658203125, 1.1763509114583333, 1.2069498697916667, 1.237548828125, 1.2642415364583335, 1.2831217447916667, 1.290283203125, 1.217529296875, 1.2246907552083333, 1.2435709635416667, 1.270263671875, 1.3008626302083333, 1.3314615885416667, 1.358154296875, 1.3770345052083335, 1.3841959635416667, 1.3446451822916665, 1.351806640625, 1.3706868489583333, 1.3973795572916665, 1.427978515625, 1.4585774739583333, 1.4852701822916667, 1.504150390625, 1.5113118489583335, 1.5088704427083333, 1.5160319010416665, 1.534912109375, 1.5616048177083333, 1.5922037760416665, 1.622802734375, 1.6494954427083335, 1.6683756510416665, 1.675537109375, 1.714111328125, 1.7212727864583333, 1.7401529947916665, 1.766845703125, 1.7974446614583333, 1.8280436197916665, 1.854736328125, 1.8736165364583335, 1.8807779947916665, 1.00390625, 1.0174153645833333, 1.0406901041666667, 1.06982421875, 1.1009114583333333, 1.1300455729166667, 1.1533203125, 1.1668294270833335, 1.0216471354166667, 1.03515625, 1.0584309895833333, 1.0875651041666667, 1.11865234375, 1.1477864583333333, 1.1710611979166667, 1.1845703125, 1.0608723958333333, 1.0743815104166667, 1.09765625, 1.1267903645833333, 1.1578776041666667, 1.18701171875, 1.2102864583333333, 1.2237955729166667, 1.12548828125, 1.1389973958333333, 1.1622721354166667, 1.19140625, 1.2224934895833333, 1.2516276041666667, 1.27490234375, 1.2884114583333335, 1.2194010416666667, 1.23291015625, 1.2561848958333333, 1.2853190104166667, 1.31640625, 1.3455403645833333, 1.3688151041666667, 1.38232421875, 1.3465169270833333, 1.3600260416666665, 1.38330078125, 1.4124348958333333, 1.4435221354166667, 1.47265625, 1.4959309895833335, 1.5094401041666667, 1.5107421875, 1.5242513020833333, 1.5475260416666665, 1.57666015625, 1.6077473958333335, 1.6368815104166665, 1.66015625, 1.6736653645833335, 1.7159830729166665, 1.7294921875, 1.7527669270833333, 1.7819010416666665, 1.81298828125, 1.8421223958333333, 1.8653971354166665, 1.87890625,
+</pre></div></div>
+</div>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">assign</span></code> we can also add (scalar multiples of) discrete functions together or multiply them by a scalar which will directly change the underlying dofVector - this can only be done <strong>in place</strong>, so <code class="docutils literal notranslate"><span class="pre">u_h</span> <span class="pre">*=</span> <span class="pre">2</span></code> changes the dof vector while <code class="docutils literal notranslate"><span class="pre">u_h*2</span></code> results in an UFL expression. Here are some examples:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h_n</span> <span class="o">*=</span> <span class="mi">2</span>
+<span class="n">u_h</span>   <span class="o">+=</span> <span class="n">u_h_n</span>
+<span class="c1"># this is equivalent to</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">axpy</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">u_h_n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>We started with <code class="docutils literal notranslate"><span class="pre">u_h_n=u_h</span></code> so after these changes each dof in <code class="docutils literal notranslate"><span class="pre">u_h</span></code> should be seven times its original value</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">u_h</span><span class="o">.</span><span class="n">dofVector</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;, &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+7.0, 7.050130208333333, 7.182291666666667, 7.369140625, 7.583333333333333, 7.797526041666667, 7.984375, 8.116536458333332, 8.166666666666668, 7.059244791666667, 7.109375, 7.241536458333333, 7.428385416666667, 7.642578125, 7.856770833333333, 8.043619791666668, 8.17578125, 8.225911458333334, 7.255208333333333, 7.305338541666667, 7.4375, 7.624348958333333, 7.838541666666667, 8.052734375, 8.239583333333332, 8.371744791666668, 8.421875, 7.615234375, 7.665364583333333, 7.797526041666667, 7.984375, 8.198567708333332, 8.412760416666668, 8.599609375, 8.731770833333332, 8.781901041666668, 8.166666666666668, 8.216796875, 8.348958333333332, 8.535807291666668, 8.75, 8.964192708333332, 9.151041666666668, 9.283203125, 9.333333333333334, 8.936848958333332, 8.986979166666666, 9.119140625, 9.305989583333332, 9.520182291666668, 9.734375, 9.921223958333332, 10.053385416666668, 10.103515625, 9.953125, 10.003255208333332, 10.135416666666666, 10.322265625, 10.536458333333334, 10.750651041666666, 10.9375, 11.069661458333334, 11.119791666666668, 11.242838541666666, 11.29296875, 11.425130208333332, 11.611979166666666, 11.826171875, 12.040364583333332, 12.227213541666666, 12.359375, 12.409505208333334, 12.833333333333332, 12.883463541666666, 13.015625, 13.202473958333332, 13.416666666666666, 13.630859375, 13.817708333333332, 13.949869791666666, 14.0, 7.013102213541667, 7.107666015625, 7.270589192708333, 7.474527994791667, 7.692138671875, 7.896077473958333, 8.059000651041668, 8.153564453125, 7.072347005208333, 7.166910807291667, 7.329833984375, 7.533772786458333, 7.751383463541667, 7.955322265625, 8.118245442708332, 8.212809244791668, 7.268310546875, 7.362874348958333, 7.525797526041667, 7.729736328125, 7.947347005208333, 8.151285807291668, 8.314208984375, 8.408772786458334, 7.628336588541667, 7.722900390625, 7.885823567708333, 8.089762369791668, 8.307373046875, 8.511311848958332, 8.674235026041668, 8.768798828125, 8.179768880208332, 8.274332682291668, 8.437255859375, 8.641194661458332, 8.858805338541668, 9.062744140625, 9.225667317708334, 9.320231119791668, 8.949951171875, 9.044514973958332, 9.207438151041666, 9.411376953125, 9.628987630208332, 9.832926432291668, 9.995849609375, 10.090413411458334, 9.966227213541666, 10.060791015625, 10.223714192708332, 10.427652994791666, 10.645263671875, 10.849202473958334, 11.012125651041666, 11.106689453125, 11.255940755208332, 11.350504557291666, 11.513427734375, 11.717366536458332, 11.934977213541666, 12.138916015625, 12.301839192708334, 12.396402994791666, 12.846435546875, 12.940999348958332, 13.103922526041666, 13.307861328125, 13.525472005208332, 13.729410807291666, 13.892333984375, 13.986897786458334, 7.014241536458333, 7.064371744791667, 7.196533203125, 7.383382161458333, 7.597574869791667, 7.811767578125, 7.998616536458333, 8.130777994791668, 8.180908203125, 7.138427734375, 7.188557942708333, 7.320719401041667, 7.507568359375, 7.721761067708333, 7.935953776041667, 8.122802734375, 8.254964192708332, 8.305094401041668, 7.413004557291667, 7.463134765625, 7.595296223958333, 7.782145182291667, 7.996337890625, 8.210530598958332, 8.397379557291668, 8.529541015625, 8.579671223958334, 7.865315755208333, 7.915445963541667, 8.047607421875, 8.234456380208332, 8.448649088541668, 8.662841796875, 8.849690755208334, 8.981852213541668, 9.031982421875, 8.522705078125, 8.572835286458332, 8.704996744791668, 8.891845703125, 9.106038411458332, 9.320231119791668, 9.507080078125, 9.639241536458334, 9.689371744791668, 9.412516276041666, 9.462646484375, 9.594807942708332, 9.781656901041666, 9.995849609375, 10.210042317708332, 10.396891276041668, 10.529052734375, 10.579182942708334, 10.562093098958332, 10.612223307291666, 10.744384765625, 10.931233723958332, 11.145426432291666, 11.359619140625, 11.546468098958334, 11.678629557291666, 11.728759765625, 11.998779296875, 12.048909505208332, 12.181070963541666, 12.367919921875, 12.582112630208332, 12.796305338541666, 12.983154296875, 13.115315755208334, 13.165445963541666, 7.02734375, 7.121907552083333, 7.284830729166667, 7.48876953125, 7.706380208333333, 7.910319010416667, 8.0732421875, 8.167805989583334, 7.151529947916667, 7.24609375, 7.409016927083333, 7.612955729166667, 7.83056640625, 8.034505208333332, 8.197428385416668, 8.2919921875, 7.426106770833333, 7.520670572916667, 7.68359375, 7.887532552083333, 8.105143229166668, 8.30908203125, 8.472005208333332, 8.566569010416668, 7.87841796875, 7.972981770833333, 8.135904947916668, 8.33984375, 8.557454427083332, 8.761393229166668, 8.92431640625, 9.018880208333334, 8.535807291666668, 8.63037109375, 8.793294270833332, 8.997233072916668, 9.21484375, 9.418782552083332, 9.581705729166668, 9.67626953125, 9.425618489583332, 9.520182291666666, 9.68310546875, 9.887044270833332, 10.104654947916668, 10.30859375, 10.471516927083334, 10.566080729166668, 10.5751953125, 10.669759114583332, 10.832682291666666, 11.03662109375, 11.254231770833334, 11.458170572916666, 11.62109375, 11.715657552083334, 12.011881510416666, 12.1064453125, 12.269368489583332, 12.473307291666666, 12.69091796875, 12.894856770833332, 13.057779947916666, 13.15234375,
+</pre></div></div>
+</div>
+</section>
+<section id="Operators-and-Schemes">
+<span id="index-13"></span><h2>Operators and Schemes<a class="headerlink" href="#Operators-and-Schemes" title="Link to this heading"></a></h2>
+<p>In the <a class="reference internal" href="dune-fempy_nb.html"><span class="doc">previous section</span></a> we have already seen how to assemble system matrices for linear PDEs and how to construct schemes for non-linear problems. We also discussed that we can directly use grid functions and <code class="docutils literal notranslate"><span class="pre">dune.ufl.Constant</span></code> instances within UFL expressions and forms - in the final example of this section we will give an example for this in the context of a time dependent problems.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The main advantage of using <code class="docutils literal notranslate"><span class="pre">dune.ufl.Constant</span></code> and grid functions is to be able to change details in a form without requiring any recompilation of the model. An example would be in a time dependent problem a time varying coefficient or changing the time step adaptively during the simulation.</p>
+</div>
+<p>Let us first consider a simple linear elliptic problem</p>
+<div class="math notranslate nohighlight">
+\[-\triangle u + \alpha u = f\]</div>
+<p>with Dirichlet and Neuman boundary data given by <span class="math notranslate nohighlight">\(g_D,g_N\)</span> and where <span class="math notranslate nohighlight">\(\alpha\)</span> is a real valued parameter. We choose <span class="math notranslate nohighlight">\(f,g_N,g_D\)</span> so that the exact solution for <span class="math notranslate nohighlight">\(\alpha=0\)</span> is given by <span class="math">\begin{align*}
+u(x) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
+\end{align*}</span> which is the grid function <code class="docutils literal notranslate"><span class="pre">exact</span></code> we have already defined above.</p>
+<div class="admonition note" id="index-14">
+<p class="admonition-title">Note</p>
+<p>The class <code class="docutils literal notranslate"><span class="pre">dune.ufl.DirichletBC</span></code> is used to fix Dirichlet conditions <span class="math notranslate nohighlight">\(u=g\)</span> on <span class="math notranslate nohighlight">\(\Gamma\subset\partial\Omega\)</span>. It constructor takes three arguments: the discrete space for <span class="math notranslate nohighlight">\(u\)</span>, the data <span class="math notranslate nohighlight">\(g\)</span>, and a description of <span class="math notranslate nohighlight">\(\Gamma\)</span>. Multiple instances can be used to fix Dirichlet conditions on different parts of the boundary as described in the Section on <a class="reference internal" href="boundary_nb.html"><span class="doc">general boundary conditions</span></a>.</p>
+</div>
+<p>To assemble a system matrix from a ufl form one can either use <code class="docutils literal notranslate"><span class="pre">dune.fem.assemble</span></code> which is especially useful for simple linear models as discussed in the <a class="reference internal" href="dune-fempy_nb.html"><span class="doc">previous section</span></a>. For more control one should use <code class="docutils literal notranslate"><span class="pre">schemes</span></code> or <code class="docutils literal notranslate"><span class="pre">operators</span></code>:</p>
+<div class="admonition attention" id="index-15">
+<p class="admonition-title">Attention</p>
+<p>A <strong>scheme</strong> implements a Galerkin scheme for a given weak form for a wide range of PDEs, where the model (integrands) is provided as ufl form. Mathematically a <code class="docutils literal notranslate"><span class="pre">scheme</span></code> implements an operator <span class="math notranslate nohighlight">\(L\colon V_h\to V_h\)</span> with equal (discrete) domain and range space. The <code class="docutils literal notranslate"><span class="pre">scheme</span></code> provides a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method which computes <span class="math notranslate nohighlight">\(u=L^{-1}(g)\)</span> for given <span class="math notranslate nohighlight">\(g\)</span>. By default a root of <span class="math notranslate nohighlight">\(L\)</span> is computed but a right hand side <span class="math notranslate nohighlight">\(g\)</span> can be provided to solve <span class="math notranslate nohighlight">\(L[u_h]=g\)</span>.</p>
+</div>
+<div class="admonition note" id="index-16">
+<p class="admonition-title">Note</p>
+<p>The more general case is covered by classes in <code class="docutils literal notranslate"><span class="pre">dune.fem.operator</span></code> for <strong>operators</strong> <span class="math notranslate nohighlight">\(L\colon V_h\to W_h\)</span> with different domain and range spaces. See <a class="reference internal" href="scheme_api.html"><span class="doc">here</span></a> for more details on the concepts and a summary of the API for operators and schemes.</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">TestFunction</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">SpatialCoordinate</span><span class="p">,</span> <span class="n">FacetNormal</span><span class="p">,</span>
+                 <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">div</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span><span class="p">,</span> <span class="n">conditional</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span><span class="p">,</span> <span class="n">DirichletBC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;mass&quot;</span><span class="p">)</span>   <span class="c1"># start with alpha=1</span>
+<span class="n">x</span>     <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">u</span>     <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">v</span>     <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">f</span>     <span class="o">=</span> <span class="o">-</span><span class="n">div</span><span class="p">(</span> <span class="n">grad</span><span class="p">(</span><span class="n">exact</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">g_N</span>   <span class="o">=</span> <span class="n">grad</span><span class="p">(</span><span class="n">exact</span><span class="p">)</span>
+<span class="n">n</span>     <span class="o">=</span> <span class="n">FacetNormal</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">b</span>     <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="n">dot</span><span class="p">(</span><span class="n">g_N</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">conditional</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;=</span><span class="mf">1e-8</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+<span class="n">a</span>     <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">v</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="n">dbc</span>   <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;=</span><span class="mf">1e-8</span><span class="p">)</span>
+
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">solutionScheme</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">,</span> <span class="n">dbc</span><span class="p">],</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">)</span>
+<span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">u_h</span><span class="p">)</span>
+
+<span class="n">h1error</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u_h</span> <span class="o">-</span> <span class="n">exact</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">u_h</span> <span class="o">-</span> <span class="n">exact</span><span class="p">))</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">h1error</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of elements:&quot;</span><span class="p">,</span><span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+      <span class="s2">&quot;number of dofs:&quot;</span><span class="p">,</span><span class="n">space</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="s2">&quot;H^1 error:&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of elements: 64 number of dofs: 289 H^1 error: 0.5635700799030016
+</pre></div></div>
+</div>
+<div class="admonition note" id="index-17">
+<p class="admonition-title">Note</p>
+<p>The <strong>dune.ufl.Constant</strong> class implements a scalar or vector valued constant with a name. This constant can be used within a ufl form and after the ufl form was converted into a <code class="docutils literal notranslate"><span class="pre">scheme</span></code> or <code class="docutils literal notranslate"><span class="pre">operator</span></code> the given name can be used to change the constant within the form efficiently, e.g., we can adapt the point in time or time step during the simulation without requiring any additional just in time compilation.</p>
+</div>
+<p>Instances of <code class="docutils literal notranslate"><span class="pre">dune.ufl.Constant</span></code> have an attribute <code class="docutils literal notranslate"><span class="pre">value</span></code> to read and change the constant. Setting the value, will change it everywhere it is used. In addition a <code class="docutils literal notranslate"><span class="pre">scheme</span></code>/<code class="docutils literal notranslate"><span class="pre">operator</span></code> provides the attribute <code class="docutils literal notranslate"><span class="pre">model</span></code> which has an attribute <code class="docutils literal notranslate"><span class="pre">name</span></code> for each constant with name <code class="docutils literal notranslate"><span class="pre">name</span></code> contained in the ufl form used to construct the <code class="docutils literal notranslate"><span class="pre">scheme</span></code>/<code class="docutils literal notranslate"><span class="pre">operator</span></code>. Cchanging the value of the constants through the <code class="docutils literal notranslate"><span class="pre">model</span></code> attribute only changes it within that model and not globally.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">scheme</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span> <span class="n">alpha</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">scheme</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mass</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scheme</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span> <span class="n">alpha</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+<span class="n">alpha</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">scheme</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mass</span><span class="p">,</span> <span class="n">alpha</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+1.0 1.0
+2.0 1.0
+0.0 0.0
+</pre></div></div>
+</div>
+<p>Note that now <span class="math notranslate nohighlight">\(\alpha=0\)</span> so we have the correct exact solution and can compute the errors:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">u_h</span><span class="p">)</span>
+
+<span class="n">h1error</span> <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u_h</span> <span class="o">-</span> <span class="n">exact</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">u_h</span> <span class="o">-</span> <span class="n">exact</span><span class="p">))</span>
+<span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">h1error</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of elements:&quot;</span><span class="p">,</span><span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+      <span class="s2">&quot;number of dofs:&quot;</span><span class="p">,</span><span class="n">space</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="s2">&quot;H^1 error:&quot;</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Number of elements: 64 number of dofs: 289 H^1 error: 0.0016470196146885314
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_51_1.jpg" src="_images/concepts_nb_51_1.jpg" />
+</div>
+</div>
+<p>Or switch to <span class="math notranslate nohighlight">\(\alpha=1\)</span> to directly solve a different PDE without needing to recompile anything:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alpha</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">u_h</span><span class="p">)</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_53_0.jpg" src="_images/concepts_nb_53_0.jpg" />
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Changing the values of constants using the <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute on <code class="docutils literal notranslate"><span class="pre">dune.ufl.Constant</span></code> is generally the option with the least chance for surprise. The <code class="docutils literal notranslate"><span class="pre">scheme.model.name</span></code> approach is useful if the instance of <code class="docutils literal notranslate"><span class="pre">dune.ufl.Constant</span></code> is not available anymore, e.g., a <code class="docutils literal notranslate"><span class="pre">scheme</span></code> was returned by some function which constructed the constants as local variables.</p>
+</div>
+</section>
+<section id="A-Nonlinear-Time-Dependent-Problem">
+<span id="index-18"></span><h2>A Nonlinear Time Dependent Problem<a class="headerlink" href="#A-Nonlinear-Time-Dependent-Problem" title="Link to this heading"></a></h2>
+<p>As a final example in this section we will study the Forchheimer problem <span id="id3">[<a class="reference internal" href="index.html#id10" title="T. Kieu. Galerkin Finite Element Method for Generalized Forchheimer Equation of Slightly Compressible Fluids in Porous Media. 2015. URL: https://arxiv.org/abs/1508.00294.">Kie15</a>]</span> which is a scalar, nonlinear parabolic equation <span class="math">\begin{equation}
+\partial_tu - \nabla\cdot K(\nabla u)\nabla u = f
+\end{equation}</span> where the diffusion tensor is given by <span class="math">\begin{equation}
+K(\nabla u) = \frac{2}{1+\sqrt{1+4|\nabla u|}}
+\end{equation}</span> and <span class="math notranslate nohighlight">\(f=f(x,t)\)</span> is some time dependent forcing term. On the boundary we prescribe Neumann boundary and initial conditions <span class="math notranslate nohighlight">\(u=u_0\)</span>.</p>
+<p>We will solve this problem in variational form and using the Crank Nicolson method for the time discretization</p>
+<p><span class="math">\begin{equation}
+\begin{split}
+\int_{\Omega} \frac{u^{n+1}-u^n}{\Delta t} \varphi
++ \frac{1}{2}K(\nabla u^{n+1}) \nabla u^{n+1} \cdot \nabla \varphi \
++ \frac{1}{2}K(\nabla u^n) \nabla u^n \cdot \nabla \varphi v\ dx \\
+- \int_{\Omega} \frac{1}{2}(f(x,t^n)+f(x,t^n+\Delta t) \varphi\ dx
+- \int_{\partial \Omega} \frac{1}{2}(g(x,t^n)+g(x,t^n+\Delta t)) v\ ds = 0.
+\end{split}
+\end{equation}</span>\end{equation}</p>
+<p>on a domain <span class="math notranslate nohighlight">\(\Omega=[0,1]^2\)</span>. We choose <span class="math notranslate nohighlight">\(f,g\)</span> so that the exact solution is given by <span class="math">\begin{align*}
+u(x,t) = e^{-2t}\left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
+\end{align*}</span> We solve this problem using a quadratic finite element space. We first setup this space, define the initial data, and a second discrete function to store the solution at the current time step (<code class="docutils literal notranslate"><span class="pre">u_h</span></code> will be used to store the next time step):</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">space</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
+<span class="n">u_h_n</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;previous&quot;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<p>Next we setup the form <span class="math notranslate nohighlight">\(a=a(u,v)\)</span> which depends on time <span class="math notranslate nohighlight">\(t\)</span> and the chosen time step <span class="math notranslate nohighlight">\(\Delta t\)</span>. Since we want to be able to change these during the simulation (we need to do this for <span class="math notranslate nohighlight">\(t\)</span> and might want to do this for <span class="math notranslate nohighlight">\(\Delta t\)</span> we use the <code class="docutils literal notranslate"><span class="pre">dune.ufl.Constant</span></code> which stores a mutable scalar and can be used within a ufl expression:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">FacetNormal</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">TrialFunction</span><span class="p">,</span> <span class="n">TestFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;dt&quot;</span><span class="p">)</span>    <span class="c1"># time step</span>
+<span class="n">t</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>     <span class="c1"># current time</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+
+<span class="n">abs_du</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)))</span>
+<span class="n">K</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span><span class="o">*</span><span class="n">abs_du</span><span class="p">(</span><span class="n">u</span><span class="p">)))</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">(</span> <span class="n">dot</span><span class="p">((</span><span class="n">u</span> <span class="o">-</span> <span class="n">u_h_n</span><span class="p">)</span><span class="o">/</span><span class="n">dt</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> \
+    <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> \
+    <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">K</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">)</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">u_h_n</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
+</pre></div>
+</div>
+</div>
+<p>To define the right hand side we use the given function <span class="math notranslate nohighlight">\(u\)</span> to define the forcing <span class="math notranslate nohighlight">\(f\)</span> and the boundary flux <span class="math notranslate nohighlight">\(g\)</span></p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">exact</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">initial</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">f</span>     <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">initial</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">div</span><span class="p">(</span> <span class="n">K</span><span class="p">(</span><span class="n">exact</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">exact</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="p">)</span>
+<span class="n">g</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">K</span><span class="p">(</span><span class="n">exact</span><span class="p">(</span><span class="n">s</span><span class="p">))</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">exact</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">FacetNormal</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span><span class="p">))</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">dot</span><span class="p">(</span><span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">g</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span><span class="p">),</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span>
+</pre></div>
+</div>
+</div>
+<p>With the model described as a ufl form, we can again construct a scheme class that provides the solve method which we can use to evolve the solution from one time step to the next. As already mentioned the solve methods always assumes that the problem is non-linear and use a Newton method to solve the problem:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scheme</span> <span class="o">=</span> <span class="n">solutionScheme</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Optionally, we may want to increase the default quadrature orders which are <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">space.order</span></code> for element integrals and <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">space.order</span> <span class="pre">+</span> <span class="pre">1</span></code> for surface integrals. Depending on the data this might not be enough. Then we simply set the integration orders by hand like in the following example, by calling the method setQuadratureOrders(interiorOrder, surfaceOrder).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#scheme.setQuadratureOrders( 2*space.order, 2*space.order+1 )</span>
+</pre></div>
+</div>
+</div>
+<p id="index-19">Since we have forced the system towards a given solution, we can compute the discretization error. First we define ufl expressions for the <span class="math notranslate nohighlight">\(L^2\)</span> and <span class="math notranslate nohighlight">\(H^1\)</span> norms and will use those to compute the experimental order of convergence of the scheme by computing the time evolution on different grid levels. We use <code class="docutils literal notranslate"><span class="pre">dune.fem.function.gridFunction</span></code> to generate code for the errors which can be more efficient than using the ufl expressions directly.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">endTime</span>    <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">exact_end</span>  <span class="o">=</span> <span class="n">exact</span><span class="p">(</span><span class="n">endTime</span><span class="p">)</span>
+<span class="n">l2error</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">u_h</span> <span class="o">-</span> <span class="n">exact_end</span><span class="p">,</span> <span class="n">u_h</span> <span class="o">-</span> <span class="n">exact_end</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;l2error&quot;</span><span class="p">)</span>
+<span class="n">h1error</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u_h</span> <span class="o">-</span> <span class="n">exact_end</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">u_h</span> <span class="o">-</span> <span class="n">exact_end</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;h1error&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p id="index-20">Now we evolve the solution from time <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t=T\)</span> in a loop. Since the PDE model has time dependent coefficient (through the forcing term), we need to update the <code class="docutils literal notranslate"><span class="pre">t</span></code> constant used to define the model before each step. A second constant we used to define the model was <code class="docutils literal notranslate"><span class="pre">dt</span></code> which defines the time step. We keep this constant and set it to <span class="math notranslate nohighlight">\(0.002\)</span> at the beginning of the simulation. This value could be changed in each time step:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dt</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">endTime</span> <span class="o">-</span> <span class="mf">1e-6</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="n">u_h_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
+    <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">+=</span> <span class="n">dt</span><span class="o">.</span><span class="n">value</span>
+
+<span class="n">errors</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">integrate</span><span class="p">([</span><span class="n">l2error</span><span class="p">,</span><span class="n">h1error</span><span class="p">])]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;grid size:&#39;</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> | u_h - u | =&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:0.5e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> | grad(uh - u) | =&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:0.5e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">writeVTK</span><span class="p">(</span><span class="s1">&#39;forchheimer&#39;</span><span class="p">,</span> <span class="n">pointdata</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="n">u_h</span><span class="p">,</span> <span class="s1">&#39;l2error&#39;</span><span class="p">:</span> <span class="n">l2error</span><span class="p">,</span> <span class="s1">&#39;h1error&#39;</span><span class="p">:</span> <span class="n">h1error</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+grid size: 64
+         | u_h - u | = 1.98216e-05
+         | grad(uh - u) | = 9.99185e-04
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_68_1.jpg" src="_images/concepts_nb_68_1.jpg" />
+</div>
+</div>
+<p>We can refine the grid once and recompute the solution on the finer grid.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="p">)</span>
+<span class="n">dt</span><span class="o">.</span><span class="n">value</span> <span class="o">/=</span> <span class="mi">2</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
+<span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="n">time</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">endTime</span> <span class="o">-</span> <span class="mf">1e-6</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">time</span>
+    <span class="n">u_h_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
+    <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">+=</span> <span class="n">dt</span><span class="o">.</span><span class="n">value</span>
+
+<span class="n">errorsFine</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">integrate</span><span class="p">([</span><span class="n">l2error</span><span class="p">,</span><span class="n">h1error</span><span class="p">])]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;grid size:&#39;</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> | u_h - u | =&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:0.5e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">errorsFine</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> | grad(uh - u) | =&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:0.5e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">errorsFine</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+grid size: 256
+         | u_h - u | = 2.69665e-06
+         | grad(uh - u) | = 2.49777e-04
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/concepts_nb_70_1.jpg" src="_images/concepts_nb_70_1.jpg" />
+</div>
+</div>
+<p>To check that everything is working as expected let’s compute the <strong>experimental order of convergence</strong> (convergence should be cubic for <span class="math notranslate nohighlight">\(L^2\)</span>-error and quadratic for the <span class="math notranslate nohighlight">\(H^1\)</span>-error:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">eocs</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">fine</span><span class="o">/</span><span class="n">coarse</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+         <span class="k">for</span> <span class="n">fine</span><span class="p">,</span><span class="n">coarse</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">errorsFine</span><span class="p">,</span><span class="n">errors</span><span class="p">)</span> <span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;EOCs:&quot;</span><span class="p">,</span><span class="n">eocs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+EOCs: [np.float64(2.88), np.float64(2.0)]
+</pre></div></div>
+</div>
+</section>
+<section id="Listing-Available-Dune-Components">
+<span id="index-21"></span><h2>Listing Available Dune Components<a class="headerlink" href="#Listing-Available-Dune-Components" title="Link to this heading"></a></h2>
+<p>The available realization of a given interface, i.e., the available grid implementations, depends on the modules found during configuration. Getting access to all available components is straightforward:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.utility</span><span class="w"> </span><span class="kn">import</span> <span class="n">components</span>
+<span class="c1"># to get a list of all available components:</span>
+<span class="n">components</span><span class="p">()</span>
+<span class="c1"># to get for example all available grid implementations:</span>
+<span class="n">components</span><span class="p">(</span><span class="s2">&quot;grid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+available categories are:
+ discretefunction,function,grid,model,operator,scheme,solver,space,view
+available entries for this category are:
+entry         function          module
+----------------------------------------------
+agglomerate   polyGrid          dune.vem.vem
+alberta       albertaGrid       dune.grid
+alu           aluGrid           dune.alugrid
+aluconform    aluConformGrid    dune.alugrid
+alucube       aluCubeGrid       dune.alugrid
+alusimplex    aluSimplexGrid    dune.alugrid
+oned          onedGrid          dune.grid
+polygon       polygonGrid       dune.polygongrid
+sp            spIsotropicGrid   dune.spgrid
+spanisotropic spAnisotropicGrid dune.spgrid
+spbisection   spBisectionGrid   dune.spgrid
+spisotropic   spIsotropicGrid   dune.spgrid
+ug            ugGrid            dune.grid
+yasp          yaspGrid          dune.grid
+----------------------------------------------
+</pre></div></div>
+</div>
+<p id="index-22">Available discrete function spaces are:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span><span class="p">(</span><span class="s2">&quot;space&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+available entries for this category are:
+entry             function          module
+------------------------------------------------
+bbdg              bbdgSpace         dune.vem.vem
+bdm               bdm               dune.fem.space
+combined          combined          dune.fem.space
+composite         composite         dune.fem.space
+dglagrange        dglagrange        dune.fem.space
+dglagrangelobatto dglagrangelobatto dune.fem.space
+dglegendre        dglegendre        dune.fem.space
+dglegendrehp      dglegendrehp      dune.fem.space
+dgonb             dgonb             dune.fem.space
+dgonbhp           dgonbhp           dune.fem.space
+finitevolume      finiteVolume      dune.fem.space
+lagrange          lagrange          dune.fem.space
+lagrangehp        lagrangehp        dune.fem.space
+p1bubble          p1Bubble          dune.fem.space
+product           product           dune.fem.space
+rannacherturek    rannacherTurek    dune.fem.space
+raviartthomas     raviartThomas     dune.fem.space
+vem               vemSpace          dune.vem.vem
+------------------------------------------------
+</pre></div></div>
+</div>
+<p id="index-23">Available grid functions are:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[38]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span><span class="p">(</span><span class="s2">&quot;function&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+available entries for this category are:
+entry        function          module
+----------------------------------------------
+discrete     discreteFunction  dune.fem.function
+gridfunction gridFunction      dune.fem.function
+levels       levelFunction     dune.fem.function
+partitions   partitionFunction dune.fem.function
+----------------------------------------------
+</pre></div></div>
+</div>
+<p id="index-24">Available schemes:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">components</span><span class="p">(</span><span class="s2">&quot;scheme&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+available entries for this category are:
+entry      function         module
+-----------------------------------------
+bbdg       bbdgScheme       dune.vem.vem
+dg         dg               dune.fem.scheme
+dggalerkin dgGalerkin       dune.fem.scheme
+galerkin   galerkin         dune.fem.scheme
+h1         h1               dune.fem.scheme
+h1galerkin h1Galerkin       dune.fem.scheme
+linearized linearized       dune.fem.scheme
+rungekutta rungeKuttaSolver dune.femdg
+vem        vemScheme        dune.vem.vem
+-----------------------------------------
+</pre></div></div>
+</div>
+</section>
+</section>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+This document is part of the dune-fem tutorial
+<a href="https://doi.org/10.5281/zenodo.3706994"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" alt="DOI"></a><div class="line-block">
+<div class="line">Download <em>concepts</em> as <a class="reference download internal" download="" href="_downloads/091a81049963cacb3bf668b6782ac574/concepts_nb.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(.ipynb)</span></code></a> or as <a class="reference download internal" download="" href="_downloads/4c58a2837dcef423737df849811fad02/concepts.py"><code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></a></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dune-fempy_nb.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nextsteps.html" class="btn btn-neutral float-right" title="Next steps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Dec 02, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
