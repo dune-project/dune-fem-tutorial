@@ -1,0 +1,692 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API for schemes and operators &mdash; Tutorial for version 2.11-git</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User projects" href="userprojects.html" />
+    <link rel="prev" title="Dual Weighted Reisdual Estimate (revisited)" href="laplace-dwr-algorithm_nb.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/dune-python-logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+     <span class="caption-text">
+     <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
+     <li><u><a href="changelog210.html" style="color:white">Most recent changes</a></u></li>
+     <li><u><a href="https://dune-project.github.io/dune-fem-tutorial/v2.11.0.3/versions.html" style="color:white">Other versions</a></u></li>
+     </span>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Teasers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="furtherexamples.html">Main Gallery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wave_nb.html">Wave Equation: double slit domain (using mass lumping)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#DG-formulation">DG formulation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="monolithicStokes_nb.html#id3">Bercovier-Engelmann Testcase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Convergence-rate-check">Convergence rate check</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cylinder_nb.html">Navier-Stokes: flow around a cylinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mixed_poisson_nb.html">Mixed method for the Poisson equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="evalues_laplace_nb.html">Eigenvalue problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="evalues_laplace_nb.html#Eigenvalues-of-the-Neumann-Laplacian">Eigenvalues of the Neumann Laplacian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="evalues_laplace_nb.html#Dirichlet-Eigenvalue-problem">Dirichlet Eigenvalue problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="biharmonic_IPC0_nb.html">Biharmonic problem</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="biharmonic_IPC0_nb.html#Implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="biharmonic_IPC0_nb.html#Simply-supported-boundary-conditions">Simply supported boundary conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="furtherexamples.html#extension-modules">Extension Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="furtherexamples.html#discontinuous-galerkin-methods-with-dune-fem-dg">Discontinuous Galerkin Methods with DUNE-FEM-DG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="euler_nb.html">Euler System of Gas Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chemical_nb.html">An Advection-Diffusion-Reaction System: Chemical Reaction Problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="furtherexamples.html#virtual-element-methods-with-dune-vem">Virtual Element Methods with DUNE-VEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html">Elliptic Problems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Nonlinear-Elliptic-Problem">Nonlinear Elliptic Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Linear-Elasticity">Linear Elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="vemdemo_nb.html#Fourth-order-problem">Fourth order problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="chimpl_nb.html">Cahn-Hilliard</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">From PyPi</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#additional-external-packages">Additional external packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#testing-the-installation">Testing the installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#hints-for-windows">Hints for Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#from-source">From Source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#building-the-required-dune-modules">Building the Required Dune Modules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dune-fempy_nb.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-Laplace-problem">A Laplace problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Laplace-equation-with-Dirichlet-boundary-conditions">Laplace equation with Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#A-non-linear-elliptic-problem">A non-linear elliptic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-fempy_nb.html#Using-Constant-parameters-and-grid-functions-in-PDEs">Using <code class="docutils literal notranslate"><span class="pre">Constant</span></code> parameters and grid functions in PDEs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts_nb.html">General Concepts (with a time dependent problem)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Setting-up-the-Grid">Setting up the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Grid-Functions">Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Spaces">Discrete Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Discrete-Functions">Discrete Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Operators-and-Schemes">Operators and Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#A-Nonlinear-Time-Dependent-Problem">A Nonlinear Time Dependent Problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts_nb.html#Listing-Available-Dune-Components">Listing Available Dune Components</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Next Steps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="boundary_nb.html">More General Boundary Conditions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Dirichlet-boundary-conditions">Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom">Accessing the Dirichlet degrees of freedom</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Neumann-and-Robin-boundary-conditions">Neumann and Robin boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solversInternal_nb.html">Tweaking the (non-) linear solvers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Python-sided-Newton-solver">Python sided Newton solver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Handling-Dirichlet-boundary-conditions">Handling Dirichlet boundary conditions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Other-internal-solvers-(petsc)">Other internal solvers (petsc)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Other-internal-solvers-(istl)">Other internal solvers (istl)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Parameters-for-fine-tuning-the-internal-solvers">Parameters for fine-tuning the internal solvers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversInternal_nb.html#Available-solvers-and-parameters">Available solvers and parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solversExternal_nb.html">Alternative Solvers (e.g. Scipy, Petsc)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Accessing-underlying-data-structures">Accessing underlying data structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Defining-discrete-function-with-given-external-dof-vector">Defining discrete function with given external dof vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-Scipy">Using Scipy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-scikit-umfpack">Using scikit-umfpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solversExternal_nb.html#Using-PETSc4Py">Using PETSc4Py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corepy.html">Using the Full Grid Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Dense-Vectors-and-the-Geometry-Classes">Dense Vectors and the Geometry Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Grid-Construction-and-Basic-Interface">Grid Construction and Basic Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Structured-grids">Structured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Unstructured-grids">Unstructured grids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Local-grid-adaptivity">Local grid adaptivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dune-corepy_nb.html#Basic-information-and-iterators">Basic information and iterators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Using-grid-functions">Using grid functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Importing-user-defined-C++-code">Importing user defined C++ code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Attaching-Data-to-the-Grid">Attaching Data to the Grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dune-corepy_nb.html#Output-of-Grid-and-Visualization-of-Data">Output of Grid and Visualization of Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Matplotlib">Matplotlib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Paraview-(vtu/vtk-files)">Paraview (vtu/vtk files)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Mayavi">Mayavi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dune-corepy_nb.html#Low-level-output">Low level output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Further Topics</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gridviews_and_adaptivity.html">Grid views and adaptivity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-and-some-basic-grid-views-level-and-filtered">Overview and some basic grid views (level and filtered)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="levelgridview_nb.html">LevelGridView examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filteredgridview_nb.html">FilteredGridView examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#dynamic-local-grid-refinement-and-coarsening">Dynamic Local Grid Refinement and Coarsening</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="laplace-adaptive_nb.html">Re-entrant Corner Problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#overview-on-adaptivity-for-spaces-p-adaptation">Overview on adaptivity for spaces (p-adaptation)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gridviews_and_adaptivity.html#evolving-domains">Evolving Domains</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpp.html">Using C++ Code Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unclear">Unclear</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other Projects using Dune-Fem</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="twophaseflow_descr.html">HP adaptive DG scheme for twophase flow problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html">Problem Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Defining-the-model">Defining the model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Time-discretization">Time discretization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Stabilization-(Limiter)">Stabilization (Limiter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Iterative-schemes-(iterative-or-impes-iterative)">Iterative schemes (iterative or impes-iterative)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#HP-Adpativity">HP Adpativity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-grid-adaptivity-(h).">Marker for grid adaptivity (h).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Marker-for-space-adaptivity-(p)">Marker for space adaptivity (p)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="twophaseflow_nb.html#Main-program">Main program</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mmesh_descr.html">Mixed-dimensional PDEs: the Dune-MMesh module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="mmesh_nb.html">Dune-MMesh: Solving a Mixed-dimensional PDE</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="landlab_descr.html">Components for the Landlab software package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="overview_of_advection_solver_nb.html">Linear Advection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="overview_of_advection_solver_nb.html#Advection-of-a-Gaussian-%22bump%22-in-2d">Advection of a Gaussian “bump” in 2d</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-east">Raster grid with advection to the east</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="overview_of_advection_solver_nb.html#Instantiate-component">Instantiate component</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-north">Raster grid with advection to the north</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-advection-to-the-southwest">Raster grid with advection to the southwest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Raster-grid-with-a-non-uniform-advection-field">Raster grid with a non-uniform advection field</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_of_advection_solver_nb.html#Case-of-divergent-velocity">Case of divergent velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="overview_of_advection_solver_nb.html#A-rotating-cone">A rotating cone</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html">A Linear Diffusion Overland Flow Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Overview">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Model">Model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Flow-direction,-depth,-and-velocity">Flow direction, depth, and velocity</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Numerical-Methods">Numerical Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#The-component">The component</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#Example-2:-overland-flow-on-a-DEM">Example 2: overland flow on a DEM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linear_diffusion_overland_flow_dune_nb.html#References">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ddfem_descr.html">DDFEM: Diffuse Domain Python package</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing this project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developers.html">Information for C++ Developers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#using-a-debugger">Using a debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developers.html#list-of-build-specific-environment-variables">List of build specific environment variables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html">Contributing to this tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributions.html#how-to-showcase-your-own-work">How to showcase your own work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="additional.html">Additional Scripts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog290.html">Since 2.9 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#general-changes">General changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#updating-to-newer-version-of-ufl">Updating to newer version of UFL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#new-clone-method-on-spaces">New <cite>clone</cite> method on spaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#dirichlet-bcs-for-operators-with-different-range-domain-space">Dirichlet BCs for operators with different range/domain space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#changes-to-solver-parameter-keys">Changes to solver parameter keys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#added-a-solve-method-to-the-linearization-of-schemes">Added a <code class="docutils literal notranslate"><span class="pre">solve</span></code> method to the linearization of <code class="docutils literal notranslate"><span class="pre">schemes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#updated-dune-fem-scheme-linearized">Updated <code class="docutils literal notranslate"><span class="pre">dune.fem.scheme.linearized</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#add-operator-len-to-spaces">Add operator <code class="docutils literal notranslate"><span class="pre">__len__</span></code> to spaces.</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#add-dirichletindices-method-to-operators-and-schemes">Add <code class="docutils literal notranslate"><span class="pre">DirichletIndices</span></code> method to operators and schemes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#extension-of-the-jacobian-method-on-schemes-and-operators">Extension of the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on schemes and operators</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#set-non-default-quadratures-in-quadrature-rules">Set non default quadratures in quadrature rules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#assembly-function">Assembly function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#improved-pickling-support">Improved Pickling support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#paraview-reader">Paraview Reader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#sampler-along-boundary">Sampler along Boundary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#point-sampler-returning-entity-local-coordinate-for-given-global-coordinate">Point sampler returning (entity,local coordinate) for given global coordinate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#improved-boundary-indexing-in-ufl-forms-for-boundary-integrals-and-dirichlet-conditions">Improved Boundary Indexing in UFL Forms (for boundary integrals and Dirichlet conditions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#eisenstatwalker-in-newton-method">Eisenstatwalker in Newton method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#storage-setup-in-scheme">Storage setup in scheme</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#methods-on-space-to-return-local-mapper-and-for-evaluating-basis-functions">Methods on space to return local mapper and for evaluating basis functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#logging-of-parameter-values">Logging of parameter values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-the-rhs-argument-for-scheme-solve">Deprecation of the <code class="docutils literal notranslate"><span class="pre">rhs</span></code> argument for <code class="docutils literal notranslate"><span class="pre">scheme.solve</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-integrate">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.integrate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-function-uflfunction-and-dune-fem-function-cppfunction">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.function.uflFunction</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.fem.function.cppFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-ufl-expression2gf">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.ufl.expression2GF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-operator-linear">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.linear</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#deprecation-of-dune-fem-space-combinedspace">Deprecation of <code class="docutils literal notranslate"><span class="pre">dune.fem.space.combinedSpace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="changelog290.html#dune-vem">DUNE-VEM</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#dirichlet-constraints-for-conforming-c-1-space">Dirichlet constraints for conforming $C^1$ space</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog290.html#intersection-integrals-now-use-the-edge-projections">Intersection integrals now use the edge projections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog210.html">Since 2.10 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#breaking-changes">Breaking changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#general-changes">General changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog210.html#bugfixes">Bugfixes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog210.html#pickling-of-discrete-functions">Pickling of discrete functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inforesources.html">Keyword index</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Additional pages</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gmsh2dgf_nb.html">Converting gmsh to DGF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slurmbatchscript.html">Slurm batch script</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API for schemes and operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract-concepts">Abstract concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operator-without-dbc">Operator without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operator-with-dbc">Operator with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scheme-without-dbc">Scheme without DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scheme-with-dbc">Scheme with DBC:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional">Additional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unclear">Unclear</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">DUNE-FEM Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="furthertopics.html">Further topics</a></li>
+      <li class="breadcrumb-item active">API for schemes and operators</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
+        <a href="laplace-dwr-algorithm_nb.html" class="btn btn-neutral float-left" title="Dual Weighted Reisdual Estimate (revisited)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="userprojects.html" class="btn btn-neutral float-right" title="User projects" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-for-schemes-and-operators">
+<span id="index-0"></span><h1>API for schemes and operators<a class="headerlink" href="#api-for-schemes-and-operators" title="Link to this heading"></a></h1>
+<section id="abstract-concepts">
+<h2>Abstract concepts<a class="headerlink" href="#abstract-concepts" title="Link to this heading"></a></h2>
+<p>In the following we give a short mathematical description of the operator concepts used
+in this module. This can be skipped and the description of the methods
+further down should still be understandable.</p>
+<p>The operator classes represent operators <span class="math notranslate nohighlight">\(L\colon V_h\to W_h^*\)</span> where
+the domain and range space <span class="math notranslate nohighlight">\(V_h,W_h\)</span> are discrete function spaces and
+<span class="math notranslate nohighlight">\(W_h^*\)</span> is the dual of <span class="math notranslate nohighlight">\(W_h\)</span>.
+We will in general not differentiate between duals and the actual function
+because the range space is finite dimensional.
+In the most common example these operators are given by forms <span class="math notranslate nohighlight">\(a(v_h,w_h)\)</span>
+which are linear in the second argument (test function) but can be nonlinear
+in the first argument (trial function).
+In this case <span class="math notranslate nohighlight">\(L[v_h] := a(v_h,\cdot)\in W_h^*\)</span> or for any
+<span class="math notranslate nohighlight">\(w_h\in W_h\colon &lt;L[v_h],w_h&gt; := a(v_h,w_h)\)</span>.
+This is provided by <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.galerkin</span></code> for forms defined in ufl.</p>
+<p>Mainly operators can be evaluated, i.e., we can compute <span class="math notranslate nohighlight">\(w_h:=L[v_h]\)</span> using
+the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method: <code class="docutils literal notranslate"><span class="pre">operator(v_h,w_h)</span></code>. In addition it is possible to
+compute the linearization <span class="math notranslate nohighlight">\(DL[\bar{v}_h]\)</span> around some function
+<span class="math notranslate nohighlight">\(\bar{v}_h\in V_h\)</span>. This is done using the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method on the operator.
+The linearization is now a bilinear form <span class="math notranslate nohighlight">\(\bar{a}(v_h,w_h;\bar{v_h})\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>both the <code class="docutils literal notranslate"><span class="pre">__call__</span></code> and the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method can be called using
+grid functions instead of discrete functions <span class="math notranslate nohighlight">\(v_h\)</span> and <span class="math notranslate nohighlight">\(\bar{v}_h\)</span>,
+respectively.</p>
+</div>
+</section>
+<section id="operator-without-dbc">
+<h2>Operator without DBC:<a class="headerlink" href="#operator-without-dbc" title="Link to this heading"></a></h2>
+<p>In the following we focus on the operators returned by
+<code class="docutils literal notranslate"><span class="pre">dune.fem.operator.galerkin</span></code>.
+The minimal requirements for constructing such an operator is to provide a ufl form
+where the domain and range space is extracted from the trial and test
+function. In this case these have to be constructed based on discrete function
+spaces $V_h,W_h$, respectively, so one can not use the abstract
+<code class="docutils literal notranslate"><span class="pre">dune.ufl.Space</span></code>. It is instead possible to provide discrete spaces as extra arguments
+<code class="docutils literal notranslate"><span class="pre">domainSpace,rangeSpace</span></code> to override the spaces uses to construct the
+trial and test functions. Many examples like the one below can be found
+throughout the tutorial:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">(</span><span class="n">domainSpace</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">TestFunction</span><span class="p">(</span><span class="n">rangeSpace</span><span class="p">)</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">operator</span><span class="o">.</span><span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+<span class="n">v_h</span> <span class="o">=</span> <span class="n">rangeSpace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># In the following gf is some grid function,</span>
+<span class="c1"># e.g., a function over the domain space:</span>
+<span class="n">op</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span><span class="n">v_h</span><span class="p">)</span>
+<span class="c1"># To linearize firs construct a linear operator</span>
+<span class="n">linOp</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
+<span class="n">op</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span><span class="n">linOp</span><span class="p">)</span> <span class="c1"># gf is the function around which to linearize</span>
+</pre></div>
+</div>
+<p>The call to <code class="docutils literal notranslate"><span class="pre">dune.fem.operator.galerkin</span></code> could as mentioned above include
+the domain and ranges spaces to use.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">domainSpace</span></code>: the discrete domain space <span class="math notranslate nohighlight">\(V_h\)</span> for the operator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rangeSpace</span></code>:  the discrete range space <span class="math notranslate nohighlight">\(W_h\)</span> for the operator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">linear</span></code>:      return a operator class that can store the linearization <span class="math notranslate nohighlight">\(DL\)</span>.
+This contains an underlying (sparse) matrix structure that
+will depend on the storage argument provided to the spaces.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__call__</span></code>:    evaluate the operator.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jacobian</span></code>:    perform the linearization constructing the matrix inside
+the provided linear operator. There are two versions for
+this call: <code class="docutils literal notranslate"><span class="pre">op.jacobian(gf,linOp)</span></code> and <code class="docutils literal notranslate"><span class="pre">op.jacobian(gf,linOp,b_h)</span></code>.
+The first version was described above, the second version
+fills in an addition discrete function <code class="docutils literal notranslate"><span class="pre">b_h</span></code>. This
+provides the negative of the constant term in the Taylor
+expansion <span class="math notranslate nohighlight">\(&lt;L[v_h],w_h&gt; = -&lt;b_h,w_h&gt; + &lt;DL[\bar{v_h}]v_h,w_h&gt;\)</span>.
+We provide the negative here but that term is often the
+right hand side needed to solve the problem. For example
+if <span class="math notranslate nohighlight">\(L[v_h]\)</span> is linear then <span class="math notranslate nohighlight">\(DL[0]v_h = b_h\)</span> is the linear
+system that defines the solution to <span class="math notranslate nohighlight">\(L[v_h]=0\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">model</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setCommunicate</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setQuadratureOrders</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gridSizeInterior</span></code>:</p></li>
+</ul>
+</section>
+<section id="operator-with-dbc">
+<h2>Operator with DBC:<a class="headerlink" href="#operator-with-dbc" title="Link to this heading"></a></h2>
+<p>If the operator was constructed not only from a form but including
+<code class="docutils literal notranslate"><span class="pre">DirichletBC</span></code> classes which are provided as a tuple/list in the first argument
+during construction of the operator:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">u</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">(</span><span class="n">domainSpace</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">TestFunction</span><span class="p">(</span><span class="n">rangeSpace</span><span class="p">)</span>
+<span class="n">op</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">operator</span><span class="o">.</span><span class="n">galerkin</span><span class="p">(</span> <span class="p">[</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span> <span class="n">dune</span><span class="o">.</span><span class="n">ufl</span><span class="o">.</span><span class="n">DirichletBC</span><span class="p">(</span><span class="n">rangeSpace</span><span class="p">,</span><span class="n">g</span><span class="p">)]</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>The resulting operator will have the same methods as before but both the
+<code class="docutils literal notranslate"><span class="pre">__call__</span></code> and the <code class="docutils literal notranslate"><span class="pre">jacobian</span></code> method will include handing of the
+Dirichlet boundary conditions. In the current version to behavior is
+different depending on equality of the range and domain spaces.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">__call__</span></code>: this method will as before compute <span class="math notranslate nohighlight">\(w_h=L[v_h]\)</span>
+(where <span class="math notranslate nohighlight">\(v_h\)</span> can be a general grid function as pointed out above).
+In addition if domain and range space are identical,
+all components in <span class="math notranslate nohighlight">\(w_h\)</span> associated with the
+Dirichlet boundary will be of the form <span class="math notranslate nohighlight">\(w_i = v_i - g_i\)</span> where
+<span class="math notranslate nohighlight">\(g_i\)</span> is the given boundary data evaluate at the corresponding
+degree of freedom. If the range and domain spaces differ then
+<span class="math notranslate nohighlight">\(w_i = 0\)</span> for all these components.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>in the case <span class="math notranslate nohighlight">\(V_h=W_h\)</span>, a more mathematical explanation
+is to consider all functionals
+<span class="math notranslate nohighlight">\(\lambda\)</span> which are associated with the boundaries, i.e.,
+depend on their argument restricted to the boundary:
+<span class="math notranslate nohighlight">\(\lambda(g_1)=\lambda(g_2)\)</span> if <span class="math notranslate nohighlight">\(g_1=g_2\)</span> on the
+dirichlet boundary. After <span class="math notranslate nohighlight">\(w_h=L[v_h]\)</span> the following holds
+<span class="math notranslate nohighlight">\(\lambda(w_h) = \lambda(v_h-g) = \lambda(v_h)-\lambda(g)\)</span>
+for each of these functionals.</p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jacobain</span></code>: if range and domain spaces are identical then
+the matrix assembled will contain a unit row for each row
+associated with the Dirichlet constraints. If the version with the right
+hand side argument is used, the components for the Dirichlet degrees of
+freedom will contain <span class="math notranslate nohighlight">\(g_i\)</span>. For different range and domain spaces
+rows in the matrix will simply be zero for the Dirichlet dofs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>this corresponds to the correct linearization of <span class="math notranslate nohighlight">\(w_i=u_i-g_i\)</span>.</p>
+</div>
+</li>
+</ul>
+<p>In addition to the methods from the standard operator these operators have
+additional methods:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">setConstraints</span></code>: in it’s simplest version this method takes a single
+discrete function <span class="math notranslate nohighlight">\(w_h\)</span>. This changes the components of
+<span class="math notranslate nohighlight">\(w_h\)</span> at the Dirichlet boundary, i.e., <span class="math notranslate nohighlight">\(w_i=g_i\)</span> where the
+boundary data is taken from the <code class="docutils literal notranslate"><span class="pre">DirichletBC</span></code> instances. Another
+version takes a general grid function as a first argument
+<code class="docutils literal notranslate"><span class="pre">op.setConstrains(v,w_h)</span></code> which leads to
+<span class="math notranslate nohighlight">\(w_i=v_i\)</span> (i.e. <span class="math notranslate nohighlight">\(\lambda(w)=\lambda(v)\)</span> with the boundary
+degree functionals). Finally one can provide a single number as first
+argument, e.g., <code class="docutils literal notranslate"><span class="pre">op.setConstraint(0,w_h)</span></code> which leads to
+<span class="math notranslate nohighlight">\(w_i=0\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subConstraints</span></code>: there is only one version of this method
+<code class="docutils literal notranslate"><span class="pre">op.subConstrains(v,w_h)</span></code> leading to <span class="math notranslate nohighlight">\(w_i = w_i+v_i\)</span>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dirichletIndices</span></code>: This method returns the indices of dofs on the Dirichlet boundary. By
+default all indices are returned but a boundary id can be provided to only
+return a subset of indices.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dirichletBlocks</span></code>: this method provides indices of the degrees of
+freedom on the Dirichlet boundary defined by the <code class="docutils literal notranslate"><span class="pre">DirichletBC</span></code> instances.
+<code class="docutils literal notranslate"><span class="pre">dblocks</span> <span class="pre">=</span> <span class="pre">op.dirichletBlocks</span></code> in blocked form.
+The indices as returned by the <code class="docutils literal notranslate"><span class="pre">dirichletIndices</span></code> can be obtained
+using:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dblock</span><span class="p">):</span>         <span class="c1"># a block is of size `dimRange` (for Lagrange)</span>
+  <span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">block</span><span class="p">):</span>            <span class="c1"># iterate over the block</span>
+      <span class="c1"># &#39;b&#39; is the `id` of the boundary as described below</span>
+      <span class="k">if</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>                           <span class="c1"># if b&gt;0 it&#39;s a Dirichlet boundary</span>
+          <span class="c1"># do something</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="scheme-without-dbc">
+<span id="index-1"></span><h2>Scheme without DBC:<a class="headerlink" href="#scheme-without-dbc" title="Link to this heading"></a></h2>
+<p>In this project we use the term <code class="docutils literal notranslate"><span class="pre">scheme</span></code> to describe a special type of
+operators with the main additional functionality of solving the system
+<span class="math notranslate nohighlight">\(L[v_h]=0\)</span> (or <span class="math notranslate nohighlight">\(L[v_h]=b_h\)</span>). A consequence of this is that
+the domain and the range space need to be identical - Petrov Galerkin
+method which only require that the dimensions match is not currently
+available.</p>
+<p>All methods from operators are available on schemes. In addition we have</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">space</span></code>: this is a convenience method made available since the domain and
+the range space are identical.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solve</span></code>: this is the central new method available in <code class="docutils literal notranslate"><span class="pre">schemes</span></code>.
+A call <code class="docutils literal notranslate"><span class="pre">scheme.solve(target=v_h)</span></code> returns a solution to the problem
+<span class="math notranslate nohighlight">\(L[v_h]=0\)</span>. This is by default based on a Newton-Krylov solver.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parameters</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parameterHelp</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preconditioning</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setErrorMeasure</span></code>:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inverseLinearOperator</span></code>: not sure if this is used</p></li>
+</ul>
+</section>
+<section id="scheme-with-dbc">
+<h2>Scheme with DBC:<a class="headerlink" href="#scheme-with-dbc" title="Link to this heading"></a></h2>
+<p>If a <code class="docutils literal notranslate"><span class="pre">scheme</span></code> is constructed including boundary conditions then the
+additional method available on the operator are available on the scheme as
+well.</p>
+</section>
+<section id="additional">
+<h2>Additional<a class="headerlink" href="#additional" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">virtualization</span></code>:</p></li>
+</ul>
+</section>
+<section id="unclear">
+<h2>Unclear<a class="headerlink" href="#unclear" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dimRange</span></code>: is available on schemes.
+The following should be removed or on operator (same as <code class="docutils literal notranslate"><span class="pre">scheme.rangeSpace.dimRange</span></code>
+or even <code class="docutils literal notranslate"><span class="pre">scheme.space.dimRange=scheme.domainSpace.dimRange</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gridSizeInterior</span></code>: is missing on scheme</p></li>
+</ul>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3706994"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" />
+</a>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="laplace-dwr-algorithm_nb.html" class="btn btn-neutral float-left" title="Dual Weighted Reisdual Estimate (revisited)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="userprojects.html" class="btn btn-neutral float-right" title="User projects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Dec 02, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

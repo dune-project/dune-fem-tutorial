@@ -1,0 +1,403 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "e0231f8c",
+   "metadata": {},
+   "source": [
+    "# Mean Curvature Flow (revisited)\n",
+    "\n",
+    "[As discussed before](mcf_nb.ipynb)\n",
+    "we can simulate the shrinking of a sphere under mean curvature flow\n",
+    "using a finite element approach based on\n",
+    "the following time discrete approximation:\n",
+    "\\begin{align}\n",
+    "\\int_{\\Gamma^n} \\big( U^{n+1} - {\\rm id}\\big) \\cdot \\varphi +\n",
+    "\\tau \\int_{\\Gamma^n} \\big(\n",
+    "\\theta\\nabla_{\\Gamma^n} U^{n+1} + (1-\\theta) I \\big)\n",
+    "\\colon\\nabla_{\\Gamma^n}\\varphi\n",
+    "=0~.\n",
+    "\\end{align}\n",
+    "Here $U^n$ parametrizes $\\Gamma(t^{n+1})$ over\n",
+    "$\\Gamma^n:=\\Gamma(t^{n})$,\n",
+    "$I$ is the identity matrix, $\\tau$ is the time step and\n",
+    "$\\theta\\in[0,1]$ is a discretization parameter.\n",
+    "\n",
+    "If the initial surface $\\Gamma^0$ is a sphere of radius $R_0$,\n",
+    "the surface remains sphere and we have an exact formula for the evolution\n",
+    "of the radius of the surface\n",
+    "\n",
+    "$$R(t) = \\sqrt{R_0^2 - 4t}.$$\n",
+    "\n",
+    "To compare the accuracy of the surface approximation we compute an\n",
+    "average radius of the discrete surface in each time step $t^n$ using\n",
+    "\n",
+    "$$R_h^n = \\frac{ \\int_{\\Gamma^n} |x| }{ |\\Gamma^n| }.$$\n",
+    "\n",
+    "Computing $R_h^n$ requires a grid traversal and a number of calls to\n",
+    "interface methods on each element. Doing this on the Python side has a\n",
+    "potential performance impact which we investigate here by comparing a\n",
+    "pure python implementation with a hybrid approach where computing $R_h^n$\n",
+    "is implemented in C++ using the `dune.generator.algorithm` functionality."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "bf75bb02",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-12-02T18:36:24.601755Z",
+     "iopub.status.busy": "2025-12-02T18:36:24.601553Z",
+     "iopub.status.idle": "2025-12-02T18:36:25.650070Z",
+     "shell.execute_reply": "2025-12-02T18:36:25.649094Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "import time, io\n",
+    "import numpy\n",
+    "from matplotlib import pyplot as plt\n",
+    "from matplotlib.ticker import ScalarFormatter\n",
+    "\n",
+    "from ufl import *\n",
+    "import dune.ufl\n",
+    "from dune.generator import algorithm\n",
+    "import dune.geometry as geometry\n",
+    "import dune.fem as fem\n",
+    "\n",
+    "def plot(ct, ct2):\n",
+    "    fig, ax = plt.subplots()\n",
+    "    plt.loglog(ct[0][:], ct[1][:],'*-', markersize=15, label='hybrid')\n",
+    "    plt.loglog(ct2[0][:], ct2[1][:],'*-', markersize=15, label='python')\n",
+    "    plt.grid(True)\n",
+    "    for axis in [ax.xaxis, ax.yaxis]:\n",
+    "        axis.set_major_formatter(ScalarFormatter())\n",
+    "        axis.set_minor_formatter(ScalarFormatter())\n",
+    "    yticks = ax.yaxis.get_minor_ticks()\n",
+    "    for t in yticks:\n",
+    "        t.label1.set_visible(False)\n",
+    "    xticks = ax.xaxis.get_minor_ticks()\n",
+    "    for t in xticks:\n",
+    "        t.label1.set_visible(False)\n",
+    "    plt.yticks(numpy.append(ct[1], ct2[1]))\n",
+    "    plt.xticks(ct[0])\n",
+    "    plt.legend(loc=\"upper left\")\n",
+    "    plt.xlabel('Number of Grid Elements (log)',fontsize=20)\n",
+    "    plt.gcf().subplots_adjust(bottom=0.17, left=0.16)\n",
+    "    plt.ylabel('Runtime in s (log)',fontsize=20)\n",
+    "\n",
+    "# polynomial order of surface approximation\n",
+    "order = 2\n",
+    "\n",
+    "# initial radius\n",
+    "R0 = 2.\n",
+    "\n",
+    "# end time\n",
+    "endTime = 0.1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "925bd838",
+   "metadata": {
+    "lines_to_next_cell": 0
+   },
+   "source": [
+    "Main function for calculating the mean curvature flow of a given surface.\n",
+    "If first argument is `True` the radius of the computed surface is\n",
+    "computed using an algorithm implemented in C++ otherwise the computation\n",
+    "is done in Python."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "b0e0b896",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-12-02T18:36:25.652823Z",
+     "iopub.status.busy": "2025-12-02T18:36:25.652463Z",
+     "iopub.status.idle": "2025-12-02T18:36:25.658795Z",
+     "shell.execute_reply": "2025-12-02T18:36:25.658002Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "def calcRadius(surface):\n",
+    "    R,vol = 0, 0\n",
+    "    for e in surface.elements:\n",
+    "        rule = geometry.quadratureRule(e.type, 4)\n",
+    "        for p in rule:\n",
+    "            geo = e.geometry\n",
+    "            weight = geo.volume * p.weight\n",
+    "            R   += geo.toGlobal(p.position).two_norm * weight\n",
+    "            vol += weight\n",
+    "    return R/vol\n",
+    "\n",
+    "code = \"\"\"\n",
+    "#include <dune/geometry/quadraturerules.hh>\n",
+    "template< class Surface >\n",
+    "double calcRadius( const Surface &surface ) {\n",
+    "  double R = 0, vol = 0.;\n",
+    "  for( const auto &entity : elements( surface ) ) {\n",
+    "    const auto& rule = Dune::QuadratureRules<double, 2>::rule(entity.type(), 4);\n",
+    "    for ( const auto &p : rule ) {\n",
+    "      const auto geo = entity.geometry();\n",
+    "      const double weight = geo.volume() * p.weight();\n",
+    "      R   += geo.global(p.position()).two_norm() * weight;\n",
+    "      vol += weight;\n",
+    "    }\n",
+    "  }\n",
+    "  return R/vol;\n",
+    "}\n",
+    "\"\"\"\n",
+    "switchCalcRadius = lambda use_cpp,surface: \\\n",
+    "             algorithm.load('calcRadius', io.StringIO(code), surface) \\\n",
+    "             if use_cpp else calcRadius"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2d0693e7",
+   "metadata": {
+    "lines_to_next_cell": 0
+   },
+   "source": [
+    "Timings for a number of different grid refinements is dumped to disk"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "d921f42a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-12-02T18:36:25.661324Z",
+     "iopub.status.busy": "2025-12-02T18:36:25.660920Z",
+     "iopub.status.idle": "2025-12-02T18:36:25.674767Z",
+     "shell.execute_reply": "2025-12-02T18:36:25.673557Z"
+    }
+   },
+   "outputs": [],
+   "source": [
+    "from dune.fem.view import geometryGridView as geoGridView\n",
+    "from dune.fem.space import lagrange as solutionSpace\n",
+    "from dune.fem.scheme import galerkin as solutionScheme\n",
+    "def calculate(use_cpp, gridView):\n",
+    "    # space on Gamma_0 to describe position of Gamma(t)\n",
+    "    space = solutionSpace(gridView, dimRange=gridView.dimWorld, order=order)\n",
+    "    u = TrialFunction(space)\n",
+    "    v = TestFunction(space)\n",
+    "    x = SpatialCoordinate(space)\n",
+    "    positions = space.interpolate(x, name=\"position\")\n",
+    "\n",
+    "    # space for discrete solution on Gamma(t)\n",
+    "    surface = geoGridView(positions)\n",
+    "    space = solutionSpace(surface, dimRange=surface.dimWorld, order=order)\n",
+    "    solution  = space.interpolate(x, name=\"solution\")\n",
+    "\n",
+    "    # set up model using theta scheme\n",
+    "    theta = 0.5   # Crank-Nicolson\n",
+    "\n",
+    "    I = Identity(3)\n",
+    "    dt = dune.ufl.Constant(0,\"dt\")\n",
+    "\n",
+    "    a = (inner(u - x, v) + dt * inner(theta*grad(u)\n",
+    "        + (1 - theta)*I, grad(v))) * dx\n",
+    "\n",
+    "    scheme = solutionScheme(a == 0, space, solver=\"cg\")\n",
+    "\n",
+    "    Rexact = lambda t: numpy.sqrt(R0*R0 - 4.*t)\n",
+    "    radius = switchCalcRadius(use_cpp,surface)\n",
+    "\n",
+    "    dt.value = 0.02\n",
+    "\n",
+    "    numberOfLoops = 3\n",
+    "    times = numpy.zeros(numberOfLoops)\n",
+    "    errors = numpy.zeros(numberOfLoops)\n",
+    "    totalIterations = numpy.zeros(numberOfLoops, numpy.dtype(numpy.uint32))\n",
+    "    gridSizes = numpy.zeros(numberOfLoops, numpy.dtype(numpy.uint32))\n",
+    "    for i in range(numberOfLoops):\n",
+    "        positions.interpolate(x * (R0/sqrt(dot(x,x))))\n",
+    "        solution.interpolate(x)\n",
+    "        t = 0.\n",
+    "        error = abs(radius(surface)-Rexact(t))\n",
+    "        iterations = 0\n",
+    "        start = time.time()\n",
+    "        while t < endTime:\n",
+    "            info = scheme.solve(target=solution)\n",
+    "            # move the surface\n",
+    "            positions.assign(solution)\n",
+    "            # store some information about the solution process\n",
+    "            iterations += int( info[\"linear_iterations\"] )\n",
+    "            t          += scheme.model.dt\n",
+    "            error       = max(error, abs(radius(surface)-Rexact(t)))\n",
+    "        print(\"time used:\", time.time() - start)\n",
+    "        times[i] = time.time() - start\n",
+    "        errors[i] = error\n",
+    "        totalIterations[i] = iterations\n",
+    "        gridSizes[i] = gridView.size(2)\n",
+    "        if i < numberOfLoops - 1:\n",
+    "            gridView.hierarchicalGrid.globalRefine(1)\n",
+    "            dt.value /= 2\n",
+    "    eocs = numpy.log(errors[0:][:numberOfLoops-1] / errors[1:]) / numpy.log(numpy.sqrt(2))\n",
+    "    try:\n",
+    "        import pandas as pd\n",
+    "        keys = {'size': gridSizes, 'error': errors, \"eoc\": numpy.insert(eocs, 0, None), 'iterations': totalIterations}\n",
+    "        table = pd.DataFrame(keys, index=range(numberOfLoops),columns=['size', 'error', 'eoc', 'iterations'])\n",
+    "        print(table)\n",
+    "    except ImportError:\n",
+    "        print(\"pandas module not found so not showing table - ignored\")\n",
+    "        pass\n",
+    "    return gridSizes, times"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9ee55501",
+   "metadata": {},
+   "source": [
+    "Compute the mean curvature flow evolution of a spherical surface. Compare\n",
+    "computational time of a pure Python implementation and using a C++\n",
+    "algorithm to compute the radius of the [surface](sphere.dgf) for verifying the\n",
+    "algorithm."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "3136085a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-12-02T18:36:25.677393Z",
+     "iopub.status.busy": "2025-12-02T18:36:25.676561Z",
+     "iopub.status.idle": "2025-12-02T18:36:42.715262Z",
+     "shell.execute_reply": "2025-12-02T18:36:42.714517Z"
+    }
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "time used: 0.19219136238098145\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "time used: 0.9877891540527344\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "time used: 4.026784181594849\n",
+      "   size     error       eoc  iterations\n",
+      "0   318  0.001060       NaN          76\n",
+      "1   766  0.000605  1.619153         208\n",
+      "2  1745  0.000275  2.275142         420\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "time used: 0.2923874855041504\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "time used: 1.547672986984253\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "time used: 6.351378679275513\n",
+      "   size     error       eoc  iterations\n",
+      "0   318  0.001060       NaN          76\n",
+      "1   766  0.000605  1.619153         208\n",
+      "2  1745  0.000275  2.275142         420\n"
+     ]
+    }
+   ],
+   "source": [
+    "# set up reference domain Gamma_0\n",
+    "results = []\n",
+    "from dune.alugrid import aluConformGrid as leafGridView\n",
+    "gridView = leafGridView(\"sphere.dgf\", dimgrid=2, dimworld=3)\n",
+    "results += [calculate(True, gridView)]\n",
+    "\n",
+    "gridView = leafGridView(\"sphere.dgf\", dimgrid=2, dimworld=3)\n",
+    "results += [calculate(False, gridView)]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ea0c756d",
+   "metadata": {},
+   "source": [
+    "Compare the hybrid and pure Python versions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "059d897e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2025-12-02T18:36:42.717396Z",
+     "iopub.status.busy": "2025-12-02T18:36:42.717111Z",
+     "iopub.status.idle": "2025-12-02T18:36:42.950422Z",
+     "shell.execute_reply": "2025-12-02T18:36:42.949494Z"
+    }
+   },
+   "outputs": [
+    {
+     "data": {
+      "image/jpeg": "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",
+      "text/plain": [
+       "<Figure size 320x240 with 1 Axes>"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "plot(results[0],results[1])"
+   ]
+  }
+ ],
+ "metadata": {
+  "jupytext": {
+   "cell_metadata_filter": "-all"
+  },
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.14.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
