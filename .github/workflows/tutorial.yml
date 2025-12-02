@@ -77,9 +77,7 @@ jobs:
           # find other versions
           echo $BRANCH > latest.txt
           cd ${{ github.event.repository.name }}
-
-          for DIR in `find . -maxdepth 1 -type d -name "[!.]*" -print`; do D=`echo $DIR | cut -d "/" -f 2 `; echo $D; done >> ../latest.txt 
-          #ls -dvr v*/ u*/ >> ../latest.txt
+          ls -dvr v*/ u*/ >> ../latest.txt
           # cleanup 
           cd ..
           rm -rf ${{ github.event.repository.name }}
