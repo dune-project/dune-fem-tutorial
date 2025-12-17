@@ -49,7 +49,7 @@
      <span class="caption-text">
      <li><u><a href="genindex.html" style="color:white">Keyword list</a></u></li>
      <li><u><a href="changelog210.html" style="color:white">Most recent changes</a></u></li>
-     <li><u><a href="https://dune-project.github.io/dune-fem-tutorial/v2.11.0.3/versions.html" style="color:white">Other versions</a></u></li>
+     <li><u><a href="https://dune-project.github.io/dune-fem-tutorial/versions.html" style="color:white">Other versions</a></u></li>
      </span>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -494,6 +494,10 @@ This document is part of the dune-fem tutorial
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.femdg</span><span class="w"> </span><span class="kn">import</span> <span class="n">createOrderRedcution</span><span class="p">,</span> <span class="n">createLimiter</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem</span><span class="w"> </span><span class="kn">import</span> <span class="n">parameter</span>
+<span class="c1"># use callback adaptation since the &#39;generic&#39; produces non-consecutive dof mappings</span>
+<span class="n">parameter</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;fem.adaptation.method&quot;</span><span class="p">:</span> <span class="s2">&quot;callback&quot;</span><span class="p">})</span>
+
 <span class="n">fem</span><span class="o">.</span><span class="n">threading</span><span class="o">.</span><span class="n">use</span> <span class="o">=</span> <span class="mi">4</span>
 </pre></div>
 </div>
@@ -513,8 +517,8 @@ This document is part of the dune-fem tutorial
 <span class="n">tolerance</span> <span class="o">=</span> <span class="mf">3e-2</span>
 <span class="n">penalty</span>   <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="p">(</span><span class="n">maxOrder</span> <span class="o">*</span> <span class="p">(</span> <span class="n">maxOrder</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">))</span>
 <span class="n">newtonParameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;nonlinear.tolerance&quot;</span><span class="p">:</span> <span class="n">tolerance</span><span class="p">,</span>
-                    <span class="s2">&quot;nonlinear.verbose&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;linear.verbose&quot;</span><span class="p">:</span> <span class="s2">&quot;false&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;nonlinear.verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s2">&quot;linear.verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
                     <span class="s2">&quot;linear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span>
                     <span class="s2">&quot;linear.reduction&quot;</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">}</span>
 </pre></div>
@@ -746,11 +750,12 @@ This document is part of the dune-fem tutorial
 </section>
 <section id="Stabilization-(Limiter)">
 <h1>Stabilization (Limiter)<a class="headerlink" href="#Stabilization-(Limiter)" title="Link to this heading"></a></h1>
+<p>This is a scaling limiter with adjustment of average values.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">limiter</span> <span class="o">=</span> <span class="n">createLimiter</span><span class="p">(</span> <span class="n">spc</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)),</span> <span class="n">limiter</span><span class="o">=</span><span class="s2">&quot;scaling&quot;</span> <span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">limiter</span> <span class="o">=</span> <span class="n">createLimiter</span><span class="p">(</span> <span class="n">spc</span><span class="p">,</span> <span class="n">bounds</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">(</span><span class="mf">1e-12</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)),</span> <span class="n">limiter</span><span class="o">=</span><span class="s2">&quot;scalingadjusted&quot;</span> <span class="p">)</span>
 <span class="n">tmp</span> <span class="o">=</span> <span class="n">solution</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">limit</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
     <span class="n">tmp</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
@@ -765,7 +770,7 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">coupled</span><span class="p">:</span>
     <span class="n">form</span> <span class="o">=</span> <span class="n">form_s</span> <span class="o">+</span> <span class="n">form_p</span>
-    <span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="n">form</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">spc</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;suitesparse&quot;</span><span class="p">,</span><span class="s2">&quot;umfpack&quot;</span><span class="p">),</span> <span class="n">parameters</span><span class="o">=</span><span class="n">newtonParameters</span><span class="p">)</span>
+    <span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="n">form</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">spc</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;suitesparse&quot;</span><span class="p">,</span><span class="s2">&quot;umfpack&quot;</span><span class="p">),</span> <span class="n">parameters</span><span class="o">=</span><span class="n">newtonParameters</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="n">uflSpace1</span> <span class="o">=</span> <span class="n">Space</span><span class="p">((</span><span class="n">P</span><span class="o">.</span><span class="n">dimWorld</span><span class="p">,</span><span class="n">P</span><span class="o">.</span><span class="n">dimWorld</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">u1</span>        <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">uflSpace1</span><span class="p">)</span>
@@ -781,7 +786,7 @@ This document is part of the dune-fem tutorial
     <span class="c1"># tpModel[0].penalty  = penalty</span>
     <span class="c1"># tpModel[1].penalty  = penalty</span>
     <span class="c1"># tpModel[1].timeStep = dt</span>
-    <span class="n">scheme</span> <span class="o">=</span> <span class="p">[</span><span class="n">galerkin</span><span class="p">(</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;suitesparse&quot;</span><span class="p">,</span><span class="s2">&quot;umfpack&quot;</span><span class="p">),</span>
+    <span class="n">scheme</span> <span class="o">=</span> <span class="p">[</span><span class="n">galerkin</span><span class="p">(</span> <span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;suitesparse&quot;</span><span class="p">,</span><span class="s2">&quot;umfpack&quot;</span><span class="p">),</span>
                         <span class="n">parameters</span><span class="o">=</span><span class="n">newtonParameters</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span><span class="p">,</span><span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">tpModel</span><span class="p">,</span><span class="n">spc</span><span class="o">.</span><span class="n">subSpaces</span><span class="p">)]</span>
 </pre></div>
 </div>
@@ -1167,7 +1172,7 @@ t =  800.00, size =  1134, est = 0.0000e+00, hTol = 1.4255900806183596e-17
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f9a08538050&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7f515811a120&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1241,7 +1246,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Dec 02, 2025.
+      <span class="lastupdated">Last updated on Dec 17, 2025.
       </span></p>
   </div>
 

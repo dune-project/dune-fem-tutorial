@@ -43,6 +43,10 @@ from dune.plotting import plotPointData as plot
 
 from dune.femdg import createOrderRedcution, createLimiter
 
+from dune.fem import parameter
+# use callback adaptation since the 'generic' produces non-consecutive dof mappings
+parameter.append({"fem.adaptation.method": "callback"})
+
 fem.threading.use = 4
 
 
@@ -60,8 +64,8 @@ coupled   = False
 tolerance = 3e-2
 penalty   = 5 * (maxOrder * ( maxOrder + 1 ))
 newtonParameters = {"nonlinear.tolerance": tolerance,
-                    "nonlinear.verbose": "false",
-                    "linear.verbose": "false",
+                    "nonlinear.verbose": False,
+                    "linear.verbose": False,
                     "linear.tolerance": 1e-8,
                     "linear.reduction": 1e-8}
 
@@ -275,10 +279,11 @@ form_s = P.Phi*(u[1]-solution_old[1])*v[1] * dx + tau*form_s
 
 # %% [markdown]
 # # Stabilization (Limiter)
-
+#
+# This is a scaling limiter with adjustment of average values.
 
 # %%
-limiter = createLimiter( spc, bounds=(None, (1e-12, 1.)), limiter="scaling" )
+limiter = createLimiter( spc, bounds=(None, (1e-12, 1.)), limiter="scalingadjusted" )
 tmp = solution.copy()
 def limit(target):
     tmp.assign(target)
@@ -293,7 +298,7 @@ def limit(target):
 # %%
 if coupled:
     form = form_s + form_p
-    scheme = galerkin( form == 0, spc, ("suitesparse","umfpack"), parameters=newtonParameters)
+    scheme = galerkin( form == 0, spc, solver=("suitesparse","umfpack"), parameters=newtonParameters)
 else:
     uflSpace1 = Space((P.dimWorld,P.dimWorld),1)
     u1        = TrialFunction(uflSpace1)
@@ -309,7 +314,7 @@ else:
     # tpModel[0].penalty  = penalty
     # tpModel[1].penalty  = penalty
     # tpModel[1].timeStep = dt
-    scheme = [galerkin( m, s, ("suitesparse","umfpack"),
+    scheme = [galerkin( m, s, solver=("suitesparse","umfpack"),
                         parameters=newtonParameters) for m,s in zip(tpModel,spc.subSpaces)]
 
 
