@@ -1,5 +1,5 @@
 # %% [markdown]
-# # Dual Weighted Reisdual Estimate (revisited)
+# # Dual Weighted Residual Estimate (revisited)
 #
 # In this problem we revisit the Re-entrant Corner Problem but instead of
 # a classical residual estimator we use a dual weighted residual estimator.

@@ -257,5 +257,5 @@ while t < endTime:
 print()
 
 fig = pyplot.figure(figsize=(30,10))
-plotComponents(u_h, figure=fig)
+plotComponents(u_h, figure=fig, cmap=pyplot.cm.jet)
 u_h[0].plot(onlyContours=True,contours=[0.5], contourWidth=1, contourColor="yellow")

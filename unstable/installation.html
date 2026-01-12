@@ -96,7 +96,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Residual Estimate</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="furtherexamples.html#extension-modules">Extension Modules</a><ul>
@@ -270,7 +270,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Residual Estimate (revisited)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
@@ -461,15 +461,15 @@ environment and activate it</p>
 </div>
 <p>Then download and build <cite>Dune</cite> (note that this takes some time to have
 coffee/tea at hand):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>dune-fem
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This tutorial is based on the upcoming 2.11 version of Dune.
 Older release versions are available in the Python package index and can be
-obtained by removing the <cite>–pre</cite> from the above install command. Note
-that a few of the features described in this tutorial will not be
+obtained by explicitly specifying the desired version.
+Note that a few of the features described in this tutorial will not be
 available and that the API has changed in some places. See the
 description in the <a class="reference internal" href="changelog.html"><span class="doc">changelog</span></a> for details.</p>
 </div>
@@ -478,7 +478,7 @@ description in the <a class="reference internal" href="changelog.html"><span cla
 <p>To use additional external packages like <cite>petsc</cite> or <cite>umfpack</cite> which are not
 in a default location, the cmake prefix variable can be set during
 installation process:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_FLAGS</span><span class="o">=</span><span class="s2">&quot;-DCMAKE_PREFIX_PATH=PATHLIST&quot;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_FLAGS</span><span class="o">=</span><span class="s2">&quot;-DCMAKE_PREFIX_PATH=PATHLIST&quot;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dune-fem
 </pre></div>
 </div>
 <p>where <cite>PATHLIST</cite> is a semicolon separated list of path containing external packages.</p>
@@ -550,7 +550,7 @@ pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
 <p>3. We have reached the Dune specific part of the installation as described
 above in a lot more detail (I would suggest some tea at this stage)</p>
 <blockquote>
-<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>dune-fem
 python<span class="w"> </span>-m<span class="w"> </span>dune.fem
 </pre></div>
 </div>
@@ -725,7 +725,7 @@ is in <cite>$HOME/dune-env</cite> and we want a few extra <cite>petsc</cite> pac
 <span class="nv">PETSC_CONFIGURE_OPTIONS</span><span class="o">=</span><span class="s2">&quot;--download-hypre --download-parmetis --download-ml --download-metis --download-scalapack&quot;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>petsc
 <span class="nb">export</span><span class="w"> </span><span class="nv">PETSC_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/dune-env/lib/pythonX.Y/site-packages/petsc
 pip<span class="w"> </span>install<span class="w"> </span>petsc4py
-pip<span class="w"> </span>install<span class="w"> </span>--pre<span class="w"> </span>dune-fem
+pip<span class="w"> </span>install<span class="w"> </span>dune-fem
 </pre></div>
 </div>
 <p>After this the <cite>PETSC_DIR</cite> environment variable should not be required anymore.
@@ -776,8 +776,8 @@ environment variable <cite>PYTHONUNBUFFERED</cite> to some non zero value.</p></
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Dec 17, 2025.
+    <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Jan 12, 2026.
       </span></p>
   </div>
 

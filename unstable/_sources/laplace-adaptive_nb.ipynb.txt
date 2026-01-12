@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "c232a2d7",
+   "id": "a498d40d",
    "metadata": {},
    "source": [
     ".. index:: Methods; Adaptive Finite Elements\n",
@@ -29,13 +29,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "81640b32",
+   "id": "7de9a969",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:37.072678Z",
-     "iopub.status.busy": "2025-12-17T13:28:37.072377Z",
-     "iopub.status.idle": "2025-12-17T13:28:38.154747Z",
-     "shell.execute_reply": "2025-12-17T13:28:38.153053Z"
+     "iopub.execute_input": "2026-01-12T14:19:30.395724Z",
+     "iopub.status.busy": "2026-01-12T14:19:30.395531Z",
+     "iopub.status.idle": "2026-01-12T14:19:31.474206Z",
+     "shell.execute_reply": "2026-01-12T14:19:31.473183Z"
     },
     "lines_to_next_cell": 2
    },
@@ -74,7 +74,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3cea85f9",
+   "id": "9bdfd97f",
    "metadata": {},
    "source": [
     "We first define the domain and set up the grid and space.\n",
@@ -92,13 +92,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "24a5b699",
+   "id": "d784964d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:38.156766Z",
-     "iopub.status.busy": "2025-12-17T13:28:38.156510Z",
-     "iopub.status.idle": "2025-12-17T13:28:38.162938Z",
-     "shell.execute_reply": "2025-12-17T13:28:38.162279Z"
+     "iopub.execute_input": "2026-01-12T14:19:31.476927Z",
+     "iopub.status.busy": "2026-01-12T14:19:31.476598Z",
+     "iopub.status.idle": "2026-01-12T14:19:31.483076Z",
+     "shell.execute_reply": "2026-01-12T14:19:31.482146Z"
     }
    },
    "outputs": [],
@@ -136,7 +136,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7c28b807",
+   "id": "f4df3759",
    "metadata": {},
    "source": [
     "We will start with computing the $H^1$ error on a sequence of globally\n",
@@ -152,13 +152,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "1dce5930",
+   "id": "716183e7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:38.164556Z",
-     "iopub.status.busy": "2025-12-17T13:28:38.164351Z",
-     "iopub.status.idle": "2025-12-17T13:28:41.650536Z",
-     "shell.execute_reply": "2025-12-17T13:28:41.649414Z"
+     "iopub.execute_input": "2026-01-12T14:19:31.484762Z",
+     "iopub.status.busy": "2026-01-12T14:19:31.484577Z",
+     "iopub.status.idle": "2026-01-12T14:19:34.927394Z",
+     "shell.execute_reply": "2026-01-12T14:19:34.926345Z"
     },
     "lines_to_next_cell": 2
    },
@@ -167,35 +167,35 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "0 : size= 32 error= 0.18655122279357\n"
+      "0 : size= 32 error= 0.18655122279356984\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "1 : size= 68 error= 0.1603436826732526\n"
+      "1 : size= 68 error= 0.16034368267325258\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "2 : size= 144 error= 0.12554948815618494\n"
+      "2 : size= 144 error= 0.1255494881561848\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "3 : size= 296 error= 0.10825248980058118\n"
+      "3 : size= 296 error= 0.10825248980058115\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "4 : size= 608 error= 0.08486347007939687\n"
+      "4 : size= 608 error= 0.08486347007967661\n"
      ]
     },
     {
@@ -209,21 +209,21 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "6 : size= 2496 error= 0.05741715963352583\n"
+      "6 : size= 2496 error= 0.05741715963352544\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "7 : size= 5024 error= 0.04954133581605657\n"
+      "7 : size= 5024 error= 0.04954133581605656\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "8 : size= 10112 error= 0.038864295305852246\n"
+      "8 : size= 10112 error= 0.03886429530585386\n"
      ]
     },
     {
@@ -250,7 +250,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "11a02456",
+   "id": "39f7f963",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -281,13 +281,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "3a3bf620",
+   "id": "22de049a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:41.652955Z",
-     "iopub.status.busy": "2025-12-17T13:28:41.652641Z",
-     "iopub.status.idle": "2025-12-17T13:28:41.804546Z",
-     "shell.execute_reply": "2025-12-17T13:28:41.803580Z"
+     "iopub.execute_input": "2026-01-12T14:19:34.929548Z",
+     "iopub.status.busy": "2026-01-12T14:19:34.929142Z",
+     "iopub.status.idle": "2026-01-12T14:19:35.078472Z",
+     "shell.execute_reply": "2026-01-12T14:19:35.077645Z"
     },
     "lines_to_next_cell": 2
    },
@@ -313,7 +313,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c8930bcd",
+   "id": "59c212e4",
    "metadata": {},
    "source": [
     ".. index:: Adaptation; Doerfler marking\n",
@@ -324,13 +324,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "676956a7",
+   "id": "db94bb5c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:41.806583Z",
-     "iopub.status.busy": "2025-12-17T13:28:41.806270Z",
-     "iopub.status.idle": "2025-12-17T13:28:42.937723Z",
-     "shell.execute_reply": "2025-12-17T13:28:42.936665Z"
+     "iopub.execute_input": "2026-01-12T14:19:35.080891Z",
+     "iopub.status.busy": "2026-01-12T14:19:35.080668Z",
+     "iopub.status.idle": "2026-01-12T14:19:36.180974Z",
+     "shell.execute_reply": "2026-01-12T14:19:36.179964Z"
     }
    },
    "outputs": [
@@ -338,42 +338,42 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "2 : size= 38 estimate= 0.8627288181776189 error= 0.1343089543540232\n"
+      "2 : size= 38 estimate= 0.8627288181776086 error= 0.13430895435402318\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "5 : size= 60 estimate= 0.6093716379873629 error= 0.08153414250970609\n"
+      "5 : size= 60 estimate= 0.609371637987362 error= 0.08153414250970607\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "8 : size= 74 estimate= 0.47671784173774795 error= 0.05521551774027206\n"
+      "8 : size= 74 estimate= 0.4767178417377706 error= 0.055215517740272065\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "11 : size= 112 estimate= 0.34311569136980086 error= 0.03741185673883576\n"
+      "11 : size= 112 estimate= 0.34311569136978626 error= 0.03741185673883576\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "14 : size= 174 estimate= 0.20313335325263512 error= 0.0229939340288957\n"
+      "14 : size= 174 estimate= 0.20313335327022644 error= 0.022993934028895414\n"
      ]
     },
     {
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "17 : size= 316 estimate= 0.11427960569607412 error= 0.01355125494638345\n"
+      "17 : size= 316 estimate= 0.11427960569638614 error= 0.013551254946383451\n"
      ]
     },
     {
@@ -423,7 +423,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "aa70587f",
+   "id": "34224893",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -434,13 +434,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "71373ca0",
+   "id": "ac3ef404",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:42.939541Z",
-     "iopub.status.busy": "2025-12-17T13:28:42.939330Z",
-     "iopub.status.idle": "2025-12-17T13:28:43.692056Z",
-     "shell.execute_reply": "2025-12-17T13:28:43.690993Z"
+     "iopub.execute_input": "2026-01-12T14:19:36.182953Z",
+     "iopub.status.busy": "2026-01-12T14:19:36.182707Z",
+     "iopub.status.idle": "2026-01-12T14:19:36.912930Z",
+     "shell.execute_reply": "2026-01-12T14:19:36.911948Z"
     }
    },
    "outputs": [
@@ -468,7 +468,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "08938e59",
+   "id": "32283fcc",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -479,13 +479,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "f47c10f6",
+   "id": "e0827dd9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:43.694885Z",
-     "iopub.status.busy": "2025-12-17T13:28:43.694681Z",
-     "iopub.status.idle": "2025-12-17T13:28:44.406869Z",
-     "shell.execute_reply": "2025-12-17T13:28:44.405956Z"
+     "iopub.execute_input": "2026-01-12T14:19:36.915736Z",
+     "iopub.status.busy": "2026-01-12T14:19:36.915401Z",
+     "iopub.status.idle": "2026-01-12T14:19:37.612760Z",
+     "shell.execute_reply": "2026-01-12T14:19:37.611793Z"
     },
     "lines_to_next_cell": 2
    },
@@ -515,7 +515,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1200a99f",
+   "id": "b0a142b8",
    "metadata": {},
    "source": [
     "Finally, let us compare the globally refined solution and the adaptive\n",
@@ -526,20 +526,20 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "f265fcab",
+   "id": "90d49333",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T13:28:44.409201Z",
-     "iopub.status.busy": "2025-12-17T13:28:44.408884Z",
-     "iopub.status.idle": "2025-12-17T13:28:44.801107Z",
-     "shell.execute_reply": "2025-12-17T13:28:44.800105Z"
+     "iopub.execute_input": "2026-01-12T14:19:37.614726Z",
+     "iopub.status.busy": "2026-01-12T14:19:37.614520Z",
+     "iopub.status.idle": "2026-01-12T14:19:37.991105Z",
+     "shell.execute_reply": "2026-01-12T14:19:37.990298Z"
     }
    },
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "<matplotlib.legend.Legend at 0x7f9f70fcba10>"
+       "<matplotlib.legend.Legend at 0x7f43dc080830>"
       ]
      },
      "execution_count": 8,

@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "da1e9771",
+   "id": "ffd20cbc",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -15,13 +15,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "aa324671",
+   "id": "6952c8eb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T12:51:38.065069Z",
-     "iopub.status.busy": "2025-12-17T12:51:38.064804Z",
-     "iopub.status.idle": "2025-12-17T12:51:39.225334Z",
-     "shell.execute_reply": "2025-12-17T12:51:39.224095Z"
+     "iopub.execute_input": "2026-01-12T13:42:31.143467Z",
+     "iopub.status.busy": "2026-01-12T13:42:31.143175Z",
+     "iopub.status.idle": "2026-01-12T13:42:32.293812Z",
+     "shell.execute_reply": "2026-01-12T13:42:32.292750Z"
     },
     "lines_to_next_cell": 1
    },
@@ -54,7 +54,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2074e918",
+   "id": "6d24db09",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -65,13 +65,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "a173e7cb",
+   "id": "6f0568d4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T12:51:39.227608Z",
-     "iopub.status.busy": "2025-12-17T12:51:39.227255Z",
-     "iopub.status.idle": "2025-12-17T12:51:39.232077Z",
-     "shell.execute_reply": "2025-12-17T12:51:39.231272Z"
+     "iopub.execute_input": "2026-01-12T13:42:32.295879Z",
+     "iopub.status.busy": "2026-01-12T13:42:32.295598Z",
+     "iopub.status.idle": "2026-01-12T13:42:32.300236Z",
+     "shell.execute_reply": "2026-01-12T13:42:32.299347Z"
     },
     "lines_to_next_cell": 1
    },
@@ -90,7 +90,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "01566020",
+   "id": "ccd44e0f",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -101,13 +101,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "55ae556f",
+   "id": "f91f0631",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T12:51:39.233940Z",
-     "iopub.status.busy": "2025-12-17T12:51:39.233759Z",
-     "iopub.status.idle": "2025-12-17T12:52:18.214908Z",
-     "shell.execute_reply": "2025-12-17T12:52:18.213869Z"
+     "iopub.execute_input": "2026-01-12T13:42:32.301815Z",
+     "iopub.status.busy": "2026-01-12T13:42:32.301645Z",
+     "iopub.status.idle": "2026-01-12T13:43:10.738670Z",
+     "shell.execute_reply": "2026-01-12T13:43:10.737585Z"
     }
    },
    "outputs": [
@@ -158,7 +158,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a1a45879",
+   "id": "728ed01f",
    "metadata": {},
    "source": [
     "Time evolution scheme"
@@ -167,13 +167,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "9ad945db",
+   "id": "cedcac29",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T12:52:18.216807Z",
-     "iopub.status.busy": "2025-12-17T12:52:18.216493Z",
-     "iopub.status.idle": "2025-12-17T12:53:26.696679Z",
-     "shell.execute_reply": "2025-12-17T12:53:26.695723Z"
+     "iopub.execute_input": "2026-01-12T13:43:10.740642Z",
+     "iopub.status.busy": "2026-01-12T13:43:10.740353Z",
+     "iopub.status.idle": "2026-01-12T13:44:18.680899Z",
+     "shell.execute_reply": "2026-01-12T13:44:18.679914Z"
     },
     "nbsphinx-thumbnail": {
      "tooltip": "A chemical reaction problem with three reactants."
@@ -214,7 +214,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "56c96ba7",
+   "id": "d870a716",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -225,13 +225,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "b029b2ff",
+   "id": "22871d9a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-12-17T12:53:26.698886Z",
-     "iopub.status.busy": "2025-12-17T12:53:26.698691Z",
-     "iopub.status.idle": "2025-12-17T12:53:27.174415Z",
-     "shell.execute_reply": "2025-12-17T12:53:27.173478Z"
+     "iopub.execute_input": "2026-01-12T13:44:18.683088Z",
+     "iopub.status.busy": "2026-01-12T13:44:18.682885Z",
+     "iopub.status.idle": "2026-01-12T13:44:19.160532Z",
+     "shell.execute_reply": "2026-01-12T13:44:19.159718Z"
     }
    },
    "outputs": [

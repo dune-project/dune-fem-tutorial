@@ -99,7 +99,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Residual Estimate</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="furtherexamples.html#extension-modules">Extension Modules</a><ul class="current">
@@ -273,7 +273,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Reisdual Estimate (revisited)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr-algorithm_nb.html">Dual Weighted Residual Estimate (revisited)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
@@ -596,15 +596,15 @@ u(\cdot,0) = u_0(\cdot)  \quad &\text{in} \ \Omega,\\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[ 1 ] 0.09999999999999999 0.01 0.21091056562040744 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.712230636, 0.431636891, 0.280593745]}
-[ 2 ] 0.20000000000000004 0.01 0.15979702768261617 {&#39;converged&#39;: True, &#39;iterations&#39;: 3, &#39;linear_iterations&#39;: 3, &#39;timing&#39;: [1.022411803, 0.649304637, 0.37310716600000005]}
-[ 3 ] 0.3000000000000001 0.01 0.14625128437422807 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.688679573, 0.428107362, 0.26057221100000005]}
-[ 4 ] 0.4000000000000002 0.01 0.13650640507972328 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.697595127, 0.424330032, 0.273265095]}
-[ 5 ] 0.5000000000000002 0.01 0.12678192004908462 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.690314658, 0.42449998, 0.265814678]}
-[ 6 ] 0.6000000000000003 0.01 0.11686029348488734 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.695075729, 0.426015291, 0.269060438]}
-[ 7 ] 1.1000000000000008 0.05 0.08265470257363015 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.68951094, 0.425806166, 0.26370477400000003]}
-[ 8 ] 1.6000000000000012 0.05 0.08265484990090056 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.363082053, 0.204019067, 0.15906298600000002]}
-[ 9 ] 2.100000000000001 0.05 0.08265485993702613 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.359986297, 0.207857188, 0.152129109]}
+[ 1 ] 0.09999999999999999 0.01 0.21091056562040833 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.696769016, 0.425701879, 0.27106713699999996]}
+[ 2 ] 0.20000000000000004 0.01 0.15979702768263704 {&#39;converged&#39;: True, &#39;iterations&#39;: 3, &#39;linear_iterations&#39;: 3, &#39;timing&#39;: [1.02559566, 0.64903517, 0.37656049]}
+[ 3 ] 0.3000000000000001 0.01 0.14625128437423524 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.694770639, 0.42511146499999997, 0.26965917400000006]}
+[ 4 ] 0.4000000000000002 0.01 0.13650640507973044 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.705582151, 0.43049255, 0.275089601]}
+[ 5 ] 0.5000000000000002 0.01 0.12678192004909136 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.688534074, 0.423892157, 0.264641917]}
+[ 6 ] 0.6000000000000003 0.01 0.1168602934848944 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.753060789, 0.445475471, 0.30758531799999994]}
+[ 7 ] 1.1000000000000008 0.05 0.08265470257363002 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.701619897, 0.4142842, 0.28733569700000006]}
+[ 8 ] 1.6000000000000012 0.05 0.08265484990090016 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.363499034, 0.211684587, 0.151814447]}
+[ 9 ] 2.100000000000001 0.05 0.08265485993702577 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.355223197, 0.203440014, 0.151783183]}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -634,8 +634,8 @@ This document is part of the dune-fem tutorial
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Dec 17, 2025.
+    <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Jan 12, 2026.
       </span></p>
   </div>
 

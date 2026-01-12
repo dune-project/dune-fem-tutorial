@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dual Weighted Reisdual Estimate (revisited) &mdash; Tutorial for version 2.11-git</title>
+  <title>Dual Weighted Residual Estimate (revisited) &mdash; Tutorial for version 2.11-git</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
@@ -99,7 +99,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="crystal_nb.html">Adaptive phase field: crystal growth model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mcf_nb.html">Moving surface grid: flow under mean curvature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Reisdual Estimate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplace-dwr_nb.html">Dual Weighted Residual Estimate</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="furtherexamples.html#extension-modules">Extension Modules</a><ul>
@@ -273,7 +273,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cppfunctions_nb.html">C++ Based Grid Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lineplot_nb.html">Sampling the Solution over a Line</a></li>
 <li class="toctree-l2"><a class="reference internal" href="mcf-algorithm_nb.html">Mean Curvature Flow (revisited)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Dual Weighted Reisdual Estimate (revisited)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dual Weighted Residual Estimate (revisited)</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scheme_api.html">API for schemes and operators</a><ul>
@@ -436,7 +436,7 @@
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="furthertopics.html">Further topics</a></li>
           <li class="breadcrumb-item"><a href="cpp.html">Using C++ Code Snippets</a></li>
-      <li class="breadcrumb-item active">Dual Weighted Reisdual Estimate (revisited)</li>
+      <li class="breadcrumb-item active">Dual Weighted Residual Estimate (revisited)</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
@@ -455,8 +455,8 @@ This document is part of the dune-fem tutorial
 <div class="line">Download <em>laplace-dwr-algorithm</em> as <a class="reference download internal" download="" href="_downloads/d3da4ff3325d652a8ebd60508410bd57/laplace-dwr-algorithm_nb.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(_nb.ipynb)</span></code></a> or as <a class="reference download internal" download="" href="_downloads/df3af433f1802a86e9152360a08facb7/laplace-dwr-algorithm.py"><code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></a></div>
 </div>
 </div>
-<section id="Dual-Weighted-Reisdual-Estimate-(revisited)">
-<h1>Dual Weighted Reisdual Estimate (revisited)<a class="headerlink" href="#Dual-Weighted-Reisdual-Estimate-(revisited)" title="Link to this heading"></a></h1>
+<section id="Dual-Weighted-Residual-Estimate-(revisited)">
+<h1>Dual Weighted Residual Estimate (revisited)<a class="headerlink" href="#Dual-Weighted-Residual-Estimate-(revisited)" title="Link to this heading"></a></h1>
 <p>In this problem we revisit the Re-entrant Corner Problem but instead of a classical residual estimator we use a dual weighted residual estimator. The aim will be to refine the grid to reduce the error at a given point.</p>
 <p>Here we will consider the classic <em>re-entrant corner</em> problem, <span class="math">\begin{align*}
 -\Delta u &= f, && \text{in } \Omega, \\
@@ -786,8 +786,8 @@ This document is part of the dune-fem tutorial
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2018-2025, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Dec 17, 2025.
+    <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
+      <span class="lastupdated">Last updated on Jan 12, 2026.
       </span></p>
   </div>
 

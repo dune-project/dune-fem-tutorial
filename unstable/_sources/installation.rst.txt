@@ -25,12 +25,12 @@ coffee/tea at hand):
 
 .. code-block:: bash
 
-  pip install --pre dune-fem
+  pip install dune-fem
 
 .. note:: This tutorial is based on the upcoming 2.11 version of Dune.
    Older release versions are available in the Python package index and can be
-   obtained by removing the `--pre` from the above install command. Note
-   that a few of the features described in this tutorial will not be
+   obtained by explicitly specifying the desired version.
+   Note that a few of the features described in this tutorial will not be
    available and that the API has changed in some places. See the
    description in the :doc:`changelog<changelog>` for details.
 
@@ -44,7 +44,7 @@ installation process:
 
 .. code-block:: bash
 
-  CMAKE_FLAGS="-DCMAKE_PREFIX_PATH=PATHLIST" pip install --pre dune-fem
+  CMAKE_FLAGS="-DCMAKE_PREFIX_PATH=PATHLIST" pip install dune-fem
 
 where `PATHLIST` is a semicolon separated list of path containing external packages.
 
@@ -128,7 +128,7 @@ above in a lot more detail (I would suggest some tea at this stage)
 
    .. code-block:: bash
 
-      pip install --pre dune-fem
+      pip install dune-fem
       python -m dune.fem
 
    The last step downloads the tutorial scripts into the folder
@@ -345,7 +345,7 @@ Troubleshooting
    PETSC_CONFIGURE_OPTIONS="--download-hypre --download-parmetis --download-ml --download-metis --download-scalapack" pip install petsc
    export PETSC_DIR=$HOME/dune-env/lib/pythonX.Y/site-packages/petsc
    pip install petsc4py
-   pip install --pre dune-fem
+   pip install dune-fem
 
   After this the `PETSC_DIR` environment variable should not be required anymore.
   This is all a bit experimental so let us know if it is not working.
