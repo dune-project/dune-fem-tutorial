@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elliptic Problems &mdash; Tutorial for version 2.11-git</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
 
   
@@ -651,7 +651,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.21382483363913923, 0.281124729261187)
+Polygon diameters: (0.22237470466551942, 0.27577233322812816)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -722,11 +722,11 @@ Polygon diameters: (0.21382483363913923, 0.281124729261187)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.019961772917011816 H^1:  0.3721993611839228 54
-method ( dg ): dofs:  525 L^2:  0.01234724271871853 H^1:  0.3425120749678762 658
-method ( vem-conforming ): dofs:  102 L^2:  0.023542467056687246 H^1:  0.351427507685283 30
-method ( vem-nonconforming ): dofs:  151 L^2:  0.01974000131411445 H^1:  0.35820015607503647 32
-method ( bb-dg ): dofs:  150 L^2:  0.023214809286933 H^1:  0.3853800224109485 84
+method ( lagrange ): dofs:  102 L^2:  0.019455341667520783 H^1:  0.3814714437650796 49
+method ( dg ): dofs:  525 L^2:  0.01298053681125194 H^1:  0.3520562682832647 455
+method ( vem-conforming ): dofs:  102 L^2:  0.02222115194542464 H^1:  0.3442874723354456 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019682559587009617 H^1:  0.3549827049540434 32
+method ( bb-dg ): dofs:  150 L^2:  0.01951048155509226 H^1:  0.3707783275682357 82
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -771,7 +771,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.023214809286933 H^1:  0.3853800224109485 84
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.009831580719217498), np.float64(0.15003564213370588)]
+non linear problem: [np.float64(0.010277333999021787), np.float64(0.15107031451985184)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -947,7 +947,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(27.274942104117052), np.float64(151.4664825586718)]
+bi-laplace errors: [np.float64(28.41403509807577), np.float64(159.90886675081018)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
