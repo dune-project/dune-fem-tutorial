@@ -16,11 +16,11 @@
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
       <script src="_static/documentation_options.js?v=5929fcd5"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
       <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -651,7 +651,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.22237470466551942, 0.27577233322812816)
+Polygon diameters: (0.20427943038851415, 0.26542959475746924)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -722,11 +722,11 @@ Polygon diameters: (0.22237470466551942, 0.27577233322812816)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.019455341667520783 H^1:  0.3814714437650796 49
-method ( dg ): dofs:  525 L^2:  0.01298053681125194 H^1:  0.3520562682832647 455
-method ( vem-conforming ): dofs:  102 L^2:  0.02222115194542464 H^1:  0.3442874723354456 29
-method ( vem-nonconforming ): dofs:  151 L^2:  0.019682559587009617 H^1:  0.3549827049540434 32
-method ( bb-dg ): dofs:  150 L^2:  0.01951048155509226 H^1:  0.3707783275682357 82
+method ( lagrange ): dofs:  102 L^2:  0.017218760431184515 H^1:  0.34365664419863556 54
+method ( dg ): dofs:  519 L^2:  0.010713834323937833 H^1:  0.31774823165051563 682
+method ( vem-conforming ): dofs:  102 L^2:  0.02009710011919564 H^1:  0.3335085185576553 30
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019327515411168155 H^1:  0.3469986581314404 33
+method ( bb-dg ): dofs:  150 L^2:  0.02070359028311526 H^1:  0.3636998848153509 87
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -771,7 +771,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.01951048155509226 H^1:  0.3707783275682357 
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.010277333999021787), np.float64(0.15107031451985184)]
+non linear problem: [np.float64(0.010225865236945542), np.float64(0.14904866736003272)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -947,7 +947,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(28.41403509807577), np.float64(159.90886675081018)]
+bi-laplace errors: [np.float64(30.852363963506725), np.float64(162.3816557855934)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -978,7 +978,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jan 12, 2026.
+      <span class="lastupdated">Last updated on Feb 23, 2026.
       </span></p>
   </div>
 

@@ -63,7 +63,7 @@ import numpy as np
 
 from dune.grid import structuredGrid
 from dune.alugrid import aluSimplexGrid
-from dune.fem.space import dgonb, dglegendre, raviartThomas, bdm
+from dune.fem.space import dgonb, dglegendre, raviartThomas, bdm, bdfm
 def getGridSpace(element,space,order):
     if element == "simplex":
         vertices = [ (0,0), (0,1), (1,1), (1,0), (0.5,0.5)]
@@ -74,8 +74,11 @@ def getGridSpace(element,space,order):
 
     if space == "RT":
         spaceHDiv = raviartThomas(gridView,order = order)
-    else:
+    elif space == 'BDM':
         spaceHDiv = bdm(gridView,order = order+1)
+    else:
+        spaceHDiv = bdfm(gridView,order = order+1)
+
     if element == "simplex" or not space == "RT":
         spaceDG = dgonb(gridView, order = order)
     else:
@@ -179,7 +182,6 @@ for order in [0,1,2,3,4]:
     print("RTc",spaceHDiv.order,"\n-----------",flush=True)
     simulate(gridView, spaceHDiv, spaceDG, dirichlet=False)
 
-# %%
 for order in [0,1]:
     # Note that the bdm space is constructed with order+1
     gridView, spaceHDiv, spaceDG = getGridSpace("simplex", "BDM", order)
@@ -199,4 +201,10 @@ for order in [0,1]:
 for order in [0,1]:
     gridView, spaceHDiv, spaceDG = getGridSpace("cube", "BDM", order)
     print("BDMc",spaceHDiv.order,"\n-----------",flush=True)
+    simulate(gridView, spaceHDiv, spaceDG, dirichlet=True)
+
+# %%
+for order in [0,1]:
+    gridView, spaceHDiv, spaceDG = getGridSpace("cube", "BDFM", order)
+    print("BDFMc",spaceHDiv.order,"\n-----------",flush=True)
     simulate(gridView, spaceHDiv, spaceDG, dirichlet=True)

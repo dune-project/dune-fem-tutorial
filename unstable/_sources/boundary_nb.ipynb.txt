@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "114222e3",
+   "id": "5626eca3",
    "metadata": {},
    "source": [
     "\n",
@@ -36,13 +36,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "b61c20d4",
+   "id": "3969f668",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:47.841784Z",
-     "iopub.status.busy": "2026-01-12T16:25:47.841620Z",
-     "iopub.status.idle": "2026-01-12T16:25:49.797998Z",
-     "shell.execute_reply": "2026-01-12T16:25:49.797100Z"
+     "iopub.execute_input": "2026-02-23T14:42:48.846391Z",
+     "iopub.status.busy": "2026-02-23T14:42:48.846122Z",
+     "iopub.status.idle": "2026-02-23T14:42:51.103519Z",
+     "shell.execute_reply": "2026-02-23T14:42:51.102336Z"
     }
    },
    "outputs": [
@@ -93,7 +93,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f2246fe6",
+   "id": "5196d895",
    "metadata": {},
    "source": [
     "To prescribe $u_2=1$ at the bottom boundary is easily achieve by\n",
@@ -103,13 +103,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "0cb10d45",
+   "id": "bc7e4201",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:49.799959Z",
-     "iopub.status.busy": "2026-01-12T16:25:49.799689Z",
-     "iopub.status.idle": "2026-01-12T16:25:50.042003Z",
-     "shell.execute_reply": "2026-01-12T16:25:50.041205Z"
+     "iopub.execute_input": "2026-02-23T14:42:51.105647Z",
+     "iopub.status.busy": "2026-02-23T14:42:51.105290Z",
+     "iopub.status.idle": "2026-02-23T14:42:51.399561Z",
+     "shell.execute_reply": "2026-02-23T14:42:51.398609Z"
     }
    },
    "outputs": [
@@ -135,7 +135,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c58c591a",
+   "id": "b405c7e9",
    "metadata": {},
    "source": [
     "We can also use general grid functions (including discrete functions)\n",
@@ -154,13 +154,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "b7e8a0e6",
+   "id": "3b444f30",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:50.043780Z",
-     "iopub.status.busy": "2026-01-12T16:25:50.043603Z",
-     "iopub.status.idle": "2026-01-12T16:25:50.304408Z",
-     "shell.execute_reply": "2026-01-12T16:25:50.303531Z"
+     "iopub.execute_input": "2026-02-23T14:42:51.401871Z",
+     "iopub.status.busy": "2026-02-23T14:42:51.401666Z",
+     "iopub.status.idle": "2026-02-23T14:42:51.718775Z",
+     "shell.execute_reply": "2026-02-23T14:42:51.717624Z"
     },
     "lines_to_next_cell": 2
    },
@@ -194,7 +194,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "18f7712f",
+   "id": "640ce060",
    "metadata": {},
    "source": [
     "As with other grid functions we can also use\n",
@@ -204,7 +204,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "caa020ec",
+   "id": "57b56e92",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -224,13 +224,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "02ed7e44",
+   "id": "9724cc53",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:50.306023Z",
-     "iopub.status.busy": "2026-01-12T16:25:50.305858Z",
-     "iopub.status.idle": "2026-01-12T16:25:50.308867Z",
-     "shell.execute_reply": "2026-01-12T16:25:50.308215Z"
+     "iopub.execute_input": "2026-02-23T14:42:51.720767Z",
+     "iopub.status.busy": "2026-02-23T14:42:51.720558Z",
+     "iopub.status.idle": "2026-02-23T14:42:51.723848Z",
+     "shell.execute_reply": "2026-02-23T14:42:51.722976Z"
     }
    },
    "outputs": [],
@@ -241,7 +241,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "24e54cb1",
+   "id": "70e4d5f0",
    "metadata": {},
    "source": [
     ".. tip:: The `dirichletIndices` method takes as optional argument an `id`\n",
@@ -251,7 +251,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "31f8388d",
+   "id": "05dc215f",
    "metadata": {},
    "source": [
     "We have set all degrees of freedom on the boundary to zero. In this\n",
@@ -267,13 +267,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "5ac38874",
+   "id": "7e826b30",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:50.310611Z",
-     "iopub.status.busy": "2026-01-12T16:25:50.310434Z",
-     "iopub.status.idle": "2026-01-12T16:25:50.517751Z",
-     "shell.execute_reply": "2026-01-12T16:25:50.516918Z"
+     "iopub.execute_input": "2026-02-23T14:42:51.725733Z",
+     "iopub.status.busy": "2026-02-23T14:42:51.725510Z",
+     "iopub.status.idle": "2026-02-23T14:42:51.977276Z",
+     "shell.execute_reply": "2026-02-23T14:42:51.976234Z"
     }
    },
    "outputs": [
@@ -295,7 +295,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1eca9fa7",
+   "id": "e003d67c",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -328,13 +328,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "e8c78234",
+   "id": "c0676eff",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:50.519530Z",
-     "iopub.status.busy": "2026-01-12T16:25:50.519363Z",
-     "iopub.status.idle": "2026-01-12T16:25:50.932215Z",
-     "shell.execute_reply": "2026-01-12T16:25:50.931480Z"
+     "iopub.execute_input": "2026-02-23T14:42:51.979148Z",
+     "iopub.status.busy": "2026-02-23T14:42:51.978935Z",
+     "iopub.status.idle": "2026-02-23T14:42:52.489735Z",
+     "shell.execute_reply": "2026-02-23T14:42:52.488706Z"
     }
    },
    "outputs": [
@@ -372,7 +372,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "12e58820",
+   "id": "927e5170",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -394,13 +394,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "c88e2ad5",
+   "id": "c5ec2394",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:50.933919Z",
-     "iopub.status.busy": "2026-01-12T16:25:50.933762Z",
-     "iopub.status.idle": "2026-01-12T16:25:51.178130Z",
-     "shell.execute_reply": "2026-01-12T16:25:51.177291Z"
+     "iopub.execute_input": "2026-02-23T14:42:52.491640Z",
+     "iopub.status.busy": "2026-02-23T14:42:52.491400Z",
+     "iopub.status.idle": "2026-02-23T14:42:52.792861Z",
+     "shell.execute_reply": "2026-02-23T14:42:52.791707Z"
     }
    },
    "outputs": [
@@ -428,7 +428,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a47b8cc2",
+   "id": "3498357d",
    "metadata": {},
    "source": [
     "Robin boundary conditions can be handled in the same way using\n",
@@ -437,7 +437,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "bc5ef818",
+   "id": "714d0ec2",
    "metadata": {},
    "source": [
     ".. index:\n",
@@ -458,7 +458,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9e4d8b85",
+   "id": "edfc9670",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -483,7 +483,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a3ccceb7",
+   "id": "526b6436",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -511,13 +511,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "2b171058",
+   "id": "3fbef2b0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:51.179856Z",
-     "iopub.status.busy": "2026-01-12T16:25:51.179686Z",
-     "iopub.status.idle": "2026-01-12T16:25:52.283970Z",
-     "shell.execute_reply": "2026-01-12T16:25:52.283132Z"
+     "iopub.execute_input": "2026-02-23T14:42:52.794793Z",
+     "iopub.status.busy": "2026-02-23T14:42:52.794587Z",
+     "iopub.status.idle": "2026-02-23T14:42:53.976036Z",
+     "shell.execute_reply": "2026-02-23T14:42:53.975144Z"
     }
    },
    "outputs": [
@@ -556,7 +556,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5d2095d2",
+   "id": "48742af5",
    "metadata": {},
    "source": [
     "The final example has a slightly more complex setup at the boundary:\n",
@@ -571,13 +571,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "efa427f0",
+   "id": "51695b6e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:52.285532Z",
-     "iopub.status.busy": "2026-01-12T16:25:52.285364Z",
-     "iopub.status.idle": "2026-01-12T16:25:52.676279Z",
-     "shell.execute_reply": "2026-01-12T16:25:52.675506Z"
+     "iopub.execute_input": "2026-02-23T14:42:53.977946Z",
+     "iopub.status.busy": "2026-02-23T14:42:53.977756Z",
+     "iopub.status.idle": "2026-02-23T14:42:54.420894Z",
+     "shell.execute_reply": "2026-02-23T14:42:54.420082Z"
     }
    },
    "outputs": [
@@ -609,7 +609,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1a042528",
+   "id": "b5f65d7a",
    "metadata": {},
    "source": [
     "Let check if that solution makes sense..."
@@ -618,13 +618,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "e3ca3122",
+   "id": "de93ceb9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-01-12T16:25:52.677995Z",
-     "iopub.status.busy": "2026-01-12T16:25:52.677837Z",
-     "iopub.status.idle": "2026-01-12T16:25:55.011752Z",
-     "shell.execute_reply": "2026-01-12T16:25:55.010816Z"
+     "iopub.execute_input": "2026-02-23T14:42:54.423115Z",
+     "iopub.status.busy": "2026-02-23T14:42:54.422930Z",
+     "iopub.status.idle": "2026-02-23T14:42:56.889236Z",
+     "shell.execute_reply": "2026-02-23T14:42:56.887818Z"
     }
    },
    "outputs": [
