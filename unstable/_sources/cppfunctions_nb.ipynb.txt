@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "7174067b",
+   "id": "fa8333d6",
    "metadata": {},
    "source": [
     "## C++ Based Grid Functions\n",
@@ -23,13 +23,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "87d2f10e",
+   "id": "1365152b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-23T14:45:58.210872Z",
-     "iopub.status.busy": "2026-02-23T14:45:58.210657Z",
-     "iopub.status.idle": "2026-02-23T14:45:59.357174Z",
-     "shell.execute_reply": "2026-02-23T14:45:59.356063Z"
+     "iopub.execute_input": "2026-02-25T13:46:58.759980Z",
+     "iopub.status.busy": "2026-02-25T13:46:58.759708Z",
+     "iopub.status.idle": "2026-02-25T13:46:59.890787Z",
+     "shell.execute_reply": "2026-02-25T13:46:59.889641Z"
     }
    },
    "outputs": [],
@@ -44,7 +44,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "77725d2a",
+   "id": "5cdf4310",
    "metadata": {},
    "source": [
     "The C++ code must contain a function returning a function object (e.g.\n",
@@ -61,13 +61,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "69c265c5",
+   "id": "ce29f827",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-23T14:45:59.359573Z",
-     "iopub.status.busy": "2026-02-23T14:45:59.359236Z",
-     "iopub.status.idle": "2026-02-23T14:45:59.528950Z",
-     "shell.execute_reply": "2026-02-23T14:45:59.527956Z"
+     "iopub.execute_input": "2026-02-25T13:46:59.892879Z",
+     "iopub.status.busy": "2026-02-25T13:46:59.892599Z",
+     "iopub.status.idle": "2026-02-25T13:47:00.060023Z",
+     "shell.execute_reply": "2026-02-25T13:47:00.059003Z"
     }
    },
    "outputs": [
@@ -101,7 +101,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "04277248",
+   "id": "054d2b48",
    "metadata": {},
    "source": [
     "Let us implement the same function using `gridFunction` with an ufl\n",
@@ -111,13 +111,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "95ea5901",
+   "id": "625a66d6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-23T14:45:59.530867Z",
-     "iopub.status.busy": "2026-02-23T14:45:59.530650Z",
-     "iopub.status.idle": "2026-02-23T14:45:59.662152Z",
-     "shell.execute_reply": "2026-02-23T14:45:59.661274Z"
+     "iopub.execute_input": "2026-02-25T13:47:00.061854Z",
+     "iopub.status.busy": "2026-02-25T13:47:00.061652Z",
+     "iopub.status.idle": "2026-02-25T13:47:00.190501Z",
+     "shell.execute_reply": "2026-02-25T13:47:00.189611Z"
     }
    },
    "outputs": [
@@ -141,7 +141,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "13f849fa",
+   "id": "d1e78064",
    "metadata": {},
    "source": [
     "As the above example shows it is easy to pass in parameters to the C++\n",
@@ -158,13 +158,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "b2b759ce",
+   "id": "046ff4db",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-23T14:45:59.665464Z",
-     "iopub.status.busy": "2026-02-23T14:45:59.664390Z",
-     "iopub.status.idle": "2026-02-23T14:45:59.738968Z",
-     "shell.execute_reply": "2026-02-23T14:45:59.737661Z"
+     "iopub.execute_input": "2026-02-25T13:47:00.193307Z",
+     "iopub.status.busy": "2026-02-25T13:47:00.192856Z",
+     "iopub.status.idle": "2026-02-25T13:47:00.263298Z",
+     "shell.execute_reply": "2026-02-25T13:47:00.262691Z"
     }
    },
    "outputs": [
@@ -197,7 +197,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5b21d14a",
+   "id": "32874f29",
    "metadata": {},
    "source": [
     "We can now change the factor ``a`` on the Python side without having to\n",
@@ -207,13 +207,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "f6cde3d5",
+   "id": "d55f0bbb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-23T14:45:59.741283Z",
-     "iopub.status.busy": "2026-02-23T14:45:59.741054Z",
-     "iopub.status.idle": "2026-02-23T14:45:59.903556Z",
-     "shell.execute_reply": "2026-02-23T14:45:59.902394Z"
+     "iopub.execute_input": "2026-02-25T13:47:00.266667Z",
+     "iopub.status.busy": "2026-02-25T13:47:00.266453Z",
+     "iopub.status.idle": "2026-02-25T13:47:00.429274Z",
+     "shell.execute_reply": "2026-02-25T13:47:00.427698Z"
     }
    },
    "outputs": [
@@ -243,7 +243,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9c813f82",
+   "id": "5800f99c",
    "metadata": {},
    "source": [
     "In the above example there is no advantage of using the\n",
@@ -257,7 +257,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a8782911",
+   "id": "eb36a3c2",
    "metadata": {},
    "source": [
     "We conclude with the example from the\n",
@@ -268,13 +268,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "59488cd9",
+   "id": "a5d90c7f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-23T14:45:59.906443Z",
-     "iopub.status.busy": "2026-02-23T14:45:59.906007Z",
-     "iopub.status.idle": "2026-02-23T14:46:01.237860Z",
-     "shell.execute_reply": "2026-02-23T14:46:01.236774Z"
+     "iopub.execute_input": "2026-02-25T13:47:00.431606Z",
+     "iopub.status.busy": "2026-02-25T13:47:00.431364Z",
+     "iopub.status.idle": "2026-02-25T13:47:01.739725Z",
+     "shell.execute_reply": "2026-02-25T13:47:01.738765Z"
     }
    },
    "outputs": [
