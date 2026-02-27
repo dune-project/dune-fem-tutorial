@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "54285895",
+   "id": "8d54343b",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -15,13 +15,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "57669117",
+   "id": "06bfc607",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-25T13:58:31.651447Z",
-     "iopub.status.busy": "2026-02-25T13:58:31.651221Z",
-     "iopub.status.idle": "2026-02-25T13:58:32.825683Z",
-     "shell.execute_reply": "2026-02-25T13:58:32.824453Z"
+     "iopub.execute_input": "2026-02-27T11:15:34.771316Z",
+     "iopub.status.busy": "2026-02-27T11:15:34.771126Z",
+     "iopub.status.idle": "2026-02-27T11:15:35.980444Z",
+     "shell.execute_reply": "2026-02-27T11:15:35.979275Z"
     },
     "lines_to_next_cell": 1
    },
@@ -54,7 +54,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "49da33bd",
+   "id": "36d7bf98",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -65,13 +65,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "49bae9d8",
+   "id": "62f0d17b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-25T13:58:32.827958Z",
-     "iopub.status.busy": "2026-02-25T13:58:32.827657Z",
-     "iopub.status.idle": "2026-02-25T13:58:32.832648Z",
-     "shell.execute_reply": "2026-02-25T13:58:32.831724Z"
+     "iopub.execute_input": "2026-02-27T11:15:35.983346Z",
+     "iopub.status.busy": "2026-02-27T11:15:35.982958Z",
+     "iopub.status.idle": "2026-02-27T11:15:35.988241Z",
+     "shell.execute_reply": "2026-02-27T11:15:35.987108Z"
     },
     "lines_to_next_cell": 1
    },
@@ -90,7 +90,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "29aafac6",
+   "id": "5735196b",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -101,13 +101,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "00d99fc6",
+   "id": "c5f48858",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-25T13:58:32.834503Z",
-     "iopub.status.busy": "2026-02-25T13:58:32.834192Z",
-     "iopub.status.idle": "2026-02-25T13:59:12.032138Z",
-     "shell.execute_reply": "2026-02-25T13:59:12.031045Z"
+     "iopub.execute_input": "2026-02-27T11:15:35.990199Z",
+     "iopub.status.busy": "2026-02-27T11:15:35.989909Z",
+     "iopub.status.idle": "2026-02-27T11:16:16.863172Z",
+     "shell.execute_reply": "2026-02-27T11:16:16.862084Z"
     }
    },
    "outputs": [
@@ -158,7 +158,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "72e5629a",
+   "id": "ae6c955c",
    "metadata": {},
    "source": [
     "Time evolution scheme"
@@ -167,13 +167,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "471e9d90",
+   "id": "1adcceed",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-25T13:59:12.034038Z",
-     "iopub.status.busy": "2026-02-25T13:59:12.033742Z",
-     "iopub.status.idle": "2026-02-25T14:00:20.297200Z",
-     "shell.execute_reply": "2026-02-25T14:00:20.296174Z"
+     "iopub.execute_input": "2026-02-27T11:16:16.865107Z",
+     "iopub.status.busy": "2026-02-27T11:16:16.864786Z",
+     "iopub.status.idle": "2026-02-27T11:17:24.687507Z",
+     "shell.execute_reply": "2026-02-27T11:17:24.686233Z"
     },
     "nbsphinx-thumbnail": {
      "tooltip": "A chemical reaction problem with three reactants."
@@ -214,7 +214,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e5c51f9f",
+   "id": "5926a8d4",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -225,13 +225,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "68be8176",
+   "id": "a567eb25",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-02-25T14:00:20.299271Z",
-     "iopub.status.busy": "2026-02-25T14:00:20.299077Z",
-     "iopub.status.idle": "2026-02-25T14:00:20.772462Z",
-     "shell.execute_reply": "2026-02-25T14:00:20.771489Z"
+     "iopub.execute_input": "2026-02-27T11:17:24.689651Z",
+     "iopub.status.busy": "2026-02-27T11:17:24.689448Z",
+     "iopub.status.idle": "2026-02-27T11:17:25.166088Z",
+     "shell.execute_reply": "2026-02-27T11:17:25.165233Z"
     }
    },
    "outputs": [
@@ -273,7 +273,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.14.2"
+   "version": "3.14.3"
   }
  },
  "nbformat": 4,
