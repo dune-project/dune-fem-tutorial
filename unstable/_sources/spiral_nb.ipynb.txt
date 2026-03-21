@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "457d65b5",
+   "id": "5b640368",
    "metadata": {},
    "source": [
     "# Time Dependent Reaction Diffuison: spiral wave\n",
@@ -66,13 +66,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "d91915f9",
+   "id": "d165f155",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-13T18:04:25.470376Z",
-     "iopub.status.busy": "2026-03-13T18:04:25.470099Z",
-     "iopub.status.idle": "2026-03-13T18:04:26.338658Z",
-     "shell.execute_reply": "2026-03-13T18:04:26.336960Z"
+     "iopub.execute_input": "2026-03-21T14:33:00.770677Z",
+     "iopub.status.busy": "2026-03-21T14:33:00.770478Z",
+     "iopub.status.idle": "2026-03-21T14:33:01.649359Z",
+     "shell.execute_reply": "2026-03-21T14:33:01.648067Z"
     }
    },
    "outputs": [],
@@ -85,7 +85,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ee6b939c",
+   "id": "5320baa8",
    "metadata": {},
    "source": [
     "In our attempt we will discretize the model as a 2x2 system. Here are some possible model parameters and initial conditions (we even have two sets of model parameters to choose from):"
@@ -94,13 +94,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "9370ba6d",
+   "id": "f217b03b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-13T18:04:26.341833Z",
-     "iopub.status.busy": "2026-03-13T18:04:26.341198Z",
-     "iopub.status.idle": "2026-03-13T18:04:26.348073Z",
-     "shell.execute_reply": "2026-03-13T18:04:26.347133Z"
+     "iopub.execute_input": "2026-03-21T14:33:01.652725Z",
+     "iopub.status.busy": "2026-03-21T14:33:01.652325Z",
+     "iopub.status.idle": "2026-03-21T14:33:01.659553Z",
+     "shell.execute_reply": "2026-03-21T14:33:01.658287Z"
     },
     "lines_to_next_cell": 2
    },
@@ -129,7 +129,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1bbb6af0",
+   "id": "cd98e4d0",
    "metadata": {},
    "source": [
     "Now we set up the reference domain, the Lagrange finite element space (second order), and discrete functions for $(u^n,v^n($, $(u^{n+1},v^{n+1})$:"
@@ -138,13 +138,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "c3fe87a1",
+   "id": "575109a9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-13T18:04:26.350478Z",
-     "iopub.status.busy": "2026-03-13T18:04:26.350247Z",
-     "iopub.status.idle": "2026-03-13T18:04:27.426630Z",
-     "shell.execute_reply": "2026-03-13T18:04:27.425836Z"
+     "iopub.execute_input": "2026-03-21T14:33:01.662554Z",
+     "iopub.status.busy": "2026-03-21T14:33:01.661449Z",
+     "iopub.status.idle": "2026-03-21T14:33:02.802771Z",
+     "shell.execute_reply": "2026-03-21T14:33:02.801872Z"
     },
     "lines_to_next_cell": 2
    },
@@ -161,7 +161,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6c72b435",
+   "id": "6a1dbe7b",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -174,13 +174,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "1356de67",
+   "id": "8d374160",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-13T18:04:27.429096Z",
-     "iopub.status.busy": "2026-03-13T18:04:27.428793Z",
-     "iopub.status.idle": "2026-03-13T18:04:27.435245Z",
-     "shell.execute_reply": "2026-03-13T18:04:27.434364Z"
+     "iopub.execute_input": "2026-03-21T14:33:02.805077Z",
+     "iopub.status.busy": "2026-03-21T14:33:02.804720Z",
+     "iopub.status.idle": "2026-03-21T14:33:02.811504Z",
+     "shell.execute_reply": "2026-03-21T14:33:02.810574Z"
     },
     "lines_to_next_cell": 2
    },
@@ -205,7 +205,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "90eb3803",
+   "id": "ad9c6e9a",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -216,13 +216,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "e0e87ba4",
+   "id": "5aa231c7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-13T18:04:27.437310Z",
-     "iopub.status.busy": "2026-03-13T18:04:27.437110Z",
-     "iopub.status.idle": "2026-03-13T18:04:27.508666Z",
-     "shell.execute_reply": "2026-03-13T18:04:27.507787Z"
+     "iopub.execute_input": "2026-03-21T14:33:02.813354Z",
+     "iopub.status.busy": "2026-03-21T14:33:02.813158Z",
+     "iopub.status.idle": "2026-03-21T14:33:02.887130Z",
+     "shell.execute_reply": "2026-03-21T14:33:02.886103Z"
     },
     "lines_to_next_cell": 1
    },
@@ -239,7 +239,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e0e22703",
+   "id": "60a6750a",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -251,13 +251,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "0e72ce11",
+   "id": "72dcd8b6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-13T18:04:27.510946Z",
-     "iopub.status.busy": "2026-03-13T18:04:27.510736Z",
-     "iopub.status.idle": "2026-03-13T18:04:27.515485Z",
-     "shell.execute_reply": "2026-03-13T18:04:27.514490Z"
+     "iopub.execute_input": "2026-03-21T14:33:02.889149Z",
+     "iopub.status.busy": "2026-03-21T14:33:02.888945Z",
+     "iopub.status.idle": "2026-03-21T14:33:02.894001Z",
+     "shell.execute_reply": "2026-03-21T14:33:02.893103Z"
     },
     "lines_to_next_cell": 1
    },
@@ -286,7 +286,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "58d137cb",
+   "id": "f45d0e01",
    "metadata": {},
    "source": [
     "And generate the movie:"
@@ -295,13 +295,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "d74deb5a",
+   "id": "6a32f1e3",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-13T18:04:27.517130Z",
-     "iopub.status.busy": "2026-03-13T18:04:27.516951Z",
-     "iopub.status.idle": "2026-03-13T18:04:38.950723Z",
-     "shell.execute_reply": "2026-03-13T18:04:38.949687Z"
+     "iopub.execute_input": "2026-03-21T14:33:02.895735Z",
+     "iopub.status.busy": "2026-03-21T14:33:02.895544Z",
+     "iopub.status.idle": "2026-03-21T14:33:14.421528Z",
+     "shell.execute_reply": "2026-03-21T14:33:14.420425Z"
     },
     "lines_to_next_cell": 0
    },
@@ -350,7 +350,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8654393c",
+   "id": "3b69150b",
    "metadata": {},
    "source": [
     "... if the movie is not showing you might have to rerun the notebook ..."
