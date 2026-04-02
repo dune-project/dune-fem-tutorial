@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "1044fc7a",
+   "id": "7a0c5e76",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -15,13 +15,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "011179a2",
+   "id": "693eb0f0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:42.828828Z",
-     "iopub.status.busy": "2026-03-21T13:58:42.828631Z",
-     "iopub.status.idle": "2026-03-21T13:58:43.926585Z",
-     "shell.execute_reply": "2026-03-21T13:58:43.925552Z"
+     "iopub.execute_input": "2026-04-02T19:25:47.627270Z",
+     "iopub.status.busy": "2026-04-02T19:25:47.627011Z",
+     "iopub.status.idle": "2026-04-02T19:25:48.677538Z",
+     "shell.execute_reply": "2026-04-02T19:25:48.676549Z"
     },
     "lines_to_next_cell": 1
    },
@@ -52,7 +52,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c7bb860a",
+   "id": "321669d7",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -70,13 +70,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "acfbbe57",
+   "id": "87d83b8f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:43.929350Z",
-     "iopub.status.busy": "2026-03-21T13:58:43.929031Z",
-     "iopub.status.idle": "2026-03-21T13:58:43.933013Z",
-     "shell.execute_reply": "2026-03-21T13:58:43.932066Z"
+     "iopub.execute_input": "2026-04-02T19:25:48.679662Z",
+     "iopub.status.busy": "2026-04-02T19:25:48.679357Z",
+     "iopub.status.idle": "2026-04-02T19:25:48.682972Z",
+     "shell.execute_reply": "2026-04-02T19:25:48.682075Z"
     },
     "lines_to_next_cell": 1
    },
@@ -89,7 +89,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3d5a5721",
+   "id": "6af7abe2",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -100,13 +100,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "084b87ea",
+   "id": "3c904bdc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:43.934884Z",
-     "iopub.status.busy": "2026-03-21T13:58:43.934544Z",
-     "iopub.status.idle": "2026-03-21T13:58:43.940618Z",
-     "shell.execute_reply": "2026-03-21T13:58:43.939523Z"
+     "iopub.execute_input": "2026-04-02T19:25:48.684790Z",
+     "iopub.status.busy": "2026-04-02T19:25:48.684603Z",
+     "iopub.status.idle": "2026-04-02T19:25:48.690297Z",
+     "shell.execute_reply": "2026-04-02T19:25:48.689405Z"
     },
     "lines_to_next_cell": 1
    },
@@ -143,7 +143,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ac23a827",
+   "id": "8e64af00",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -156,13 +156,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "430a9c12",
+   "id": "fac03afb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:43.942658Z",
-     "iopub.status.busy": "2026-03-21T13:58:43.942236Z",
-     "iopub.status.idle": "2026-03-21T13:58:43.947559Z",
-     "shell.execute_reply": "2026-03-21T13:58:43.946450Z"
+     "iopub.execute_input": "2026-04-02T19:25:48.691974Z",
+     "iopub.status.busy": "2026-04-02T19:25:48.691805Z",
+     "iopub.status.idle": "2026-04-02T19:25:48.696264Z",
+     "shell.execute_reply": "2026-04-02T19:25:48.695449Z"
     },
     "lines_to_next_cell": 1
    },
@@ -185,7 +185,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f87a2e14",
+   "id": "9d762585",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -196,13 +196,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "42ab09f1",
+   "id": "0d511f0c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:43.949728Z",
-     "iopub.status.busy": "2026-03-21T13:58:43.949517Z",
-     "iopub.status.idle": "2026-03-21T13:58:43.955703Z",
-     "shell.execute_reply": "2026-03-21T13:58:43.954809Z"
+     "iopub.execute_input": "2026-04-02T19:25:48.698139Z",
+     "iopub.status.busy": "2026-04-02T19:25:48.697970Z",
+     "iopub.status.idle": "2026-04-02T19:25:48.704095Z",
+     "shell.execute_reply": "2026-04-02T19:25:48.702978Z"
     },
     "lines_to_next_cell": 1
    },
@@ -242,7 +242,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7c2705fc",
+   "id": "926610dd",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -253,13 +253,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "2afa902d",
+   "id": "ecc2c4f4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:43.957623Z",
-     "iopub.status.busy": "2026-03-21T13:58:43.957433Z",
-     "iopub.status.idle": "2026-03-21T13:58:43.960609Z",
-     "shell.execute_reply": "2026-03-21T13:58:43.959707Z"
+     "iopub.execute_input": "2026-04-02T19:25:48.705676Z",
+     "iopub.status.busy": "2026-04-02T19:25:48.705505Z",
+     "iopub.status.idle": "2026-04-02T19:25:48.708668Z",
+     "shell.execute_reply": "2026-04-02T19:25:48.707807Z"
     }
    },
    "outputs": [],
@@ -269,7 +269,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b9481ca9",
+   "id": "cf248668",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -280,13 +280,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "633de77b",
+   "id": "3a3da35a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:43.962479Z",
-     "iopub.status.busy": "2026-03-21T13:58:43.962247Z",
-     "iopub.status.idle": "2026-03-21T13:58:44.981001Z",
-     "shell.execute_reply": "2026-03-21T13:58:44.980106Z"
+     "iopub.execute_input": "2026-04-02T19:25:48.710278Z",
+     "iopub.status.busy": "2026-04-02T19:25:48.710104Z",
+     "iopub.status.idle": "2026-04-02T19:25:49.694125Z",
+     "shell.execute_reply": "2026-04-02T19:25:49.693107Z"
     }
    },
    "outputs": [
@@ -314,7 +314,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cfbe65e3",
+   "id": "64caabb7",
    "metadata": {},
    "source": [
     "Initial conditions for a radial Riemann problem\n",
@@ -325,13 +325,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "63c7da49",
+   "id": "e1fad409",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:44.983677Z",
-     "iopub.status.busy": "2026-03-21T13:58:44.983348Z",
-     "iopub.status.idle": "2026-03-21T13:58:59.676177Z",
-     "shell.execute_reply": "2026-03-21T13:58:59.674914Z"
+     "iopub.execute_input": "2026-04-02T19:25:49.696013Z",
+     "iopub.status.busy": "2026-04-02T19:25:49.695728Z",
+     "iopub.status.idle": "2026-04-02T19:26:04.411415Z",
+     "shell.execute_reply": "2026-04-02T19:26:04.410483Z"
     }
    },
    "outputs": [
@@ -378,7 +378,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "95c1d680",
+   "id": "29ddbfe0",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -389,13 +389,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "46a0400c",
+   "id": "c460005d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:58:59.679233Z",
-     "iopub.status.busy": "2026-03-21T13:58:59.679019Z",
-     "iopub.status.idle": "2026-03-21T13:59:01.220418Z",
-     "shell.execute_reply": "2026-03-21T13:59:01.219350Z"
+     "iopub.execute_input": "2026-04-02T19:26:04.414326Z",
+     "iopub.status.busy": "2026-04-02T19:26:04.414150Z",
+     "iopub.status.idle": "2026-04-02T19:26:05.973518Z",
+     "shell.execute_reply": "2026-04-02T19:26:05.972435Z"
     },
     "lines_to_next_cell": 2
    },
@@ -429,7 +429,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e369acf6",
+   "id": "f6d3b160",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -440,13 +440,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "28298658",
+   "id": "0fede969",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:59:01.222276Z",
-     "iopub.status.busy": "2026-03-21T13:59:01.222080Z",
-     "iopub.status.idle": "2026-03-21T13:59:03.515054Z",
-     "shell.execute_reply": "2026-03-21T13:59:03.514031Z"
+     "iopub.execute_input": "2026-04-02T19:26:05.975295Z",
+     "iopub.status.busy": "2026-04-02T19:26:05.975113Z",
+     "iopub.status.idle": "2026-04-02T19:26:08.255903Z",
+     "shell.execute_reply": "2026-04-02T19:26:08.254841Z"
     }
    },
    "outputs": [
@@ -490,7 +490,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a2542c93",
+   "id": "1ccb8a5b",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -501,13 +501,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "3070d849",
+   "id": "78995715",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:59:03.518045Z",
-     "iopub.status.busy": "2026-03-21T13:59:03.517829Z",
-     "iopub.status.idle": "2026-03-21T13:59:07.092245Z",
-     "shell.execute_reply": "2026-03-21T13:59:07.091188Z"
+     "iopub.execute_input": "2026-04-02T19:26:08.258868Z",
+     "iopub.status.busy": "2026-04-02T19:26:08.258576Z",
+     "iopub.status.idle": "2026-04-02T19:26:11.820079Z",
+     "shell.execute_reply": "2026-04-02T19:26:11.819027Z"
     }
    },
    "outputs": [
@@ -551,7 +551,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f4ff71e4",
+   "id": "bd1937d0",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -562,13 +562,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "2a4b76e5",
+   "id": "a8282e96",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:59:07.095112Z",
-     "iopub.status.busy": "2026-03-21T13:59:07.094903Z",
-     "iopub.status.idle": "2026-03-21T13:59:07.255054Z",
-     "shell.execute_reply": "2026-03-21T13:59:07.254164Z"
+     "iopub.execute_input": "2026-04-02T19:26:11.822692Z",
+     "iopub.status.busy": "2026-04-02T19:26:11.822509Z",
+     "iopub.status.idle": "2026-04-02T19:26:11.979381Z",
+     "shell.execute_reply": "2026-04-02T19:26:11.978444Z"
     }
    },
    "outputs": [
@@ -596,7 +596,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b22684dc",
+   "id": "383f955c",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -607,13 +607,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "f7945dda",
+   "id": "7ca63470",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:59:07.257735Z",
-     "iopub.status.busy": "2026-03-21T13:59:07.257493Z",
-     "iopub.status.idle": "2026-03-21T13:59:23.622968Z",
-     "shell.execute_reply": "2026-03-21T13:59:23.621856Z"
+     "iopub.execute_input": "2026-04-02T19:26:11.981376Z",
+     "iopub.status.busy": "2026-04-02T19:26:11.981187Z",
+     "iopub.status.idle": "2026-04-02T19:26:28.184050Z",
+     "shell.execute_reply": "2026-04-02T19:26:28.183086Z"
     }
    },
    "outputs": [
@@ -656,7 +656,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b29fbcdc",
+   "id": "74f07ee4",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -667,13 +667,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "71ac82f6",
+   "id": "2d3c3ca0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-03-21T13:59:23.626501Z",
-     "iopub.status.busy": "2026-03-21T13:59:23.626249Z",
-     "iopub.status.idle": "2026-03-21T13:59:24.156549Z",
-     "shell.execute_reply": "2026-03-21T13:59:24.155372Z"
+     "iopub.execute_input": "2026-04-02T19:26:28.187299Z",
+     "iopub.status.busy": "2026-04-02T19:26:28.187052Z",
+     "iopub.status.idle": "2026-04-02T19:26:28.704706Z",
+     "shell.execute_reply": "2026-04-02T19:26:28.703734Z"
     }
    },
    "outputs": [
