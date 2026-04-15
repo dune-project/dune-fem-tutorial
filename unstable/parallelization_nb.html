@@ -575,6 +575,7 @@ aluCubeGrid(*args, **kwargs)
                      dictionary holding macro grid information
         dimgrid      dimension of grid, i.e. 2 or 3
         dimworld     dimension of world, i.e. 2 or 3 and &gt;= dimension
+        conforming   bool (default False): set to True for simplex grid to get conforming refinement
         comm         MPI communication (not yet implemented)
         serial       creates a grid without MPI support (default False)
         verbose      adds some verbosity output (default False)
@@ -602,6 +603,10 @@ aluCubeGrid(*args, **kwargs)
                             https://sandialabs.github.io/Zoltan/
         lbUnder      value between 0.0 and 1.0 (default 0.0)
         lbOver       value between 1.0 and 2.0 (default 1.2)
+        defaultBndId value used for the id when adding missing boundaries segments
+                     default set to &#39;1&#39; - but using the &#39;not_used&#39; bnd_t enum would be better
+        sfc          space filling curve, i.e. None, &#39;Morton&#39; or &#39;Hilbert&#39;. Default
+                     is &#39;Hilbert&#39; if Zoltan is available otherwise &#39;Morton&#39;.
 
     Returns:
     --------
@@ -644,7 +649,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Apr 02, 2026.
+      <span class="lastupdated">Last updated on Apr 15, 2026.
       </span></p>
   </div>
 
