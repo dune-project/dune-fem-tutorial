@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -679,11 +685,11 @@ then export to Python. Here we implement a version based entirely on the availab
 10   683  7.516479e-05  7.362659e-05
 11   850  5.330570e-05  5.429483e-05
 12  1004  3.553725e-05  3.468638e-05
-13  1244  2.496925e-05  2.534826e-05
+13  1244  2.496926e-05  2.534815e-05
 14  1512  1.618306e-05  1.537468e-05
 15  1808  1.172941e-05  1.153418e-05
 16  2153  7.847327e-06  7.614604e-06
-17  2640  5.483623e-06  5.403149e-06
+17  2640  5.483627e-06  5.403189e-06
 18  3136  3.734063e-06  3.576366e-06
 19  3839  2.618648e-06  2.565437e-06
 20  4593  1.750861e-06  1.648034e-06

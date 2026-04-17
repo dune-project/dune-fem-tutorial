@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "1a924af1",
+   "id": "727c1855",
    "metadata": {},
    "source": [
     "# Overview\n",
@@ -41,13 +41,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "8684b519",
+   "id": "627cbdc4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:32.225267Z",
-     "iopub.status.busy": "2026-04-17T10:32:32.225076Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.267065Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.266015Z"
+     "iopub.execute_input": "2026-04-17T16:09:44.687474Z",
+     "iopub.status.busy": "2026-04-17T16:09:44.687297Z",
+     "iopub.status.idle": "2026-04-17T16:09:45.712272Z",
+     "shell.execute_reply": "2026-04-17T16:09:45.711366Z"
     }
    },
    "outputs": [
@@ -73,7 +73,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2cf7d0d4",
+   "id": "3aff044b",
    "metadata": {},
    "source": [
     "The `FieldVector` and `FieldMatrix` classes are heavily used in the grid\n",
@@ -85,13 +85,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "ff608faf",
+   "id": "48965543",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.269316Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.269064Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.287190Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.286274Z"
+     "iopub.execute_input": "2026-04-17T16:09:45.714636Z",
+     "iopub.status.busy": "2026-04-17T16:09:45.714354Z",
+     "iopub.status.idle": "2026-04-17T16:09:45.733048Z",
+     "shell.execute_reply": "2026-04-17T16:09:45.732166Z"
     }
    },
    "outputs": [
@@ -119,7 +119,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6703251e",
+   "id": "260b8a04",
    "metadata": {},
    "source": [
     "We can also obtain all weights and points stored in numpy arrays which\n",
@@ -129,13 +129,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "5ffa06f4",
+   "id": "aadfcecf",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.289179Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.288780Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.293524Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.292673Z"
+     "iopub.execute_input": "2026-04-17T16:09:45.734716Z",
+     "iopub.status.busy": "2026-04-17T16:09:45.734526Z",
+     "iopub.status.idle": "2026-04-17T16:09:45.738951Z",
+     "shell.execute_reply": "2026-04-17T16:09:45.738243Z"
     }
    },
    "outputs": [
@@ -157,7 +157,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "51385ede",
+   "id": "d5da9999",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -177,13 +177,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "bcb74160",
+   "id": "01ce04d4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.295289Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.295097Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.350379Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.349535Z"
+     "iopub.execute_input": "2026-04-17T16:09:45.740758Z",
+     "iopub.status.busy": "2026-04-17T16:09:45.740570Z",
+     "iopub.status.idle": "2026-04-17T16:09:45.795667Z",
+     "shell.execute_reply": "2026-04-17T16:09:45.794780Z"
     }
    },
    "outputs": [],
@@ -195,7 +195,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9debaf36",
+   "id": "cacd18da",
    "metadata": {},
    "source": [
     "Let's visualize the grid and then globally refine it once"
@@ -204,13 +204,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "7a0af352",
+   "id": "d95548d8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.352001Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.351832Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.481929Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.480925Z"
+     "iopub.execute_input": "2026-04-17T16:09:45.797369Z",
+     "iopub.status.busy": "2026-04-17T16:09:45.797181Z",
+     "iopub.status.idle": "2026-04-17T16:09:45.918088Z",
+     "shell.execute_reply": "2026-04-17T16:09:45.917251Z"
     }
    },
    "outputs": [
@@ -243,7 +243,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "436560b5",
+   "id": "d31e6164",
    "metadata": {},
    "source": [
     "The `dune.alugrid` module provides 2d and 3d unstructured grids (both\n",
@@ -257,13 +257,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "b12cfe17",
+   "id": "40cc4781",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.483854Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.483596Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.674137Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.673204Z"
+     "iopub.execute_input": "2026-04-17T16:09:45.919923Z",
+     "iopub.status.busy": "2026-04-17T16:09:45.919656Z",
+     "iopub.status.idle": "2026-04-17T16:09:46.099689Z",
+     "shell.execute_reply": "2026-04-17T16:09:46.098811Z"
     }
    },
    "outputs": [
@@ -310,7 +310,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "128d8071",
+   "id": "4680870f",
    "metadata": {},
    "source": [
     "We can also provide the number of levels to refine to the `globalRefine`\n",
@@ -320,13 +320,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "9f65b9e0",
+   "id": "2c898bd8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.675930Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.675751Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.791493Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.790635Z"
+     "iopub.execute_input": "2026-04-17T16:09:46.101571Z",
+     "iopub.status.busy": "2026-04-17T16:09:46.101392Z",
+     "iopub.status.idle": "2026-04-17T16:09:46.206556Z",
+     "shell.execute_reply": "2026-04-17T16:09:46.205729Z"
     }
    },
    "outputs": [
@@ -364,7 +364,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7a867152",
+   "id": "9434977c",
    "metadata": {},
    "source": [
     "The `dune.grid.yaspGrid` grid manager also provides the option to construct\n",
@@ -376,13 +376,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "d3de9974",
+   "id": "48ffff6e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.793253Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.793077Z",
-     "iopub.status.idle": "2026-04-17T10:32:33.876600Z",
-     "shell.execute_reply": "2026-04-17T10:32:33.875448Z"
+     "iopub.execute_input": "2026-04-17T16:09:46.208614Z",
+     "iopub.status.busy": "2026-04-17T16:09:46.208431Z",
+     "iopub.status.idle": "2026-04-17T16:09:46.286041Z",
+     "shell.execute_reply": "2026-04-17T16:09:46.285009Z"
     }
    },
    "outputs": [
@@ -406,7 +406,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "32dc3b92",
+   "id": "5f91b586",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; Dictionaries\n",
@@ -419,13 +419,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "c5f758ec",
+   "id": "b6fb99a8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:33.878289Z",
-     "iopub.status.busy": "2026-04-17T10:32:33.878116Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.023276Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.022270Z"
+     "iopub.execute_input": "2026-04-17T16:09:46.287834Z",
+     "iopub.status.busy": "2026-04-17T16:09:46.287639Z",
+     "iopub.status.idle": "2026-04-17T16:09:46.418381Z",
+     "shell.execute_reply": "2026-04-17T16:09:46.417510Z"
     }
    },
    "outputs": [
@@ -461,7 +461,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1433afe2",
+   "id": "dcbf05c6",
    "metadata": {},
    "source": [
     "\n",
@@ -471,7 +471,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4e11649b",
+   "id": "f3cdf853",
    "metadata": {},
    "source": [
     ".. index:: Adaptation; h-refinement\n",
@@ -484,13 +484,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "e06db1d8",
+   "id": "ec7f5c3c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.025034Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.024860Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.350883Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.349901Z"
+     "iopub.execute_input": "2026-04-17T16:09:46.420161Z",
+     "iopub.status.busy": "2026-04-17T16:09:46.419942Z",
+     "iopub.status.idle": "2026-04-17T16:09:46.718694Z",
+     "shell.execute_reply": "2026-04-17T16:09:46.717906Z"
     }
    },
    "outputs": [
@@ -553,7 +553,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "38f0e809",
+   "id": "59751c4d",
    "metadata": {},
    "source": [
     ".. tip:: If discrete functions based on the `dune.fem` spaces have been\n",
@@ -567,7 +567,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9e176c7a",
+   "id": "4ab161f3",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -581,13 +581,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "9d43d267",
+   "id": "3cfcf441",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.352679Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.352470Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.358214Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.357190Z"
+     "iopub.execute_input": "2026-04-17T16:09:46.720718Z",
+     "iopub.status.busy": "2026-04-17T16:09:46.720538Z",
+     "iopub.status.idle": "2026-04-17T16:09:46.726243Z",
+     "shell.execute_reply": "2026-04-17T16:09:46.725395Z"
     },
     "lines_to_next_cell": 1
    },
@@ -632,7 +632,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "47e4137b",
+   "id": "67f22c16",
    "metadata": {},
    "source": [
     "In the above we have used the geometry method on the entity which\n",
@@ -646,7 +646,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9c7bd41a",
+   "id": "44e8194b",
    "metadata": {},
    "source": [
     "\n",
@@ -667,13 +667,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "29814f5a",
+   "id": "47ced0e9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.359944Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.359766Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.902054Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.901024Z"
+     "iopub.execute_input": "2026-04-17T16:09:46.728165Z",
+     "iopub.status.busy": "2026-04-17T16:09:46.727994Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.238142Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.237240Z"
     }
    },
    "outputs": [
@@ -729,7 +729,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cf09382a",
+   "id": "7ae22a2e",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -744,13 +744,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "24601996",
+   "id": "79081349",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.904075Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.903713Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.916781Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.915870Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.240305Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.240124Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.251769Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.250988Z"
     }
    },
    "outputs": [
@@ -776,7 +776,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "29e0f381",
+   "id": "5a61b0dd",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -790,13 +790,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "b157c1df",
+   "id": "8aa7d48f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.918375Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.918208Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.925432Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.924606Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.253426Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.253250Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.259334Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.258586Z"
     }
    },
    "outputs": [
@@ -822,7 +822,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f30ff4ab",
+   "id": "1cf28332",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -833,13 +833,13 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "e147982f",
+   "id": "93889694",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.927402Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.927217Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.959782Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.958977Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.261108Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.260905Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.294081Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.293135Z"
     }
    },
    "outputs": [
@@ -877,7 +877,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "905dffd7",
+   "id": "c738b9ed",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -892,7 +892,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ecfc7711",
+   "id": "b78196c7",
    "metadata": {},
    "source": [
     ".. index:: Grids; Attaching data\n",
@@ -920,13 +920,13 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "a930a61d",
+   "id": "1334fbbc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.961737Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.961533Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.987221Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.986302Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.295848Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.295653Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.321913Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.321191Z"
     }
    },
    "outputs": [
@@ -946,7 +946,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a4f909fe",
+   "id": "f6ad3528",
    "metadata": {},
    "source": [
     "We can also use the reference element types from `dune.geometry` to\n",
@@ -956,13 +956,13 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "dfe411f3",
+   "id": "4090fb0d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.988877Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.988704Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.991872Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.991003Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.323698Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.323511Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.326762Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.325998Z"
     },
     "lines_to_next_cell": 1
    },
@@ -974,7 +974,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "415b85c0",
+   "id": "2b5e3956",
    "metadata": {},
    "source": [
     "Finally here is an example of using the mapper to attach one degree of\n",
@@ -985,13 +985,13 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "id": "b3ee385b",
+   "id": "62e70a87",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:34.993460Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.993293Z",
-     "iopub.status.idle": "2026-04-17T10:32:34.998473Z",
-     "shell.execute_reply": "2026-04-17T10:32:34.997600Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.328381Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.328209Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.333676Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.332871Z"
     },
     "lines_to_next_cell": 1
    },
@@ -1014,7 +1014,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "96d3bf22",
+   "id": "99136c3b",
    "metadata": {},
    "source": [
     "We can use a grid function to compute the error of the Lagrange\n",
@@ -1024,13 +1024,13 @@
   {
    "cell_type": "code",
    "execution_count": 19,
-   "id": "5628b588",
+   "id": "ba523c55",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:35.000086Z",
-     "iopub.status.busy": "2026-04-17T10:32:34.999922Z",
-     "iopub.status.idle": "2026-04-17T10:32:35.007218Z",
-     "shell.execute_reply": "2026-04-17T10:32:35.006295Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.335244Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.335076Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.342042Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.340994Z"
     }
    },
    "outputs": [
@@ -1052,7 +1052,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "645a9e24",
+   "id": "fc63cab8",
    "metadata": {},
    "source": [
     ".. tip:: the mapper describe here provides a slightly extended interface\n",
@@ -1066,13 +1066,13 @@
   {
    "cell_type": "code",
    "execution_count": 20,
-   "id": "b7992d0c",
+   "id": "f1703a83",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:35.008877Z",
-     "iopub.status.busy": "2026-04-17T10:32:35.008706Z",
-     "iopub.status.idle": "2026-04-17T10:32:35.012475Z",
-     "shell.execute_reply": "2026-04-17T10:32:35.011612Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.343704Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.343533Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.347280Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.346505Z"
     }
    },
    "outputs": [
@@ -1096,7 +1096,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0c2f5f0b",
+   "id": "3d3b3e18",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -1112,7 +1112,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7e24b8b8",
+   "id": "00154a89",
    "metadata": {},
    "source": [
     "#### Matplotlib\n",
@@ -1126,13 +1126,13 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "id": "b3ae516d",
+   "id": "bbe1d7ae",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:35.014249Z",
-     "iopub.status.busy": "2026-04-17T10:32:35.014070Z",
-     "iopub.status.idle": "2026-04-17T10:32:35.631218Z",
-     "shell.execute_reply": "2026-04-17T10:32:35.630070Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.349130Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.348927Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.930685Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.929784Z"
     }
    },
    "outputs": [
@@ -1175,7 +1175,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "71dae602",
+   "id": "573fe32f",
    "metadata": {},
    "source": [
     "#### Paraview (vtu/vtk files)\n",
@@ -1186,13 +1186,13 @@
   {
    "cell_type": "code",
    "execution_count": 22,
-   "id": "54c6102d",
+   "id": "946cf16b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:35.632979Z",
-     "iopub.status.busy": "2026-04-17T10:32:35.632804Z",
-     "iopub.status.idle": "2026-04-17T10:32:35.673563Z",
-     "shell.execute_reply": "2026-04-17T10:32:35.672658Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.932506Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.932334Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.969105Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.968259Z"
     }
    },
    "outputs": [],
@@ -1205,7 +1205,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "62b4a65c",
+   "id": "4e681004",
    "metadata": {},
    "source": [
     "Here are pngs generated with paraview from the above output:\n",
@@ -1219,7 +1219,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "807eca3c",
+   "id": "49b3e3ce",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -1233,13 +1233,13 @@
   {
    "cell_type": "code",
    "execution_count": 23,
-   "id": "1697e45b",
+   "id": "68c918c1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:32:35.675240Z",
-     "iopub.status.busy": "2026-04-17T10:32:35.675073Z",
-     "iopub.status.idle": "2026-04-17T10:32:35.690299Z",
-     "shell.execute_reply": "2026-04-17T10:32:35.689393Z"
+     "iopub.execute_input": "2026-04-17T16:09:47.970857Z",
+     "iopub.status.busy": "2026-04-17T16:09:47.970668Z",
+     "iopub.status.idle": "2026-04-17T16:09:47.985948Z",
+     "shell.execute_reply": "2026-04-17T16:09:47.985317Z"
     }
    },
    "outputs": [
@@ -1272,7 +1272,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5b48f4f8",
+   "id": "84bb2fc1",
    "metadata": {},
    "source": [
     "#### Low level output\n",
@@ -1333,7 +1333,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.14.3"
+   "version": "3.14.4"
   }
  },
  "nbformat": 4,

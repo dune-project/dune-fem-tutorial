@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -467,6 +473,7 @@ describe a part of the boundary during grid construction as described at the end
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ticker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotComponents</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="o">,</span><span class="w"> </span><span class="nn">io</span>
@@ -661,19 +668,36 @@ second component at these three sides we can simply add an additional term to <c
 </section>
 <section id="Using-boundary-ids-(and-some-more-complex-examples)">
 <h2>Using boundary ids (and some more complex examples)<a class="headerlink" href="#Using-boundary-ids-(and-some-more-complex-examples)" title="Link to this heading"></a></h2>
-<p>Up until now we have used UFL boolean expressions to define the subset of the boundary where a Dirichlet condition should be applied. In many cases different parts of the boundary are already marked with ids (integers) during grid construction. These ids can also be used to define where boundary conditions are to be applied. At the moment to use boundary ids the grid has to be constructed using the Dune Grid Format (dgf) reader. Please consult the <a class="reference external" href="https://dune-project.org/doxygen/master/group__DuneGridFormatParser.html#details">documentation of the DGF file
-format</a> for details and <a class="reference internal" href="othergrids_nb.html"><span class="doc">other examples given for grid construction</span></a>.</p>
+<p>Up until now we have used UFL boolean expressions to define the subset of the boundary where a Dirichlet condition should be applied. In many cases different parts of the boundary are already marked with ids (integers) during grid construction. These ids can also be used to define where boundary conditions are to be applied. At the moment it is possible to use boundary ids using a <code class="docutils literal notranslate"><span class="pre">dict</span></code> to define the grid, using boundary tagging with <code class="docutils literal notranslate"><span class="pre">gmsh</span></code>, or constructing the grid using the Dune Grid
+Format (dgf) reader. Please consult the <a class="reference external" href="https://dune-project.org/doxygen/master/group__DuneGridFormatParser.html#details">documentation of the DGF file format</a> for details. In the section on <a class="reference internal" href="othergrids_nb.html"><span class="doc">other examples given for grid construction</span></a> provides more details.</p>
 <section id="Cartesian-boundary-ids">
-<span id="index-4"></span><h3>Cartesian boundary ids<a class="headerlink" href="#Cartesian-boundary-ids" title="Link to this heading"></a></h3>
+<span id="index-5"></span><span id="index-4"></span><h3>Cartesian boundary ids<a class="headerlink" href="#Cartesian-boundary-ids" title="Link to this heading"></a></h3>
 <p>For Cartesian grids the boundary ids are rather fixed and pre-described due to implementation specifics. The numbering of the boundary edges follows the numbering of faces of the <a class="reference external" href="https://dune-project.org/doxygen/master/group__GeometryReferenceElements.html#details">DUNE reference elements</a> but starts from 1. For example, in 2d the boundary ids are <code class="docutils literal notranslate"><span class="pre">left=1</span></code>, <code class="docutils literal notranslate"><span class="pre">right=2</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom=3</span></code>, <code class="docutils literal notranslate"><span class="pre">top=4</span></code> and in 3d <code class="docutils literal notranslate"><span class="pre">bottom=5</span></code>, <code class="docutils literal notranslate"><span class="pre">top=6</span></code>. For grids implementing a true Cartesian grids, like YaspGrid,
 this is fixed. Altering this numbering can only be done by using an unstructured grid, e.g. ALUGrid. See the <a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF"><span class="std std-ref">grid construction section</span></a> to get an idea how this is done.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Boundary ids and refinement</strong>: Boundary ids only allow to tell apart intersections with the domain boundary on the macro level of a grid. Descendants of macro intersections on the domain boundary inherit the boundary id of their parent.</p>
 </div>
+<p>We can use the utility grid function <code class="docutils literal notranslate"><span class="pre">dune.fem.function.boundaryFunction</span></code> to visualize the boundary ids.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">boundaryFunction</span>
+<span class="n">boundaryFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_19_0.jpg" src="_images/boundary_nb_19_0.jpg" />
+</div>
+</div>
 </section>
 <section id="Mixing-different-types-of-boundary-conditions">
-<span id="index-5"></span><h3>Mixing different types of boundary conditions<a class="headerlink" href="#Mixing-different-types-of-boundary-conditions" title="Link to this heading"></a></h3>
+<span id="index-6"></span><h3>Mixing different types of boundary conditions<a class="headerlink" href="#Mixing-different-types-of-boundary-conditions" title="Link to this heading"></a></h3>
 <p>These ids can be used as third argument in the <code class="docutils literal notranslate"><span class="pre">DirichletBC</span></code> constructor and also in the boundary measure <code class="docutils literal notranslate"><span class="pre">ufl.ds</span></code> as shown in the following examples solving a Laplace problem with a combination of <strong>Neumann</strong>, <strong>Robin</strong>, and <strong>Dirichlet</strong> boundary conditions.</p>
 <p>In this example the boundary conditions are</p>
 <ul class="simple">
@@ -682,7 +706,7 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 <li><p>top boundary (id=4): Dirichlet conditions <span class="math notranslate nohighlight">\(u=1\)</span> for <span class="math notranslate nohighlight">\(x\in [0.3,0.6]\)</span> and natural boundary conditions (<span class="math notranslate nohighlight">\(\nabla u\cdot n=0\)</span>) otherwise.</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">BoundaryId</span>
@@ -711,17 +735,17 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/boundary_nb_20_0.jpg" src="_images/boundary_nb_20_0.jpg" />
+<img alt="_images/boundary_nb_21_0.jpg" src="_images/boundary_nb_21_0.jpg" />
 </div>
 </div>
-<p>The final example has a slightly more complex setup at the boundary:</p>
+<p>The next example has a slightly more complex setup at the boundary:</p>
 <ul class="simple">
 <li><p>left and right (id=1 and id=2): for <span class="math notranslate nohighlight">\(y\in[0.4,0.6]\)</span> we set Neumann conditions <span class="math notranslate nohighlight">\(\nabla u\cdot n=-50\)</span></p></li>
 <li><p>left and right (id=1 and id=2): for <span class="math notranslate nohighlight">\(y\in[0.2,0.8]\setminus [0.4,0.6]\)</span> we set Dirichlet conditions <span class="math notranslate nohighlight">\(u=1\)</span></p></li>
 <li><p>rest of boundary: 3</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fbnd</span>  <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">50</span> <span class="o">*</span> <span class="n">v</span> <span class="o">*</span>                     <span class="c1"># middle of left and right boundary</span>
@@ -731,7 +755,6 @@ this is fixed. Altering this numbering can only be done by using an unstructured
                  <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.1</span> <span class="p">),</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.3</span> <span class="p">)</span> <span class="p">),</span>
           <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>        <span class="c1"># not middle of left and right boundary</span>
             <span class="n">Not</span><span class="p">(</span> <span class="n">And</span><span class="p">(</span><span class="n">BoundaryId</span><span class="p">(</span><span class="n">space</span><span class="p">)</span><span class="o">&lt;=</span><span class="mi">2</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.3</span><span class="p">)</span> <span class="p">)</span> <span class="p">),</span> <span class="p">]</span>
-
 <span class="n">scheme</span>   <span class="o">=</span> <span class="n">solutionScheme</span><span class="p">(</span> <span class="p">[</span><span class="n">a</span> <span class="o">==</span> <span class="n">fbnd</span><span class="p">,</span> <span class="o">*</span><span class="n">dbc</span><span class="p">]</span> <span class="p">)</span>
 <span class="n">solution</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">solution</span><span class="p">)</span>
@@ -743,12 +766,12 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/boundary_nb_22_0.jpg" src="_images/boundary_nb_22_0.jpg" />
+<img alt="_images/boundary_nb_23_0.jpg" src="_images/boundary_nb_23_0.jpg" />
 </div>
 </div>
 <p>Let check if that solution makes sense…</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -761,7 +784,102 @@ this is fixed. Altering this numbering can only be done by using an unstructured
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/boundary_nb_24_0.jpg" src="_images/boundary_nb_24_0.jpg" />
+<img alt="_images/boundary_nb_25_0.jpg" src="_images/boundary_nb_25_0.jpg" />
+</div>
+</div>
+</section>
+<section id="Using-a-dictionary-to-define-the-grid-with-boundary-ids">
+<span id="index-8"></span><span id="index-7"></span><h3>Using a dictionary to define the grid with boundary ids<a class="headerlink" href="#Using-a-dictionary-to-define-the-grid-with-boundary-ids" title="Link to this heading"></a></h3>
+<p>We have already used a dictionary to define the <code class="docutils literal notranslate"><span class="pre">vertices</span></code> and the elements (in this case <code class="docutils literal notranslate"><span class="pre">cubes</span></code>) of the grid. In addition we can use the <code class="docutils literal notranslate"><span class="pre">boundaries</span></code> key. In 2d the value for this key is a list of two vertex indices and if boundary ids are to be used three integers, where the first is the id and the other two are the vertex indices of the edge. Finally we can define a default value for the boundary id used for boundary segments not added otherwise - if this is not provided the default id
+will be fixed to ‘1’:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the following only works with the grid managers from the <code class="docutils literal notranslate"><span class="pre">dune.alugrid</span></code> package:</p>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dune.alugrid</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;vertices&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">1.</span>        <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">1.</span>        <span class="p">,</span> <span class="mf">1.1</span>       <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.</span>        <span class="p">,</span> <span class="mf">1.1</span>       <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.25</span>      <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.5</span>       <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.75</span>      <span class="p">,</span> <span class="mf">0.</span>        <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">1.</span>        <span class="p">,</span> <span class="mf">0.19166667</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">1.</span>        <span class="p">,</span> <span class="mf">0.55</span>      <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">1.</span>        <span class="p">,</span> <span class="mf">0.74166667</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.75</span>      <span class="p">,</span> <span class="mf">1.1</span>       <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.5</span>       <span class="p">,</span> <span class="mf">1.1</span>       <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.25</span>      <span class="p">,</span> <span class="mf">1.1</span>       <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.74166667</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.55</span>      <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.</span>        <span class="p">,</span> <span class="mf">0.19166667</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.25</span>      <span class="p">,</span> <span class="mf">0.35833333</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.25</span>      <span class="p">,</span> <span class="mf">0.55</span>      <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.25</span>      <span class="p">,</span> <span class="mf">0.90833333</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.5</span>       <span class="p">,</span> <span class="mf">0.19166667</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.5</span>       <span class="p">,</span> <span class="mf">0.55</span>      <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.5</span>       <span class="p">,</span> <span class="mf">0.74166667</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.75</span>      <span class="p">,</span> <span class="mf">0.35833333</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.75</span>      <span class="p">,</span> <span class="mf">0.55</span>      <span class="p">],</span>
+                       <span class="p">[</span><span class="mf">0.75</span>      <span class="p">,</span> <span class="mf">0.90833333</span><span class="p">]],</span>
+          <span class="s1">&#39;cubes&#39;</span><span class="p">:</span> <span class="p">[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">4</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">17</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">14</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span>  <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">17</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">19</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">23</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">24</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+                    <span class="p">[</span> <span class="mi">6</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span>  <span class="mi">7</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">22</span><span class="p">,</span>  <span class="mi">7</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span>  <span class="mi">8</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">23</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span>  <span class="mi">9</span><span class="p">],</span>
+                    <span class="p">[</span><span class="mi">24</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span>  <span class="mi">2</span><span class="p">]],</span>
+          <span class="s1">&#39;boundaries&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+                         <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
+          <span class="s1">&#39;defaultBndId&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="n">gridView</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">alugrid</span><span class="o">.</span><span class="n">aluCubeGrid</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_27_0.jpg" src="_images/boundary_nb_27_0.jpg" />
+</div>
+</div>
+<p>As already mentioned refining the grid does not change the boundary ids:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">boundaryFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">boundaryFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/boundary_nb_29_0.jpg" src="_images/boundary_nb_29_0.jpg" />
 </div>
 </div>
 </section>

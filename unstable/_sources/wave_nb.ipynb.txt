@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "b97f5703",
+   "id": "d3d6164a",
    "metadata": {},
    "source": [
     ".. index:: Equations; Wave Equation\n",
@@ -61,13 +61,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "a147d253",
+   "id": "79b25a7d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-09-29T16:34:50.047396Z",
-     "iopub.status.busy": "2025-09-29T16:34:50.046315Z",
-     "iopub.status.idle": "2025-09-29T16:34:51.494918Z",
-     "shell.execute_reply": "2025-09-29T16:34:51.493503Z"
+     "iopub.execute_input": "2026-04-17T16:48:10.462330Z",
+     "iopub.status.busy": "2026-04-17T16:48:10.462146Z",
+     "iopub.status.idle": "2026-04-17T16:48:11.513992Z",
+     "shell.execute_reply": "2026-04-17T16:48:11.513160Z"
     }
    },
    "outputs": [],
@@ -78,8 +78,8 @@
     "from dune.grid import reader\n",
     "from dune.alugrid import aluConformGrid as leafGridView\n",
     "from dune.fem.space import lagrange as solutionSpace\n",
-    "from ufl import TrialFunction, TestFunction, grad, dot, dx\n",
-    "from dune.ufl import Constant, BoxDirichletBC\n",
+    "from ufl import TrialFunction, TestFunction, SpatialCoordinate, grad, dot, dx\n",
+    "from dune.ufl import Constant, BoxDirichletBC, DirichletBC\n",
     "T = 3\n",
     "dt = 0.005\n",
     "t = 0"
@@ -87,7 +87,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "55ae4392",
+   "id": "e164373f",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; gmsh (from file)\n",
@@ -104,22 +104,33 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "85f3fce4",
+   "id": "3397d85a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-09-29T16:34:51.499155Z",
-     "iopub.status.busy": "2025-09-29T16:34:51.498680Z",
-     "iopub.status.idle": "2025-09-29T16:47:14.706943Z",
-     "shell.execute_reply": "2025-09-29T16:47:14.705931Z"
-    },
-    "lines_to_next_cell": 2
+     "iopub.execute_input": "2026-04-17T16:48:11.516798Z",
+     "iopub.status.busy": "2026-04-17T16:48:11.516505Z",
+     "iopub.status.idle": "2026-04-17T16:48:13.155781Z",
+     "shell.execute_reply": "2026-04-17T16:48:13.154810Z"
+    }
    },
-   "outputs": [],
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n"
+     ]
+    }
+   ],
    "source": [
-    "domain = (reader.gmsh, \"wave_tank.msh\")\n",
+    "domain = (reader.meshio, \"wave_tank.msh\")\n",
     "gridView  = leafGridView( domain, dimgrid=2 )\n",
     "gridView.hierarchicalGrid.loadBalance()\n",
     "V = solutionSpace(gridView, order=1, storage=\"numpy\")\n",
+    "\n",
+    "u    = TrialFunction(V)\n",
+    "v    = TestFunction(V)\n",
+    "x    = SpatialCoordinate(V)\n",
     "\n",
     "p      = V.interpolate(0,name=\"p\")\n",
     "phi    = V.interpolate(0,name=\"phi\")\n",
@@ -129,17 +140,19 @@
   },
   {
    "cell_type": "markdown",
-   "id": "60bf2b94",
+   "id": "111e7f2b",
    "metadata": {},
    "source": [
     "Next we define an operator for the stiffness matrix including the\n",
     "boundary condition which are time dependent so we use a `Constant` for\n",
-    "this. We use the `BoxDirichletBC` class which is derived from the more\n",
-    "general `DirichletBC` class which takes a function space, the boundary\n",
+    "this. We will use the boundary ids (1 and 2) provided in the mesh file.\n",
+    "Alternatives are also shown based on the use of the `BoxDirichletBC` class which is derived from the more\n",
+    "general `DirichletBC` class. Both classes are constructed by providing a function space, the boundary\n",
     "function $g$ as a ufl expression, and finally a description of the part\n",
     "$\\Gamma_D$ of the boundary where this boundary condition is defined.\n",
-    "This can be a ufl expression which evaluates to $0$ for\n",
-    "$x\\not\\in\\Gamma_D$, e.g., an ufl `conditional`.\n",
+    "This can be an id (if the grid was constructed with ids provided),\n",
+    "a ufl expression which evaluates to $0$ for $x\\not\\in\\Gamma_D$, e.g., an\n",
+    "ufl `conditional` or in the case of the `BoxDirichletBC` an interval.\n",
     "\n",
     "Note that the stiffness matrix does not depend on time so we can\n",
     "assemble the matrix once and extract the corresponding `scipy`\n",
@@ -149,25 +162,37 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "13f2337b",
+   "id": "26bb82b8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-09-29T16:47:14.710124Z",
-     "iopub.status.busy": "2025-09-29T16:47:14.709732Z",
-     "iopub.status.idle": "2025-09-29T16:47:15.192055Z",
-     "shell.execute_reply": "2025-09-29T16:47:15.191312Z"
+     "iopub.execute_input": "2026-04-17T16:48:13.157922Z",
+     "iopub.status.busy": "2026-04-17T16:48:13.157576Z",
+     "iopub.status.idle": "2026-04-17T16:48:13.161563Z",
+     "shell.execute_reply": "2026-04-17T16:48:13.160635Z"
     }
    },
    "outputs": [],
    "source": [
-    "u    = TrialFunction(V)\n",
-    "v    = TestFunction(V)\n",
     "p_in = Constant(0.0, name=\"g\")\n",
-    "# the following is equivalent to\n",
-    "# x    = SpatialCoordinate(V)\n",
     "# bc   = DirichletBC(V, p_in, conditional(x[0]<1e-10,1,0))\n",
-    "bc   = BoxDirichletBC(V, p_in, [None,None],[0,None], eps=1e-10)\n",
-    "\n",
+    "# bc   = BoxDirichletBC(V, p_in, [None,None],[0,None], eps=1e-10)\n",
+    "bc   = DirichletBC(V, p_in, 1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "2f619f75",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2026-04-17T16:48:13.163335Z",
+     "iopub.status.busy": "2026-04-17T16:48:13.163132Z",
+     "iopub.status.idle": "2026-04-17T16:48:47.462658Z",
+     "shell.execute_reply": "2026-04-17T16:48:47.461871Z"
+    }
+   },
+   "outputs": [],
+   "source": [
     "from dune.fem.operator import galerkin\n",
     "op        = galerkin([dot(grad(u),grad(v))*dx,bc])\n",
     "S         = op.linear().as_numpy\n",
@@ -177,7 +202,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "93d0ed6d",
+   "id": "f3fee160",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -193,14 +218,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
-   "id": "0c54aaee",
+   "execution_count": 5,
+   "id": "19bd2338",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-09-29T16:47:15.194853Z",
-     "iopub.status.busy": "2025-09-29T16:47:15.194577Z",
-     "iopub.status.idle": "2025-09-29T16:47:15.476440Z",
-     "shell.execute_reply": "2025-09-29T16:47:15.475473Z"
+     "iopub.execute_input": "2026-04-17T16:48:47.465010Z",
+     "iopub.status.busy": "2026-04-17T16:48:47.464661Z",
+     "iopub.status.idle": "2026-04-17T16:48:47.667995Z",
+     "shell.execute_reply": "2026-04-17T16:48:47.667023Z"
     }
    },
    "outputs": [],
@@ -211,7 +236,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e5611047",
+   "id": "6233ec95",
    "metadata": {},
    "source": [
     "Another approach is to construct a mass operator $<L[u],\\varphi_i> = \\int_\\Omega u\\varphi_i$\n",
@@ -220,14 +245,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
-   "id": "816efed7",
+   "execution_count": 6,
+   "id": "814adc57",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-09-29T16:47:15.479213Z",
-     "iopub.status.busy": "2025-09-29T16:47:15.478950Z",
-     "iopub.status.idle": "2025-09-29T16:47:15.608455Z",
-     "shell.execute_reply": "2025-09-29T16:47:15.607253Z"
+     "iopub.execute_input": "2026-04-17T16:48:47.670018Z",
+     "iopub.status.busy": "2026-04-17T16:48:47.669803Z",
+     "iopub.status.idle": "2026-04-17T16:48:47.777800Z",
+     "shell.execute_reply": "2026-04-17T16:48:47.777186Z"
     }
    },
    "outputs": [],
@@ -243,7 +268,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "aefa4f16",
+   "id": "481f0320",
    "metadata": {},
    "source": [
     "An alternative approach is to use an interpolation quadrature, where the\n",
@@ -257,14 +282,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
-   "id": "f93bda1a",
+   "execution_count": 7,
+   "id": "c88f2993",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-09-29T16:47:15.612710Z",
-     "iopub.status.busy": "2025-09-29T16:47:15.612399Z",
-     "iopub.status.idle": "2025-09-29T16:47:16.063103Z",
-     "shell.execute_reply": "2025-09-29T16:47:16.062425Z"
+     "iopub.execute_input": "2026-04-17T16:48:47.780803Z",
+     "iopub.status.busy": "2026-04-17T16:48:47.780581Z",
+     "iopub.status.idle": "2026-04-17T16:49:03.051784Z",
+     "shell.execute_reply": "2026-04-17T16:49:03.050864Z"
     }
    },
    "outputs": [],
@@ -278,7 +303,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e0a472f8",
+   "id": "78e5a287",
    "metadata": {},
    "source": [
     "We can now set up the time loop and perform our explicit time stepping\n",
@@ -292,14 +317,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
-   "id": "dadddbd7",
+   "execution_count": 8,
+   "id": "4202b793",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2025-09-29T16:47:16.065509Z",
-     "iopub.status.busy": "2025-09-29T16:47:16.065325Z",
-     "iopub.status.idle": "2025-09-29T16:47:40.310884Z",
-     "shell.execute_reply": "2025-09-29T16:47:40.308855Z"
+     "iopub.execute_input": "2026-04-17T16:49:03.054111Z",
+     "iopub.status.busy": "2026-04-17T16:49:03.053884Z",
+     "iopub.status.idle": "2026-04-17T16:49:20.162391Z",
+     "shell.execute_reply": "2026-04-17T16:49:20.161387Z"
     }
    },
    "outputs": [
@@ -357,7 +382,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.12.3"
+   "version": "3.14.4"
   }
  },
  "nbformat": 4,

@@ -157,6 +157,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -180,13 +181,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -538,7 +544,26 @@
 </li>
         <li><a href="boundary_nb.html#index-3">Neumann</a>
 </li>
-        <li><a href="boundary_nb.html#index-5">Robin</a>
+        <li><a href="boundary_nb.html#index-6">Robin</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    Boundary Ids
+
+      <ul>
+        <li><a href="boundary_nb.html#index-5">Cartesian Boundary Ids</a>
+</li>
+        <li><a href="othergrids_nb.html#index-8">dgf and gmsh/pygmsh</a>
+</li>
+        <li><a href="boundary_nb.html#index-8">dictionary approach</a>
+</li>
+        <li><a href="boundary_nb.html#index-7">Grid construction</a>, <a href="othergrids_nb.html#index-7">[1]</a>
+</li>
+        <li><a href="othergrids_nb.html#index-12">reader.meshio</a>
+</li>
+        <li><a href="othergrids_nb.html#index-10">Visualize boundary Ids</a>
 </li>
       </ul></li>
   </ul></td>
@@ -566,6 +591,8 @@
 
       <ul>
         <li><a href="boundary_nb.html#index-4">Boundary Dirichlet</a>
+</li>
+        <li><a href="boundary_nb.html#index-5">Boundary Ids</a>
 </li>
       </ul></li>
   </ul></td>
@@ -785,7 +812,7 @@
       <li><a href="othergrids_nb.html#index-0">Grid construction</a>
 
       <ul>
-        <li><a href="othergrids_nb.html#index-5">Boundary Ids</a>
+        <li><a href="boundary_nb.html#index-7">Boundary Ids</a>, <a href="othergrids_nb.html#index-7">[1]</a>
 </li>
         <li><a href="othergrids_nb.html#index-1">DGF</a>
 </li>
@@ -795,19 +822,21 @@
 </li>
         <li><a href="othergrids_nb.html#index-2">gmsh (from file)</a>, <a href="wave_nb.html#index-1">[1]</a>
 </li>
-        <li><a href="othergrids_nb.html#index-4">gmsh2dgf (from Python)</a>
-</li>
         <li><a href="levelgridview_nb.html#index-0">Level grid views</a>
 </li>
-        <li><a href="othergrids_nb.html#index-7">meshio</a>
+        <li><a href="othergrids_nb.html#index-4">mesh2dgf (from Python)</a>
 </li>
-        <li><a href="othergrids_nb.html#index-8">meshio (quadrilateral grids)</a>
+        <li><a href="othergrids_nb.html#index-5">meshio</a>
+</li>
+        <li><a href="othergrids_nb.html#index-6">meshio (quadrilateral grids)</a>
 </li>
         <li><a href="othergrids_nb.html#index-3">pygmsh</a>
 </li>
+        <li><a href="othergrids_nb.html#index-11">reader.meshio</a>
+</li>
         <li><a href="dune-corepy_nb.html#index-2">Structured grids</a>
 </li>
-        <li><a href="othergrids_nb.html#index-6">Visualize boundary Ids</a>
+        <li><a href="othergrids_nb.html#index-9">Visualize boundary Ids</a>
 </li>
       </ul></li>
       <li>
@@ -1154,7 +1183,7 @@
     Robin
 
       <ul>
-        <li><a href="boundary_nb.html#index-5">Boundary</a>
+        <li><a href="boundary_nb.html#index-6">Boundary</a>
 </li>
       </ul></li>
   </ul></td>

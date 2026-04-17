@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -596,15 +602,15 @@ u(\cdot,0) = u_0(\cdot)  \quad &\text{in} \ \Omega,\\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[ 1 ] 0.09999999999999999 0.01 0.21091056562040825 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.578668682, 0.399443199, 0.17922548299999996]}
-[ 2 ] 0.20000000000000004 0.01 0.15979702768263834 {&#39;converged&#39;: True, &#39;iterations&#39;: 3, &#39;linear_iterations&#39;: 3, &#39;timing&#39;: [0.854994586, 0.597305944, 0.25768864199999997]}
-[ 3 ] 0.3000000000000001 0.01 0.14625128437423562 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.579574626, 0.398383095, 0.18119153099999996]}
-[ 4 ] 0.4000000000000002 0.01 0.1365064050797307 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.582406673, 0.398381808, 0.18402486500000004]}
-[ 5 ] 0.5000000000000002 0.01 0.1267819200490916 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.593412855, 0.410802255, 0.18261059999999996]}
-[ 6 ] 0.6000000000000003 0.01 0.11686029348489455 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.576016915, 0.396605135, 0.17941177999999997]}
-[ 7 ] 1.1000000000000008 0.05 0.08265470257362983 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.588102836, 0.408834523, 0.179268313]}
-[ 8 ] 1.6000000000000012 0.05 0.08265484990090036 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.307490083, 0.19870119, 0.10878889300000003]}
-[ 9 ] 2.100000000000001 0.05 0.08265485993702583 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.303536387, 0.197988915, 0.10554747200000003]}
+[ 1 ] 0.09999999999999999 0.01 0.21091056562040894 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.58656989, 0.40425261300000004, 0.182317277]}
+[ 2 ] 0.20000000000000004 0.01 0.15979702768266327 {&#39;converged&#39;: True, &#39;iterations&#39;: 3, &#39;linear_iterations&#39;: 3, &#39;timing&#39;: [0.859710226, 0.6035499639999999, 0.2561602620000001]}
+[ 3 ] 0.3000000000000001 0.01 0.14625128437424478 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.591994897, 0.41127495299999994, 0.18071994400000002]}
+[ 4 ] 0.4000000000000002 0.01 0.13650640507973943 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.57812194, 0.397852746, 0.18026919399999997]}
+[ 5 ] 0.5000000000000002 0.01 0.12678192004909963 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.579416903, 0.39818651000000005, 0.181230393]}
+[ 6 ] 0.6000000000000003 0.01 0.11686029348490276 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.580023474, 0.400254542, 0.179768932]}
+[ 7 ] 1.1000000000000008 0.05 0.08265470257362954 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.580264382, 0.400599386, 0.17966499599999997]}
+[ 8 ] 1.6000000000000012 0.05 0.08265484990089987 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.308872467, 0.199109495, 0.10976297199999999]}
+[ 9 ] 2.100000000000001 0.05 0.0826548599370254 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.305012197, 0.199445869, 0.10556632799999999]}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

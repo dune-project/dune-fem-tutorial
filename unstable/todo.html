@@ -159,6 +159,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -182,13 +183,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -480,14 +486,9 @@
 <p class="todo-source">(The <a class="reference internal" href="furtherexamples.html#id4"><em>original entry</em></a> is located in /home/runner/work/dune-fem-tutorial/dune-fem-tutorial/dune-fem-tutorial/doc/furtherexamples.rst, line 88.)</p>
 <div class="admonition-todo admonition">
 <p class="admonition-title">Todo</p>
-<p>Add a way to describe boundary data when using <code class="docutils literal notranslate"><span class="pre">meshio</span></code>.</p>
-</div>
-<p class="todo-source">(The <a class="reference internal" href="othergrids_nb.html#id1"><em>original entry</em></a> is located in /home/runner/work/dune-fem-tutorial/dune-fem-tutorial/dune-fem-tutorial/doc/othergrids_nb.ipynb, line 390.)</p>
-<div class="admonition-todo admonition">
-<p class="admonition-title">Todo</p>
 <p>currently mass lumping only for schemes</p>
 </div>
-<p class="todo-source">(The <a class="reference internal" href="wave_nb.html#id1"><em>original entry</em></a> is located in /home/runner/work/dune-fem-tutorial/dune-fem-tutorial/dune-fem-tutorial/doc/wave_nb.ipynb, line 185.)</p>
+<p class="todo-source">(The <a class="reference internal" href="wave_nb.html#id1"><em>original entry</em></a> is located in /home/runner/work/dune-fem-tutorial/dune-fem-tutorial/dune-fem-tutorial/doc/wave_nb.ipynb, line 215.)</p>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3706994"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" />
 </a>
 </section>

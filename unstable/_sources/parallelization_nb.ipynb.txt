@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "3f443637",
+   "id": "6a6cfca4",
    "metadata": {},
    "source": [
     ".. index:: Parallelization\n",
@@ -32,13 +32,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "92710d11",
+   "id": "c4876104",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:57:52.230386Z",
-     "iopub.status.busy": "2026-04-17T10:57:52.230214Z",
-     "iopub.status.idle": "2026-04-17T10:57:53.074207Z",
-     "shell.execute_reply": "2026-04-17T10:57:53.072725Z"
+     "iopub.execute_input": "2026-04-17T16:37:46.315801Z",
+     "iopub.status.busy": "2026-04-17T16:37:46.315542Z",
+     "iopub.status.idle": "2026-04-17T16:37:47.152805Z",
+     "shell.execute_reply": "2026-04-17T16:37:47.151812Z"
     }
    },
    "outputs": [
@@ -60,7 +60,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5fb9dbea",
+   "id": "85757d07",
    "metadata": {},
    "source": [
     "At startup a maximum number of threads is selected based on the hardware\n",
@@ -73,13 +73,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "c32d7c75",
+   "id": "c7b10181",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:57:53.076869Z",
-     "iopub.status.busy": "2026-04-17T10:57:53.076387Z",
-     "iopub.status.idle": "2026-04-17T10:57:53.082200Z",
-     "shell.execute_reply": "2026-04-17T10:57:53.081339Z"
+     "iopub.execute_input": "2026-04-17T16:37:47.155387Z",
+     "iopub.status.busy": "2026-04-17T16:37:47.155029Z",
+     "iopub.status.idle": "2026-04-17T16:37:47.160536Z",
+     "shell.execute_reply": "2026-04-17T16:37:47.159298Z"
     }
    },
    "outputs": [
@@ -100,7 +100,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "23b2ff2a",
+   "id": "f19e18e6",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -134,13 +134,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "c03a44ce",
+   "id": "67d08106",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:57:53.084171Z",
-     "iopub.status.busy": "2026-04-17T10:57:53.083967Z",
-     "iopub.status.idle": "2026-04-17T10:57:53.087735Z",
-     "shell.execute_reply": "2026-04-17T10:57:53.086979Z"
+     "iopub.execute_input": "2026-04-17T16:37:47.162468Z",
+     "iopub.status.busy": "2026-04-17T16:37:47.162247Z",
+     "iopub.status.idle": "2026-04-17T16:37:47.165833Z",
+     "shell.execute_reply": "2026-04-17T16:37:47.164864Z"
     },
     "lines_to_next_cell": 0
    },
@@ -154,7 +154,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "70f2c2f2",
+   "id": "6f5a9281",
    "metadata": {},
    "source": [
     "\n",
@@ -185,13 +185,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "6f7f1d12",
+   "id": "ac7a5ae6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:57:53.089246Z",
-     "iopub.status.busy": "2026-04-17T10:57:53.089083Z",
-     "iopub.status.idle": "2026-04-17T10:57:53.175756Z",
-     "shell.execute_reply": "2026-04-17T10:57:53.174754Z"
+     "iopub.execute_input": "2026-04-17T16:37:47.167428Z",
+     "iopub.status.busy": "2026-04-17T16:37:47.167249Z",
+     "iopub.status.idle": "2026-04-17T16:37:47.264837Z",
+     "shell.execute_reply": "2026-04-17T16:37:47.263995Z"
     }
    },
    "outputs": [
@@ -271,7 +271,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "26930793",
+   "id": "6b6d7ecf",
    "metadata": {},
    "source": [
     "\n",
@@ -283,13 +283,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "ce53b60e",
+   "id": "5a3f6857",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-17T10:57:53.177474Z",
-     "iopub.status.busy": "2026-04-17T10:57:53.177296Z",
-     "iopub.status.idle": "2026-04-17T10:57:53.209678Z",
-     "shell.execute_reply": "2026-04-17T10:57:53.208753Z"
+     "iopub.execute_input": "2026-04-17T16:37:47.266881Z",
+     "iopub.status.busy": "2026-04-17T16:37:47.266690Z",
+     "iopub.status.idle": "2026-04-17T16:37:47.302705Z",
+     "shell.execute_reply": "2026-04-17T16:37:47.301750Z"
     }
    },
    "outputs": [],
@@ -300,7 +300,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6bcdd59d",
+   "id": "a3508d7d",
    "metadata": {},
    "source": [
     "\n",
@@ -331,7 +331,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.14.3"
+   "version": "3.14.4"
   }
  },
  "nbformat": 4,

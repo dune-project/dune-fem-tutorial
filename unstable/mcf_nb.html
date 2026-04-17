@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -468,7 +474,7 @@ This document is part of the dune-fem tutorial
 \theta\nabla_{\Gamma^n} U^{n+1} + (1-\theta) I \big)
 \colon\nabla_{\Gamma^n}\varphi
 =0.
-\end{align*}</span> Here <span class="math notranslate nohighlight">\(U^n\)</span> parametrizes <span class="math notranslate nohighlight">\(\Gamma(t^{n+1})\)</span> over <span class="math notranslate nohighlight">\(\Gamma^n:=\Gamma(t^{n})\)</span>, <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix, <span class="math notranslate nohighlight">\(\tau\)</span> is the time step and <span class="math notranslate nohighlight">\(\theta\in[0,1]\)</span> is a discretization parameter. <img alt="008320cdacd14f02869ba58e69f943e1" src="_images/mcf.gif" /></p>
+\end{align*}</span> Here <span class="math notranslate nohighlight">\(U^n\)</span> parametrizes <span class="math notranslate nohighlight">\(\Gamma(t^{n+1})\)</span> over <span class="math notranslate nohighlight">\(\Gamma^n:=\Gamma(t^{n})\)</span>, <span class="math notranslate nohighlight">\(I\)</span> is the identity matrix, <span class="math notranslate nohighlight">\(\tau\)</span> is the time step and <span class="math notranslate nohighlight">\(\theta\in[0,1]\)</span> is a discretization parameter. <img alt="ae91997333e84be4a8ba865d2e9405a7" src="_images/mcf.gif" /></p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>

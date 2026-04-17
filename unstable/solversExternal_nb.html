@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -575,7 +581,7 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.lines.Line2D at 0x7fbfc0deb0e0&gt;
+&lt;matplotlib.lines.Line2D at 0x7fdab73bf4d0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -686,10 +692,10 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 iter 0 : 4.431052148382562
-iter 1 : 0.04276612643235494
-iter 2 : 0.002883781339264266
-iter 3 : 2.2434900427670995e-05
-iter 4 : 1.4130851244343706e-09
+iter 1 : 0.04276612643235331
+iter 2 : 0.0028837813392648516
+iter 3 : 2.2434900428302384e-05
+iter 4 : 1.4130798754435039e-09
 Scipy-1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 856}
 </pre></div></div>
@@ -778,10 +784,10 @@ Scipy-1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Newton residual: 0.0018287557646036968
-Newton residual: 8.313374500986622e-06
-Newton residual: 5.033660790123935e-10
-Newton residual: 1.8226133191208854e-17
+Newton residual: 0.0018287557646038026
+Newton residual: 8.312816310154387e-06
+Newton residual: 5.038482086439676e-10
+Newton residual: 1.7009759157698087e-17
 Scipy-2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 16}
 </pre></div></div>

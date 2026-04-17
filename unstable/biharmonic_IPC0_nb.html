@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -591,11 +597,11 @@ use a mixed formulation, i.e., condsider an auxiliary variable <span class="math
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-145      0.1136443598737773      0.6208740665237273      5.524365118462454
-545      0.04022273606144616     0.23163339565034258     2.6399394758353827
-2113     0.01178314228262599     0.07049217621308512     1.1694802940704858
-8321     0.003128904461875967    0.019059972202558537    0.5372198057033714
-33025    0.0007995700769349618   0.004898765625435119    0.2595946627385194
+145      0.11364435987377654     0.620874066523723       5.524365118462422
+545      0.040222736061827864    0.23163339565221258     2.6399394758426307
+2113     0.011783142279492988    0.07049217619906095     1.1694802940387614
+8321     0.0031289045136179      0.01905997243348081     0.5372198060366189
+33025    0.0007995701530624084   0.004898765887602037    0.2595946627473353
 </pre></div></div>
 </div>
 <p>We may now plot this into graphs.</p>
@@ -673,10 +679,10 @@ u &= 0     && \text{on } \partial \Omega.
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 145      0.024862701103052724    0.11397097581565958     2.1974319864737746
-545      0.006358306804077491    0.029212936988778738    1.1118694335330745
-2113     0.0016038793992136492   0.007404936881216967    0.5581151873205058
-8321     0.00040238771693266957          0.0018636849188025408   0.27943955725311515
-33025    0.00010076902924315088          0.00046736156792694626          0.13979427109044082
+545      0.006358306810807405    0.02921293701769011     1.1118694335334784
+2113     0.001603879377874182    0.007404936789581121    0.5581151873195688
+8321     0.00040238794221778424          0.0018636858845654351   0.2794395572578796
+33025    0.00010077076051081138          0.0004673689474805613   0.1397942711040353
 </pre></div></div>
 </div>
 <p>We may now plot this into graphs.</p>

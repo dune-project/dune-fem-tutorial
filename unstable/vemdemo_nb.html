@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="othergrids_nb.html">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="othergrids_nb.html#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -651,7 +657,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.21608707796899063, 0.2741817706379687)
+Polygon diameters: (0.23041445695197305, 0.27211474287501936)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -722,11 +728,11 @@ Polygon diameters: (0.21608707796899063, 0.2741817706379687)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.021179803013368328 H^1:  0.4054467264643172 52
-method ( dg ): dofs:  522 L^2:  0.016389252604828795 H^1:  0.3769224993862634 507
-method ( vem-conforming ): dofs:  102 L^2:  0.019979765884645385 H^1:  0.3319360666978962 30
-method ( vem-nonconforming ): dofs:  151 L^2:  0.019897856489919947 H^1:  0.3412420414327406 33
-method ( bb-dg ): dofs:  150 L^2:  0.02369247965855435 H^1:  0.37317320443399193 90
+method ( lagrange ): dofs:  102 L^2:  0.01928342522296332 H^1:  0.3666288841160257 47
+method ( dg ): dofs:  528 L^2:  0.012135407771953542 H^1:  0.33744207139945237 450
+method ( vem-conforming ): dofs:  102 L^2:  0.022624021100303985 H^1:  0.3462892974963879 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.01982974816317456 H^1:  0.3590814761519637 30
+method ( bb-dg ): dofs:  150 L^2:  0.018624309177694393 H^1:  0.37001059987111584 82
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -771,7 +777,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.02369247965855435 H^1:  0.37317320443399193
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.011089413915090841), np.float64(0.15695231964580003)]
+non linear problem: [np.float64(0.011140285825253745), np.float64(0.1564486011911487)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -947,7 +953,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(32.46643970397435), np.float64(179.42934966985683)]
+bi-laplace errors: [np.float64(32.95496159896069), np.float64(181.91954043007777)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

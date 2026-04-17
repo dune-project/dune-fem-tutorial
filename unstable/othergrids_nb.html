@@ -163,6 +163,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boundary_nb.html#Using-boundary-ids-(and-some-more-complex-examples)">Using boundary ids (and some more complex examples)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Cartesian-boundary-ids">Cartesian boundary ids</a></li>
 <li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Mixing-different-types-of-boundary-conditions">Mixing different types of boundary conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="boundary_nb.html#Using-a-dictionary-to-define-the-grid-with-boundary-ids">Using a dictionary to define the grid with boundary ids</a></li>
 </ul>
 </li>
 </ul>
@@ -186,13 +187,18 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Examples of grid construction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#Example-using-the-Dune-Grid-Format-(DGF)">Example using the Dune Grid Format (DGF)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Converting-gmsh-to-DGF">Converting gmsh to DGF</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Using-gmsh/pygmsh">Using gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#3D-example-(using-PyGmsh)">3D example (using PyGmsh)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Converting-a-mesh-to-DGF">Converting a mesh to DGF</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Using-meshio-to-read-a-gmsh-file">Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">Providing IDs for boundary conditions using dgf and gmsh/pygmsh</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">Attaching boundary ids to a grid constructed with gmsh using DGF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Visualizing-Boundary-Ids">Visualizing Boundary Ids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Using-gmsh's-'add_physical`-to-set-boundary-ids">Using gmsh’s ‘add_physical` to set boundary ids</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#1D-example">1D example</a></li>
 </ul>
 </li>
@@ -499,7 +505,10 @@ This document is part of the dune-fem tutorial
 <img alt="_images/othergrids_nb_3_0.jpg" src="_images/othergrids_nb_3_0.jpg" />
 </div>
 </div>
-<p id="index-2">There is also a <code class="docutils literal notranslate"><span class="pre">reader.gmsh</span></code> option allowing previously stored <code class="docutils literal notranslate"><span class="pre">gmsh</span></code> files to be read. The <a class="reference external" href="wave_tank.msh">grid file</a> is the one used in the <a class="reference internal" href="wave_nb.html"><span class="doc">wave equation</span></a> example.</p>
+</section>
+<section id="Using-gmsh/pygmsh">
+<span id="index-2"></span><h2>Using gmsh/pygmsh<a class="headerlink" href="#Using-gmsh/pygmsh" title="Link to this heading"></a></h2>
+<p>There is also a <code class="docutils literal notranslate"><span class="pre">reader.gmsh</span></code> option allowing previously stored <code class="docutils literal notranslate"><span class="pre">gmsh</span></code> files to be read. The <a class="reference external" href="wave_tank.msh">grid file</a> is the one used in the <a class="reference internal" href="wave_nb.html"><span class="doc">wave equation</span></a> example.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
@@ -517,9 +526,8 @@ This document is part of the dune-fem tutorial
 <img alt="_images/othergrids_nb_5_0.jpg" src="_images/othergrids_nb_5_0.jpg" />
 </div>
 </div>
-</section>
 <section id="3D-example-(using-PyGmsh)">
-<span id="index-3"></span><h2>3D example (using PyGmsh)<a class="headerlink" href="#3D-example-(using-PyGmsh)" title="Link to this heading"></a></h2>
+<span id="index-3"></span><h3>3D example (using PyGmsh)<a class="headerlink" href="#3D-example-(using-PyGmsh)" title="Link to this heading"></a></h3>
 <p>In this example we use <strong>pygmsh</strong> to construct a tetrahedral mesh and solve a simple Laplace problem. The following code is taken from the <strong>pygmsh</strong> homepage.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
@@ -566,17 +574,17 @@ This document is part of the dune-fem tutorial
 </div>
 <img alt="3d laplace problem" src="_images/3dexample.png" />
 </section>
-<section id="Converting-gmsh-to-DGF">
-<span id="index-4"></span><h2>Converting gmsh to DGF<a class="headerlink" href="#Converting-gmsh-to-DGF" title="Link to this heading"></a></h2>
-<p>Using the above convenient way of generating grids in Python we can then store those as DGF which allows to add boundary ids of vertex and element parameters in a simple way. Use <code class="docutils literal notranslate"><span class="pre">gmsh2DGF</span></code> from <a class="reference internal" href="gmsh2dgf_nb.html"><span class="doc">gmsh2dgf</span></a> to convert the above <code class="docutils literal notranslate"><span class="pre">points</span></code> and <code class="docutils literal notranslate"><span class="pre">cells</span></code> to a string which can be read by <code class="docutils literal notranslate"><span class="pre">reader.dgfString</span></code>.</p>
+<section id="Converting-a-mesh-to-DGF">
+<span id="index-4"></span><h3>Converting a mesh to DGF<a class="headerlink" href="#Converting-a-mesh-to-DGF" title="Link to this heading"></a></h3>
+<p>Using the above convenient way of generating grids in Python we can then store those as DGF which allows to add boundary ids of vertex and element parameters in a simple way (see next section).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gmsh2dgf</span><span class="w"> </span><span class="kn">import</span> <span class="n">gmsh2DGF</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid.mesh2dgf</span><span class="w"> </span><span class="kn">import</span> <span class="n">mesh2DGF</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">reader</span>
 
-<span class="n">dgf</span> <span class="o">=</span> <span class="n">gmsh2DGF</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">)</span>
+<span class="n">dgf</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mesh2DGF</span><span class="p">((</span><span class="n">points</span><span class="p">,</span> <span class="n">cells</span><span class="p">))</span>
 <span class="n">domain3d</span> <span class="o">=</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">dgfString</span><span class="p">,</span> <span class="n">dgf</span><span class="p">)</span>
 <span class="n">gridView3d</span>  <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span><span class="n">domain3d</span><span class="p">,</span> <span class="n">dimgrid</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
@@ -595,8 +603,85 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
+</section>
+</section>
+<section id="Using-meshio-to-read-a-gmsh-file">
+<span id="index-5"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file<a class="headerlink" href="#Using-meshio-to-read-a-gmsh-file" title="Link to this heading"></a></h2>
+<p>We will use the <code class="docutils literal notranslate"><span class="pre">meshio</span></code> package to read a gmsh file, extract the points and cells and use that to construct a Dune grid. The final part is then quite similar to the above. We use the <a class="reference external" href="wave_tank.msh">2D grid</a> from the <a class="reference internal" href="wave_nb.html"><span class="doc">wave equation</span></a> test case. Note that this is a 2D grid but the points are returned as 3D points so we need to remove the final columns containing only zeros. We have already seen this grid above so let’s zoom in to the ‘slit’ region…</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">meshio</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">meshio</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;wave_tank.msh&quot;</span><span class="p">)</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># remove the z component from the points</span>
+    <span class="n">cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span>
+    <span class="n">waveDomain</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vertices&quot;</span><span class="p">:</span><span class="n">points</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">),</span> <span class="s2">&quot;simplices&quot;</span><span class="p">:</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;triangle&quot;</span><span class="p">]}</span>
+    <span class="n">waveGrid</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span><span class="n">waveDomain</span><span class="p">)</span>
+    <span class="n">waveGrid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">1.7</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">])</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example requires the meshio package which can be installed using pip.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/othergrids_nb_14_1.jpg" src="_images/othergrids_nb_14_1.jpg" />
+</div>
+</div>
+<p id="index-6">Here is a second example where we want to read a <a class="reference external" href="quads.msh">gmsh file</a> containing quadrilateral elements. Note that the vertices of the cells are ordered counterclockwise which is not identical to the ordering required by the <a class="reference external" href="https://www.dune-project.org/doxygen/2.5.0/group__GeometryReferenceElements.html">Dune reference element</a>. The last two vertices need to be exchanged:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">meshio</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluCubeGrid</span>
+    <span class="n">mesh</span> <span class="o">=</span> <span class="n">meshio</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;quads.msh&quot;</span><span class="p">)</span>
+    <span class="n">points2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span><span class="p">[</span><span class="s1">&#39;quad&#39;</span><span class="p">]</span>
+    <span class="n">cells</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vertices&quot;</span><span class="p">:</span><span class="n">points2d</span><span class="p">,</span> <span class="s2">&quot;cubes&quot;</span><span class="p">:</span><span class="n">cells</span><span class="p">}</span>
+    <span class="n">quadGrid</span>  <span class="o">=</span> <span class="n">aluCubeGrid</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
+    <span class="n">quadGrid</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/othergrids_nb_16_1.jpg" src="_images/othergrids_nb_16_1.jpg" />
+</div>
+</div>
+</section>
+<section id="Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">
+<span id="index-8"></span><span id="index-7"></span><h2>Providing IDs for boundary conditions using dgf and gmsh/pygmsh<a class="headerlink" href="#Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the following only works with the grid managers from the <code class="docutils literal notranslate"><span class="pre">dune.alugrid</span></code> package:</p>
+</div>
 <section id="Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF">
-<span id="index-5"></span><h3>Attaching boundary ids to a grid constructed with gmsh using DGF<a class="headerlink" href="#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF" title="Link to this heading"></a></h3>
+<h3>Attaching boundary ids to a grid constructed with gmsh using DGF<a class="headerlink" href="#Attaching-boundary-ids-to-a-grid-constructed-with-gmsh-using-DGF" title="Link to this heading"></a></h3>
 <p>The <a class="reference external" href="https://dune-project.org/doxygen/master/group__DuneGridFormatParser.html#details">Dune Grid Format (DGF)</a> allows to either specify <code class="docutils literal notranslate"><span class="pre">BoundarySegments</span></code> or a <code class="docutils literal notranslate"><span class="pre">BoundaryDomain</span></code>. Boundary segments require to specify a boundary id for a selection of intersections of an element with the boundary, e.g. a collection of edges of triangles located on the boundary. For testing and prototyping it is very convenient to use the boundary domain approach instead, where for each boundary id (short:
 <code class="docutils literal notranslate"><span class="pre">bnd</span> <span class="pre">id</span></code>) a bounding box is described and each boundary segment that is found inside this box is assigned the <code class="docutils literal notranslate"><span class="pre">bnd</span> <span class="pre">id</span></code>. This approach also allows to specify a default value which is assigned to all segments not found in any of the specified boxes. This approach works in 2d as well as 3d.</p>
 <div class="admonition tip">
@@ -604,7 +689,7 @@ This document is part of the dune-fem tutorial
 <p>Specify the bounding box for simple boundaries such as outer walls and straight lines and surfaces and use the default value to mark a particularly complex boundary in the interior.</p>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
@@ -654,7 +739,7 @@ This document is part of the dune-fem tutorial
                     <span class="p">}</span>
 
         <span class="c1"># return dgf string which can be read by DGF parser or written to file for later use</span>
-        <span class="n">dgf</span> <span class="o">=</span> <span class="n">gmsh2DGF</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span><span class="p">,</span> <span class="n">bndDomain</span><span class="o">=</span><span class="n">bndDomain</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">dgf</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mesh2DGF</span><span class="p">((</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span><span class="p">),</span> <span class="n">bndDomain</span><span class="o">=</span><span class="n">bndDomain</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">domain2d</span> <span class="o">=</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">dgfString</span><span class="p">,</span> <span class="n">dgf</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c1"># pygmsh not installed - use a simple cartesian domain</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pygmsh module not found using a simple Cartesian domain - ignored&quot;</span><span class="p">)</span>
@@ -675,82 +760,157 @@ This document is part of the dune-fem tutorial
 </div>
 </section>
 <section id="Visualizing-Boundary-Ids">
-<span id="index-6"></span><h3>Visualizing Boundary Ids<a class="headerlink" href="#Visualizing-Boundary-Ids" title="Link to this heading"></a></h3>
-<p>After construction of a grid we can visualize boundary ids by assigning a piecewise constant function to hold the value of adjacent boundaries. This is not necessarily unique but works in most cases.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">gmsh2dgf</span><span class="w"> </span><span class="kn">import</span> <span class="n">projectBoundaryIds</span>
-
-<span class="n">bndIds</span> <span class="o">=</span> <span class="n">projectBoundaryIds</span><span class="p">(</span> <span class="n">gridView2d</span> <span class="p">)</span>
-<span class="n">bndIds</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/othergrids_nb_16_0.jpg" src="_images/othergrids_nb_16_0.jpg" />
-</div>
-</div>
-</section>
-</section>
-<section id="Using-meshio-to-read-a-gmsh-file">
-<span id="index-7"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">meshio</span></code> to read a gmsh file<a class="headerlink" href="#Using-meshio-to-read-a-gmsh-file" title="Link to this heading"></a></h2>
-<p>We will use the <code class="docutils literal notranslate"><span class="pre">meshio</span></code> package to read a gmsh file, extract the points and cells and use that to construct a Dune grid. The final part is then quite similar to the above. We use the <a class="reference external" href="wave_tank.msh">2D grid</a> from the <a class="reference internal" href="wave_nb.html"><span class="doc">wave equation</span></a> test case. Note that this is a 2D grid but the points are returned as 3D points so we need to remove the final columns containing only zeros. We have already seen this grid above so let’s zoom in to the ‘slit’ region…</p>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Add a way to describe boundary data when using <code class="docutils literal notranslate"><span class="pre">meshio</span></code>.</p>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">meshio</span>
-    <span class="n">mesh</span> <span class="o">=</span> <span class="n">meshio</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;wave_tank.msh&quot;</span><span class="p">)</span>
-    <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># remove the z component from the points</span>
-    <span class="n">cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span>
-    <span class="n">waveDomain</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vertices&quot;</span><span class="p">:</span><span class="n">points</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">),</span> <span class="s2">&quot;simplices&quot;</span><span class="p">:</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;triangle&quot;</span><span class="p">]}</span>
-    <span class="n">waveGrid</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span><span class="n">waveDomain</span><span class="p">)</span>
-    <span class="n">waveGrid</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">1.7</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">1.2</span><span class="p">])</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example requires the meshio package which can be installed using pip.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/othergrids_nb_18_1.jpg" src="_images/othergrids_nb_18_1.jpg" />
-</div>
-</div>
-<p id="index-8">Here is a second example where we want to read a <a class="reference external" href="quads.msh">gmsh file</a> containing quadrilateral elements. Note that the vertices of the cells are ordered counterclockwise which is not identical to the ordering required by the <a class="reference external" href="https://www.dune-project.org/doxygen/2.5.0/group__GeometryReferenceElements.html">Dune reference element</a>. The last two vertices need to be exchanged:</p>
+<span id="index-10"></span><span id="index-9"></span><h3>Visualizing Boundary Ids<a class="headerlink" href="#Visualizing-Boundary-Ids" title="Link to this heading"></a></h3>
+<p>After construction of a grid we can visualize boundary ids by assigning a discontinuous piecewise linear function to hold the value of boundary faces (and zero towards the interior).</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">meshio</span><span class="p">:</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">dune.alugrid</span><span class="w"> </span><span class="kn">import</span> <span class="n">aluCubeGrid</span>
-    <span class="n">mesh</span> <span class="o">=</span> <span class="n">meshio</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;quads.msh&quot;</span><span class="p">)</span>
-    <span class="n">points2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span><span class="p">[</span><span class="s1">&#39;quad&#39;</span><span class="p">]</span>
-    <span class="n">cells</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span> <span class="o">=</span> <span class="n">cells</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
-    <span class="n">domain</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vertices&quot;</span><span class="p">:</span><span class="n">points2d</span><span class="p">,</span> <span class="s2">&quot;cubes&quot;</span><span class="p">:</span><span class="n">cells</span><span class="p">}</span>
-    <span class="n">quadGrid</span>  <span class="o">=</span> <span class="n">aluCubeGrid</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
-    <span class="n">quadGrid</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">boundaryFunction</span>
+<span class="n">boundaryFunction</span><span class="p">(</span> <span class="n">gridView2d</span> <span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/othergrids_nb_20_0.jpg" src="_images/othergrids_nb_20_0.jpg" />
+</div>
+</div>
+</section>
+<section id="Using-gmsh's-'add_physical`-to-set-boundary-ids">
+<span id="index-12"></span><span id="index-11"></span><h3>Using gmsh’s ‘add_physical` to set boundary ids<a class="headerlink" href="#Using-gmsh's-'add_physical`-to-set-boundary-ids" title="Link to this heading"></a></h3>
+<p>This is the same basic geometry as above:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gmsh</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dune.alugrid</span>
+
+<span class="c1"># Initialize empty geometry using the build in kernel in GMSH</span>
+<span class="k">with</span> <span class="n">pygmsh</span><span class="o">.</span><span class="n">geo</span><span class="o">.</span><span class="n">Geometry</span><span class="p">()</span> <span class="k">as</span> <span class="n">geom</span><span class="p">:</span>
+    <span class="n">L</span><span class="p">,</span><span class="n">H</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="n">c</span><span class="p">,</span><span class="n">r</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.05</span>
+    <span class="c1"># Grid size function</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">lc</span><span class="p">):</span>
+        <span class="n">resolution</span> <span class="o">=</span> <span class="mf">0.06</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">r</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">resolution</span>
+
+        <span class="n">d</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mf">0.5</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">r</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mf">0.25</span><span class="o">*</span><span class="n">resolution</span>
+
+        <span class="c1"># default is a coarser mesh</span>
+        <span class="k">return</span> <span class="n">resolution</span>
+
+    <span class="c1"># Add obstacle</span>
+    <span class="n">obs1</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">add_circle</span><span class="p">([</span><span class="n">c</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span>
+    <span class="n">obs2</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">add_circle</span><span class="p">([</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">r</span><span class="p">)</span>
+    <span class="c1"># Add points with finer resolution on left side</span>
+    <span class="n">points</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">geom</span><span class="o">.</span><span class="n">add_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+        <span class="n">geom</span><span class="o">.</span><span class="n">add_point</span><span class="p">((</span><span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+        <span class="n">geom</span><span class="o">.</span><span class="n">add_point</span><span class="p">((</span><span class="n">L</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">0</span><span class="p">)),</span>
+        <span class="n">geom</span><span class="o">.</span><span class="n">add_point</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="p">]</span>
+    <span class="c1"># Add lines between all points creating the rectangle</span>
+    <span class="n">rectangle</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">geom</span><span class="o">.</span><span class="n">add_line</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">points</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="p">]</span>
+    <span class="c1"># Create a line loop and plane surface for meshing</span>
+    <span class="n">rect_loop</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">add_curve_loop</span><span class="p">(</span><span class="n">rectangle</span><span class="p">)</span>
+    <span class="n">surface</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">add_plane_surface</span><span class="p">(</span><span class="n">rect_loop</span><span class="p">,</span> <span class="n">holes</span><span class="o">=</span><span class="p">[</span><span class="n">obs1</span><span class="o">.</span><span class="n">curve_loop</span><span class="p">,</span><span class="n">obs2</span><span class="o">.</span><span class="n">curve_loop</span><span class="p">])</span>
+
+    <span class="c1"># Call gmsh kernel before add physical entities</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
+
+    <span class="c1"># add boundary markers (this autoassigns numbers 0,1,2,)</span>
+    <span class="c1"># we need to add the option to renumber the names in the importMesh</span>
+    <span class="c1"># function (gmsh.field_data[&quot;inflow&quot;][1] = 2 for example)</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">add_physical</span><span class="p">([</span><span class="n">rectangle</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="s2">&quot;Inflow&quot;</span><span class="p">)</span>                 <span class="c1"># 1</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">add_physical</span><span class="p">([</span><span class="n">rectangle</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="s2">&quot;Outflow&quot;</span><span class="p">)</span>                <span class="c1"># 2</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">add_physical</span><span class="p">([</span><span class="n">surface</span><span class="p">],</span> <span class="s2">&quot;Fluid&quot;</span><span class="p">)</span>                       <span class="c1"># 3 (will be ignored during import)</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">add_physical</span><span class="p">(</span><span class="n">obs1</span><span class="o">.</span><span class="n">curve_loop</span><span class="o">.</span><span class="n">curves</span><span class="p">,</span> <span class="s2">&quot;Obstacle1&quot;</span><span class="p">)</span>      <span class="c1"># 4</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">add_physical</span><span class="p">(</span><span class="n">obs2</span><span class="o">.</span><span class="n">curve_loop</span><span class="o">.</span><span class="n">curves</span><span class="p">,</span> <span class="s2">&quot;Obstacle2&quot;</span><span class="p">)</span>      <span class="c1"># 5</span>
+
+    <span class="n">geom</span><span class="o">.</span><span class="n">set_mesh_size_callback</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+    <span class="n">geom</span><span class="o">.</span><span class="n">generate_mesh</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">algorithm</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">gmsh</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">recombine</span><span class="p">()</span>
+
+    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">NamedTemporaryFile</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;.msh&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">gmsh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># import mesh using &#39;3&#39; as default boundary id (for top/bottom) -</span>
+        <span class="c1"># if not prescribed then &#39;1&#39; will be used</span>
+        <span class="n">gridView</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">alugrid</span><span class="o">.</span><span class="n">aluGrid</span><span class="p">((</span><span class="n">reader</span><span class="o">.</span><span class="n">meshio</span><span class="p">,</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">),</span><span class="n">defaultBndId</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">bndIds</span> <span class="o">=</span> <span class="n">boundaryFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span>
+<span class="n">bndIds</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Info    : Meshing 1D...
+Info    : [  0%] Meshing curve 1 (Circle)
+Info    : [ 20%] Meshing curve 2 (Circle)
+Info    : [ 30%] Meshing curve 3 (Circle)
+Info    : [ 40%] Meshing curve 4 (Circle)
+Info    : [ 50%] Meshing curve 5 (Circle)
+Info    : [ 60%] Meshing curve 6 (Circle)
+Info    : [ 70%] Meshing curve 7 (Line)
+Info    : [ 80%] Meshing curve 8 (Line)
+Info    : [ 90%] Meshing curve 9 (Line)
+Info    : [100%] Meshing curve 10 (Line)
+Info    : Done meshing 1D (Wall 0.00373662s, CPU 0.004081s)
+Info    : Meshing 2D...
+Info    : [  0%] Meshing surface 1 (Plane, Frontal-Delaunay for Quads)
+Info    : [ 40%] Meshing surface 2 (Plane, Frontal-Delaunay for Quads)
+Info    : [ 70%] Meshing surface 3 (Plane, Frontal-Delaunay for Quads)
+Info    : Done meshing 2D (Wall 0.0382955s, CPU 0.038402s)
+Info    : 862 nodes 1772 elements
+Info    : Recombining 2D mesh...
+Info    : Blossom recombination completed (Wall 0.000775932s, CPU 0.001189s): 29 quads, 13 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.811354, min Q = 0.338498
+Info    : Blossom recombination completed (Wall 0.000696752s, CPU 0.000774s): 30 quads, 13 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.820547, min Q = 0.502279
+Info    : Blossom: 2204 internal 109 closed
+Info    : Blossom recombination completed (Wall 0.0252473s, CPU 0.025304s): 743 quads, 0 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.785941, min Q = 0.406957
+Info    : Done recombining 2D mesh (Wall 0.0268972s, CPU 0.027447s)
+Info    : Writing &#39;/tmp/tmp_4jiyl51.msh&#39;...
+Info    : Done writing &#39;/tmp/tmp_4jiyl51.msh&#39;
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Warning : Cannot apply Blossom: odd number of triangles (71) in surface 1
+Warning : Cannot apply Blossom: odd number of triangles (73) in surface 2
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/othergrids_nb_22_2.jpg" src="_images/othergrids_nb_22_2.jpg" />
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">wave_tank</span></code> mesh file already used previously also contains boundary tags. An simple way of extracting the grid and keeping the boundary ids is to use the <code class="docutils literal notranslate"><span class="pre">meshio</span></code> reader:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gridView</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">alugrid</span><span class="o">.</span><span class="n">aluGrid</span><span class="p">((</span><span class="n">reader</span><span class="o">.</span><span class="n">meshio</span><span class="p">,</span><span class="s2">&quot;wave_tank.msh&quot;</span><span class="p">))</span>
+<span class="n">bndIds</span> <span class="o">=</span> <span class="n">boundaryFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span>
+<span class="n">bndIds</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">],</span><span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">]</span> <span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -766,15 +926,16 @@ This document is part of the dune-fem tutorial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_20_1.jpg" src="_images/othergrids_nb_20_1.jpg" />
+<img alt="_images/othergrids_nb_24_1.jpg" src="_images/othergrids_nb_24_1.jpg" />
 </div>
 </div>
+</section>
 </section>
 <section id="1D-example">
 <h2>1D example<a class="headerlink" href="#1D-example" title="Link to this heading"></a></h2>
 <p>It’s also possible to create grids in 1D</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">onedGrid</span>
@@ -792,12 +953,12 @@ This document is part of the dune-fem tutorial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_22_0.jpg" src="_images/othergrids_nb_22_0.jpg" />
+<img alt="_images/othergrids_nb_26_0.jpg" src="_images/othergrids_nb_26_0.jpg" />
 </div>
 </div>
 <p>pyplot can very easily be used in 1d using the <code class="docutils literal notranslate"><span class="pre">tessellate</span></code> method on the grid which will be described in more detail in the section about the bindings for the full <a class="reference internal" href="dune-corepy_nb.html"><span class="doc">dune grid interface</span></a>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">tessellate</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">u</span><span class="o">.</span><span class="n">pointData</span><span class="p">(),</span> <span class="s1">&#39;-p&#39;</span><span class="p">)</span>
@@ -805,19 +966,19 @@ This document is part of the dune-fem tutorial
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7832187eb980&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7f47bd731e80&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_24_1.jpg" src="_images/othergrids_nb_24_1.jpg" />
+<img alt="_images/othergrids_nb_28_1.jpg" src="_images/othergrids_nb_28_1.jpg" />
 </div>
 </div>
 </section>
