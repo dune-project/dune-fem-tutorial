@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "15d5b567",
+   "id": "3f6d9370",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; Filtered grid views\n",
@@ -16,13 +16,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "821c1aa4",
+   "id": "6ed02bcb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:49.746084Z",
-     "iopub.status.busy": "2026-04-15T21:01:49.745798Z",
-     "iopub.status.idle": "2026-04-15T21:01:50.607959Z",
-     "shell.execute_reply": "2026-04-15T21:01:50.606900Z"
+     "iopub.execute_input": "2026-04-17T10:47:52.166059Z",
+     "iopub.status.busy": "2026-04-17T10:47:52.165842Z",
+     "iopub.status.idle": "2026-04-17T10:47:53.006913Z",
+     "shell.execute_reply": "2026-04-17T10:47:53.005764Z"
     }
    },
    "outputs": [],
@@ -37,7 +37,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "80d6cadf",
+   "id": "74428ea3",
    "metadata": {},
    "source": [
     "Create a host grid view of the underlying grid as usual.\n",
@@ -48,13 +48,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "e49f45eb",
+   "id": "fa552a26",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:50.610801Z",
-     "iopub.status.busy": "2026-04-15T21:01:50.610395Z",
-     "iopub.status.idle": "2026-04-15T21:01:52.089986Z",
-     "shell.execute_reply": "2026-04-15T21:01:52.089152Z"
+     "iopub.execute_input": "2026-04-17T10:47:53.009269Z",
+     "iopub.status.busy": "2026-04-17T10:47:53.008921Z",
+     "iopub.status.idle": "2026-04-17T10:47:54.614813Z",
+     "shell.execute_reply": "2026-04-17T10:47:54.613795Z"
     },
     "lines_to_next_cell": 1
    },
@@ -100,7 +100,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a0592dd0",
+   "id": "cd64e211",
    "metadata": {},
    "source": [
     "Now create a `filteredGridView` with a simple callable specifying which element belongs to the new domain."
@@ -109,13 +109,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "6eec9a51",
+   "id": "8044386e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:52.092272Z",
-     "iopub.status.busy": "2026-04-15T21:01:52.091932Z",
-     "iopub.status.idle": "2026-04-15T21:01:52.382589Z",
-     "shell.execute_reply": "2026-04-15T21:01:52.380224Z"
+     "iopub.execute_input": "2026-04-17T10:47:54.617163Z",
+     "iopub.status.busy": "2026-04-17T10:47:54.616576Z",
+     "iopub.status.idle": "2026-04-17T10:47:54.922157Z",
+     "shell.execute_reply": "2026-04-17T10:47:54.919828Z"
     }
    },
    "outputs": [
@@ -157,7 +157,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "47b953b6",
+   "id": "2be3488f",
    "metadata": {},
    "source": [
     ".. note::\n",
@@ -172,7 +172,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b39e683b",
+   "id": "e65f80f2",
    "metadata": {},
    "source": [
     "One can quite easily transfer a grid function from the filtered grid view to\n",
@@ -184,13 +184,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "17e90fa6",
+   "id": "686552fa",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:52.384658Z",
-     "iopub.status.busy": "2026-04-15T21:01:52.384316Z",
-     "iopub.status.idle": "2026-04-15T21:01:52.789481Z",
-     "shell.execute_reply": "2026-04-15T21:01:52.788533Z"
+     "iopub.execute_input": "2026-04-17T10:47:54.925236Z",
+     "iopub.status.busy": "2026-04-17T10:47:54.924841Z",
+     "iopub.status.idle": "2026-04-17T10:47:55.373321Z",
+     "shell.execute_reply": "2026-04-17T10:47:55.372378Z"
     }
    },
    "outputs": [
@@ -226,7 +226,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9de53c6c",
+   "id": "8a10d4cf",
    "metadata": {},
    "source": [
     "The boundary ids are set to original ids or to the id of the outside\n",
@@ -236,13 +236,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "4f12d4cf",
+   "id": "869cdff6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:52.791246Z",
-     "iopub.status.busy": "2026-04-15T21:01:52.791068Z",
-     "iopub.status.idle": "2026-04-15T21:01:53.009893Z",
-     "shell.execute_reply": "2026-04-15T21:01:53.009026Z"
+     "iopub.execute_input": "2026-04-17T10:47:55.375451Z",
+     "iopub.status.busy": "2026-04-17T10:47:55.375227Z",
+     "iopub.status.idle": "2026-04-17T10:47:55.613454Z",
+     "shell.execute_reply": "2026-04-17T10:47:55.612427Z"
     }
    },
    "outputs": [
@@ -263,7 +263,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c343fd8d",
+   "id": "33d1dbf6",
    "metadata": {},
    "source": [
     "Filter out a different section of the domain:"
@@ -272,13 +272,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "8240a620",
+   "id": "b887cf01",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:53.011687Z",
-     "iopub.status.busy": "2026-04-15T21:01:53.011496Z",
-     "iopub.status.idle": "2026-04-15T21:01:53.508902Z",
-     "shell.execute_reply": "2026-04-15T21:01:53.508031Z"
+     "iopub.execute_input": "2026-04-17T10:47:55.615737Z",
+     "iopub.status.busy": "2026-04-17T10:47:55.615191Z",
+     "iopub.status.idle": "2026-04-17T10:47:56.160746Z",
+     "shell.execute_reply": "2026-04-17T10:47:56.159667Z"
     }
    },
    "outputs": [
@@ -323,7 +323,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9b7034fc",
+   "id": "e48f8bbf",
    "metadata": {},
    "source": [
     ".. note::\n",
@@ -343,13 +343,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "1125d37a",
+   "id": "9ad57535",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:53.510711Z",
-     "iopub.status.busy": "2026-04-15T21:01:53.510514Z",
-     "iopub.status.idle": "2026-04-15T21:01:53.522721Z",
-     "shell.execute_reply": "2026-04-15T21:01:53.521879Z"
+     "iopub.execute_input": "2026-04-17T10:47:56.162755Z",
+     "iopub.status.busy": "2026-04-17T10:47:56.162510Z",
+     "iopub.status.idle": "2026-04-17T10:47:56.176097Z",
+     "shell.execute_reply": "2026-04-17T10:47:56.175081Z"
     }
    },
    "outputs": [],
@@ -360,7 +360,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "233e6464",
+   "id": "4d97d6d7",
    "metadata": {},
    "source": [
     "A consequence of not changing the index set is that layout of the degrees of freedom of\n",
@@ -372,13 +372,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "e89613d2",
+   "id": "88028441",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:53.524398Z",
-     "iopub.status.busy": "2026-04-15T21:01:53.524217Z",
-     "iopub.status.idle": "2026-04-15T21:01:53.897921Z",
-     "shell.execute_reply": "2026-04-15T21:01:53.897118Z"
+     "iopub.execute_input": "2026-04-17T10:47:56.178058Z",
+     "iopub.status.busy": "2026-04-17T10:47:56.177842Z",
+     "iopub.status.idle": "2026-04-17T10:47:56.597744Z",
+     "shell.execute_reply": "2026-04-17T10:47:56.596684Z"
     }
    },
    "outputs": [
@@ -413,7 +413,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c416a022",
+   "id": "801691a3",
    "metadata": {},
    "source": [
     "Finally the outer part of the domain"
@@ -422,13 +422,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "f075a9e6",
+   "id": "6a0d90b5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:53.899828Z",
-     "iopub.status.busy": "2026-04-15T21:01:53.899633Z",
-     "iopub.status.idle": "2026-04-15T21:01:54.238831Z",
-     "shell.execute_reply": "2026-04-15T21:01:54.237970Z"
+     "iopub.execute_input": "2026-04-17T10:47:56.599585Z",
+     "iopub.status.busy": "2026-04-17T10:47:56.599374Z",
+     "iopub.status.idle": "2026-04-17T10:47:56.987326Z",
+     "shell.execute_reply": "2026-04-17T10:47:56.986294Z"
     }
    },
    "outputs": [
@@ -474,7 +474,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "096c3d50",
+   "id": "44f355e3",
    "metadata": {},
    "source": [
     "Finally we solve a simple linear PDE but with some mixed boundary conditions taken\n",
@@ -484,13 +484,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "8a62d301",
+   "id": "1664f438",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:54.240692Z",
-     "iopub.status.busy": "2026-04-15T21:01:54.240510Z",
-     "iopub.status.idle": "2026-04-15T21:01:54.477229Z",
-     "shell.execute_reply": "2026-04-15T21:01:54.476323Z"
+     "iopub.execute_input": "2026-04-17T10:47:56.989096Z",
+     "iopub.status.busy": "2026-04-17T10:47:56.988906Z",
+     "iopub.status.idle": "2026-04-17T10:47:57.247533Z",
+     "shell.execute_reply": "2026-04-17T10:47:57.246409Z"
     }
    },
    "outputs": [
@@ -528,7 +528,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f0b9676d",
+   "id": "a07c84f3",
    "metadata": {},
    "source": [
     "Let’s compare with the exact solution"
@@ -537,13 +537,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "4de776cc",
+   "id": "62fa34a6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:54.479355Z",
-     "iopub.status.busy": "2026-04-15T21:01:54.479165Z",
-     "iopub.status.idle": "2026-04-15T21:01:54.860752Z",
-     "shell.execute_reply": "2026-04-15T21:01:54.860024Z"
+     "iopub.execute_input": "2026-04-17T10:47:57.249480Z",
+     "iopub.status.busy": "2026-04-17T10:47:57.249280Z",
+     "iopub.status.idle": "2026-04-17T10:47:57.654010Z",
+     "shell.execute_reply": "2026-04-17T10:47:57.652688Z"
     }
    },
    "outputs": [
@@ -565,7 +565,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7dbe27d6",
+   "id": "405c01b1",
    "metadata": {},
    "source": [
     "We already mentioned how the boundary ids are set on internal boundaries,\n",
@@ -577,13 +577,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "bf8cdbd1",
+   "id": "7184345d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-04-15T21:01:54.863103Z",
-     "iopub.status.busy": "2026-04-15T21:01:54.862879Z",
-     "iopub.status.idle": "2026-04-15T21:01:55.106154Z",
-     "shell.execute_reply": "2026-04-15T21:01:55.104966Z"
+     "iopub.execute_input": "2026-04-17T10:47:57.655973Z",
+     "iopub.status.busy": "2026-04-17T10:47:57.655766Z",
+     "iopub.status.idle": "2026-04-17T10:47:57.932005Z",
+     "shell.execute_reply": "2026-04-17T10:47:57.930909Z"
     }
    },
    "outputs": [
