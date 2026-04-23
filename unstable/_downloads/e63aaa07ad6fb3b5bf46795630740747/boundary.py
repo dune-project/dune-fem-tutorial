@@ -28,6 +28,7 @@
 
 # %%
 from matplotlib import ticker
+from matplotlib import pyplot as plt
 from dune.fem.plotting import plotComponents
 
 import numpy, io
@@ -213,6 +214,9 @@ plotComponents(vec, gridLines=None, level=2,
 # .. index:
 #    triple: Boundary; Dirichlet; Boundary Identifiers (ids)
 #
+# .. index:
+#    single: Boundary Ids
+#
 # ## Using boundary ids (and some more complex examples)
 #
 # Up until now we have used UFL boolean expressions to
@@ -220,14 +224,19 @@ plotComponents(vec, gridLines=None, level=2,
 # applied. In many cases different parts of the boundary are already marked
 # with ids (integers) during grid construction. These ids can also be used
 # to define where boundary conditions are to be applied.
-# At the moment to use boundary ids the grid has to be constructed using
-# the Dune Grid Format (dgf) reader. Please consult the [documentation of the
-# DGF file format](https://dune-project.org/doxygen/master/group__DuneGridFormatParser.html#details) for details
-# and [other examples given for grid construction](othergrids_nb.ipynb).
+# At the moment it is possible to use boundary ids using a `dict` to define
+# the grid, using boundary tagging with `gmsh`, or constructing the grid using
+# the Dune Grid Format (dgf) reader. Please consult the
+# [documentation of the DGF file format](https://dune-project.org/doxygen/master/group__DuneGridFormatParser.html#details)
+# for details.
+# In the section on [other examples given for grid construction](othergrids_nb.ipynb) provides more details.
 
 # %% [markdown]
 # .. index::
 #    triple: Boundary; Dirichlet; Cartesian Boundary Ids
+#
+# .. index::
+#    pair: Boundary Ids; Cartesian Boundary Ids
 #
 # ### Cartesian boundary ids
 #
@@ -245,6 +254,12 @@ plotComponents(vec, gridLines=None, level=2,
 # on the macro level of a grid. Descendants of macro intersections on the domain
 # boundary inherit the boundary id of their parent.
 #
+# We can use the utility grid function `dune.fem.function.boundaryFunction`
+# to visualize the boundary ids.
+
+# %%
+from dune.fem.function import boundaryFunction
+boundaryFunction(gridView).plot()
 
 # %% [markdown]
 # .. index::
@@ -290,7 +305,7 @@ scheme.solve(target=solution)
 solution.plot()
 
 # %% [markdown]
-# The final example has a slightly more complex setup at the boundary:
+# The next example has a slightly more complex setup at the boundary:
 #
 # - left and right (id=1 and id=2):
 #   for $y\in[0.4,0.6]$ we set Neumann conditions $\nabla u\cdot n=-50$
@@ -306,7 +321,6 @@ dbc   = [ DirichletBC(space, 1,        # not middle of left and right boundary
                  abs(x[1]-0.5)>0.1 ), abs(x[1]-0.5)<0.3 ) ),
           DirichletBC(space, 3,        # not middle of left and right boundary
             Not( And(BoundaryId(space)<=2,abs(x[1]-0.5)<0.3) ) ), ]
-
 scheme   = solutionScheme( [a == fbnd, *dbc] )
 solution = space.interpolate(0, name='u_h')
 scheme.solve(target=solution)
@@ -319,3 +333,87 @@ solution.plot()
 gridView.hierarchicalGrid.globalRefine(1)
 scheme.solve(target=solution)
 solution.plot()
+
+# %% [markdown]
+#
+# .. index:: pair: Grid construction; Boundary Ids
+#
+# .. index:: Boundary Ids; dictionary approach
+#
+# ### Using a dictionary to define the grid with boundary ids
+#
+# We have already used a dictionary to define the `vertices` and the
+# elements (in this case `cubes`) of the grid. In addition we can use the
+# `boundaries` key. In 2d the value for this key is a list of two vertex
+# indices and if boundary ids are to be used three integers, where the
+# first is the id and the other two are the vertex indices of the edge.
+# Finally we can define a default value for the boundary id used for
+# boundary segments not added otherwise - if this is not provided the
+# default id will be fixed to '1':
+#
+# .. note:: the following only works with the grid managers from the
+# `dune.alugrid` package:
+
+# %%
+import dune.alugrid
+domain = {'vertices': [[0.        , 0.        ],
+                       [1.        , 0.        ],
+                       [1.        , 1.1       ],
+                       [0.        , 1.1       ],
+                       [0.25      , 0.        ],
+                       [0.5       , 0.        ],
+                       [0.75      , 0.        ],
+                       [1.        , 0.19166667],
+                       [1.        , 0.55      ],
+                       [1.        , 0.74166667],
+                       [0.75      , 1.1       ],
+                       [0.5       , 1.1       ],
+                       [0.25      , 1.1       ],
+                       [0.        , 0.74166667],
+                       [0.        , 0.55      ],
+                       [0.        , 0.19166667],
+                       [0.25      , 0.35833333],
+                       [0.25      , 0.55      ],
+                       [0.25      , 0.90833333],
+                       [0.5       , 0.19166667],
+                       [0.5       , 0.55      ],
+                       [0.5       , 0.74166667],
+                       [0.75      , 0.35833333],
+                       [0.75      , 0.55      ],
+                       [0.75      , 0.90833333]],
+          'cubes': [[ 0,  4, 15, 16],
+                    [15, 16, 14, 17],
+                    [14, 17, 13, 18],
+                    [13, 18,  3, 12],
+                    [ 4,  5, 16, 19],
+                    [16, 19, 17, 20],
+                    [17, 20, 18, 21],
+                    [18, 21, 12, 11],
+                    [ 5,  6, 19, 22],
+                    [19, 22, 20, 23],
+                    [20, 23, 21, 24],
+                    [21, 24, 11, 10],
+                    [ 6,  1, 22,  7],
+                    [22,  7, 23,  8],
+                    [23,  8, 24,  9],
+                    [24,  9, 10,  2]],
+          'boundaries': [[2, 0, 4],
+                         [2, 4, 5],
+                         [2, 5, 6],
+                         [2, 6, 1],
+                         [2, 1, 7],
+                         [2, 7, 8],
+                         [2, 8, 9],
+                         [2, 9, 2]],
+          'defaultBndId': 5}
+gridView = dune.alugrid.aluCubeGrid(domain)
+gridView.plot()
+
+# %% [markdown]
+# As already mentioned refining the grid does not change the boundary ids:
+
+# %%
+fig, axs = plt.subplots(1, 2, figsize=(12,6))
+boundaryFunction(gridView).plot(gridLines="white", linewidth=3, figure=(fig,axs[0]))
+gridView.hierarchicalGrid.globalRefine(1)
+boundaryFunction(gridView).plot(gridLines="white", linewidth=3, figure=(fig,axs[1]))

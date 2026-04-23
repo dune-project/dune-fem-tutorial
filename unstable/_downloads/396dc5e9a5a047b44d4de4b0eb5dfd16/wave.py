@@ -58,8 +58,8 @@ import dune.fem as fem
 from dune.grid import reader
 from dune.alugrid import aluConformGrid as leafGridView
 from dune.fem.space import lagrange as solutionSpace
-from ufl import TrialFunction, TestFunction, grad, dot, dx
-from dune.ufl import Constant, BoxDirichletBC
+from ufl import TrialFunction, TestFunction, SpatialCoordinate, grad, dot, dx
+from dune.ufl import Constant, BoxDirichletBC, DirichletBC
 T = 3
 dt = 0.005
 t = 0
@@ -76,40 +76,43 @@ t = 0
 # [slit domain mesh](wave_tank.msh).
 
 # %%
-domain = (reader.gmsh, "wave_tank.msh")
+domain = (reader.meshio, "wave_tank.msh")
 gridView  = leafGridView( domain, dimgrid=2 )
 gridView.hierarchicalGrid.loadBalance()
 V = solutionSpace(gridView, order=1, storage="numpy")
+
+u    = TrialFunction(V)
+v    = TestFunction(V)
+x    = SpatialCoordinate(V)
 
 p      = V.interpolate(0,name="p")
 phi    = V.interpolate(0,name="phi")
 pVec   = p.as_numpy
 phiVec = phi.as_numpy
 
-
 # %% [markdown]
 # Next we define an operator for the stiffness matrix including the
 # boundary condition which are time dependent so we use a `Constant` for
-# this. We use the `BoxDirichletBC` class which is derived from the more
-# general `DirichletBC` class which takes a function space, the boundary
+# this. We will use the boundary ids (1 and 2) provided in the mesh file.
+# Alternatives are also shown based on the use of the `BoxDirichletBC` class which is derived from the more
+# general `DirichletBC` class. Both classes are constructed by providing a function space, the boundary
 # function $g$ as a ufl expression, and finally a description of the part
 # $\Gamma_D$ of the boundary where this boundary condition is defined.
-# This can be a ufl expression which evaluates to $0$ for
-# $x\not\in\Gamma_D$, e.g., an ufl `conditional`.
+# This can be an id (if the grid was constructed with ids provided),
+# a ufl expression which evaluates to $0$ for $x\not\in\Gamma_D$, e.g., an
+# ufl `conditional` or in the case of the `BoxDirichletBC` an interval.
 #
 # Note that the stiffness matrix does not depend on time so we can
 # assemble the matrix once and extract the corresponding `scipy`
 # sparse matrix.
 
 # %%
-u    = TrialFunction(V)
-v    = TestFunction(V)
 p_in = Constant(0.0, name="g")
-# the following is equivalent to
-# x    = SpatialCoordinate(V)
 # bc   = DirichletBC(V, p_in, conditional(x[0]<1e-10,1,0))
-bc   = BoxDirichletBC(V, p_in, [None,None],[0,None], eps=1e-10)
+# bc   = BoxDirichletBC(V, p_in, [None,None],[0,None], eps=1e-10)
+bc   = DirichletBC(V, p_in, 1)
 
+# %%
 from dune.fem.operator import galerkin
 op        = galerkin([dot(grad(u),grad(v))*dx,bc])
 S         = op.linear().as_numpy

@@ -6,7 +6,6 @@
    citing
    developers
    contributions
-   additional
    changelog
    versions
 

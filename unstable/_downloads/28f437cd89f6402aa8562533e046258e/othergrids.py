@@ -43,6 +43,8 @@ aluView.plot(figsize=(5,5))
 #
 # .. index:: Grid construction; gmsh (from file)
 #
+# ## Using gmsh/pygmsh
+#
 # There is also a `reader.gmsh` option allowing previously stored `gmsh` files to be
 # read. The [grid file](wave_tank.msh) is the one used in the [wave equation](wave_nb.ipynb) example.
 
@@ -55,7 +57,7 @@ waveGrid.plot(figure=pyplot.figure(figsize=(10,10)))
 #
 # .. index:: Grid construction; pygmsh
 #
-# ## 3D example (using PyGmsh)
+# ### 3D example (using PyGmsh)
 # In this example we use **pygmsh** to construct a tetrahedral mesh and solve a
 # simple Laplace problem.
 # The following code is taken from the **pygmsh** homepage.
@@ -103,22 +105,20 @@ gridView3d.writeVTK('3dexample', pointdata=[uh3d],
 
 # %% [markdown]
 #
-# .. index:: Grid construction; gmsh2dgf (from Python)
+# .. index:: Grid construction; mesh2dgf (from Python)
 #
-# ## Converting gmsh to DGF
+# ### Converting a mesh to DGF
 #
 # Using the above convenient way of generating grids
 # in Python we can then store those as DGF which allows to
 # add boundary ids of vertex and element parameters
-# in a simple way. Use `gmsh2DGF` from
-# [gmsh2dgf](gmsh2dgf_nb.ipynb) to convert the above `points` and `cells`
-# to a string which can be read by `reader.dgfString`.
+# in a simple way (see next section).
 #
 # %%
-from gmsh2dgf import gmsh2DGF
+from dune.grid.mesh2dgf import mesh2DGF
 from dune.grid import reader
 
-dgf = gmsh2DGF(points, cells)
+dgf, _,_ = mesh2DGF((points, cells))
 domain3d = (reader.dgfString, dgf)
 gridView3d  = leafGridView(domain3d, dimgrid=3)
 
@@ -133,8 +133,64 @@ with open ("3dmesh.dgf", "w") as file:
 
 # %% [markdown]
 #
-# .. index:: Grid construction; Boundary Ids
+# .. index:: Grid construction; meshio
 #
+# ## Using `meshio` to read a gmsh file
+#
+# We will use the `meshio` package to read a gmsh file, extract the points
+# and cells and use that to construct a Dune grid. The final part is then
+# quite similar to the above. We use the [2D grid](wave_tank.msh) from the
+# [wave equation](wave_nb.ipynb) test case. Note that this is a 2D grid but the points are
+# returned as 3D points so we need to remove the final columns containing
+# only zeros. We have already seen this grid above so let's zoom in to the
+# 'slit' region...
+#
+
+# %%
+try:
+    import numpy as np
+    import meshio
+    mesh = meshio.read("wave_tank.msh")
+    points = np.delete( mesh.points, 2, 1) # remove the z component from the points
+    cells = mesh.cells_dict
+    waveDomain = {"vertices":points.astype("float"), "simplices":cells["triangle"]}
+    waveGrid = leafGridView(waveDomain)
+    waveGrid.plot(figure=pyplot.figure(figsize=(10,10)),xlim=[0.3,1.7],ylim=[-0.2,1.2])
+except ImportError:
+    print("This example requires the meshio package which can be installed using pip.")
+
+# %% [markdown]
+#
+# .. index:: Grid construction; meshio (quadrilateral grids)
+#
+# Here is a second example where we want to read a [gmsh file](quads.msh) containing
+# quadrilateral elements. Note that the vertices of the cells are ordered
+# counterclockwise which is not identical to the ordering required by the
+# [Dune reference element](https://www.dune-project.org/doxygen/2.5.0/group__GeometryReferenceElements.html).
+# The last two vertices need to be exchanged:
+
+# %%
+if meshio:
+    from dune.alugrid import aluCubeGrid
+    mesh = meshio.read("quads.msh")
+    points2d = np.delete(mesh.points,2,1)
+    cells = mesh.cells_dict['quad']
+    cells[:, [2, 3]] = cells[:, [3, 2]]
+    domain = {"vertices":points2d, "cubes":cells}
+    quadGrid  = aluCubeGrid(domain)
+    quadGrid.plot()
+
+
+# %% [markdown]
+#
+# .. index:: pair: Grid construction; Boundary Ids
+#
+# .. index:: Boundary Ids; dgf and gmsh/pygmsh
+#
+# ## Providing IDs for boundary conditions using dgf and gmsh/pygmsh
+#
+# .. note:: the following only works with the grid managers from the
+# `dune.alugrid` package:
 #
 # ### Attaching boundary ids to a grid constructed with gmsh using DGF
 #
@@ -164,14 +220,14 @@ try:
 
         # Grid size function
         def size(dim, tag, x, y, z, lc):
-            resolution = 0.06
+            resolution = 0.1
             d = ((x - c)**2 + (y - c)**2)**0.5
             if d < 3 * r:
-                return 0.25*resolution
+                return 0.4*resolution
 
             d = ((x - (1-c))**2 + (y - (1-c))**2)**0.5
             if d < 3 * r:
-                return 0.25*resolution
+                return 0.4*resolution
 
             # default is a coarser mesh
             return resolution
@@ -201,7 +257,7 @@ try:
                     }
 
         # return dgf string which can be read by DGF parser or written to file for later use
-        dgf = gmsh2DGF(mesh.points, mesh.cells_dict, bndDomain=bndDomain, dim=2)
+        dgf, _,_ = mesh2DGF((mesh.points, mesh.cells_dict), bndDomain=bndDomain, dim=2)
         domain2d = (reader.dgfString, dgf)
 except ImportError: # pygmsh not installed - use a simple cartesian domain
     print("pygmsh module not found using a simple Cartesian domain - ignored")
@@ -213,69 +269,105 @@ gridView2d = leafGridView(domain2d, dimgrid=2)
 #
 # .. index:: Grid construction; Visualize boundary Ids
 #
+# .. index:: Boundary Ids; Visualize boundary Ids
+#
 # ### Visualizing Boundary Ids
 #
 # After construction of a grid we can visualize boundary ids
-# by assigning a piecewise constant function to hold the value of adjacent
-# boundaries. This is not necessarily unique but works in most cases.
-#
+# by assigning a discontinuous piecewise linear function to hold the value of
+# boundary faces (and zero towards the interior).
 
 # %%
-from gmsh2dgf import projectBoundaryIds
-
-bndIds = projectBoundaryIds( gridView2d )
-bndIds.plot()
+from dune.fem.function import boundaryFunction
+fig = pyplot.figure()
+boundaryFunction( gridView2d).plot(gridLines="white",linewidth=2,figure=fig)
+fig.get_axes()[0].set_facecolor("lightgray")
 
 # %% [markdown]
 #
-# .. index:: Grid construction; meshio
+# .. index:: Grid construction; reader.meshio
 #
-# ## Using `meshio` to read a gmsh file
+# .. index:: Boundary Ids; reader.meshio
 #
-# We will use the `meshio` package to read a gmsh file, extract the points
-# and cells and use that to construct a Dune grid. The final part is then
-# quite similar to the above. We use the [2D grid](wave_tank.msh) from the
-# [wave equation](wave_nb.ipynb) test case. Note that this is a 2D grid but the points are
-# returned as 3D points so we need to remove the final columns containing
-# only zeros. We have already seen this grid above so let's zoom in to the
-# 'slit' region...
-#
-# .. todo:: Add a way to describe boundary data when using `meshio`.
-#
-# %%
-try:
-    import numpy as np
-    import meshio
-    mesh = meshio.read("wave_tank.msh")
-    points = np.delete( mesh.points, 2, 1) # remove the z component from the points
-    cells = mesh.cells_dict
-    waveDomain = {"vertices":points.astype("float"), "simplices":cells["triangle"]}
-    waveGrid = leafGridView(waveDomain)
-    waveGrid.plot(figure=pyplot.figure(figsize=(10,10)),xlim=[0.3,1.7],ylim=[-0.2,1.2])
-except ImportError:
-    print("This example requires the meshio package which can be installed using pip.")
+# ### Using gmsh's 'add_physical` to set boundary ids
+# This is the same basic geometry as above:
 
+# %%
+import tempfile
+import gmsh
+import dune.alugrid
+
+# Initialize empty geometry using the build in kernel in GMSH
+with pygmsh.geo.Geometry() as geom:
+    L,H = 1, 1
+    c,r = 0.2, 0.05
+    # Grid size function
+    def size(dim, tag, x, y, z, lc):
+        resolution = 0.1
+        d = ((x - c)**2 + (y - c)**2)**0.5
+        if d < 3 * r:
+            return 0.4*resolution
+
+        d = ((x - (1-c))**2 + (y - (1-c))**2)**0.5
+        if d < 3 * r:
+            return 0.4*resolution
+
+        # default is a coarser mesh
+        return resolution
+
+    # Add obstacle
+    obs1 = geom.add_circle([c,c,0], r)
+    obs2 = geom.add_circle([1-c,1-c,0], r)
+    # Add points with finer resolution on left side
+    points = [
+        geom.add_point((0, 0, 0)),
+        geom.add_point((L, 0, 0)),
+        geom.add_point((L, H, 0)),
+        geom.add_point((0, H, 0))
+      ]
+    # Add lines between all points creating the rectangle
+    rectangle = [
+        geom.add_line(points[i], points[i + 1]) for i in range(-1, len(points) - 1)
+      ]
+    # Create a line loop and plane surface for meshing
+    rect_loop = geom.add_curve_loop(rectangle)
+    surface = geom.add_plane_surface(rect_loop, holes=[obs1.curve_loop,obs2.curve_loop])
+
+    # Call gmsh kernel before add physical entities
+    geom.synchronize()
+
+    # add boundary markers (this autoassigns numbers 0,1,2,)
+    # we need to add the option to renumber the names in the importMesh
+    # function (gmsh.field_data["inflow"][1] = 2 for example)
+    geom.add_physical([rectangle[0]], "Inflow")                 # 1
+    geom.add_physical([rectangle[2]], "Outflow")                # 2
+    geom.add_physical([surface], "Fluid")                       # 3 (will be ignored during import)
+    geom.add_physical(obs1.curve_loop.curves, "Obstacle1")      # 4
+    geom.add_physical(obs2.curve_loop.curves, "Obstacle2")      # 5
+
+    geom.set_mesh_size_callback(size)
+    geom.generate_mesh(dim=2, verbose=True, algorithm=8)
+    gmsh.model.mesh.recombine()
+
+    with tempfile.NamedTemporaryFile(suffix=".msh") as f:
+        gmsh.write(f.name)
+        # import mesh using '3' as default boundary id (for top/bottom) -
+        # if not prescribed then '1' will be used
+        gridView = dune.alugrid.aluGrid((reader.meshio,f.name),defaultBndId=3)
+
+fig = pyplot.figure()
+boundaryFunction(gridView).plot(gridLines="white",linewidth=2, figure=fig)
+fig.get_axes()[0].set_facecolor("lightgray")
 
 # %% [markdown]
-#
-# .. index:: Grid construction; meshio (quadrilateral grids)
-#
-# Here is a second example where we want to read a [gmsh file](quads.msh) containing
-# quadrilateral elements. Note that the vertices of the cells are ordered
-# counterclockwise which is not identical to the ordering required by the
-# [Dune reference element](https://www.dune-project.org/doxygen/2.5.0/group__GeometryReferenceElements.html).
-# The last two vertices need to be exchanged:
+# The `wave_tank` mesh file already used previously also contains boundary
+# tags. An simple way of extracting the grid and keeping the boundary ids
+# is to use the `meshio` reader:
 
 # %%
-if meshio:
-    from dune.alugrid import aluCubeGrid
-    mesh = meshio.read("quads.msh")
-    points2d = np.delete(mesh.points,2,1)
-    cells = mesh.cells_dict['quad']
-    cells[:, [2, 3]] = cells[:, [3, 2]]
-    domain = {"vertices":points2d, "cubes":cells}
-    quadGrid  = aluCubeGrid(domain)
-    quadGrid.plot()
+gridView = dune.alugrid.aluGrid((reader.meshio,"wave_tank.msh"))
+boundaryFunction(gridView).plot(gridLines="white", linewidth=1,
+                figure=pyplot.figure(figsize=(16,10)),xlim=[-0.05,1.2],ylim=[-0.1,0.6] )
 
 # %% [markdown]
 #
