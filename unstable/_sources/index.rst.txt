@@ -7,7 +7,7 @@ Welcome to the dune-fem tutorial (for version 'latest')
 
 This module brings python scripting support to `Dune`_.
 This version describes the bindings for the development version
-(to become 2.11). The bindings serves three purposes:
+(to become 2.12). The bindings serves three purposes:
 
 1. High level program control for solving partial differential equations
    using classes from the `Dune`_ core and from `Dune-Fem`_

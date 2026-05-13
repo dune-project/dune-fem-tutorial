@@ -330,9 +330,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -459,9 +460,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
@@ -514,7 +516,7 @@ This document is part of the dune-fem tutorial
 <span id="index-0"></span><h2>Setting up the Grid<a class="headerlink" href="#Setting-up-the-Grid" title="Link to this heading"></a></h2>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>The goal of a Dune <strong>grid</strong> or <strong>hierarchical grid</strong> is to provide an interface to describe subdivisions (entities or elements for codim 0) of the computational domain <span class="math notranslate nohighlight">\(\Omega\)</span> in a generic way. In the following this is referred to as <code class="docutils literal notranslate"><span class="pre">hierarchicalGrid</span></code>. See <span id="id1">[<a class="reference internal" href="index.html#id23" title="P. Bastian, M. Blatt, M. Dedner, N.-A. Dreier, R. Engwer, Ch. Fritze, C. Gräser, Ch. Grüninger, D. Kempf, R. Klöfkorn, M. Ohlberger, and O. Sander. The Dune framework: Basic concepts and recent developments. CAMWA, 2021. doi:10.1016/j.camwa.2020.06.007.">BBD+21</a>]</span>, Section 3.1, for more details.</p>
+<p>The goal of a Dune <strong>grid</strong> or <strong>hierarchical grid</strong> is to provide an interface to describe subdivisions (entities or elements for codim 0) of the computational domain <span class="math notranslate nohighlight">\(\Omega\)</span> in a generic way. In the following this is referred to as <code class="docutils literal notranslate"><span class="pre">hierarchicalGrid</span></code>. See <span class="bibtex-citation" id="id1">[<a class="reference internal" href="index.html#id23" title="P. Bastian, M. Blatt, M. Dedner, N.-A. Dreier, R. Engwer, Ch. Fritze, C. Gräser, Ch. Grüninger, D. Kempf, R. Klöfkorn, M. Ohlberger, and O. Sander. The Dune framework: Basic concepts and recent developments. CAMWA, 2021. doi:10.1016/j.camwa.2020.06.007.">BBD+21</a>]</span>, Section 3.1, for more details.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -545,7 +547,7 @@ This document is part of the dune-fem tutorial
 <p>Often the initial grid is a bit coarse - it is very easy to refine it globally.</p>
 <div class="admonition attention" id="index-2">
 <p class="admonition-title">Attention</p>
-<p>A <strong>grid view</strong> object provides read-only access to the entities of all codimensions of a subset of the <code class="docutils literal notranslate"><span class="pre">hierarchical</span> <span class="pre">grid</span></code>. In the following this is called <code class="docutils literal notranslate"><span class="pre">gridView</span></code> and sometimes simply <code class="docutils literal notranslate"><span class="pre">grid</span></code>. See <span id="id2">[<a class="reference internal" href="index.html#id23" title="P. Bastian, M. Blatt, M. Dedner, N.-A. Dreier, R. Engwer, Ch. Fritze, C. Gräser, Ch. Grüninger, D. Kempf, R. Klöfkorn, M. Ohlberger, and O. Sander. The Dune framework: Basic concepts and recent developments. CAMWA, 2021. doi:10.1016/j.camwa.2020.06.007.">BBD+21</a>]</span>, Section 3.1.1, for more details.</p>
+<p>A <strong>grid view</strong> object provides read-only access to the entities of all codimensions of a subset of the <code class="docutils literal notranslate"><span class="pre">hierarchical</span> <span class="pre">grid</span></code>. In the following this is called <code class="docutils literal notranslate"><span class="pre">gridView</span></code> and sometimes simply <code class="docutils literal notranslate"><span class="pre">grid</span></code>. See <span class="bibtex-citation" id="id2">[<a class="reference internal" href="index.html#id23" title="P. Bastian, M. Blatt, M. Dedner, N.-A. Dreier, R. Engwer, Ch. Fritze, C. Gräser, Ch. Grüninger, D. Kempf, R. Klöfkorn, M. Ohlberger, and O. Sander. The Dune framework: Basic concepts and recent developments. CAMWA, 2021. doi:10.1016/j.camwa.2020.06.007.">BBD+21</a>]</span>, Section 3.1.1, for more details.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1156,7 +1158,7 @@ Number of elements: 64 number of dofs: 289 H^1 error: 0.0016470196146885423
 </section>
 <section id="A-Nonlinear-Time-Dependent-Problem">
 <span id="index-18"></span><h2>A Nonlinear Time Dependent Problem<a class="headerlink" href="#A-Nonlinear-Time-Dependent-Problem" title="Link to this heading"></a></h2>
-<p>As a final example in this section we will study the Forchheimer problem <span id="id3">[<a class="reference internal" href="index.html#id10" title="T. Kieu. Galerkin Finite Element Method for Generalized Forchheimer Equation of Slightly Compressible Fluids in Porous Media. 2015. URL: https://arxiv.org/abs/1508.00294.">Kie15</a>]</span> which is a scalar, nonlinear parabolic equation <span class="math">\begin{equation}
+<p>As a final example in this section we will study the Forchheimer problem <span class="bibtex-citation" id="id3">[<a class="reference internal" href="index.html#id10" title="T. Kieu. Galerkin Finite Element Method for Generalized Forchheimer Equation of Slightly Compressible Fluids in Porous Media. 2015. URL: https://arxiv.org/abs/1508.00294.">Kie15</a>]</span> which is a scalar, nonlinear parabolic equation <span class="math">\begin{equation}
 \partial_tu - \nabla\cdot K(\nabla u)\nabla u = f
 \end{equation}</span> where the diffusion tensor is given by <span class="math">\begin{equation}
 K(\nabla u) = \frac{2}{1+\sqrt{1+4|\nabla u|}}
@@ -1506,7 +1508,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Apr 23, 2026.
+      <span class="lastupdated">Last updated on May 13, 2026.
       </span></p>
   </div>
 

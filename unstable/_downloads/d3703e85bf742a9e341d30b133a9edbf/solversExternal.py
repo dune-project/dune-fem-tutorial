@@ -9,7 +9,7 @@
 # use this backend. Available backends are `numpy,istl,petsc`. The default is
 # `numpy` which uses simple data structures and linear solvers implemented in
 # the `dune-fem` package - these backends were discussed
-# [in the previously section](solversInternal_nb.ipynb).
+# [in the previous section](solversInternal_nb.ipynb).
 #
 # As discussed there, a degrees of freedom
 # vector (dof vector) can be retrieved from a discrete function over the

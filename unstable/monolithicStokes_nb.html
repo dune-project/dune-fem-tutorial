@@ -330,9 +330,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -459,9 +460,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
@@ -615,7 +617,7 @@ Elements”). This combination is well-known for being LBB-stable / satisfying a
 </div>
 <section id="Bercovier-Engelmann-Testcase">
 <h3>Bercovier-Engelmann Testcase<a class="headerlink" href="#Bercovier-Engelmann-Testcase" title="Link to this heading"></a></h3>
-<p><a class="reference external" href="https://numtourcfd.pages.math.cnrs.fr/doc/NumtourCFD/v1.0.1-alpha.2/applications/validation/bercovier-engelman.html">Reference case with analytical solution</a> which was originally published in <span id="id1">[<a class="reference internal" href="index.html#id25" title="Michel Bercovier and Michael Engelman. A finite element for the numerical solution of viscous incompressible flows. Journal of Computational Physics, 30(2):181-201, 1979. doi:10.1016/0021-9991(79)90098-6.">BE79</a>]</span>. Equations for <span class="math notranslate nohighlight">\(f\)</span> are taken from the benchmark document <span id="id2">[<a class="reference internal" href="index.html#id26" title="P.-E. Angeli, M.-A. Puscas, G. Fauchet, and A. Cartalade. FVCA8 Benchmark for the Stokes and Navier–Stokes Equations with the TrioCFD Code—Benchmark Session. In Clément Cancès and Pascal Omnes, editors, Finite Volumes for Complex Applications VIII - Methods and Theoretical Aspects, 181–202. Springer, 2017. doi:10.1007/978-3-319-57397-7_12.">APFC17</a>]</span>:</p>
+<p><a class="reference external" href="https://numtourcfd.pages.math.cnrs.fr/doc/NumtourCFD/v1.0.1-alpha.2/applications/validation/bercovier-engelman.html">Reference case with analytical solution</a> which was originally published in <span class="bibtex-citation" id="id1">[<a class="reference internal" href="index.html#id25" title="Michel Bercovier and Michael Engelman. A finite element for the numerical solution of viscous incompressible flows. Journal of Computational Physics, 30(2):181-201, 1979. doi:10.1016/0021-9991(79)90098-6.">BE79</a>]</span>. Equations for <span class="math notranslate nohighlight">\(f\)</span> are taken from the benchmark document <span class="bibtex-citation" id="id2">[<a class="reference internal" href="index.html#id26" title="P.-E. Angeli, M.-A. Puscas, G. Fauchet, and A. Cartalade. FVCA8 Benchmark for the Stokes and Navier–Stokes Equations with the TrioCFD Code—Benchmark Session. In Clément Cancès and Pascal Omnes, editors, Finite Volumes for Complex Applications VIII - Methods and Theoretical Aspects, 181–202. Springer, 2017. doi:10.1007/978-3-319-57397-7_12.">APFC17</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[\Omega = [0,\,1]^2\]</div>
 <p>With <span class="math notranslate nohighlight">\(\mu\equiv 1\)</span> the problem has the analytical solution <span class="math">\begin{align*}
@@ -1184,7 +1186,7 @@ Test convergence with CG:
 Velocity polynomial order: 3
 Pressure polynomial order: 2
          linear iteratrion: 13
-         average pressure: 0.09403072439565868
+         average pressure: 0.09403072439563535
 Step: 0 , size: 49
          | p_h - p | = 2.58255e-05 , eoc = -
          | u_h - u | = 8.23162e-05 , eoc = -
@@ -1322,7 +1324,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Apr 23, 2026.
+      <span class="lastupdated">Last updated on May 13, 2026.
       </span></p>
   </div>
 

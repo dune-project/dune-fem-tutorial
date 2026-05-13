@@ -330,9 +330,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -459,9 +460,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
@@ -501,7 +503,7 @@ This document is part of the dune-fem tutorial
 <div class="line">Download <em>vemdemo</em> as <a class="reference download internal" download="" href="_downloads/4c9c1809f1478bf965f57e5f74a38068/vemdemo_nb.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(_nb.ipynb)</span></code></a> or as <a class="reference download internal" download="" href="_downloads/fedccb845e3837a7fb9a54cadda6c5e8/vemdemo.py"><code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></a></div>
 </div>
 </div>
-<p id="index-0">The main concepts of our virtual element implementation is provided in <span id="id1">[<a class="reference internal" href="index.html#id21" title="A. Dedner and A. Hodson. Robust nonconforming virtual element methods for general fourth-order problems with varying coefficients. IMA Journal of Numerical Analysis, :, 2021. doi:10.1093/imanum/drab003.">DH21</a>]</span> where we focus on the fourth order problems but the second order problems are discussed there as well.</p>
+<p id="index-0">The main concepts of our virtual element implementation is provided in <span class="bibtex-citation" id="id1">[<a class="reference internal" href="index.html#id21" title="A. Dedner and A. Hodson. Robust nonconforming virtual element methods for general fourth-order problems with varying coefficients. IMA Journal of Numerical Analysis, :, 2021. doi:10.1093/imanum/drab003.">DH21</a>]</span> where we focus on the fourth order problems but the second order problems are discussed there as well.</p>
 <section id="Elliptic-Problems">
 <h1>Elliptic Problems<a class="headerlink" href="#Elliptic-Problems" title="Link to this heading"></a></h1>
 <p>We first consider an elliptic problem with varying coefficients and Dirichlet boundary conditions <span class="math">\begin{align*}
@@ -698,7 +700,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.1989468648115339, 0.2713135670144779)
+Polygon diameters: (0.21227245794607064, 0.2664896503097202)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -769,11 +771,11 @@ Polygon diameters: (0.1989468648115339, 0.2713135670144779)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.02226537781252545 H^1:  0.3750999622544612 50
-method ( dg ): dofs:  525 L^2:  0.013470782232649876 H^1:  0.34985091904269916 488
-method ( vem-conforming ): dofs:  102 L^2:  0.024409626976352097 H^1:  0.35584548950455214 30
-method ( vem-nonconforming ): dofs:  151 L^2:  0.02046844119587583 H^1:  0.3714327540228114 32
-method ( bb-dg ): dofs:  150 L^2:  0.017833192728067528 H^1:  0.3766971523563781 84
+method ( lagrange ): dofs:  102 L^2:  0.01901296300586195 H^1:  0.38706023201512185 51
+method ( dg ): dofs:  522 L^2:  0.013554182837193412 H^1:  0.35947456153986784 509
+method ( vem-conforming ): dofs:  102 L^2:  0.0213182978705216 H^1:  0.34111009982928264 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019633627070360978 H^1:  0.34848968249563356 32
+method ( bb-dg ): dofs:  150 L^2:  0.022305932967400244 H^1:  0.37574783220042857 84
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -818,7 +820,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.017833192728067528 H^1:  0.3766971523563781
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.009514911431894799), np.float64(0.14714749669052224)]
+non linear problem: [np.float64(0.010432432881253461), np.float64(0.15094126012038755)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -994,7 +996,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(28.19360309137305), np.float64(159.94170595365412)]
+bi-laplace errors: [np.float64(28.047263807377504), np.float64(158.15027393692228)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1025,7 +1027,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Apr 23, 2026.
+      <span class="lastupdated">Last updated on May 13, 2026.
       </span></p>
   </div>
 

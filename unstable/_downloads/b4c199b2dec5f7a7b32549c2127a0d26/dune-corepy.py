@@ -204,14 +204,61 @@ for codim in range(0, unitSquare.dimension+1):
     for entity in unitSquare.entities(codim):
         print(", ".join(str(c) for c in entity.geometry.corners))
 
+# %% [markdown]
+# While the above `entities` method is dimension independent, convenience implementations exist,
+# such as `elements`,
+
+# %%
+for element in unitSquare.elements:
+    print(", ".join(str(element.geometry.center)))
+
+# %% [markdown]
+# or `vertices`, `edges` or `faces` (3d only).
+
+# %%
 for edge in unitSquare.edges:
     print(", ".join(str(c) for c in edge.geometry.corners))
 
 # %% [markdown]
-# In the above we have used the geometry method on the entity which
+# It is also possible to access sub-entities with the `subEntities` method
+# of a given entity of codimension 0, i.e. and element.
+# For example, vertices of a grid could also be accessed by the following
+# iteration
+
+# %%
+for element in unitSquare.elements:
+    print("Element vertices ")
+    for vertex in element.subEntities(unitSquare.dimension):
+        print(f" {vertex.geometry.center}")
+
+# %% [markdown]
+#
+# .. note:: Using this approach vertices might be visited several times compared
+# to the iterator approach where each vertex will only be visited once.
+
+# %% [markdown]
+# For some schemes or investigations the access of neighboring elements or boundaries might be needed.
+# Access for such is provided by the `intersection` iterator for elements (entities with codimension 0)
+
+# %%
+for element in unitSquare.elements:
+    for isec in unitSquare.intersections( element ):
+        # do something with neighbor
+        if isec.outside:
+            print(f"outside {isec.outside.geometry.center}")
+
+        # check if boundary segment
+        if isec.boundary:
+            print(f"boundary {isec.geometry.center} with normal {isec.centerUnitOuterNormal}")
+
+# %% [markdown]
+#
+# In the above examples we have used the `geometry` attribute on the entity which
 # provides the geometric mapping between the reference element of the
 # entity and it's position in physical space. We have used the corners
-# method to retrieve corners of the entity. Other properties and methods
+# attribute to retrieve corners of the entity. Other attributes and methods,
+# such as `toGlobal`, `toLocal`, `integrationElement`,
+# `jacobianInverseTransposed`, `center`, `corners`, `referenceElement` and more,
 # are available to provide volume or the integration element needed to
 # compute quadratures of a grid function over the element -
 # which is discussed in the next section.

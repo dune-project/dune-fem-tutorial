@@ -85,10 +85,11 @@ def getGridSpace(element,space,order, dim=2):
     else:
         spaceHDiv = bdfm(gridView,order = order+1)
 
+    maxOrder = 4 if dim == 2 else 1 # max polynomial order for DG space
     if element == "simplex" or not space == "RT":
-        spaceDG = dgonbhp(gridView, order = order)
+        spaceDG = dgonbhp(gridView, order = order, maxOrder = maxOrder)
     else:
-        spaceDG = dglegendrehp(gridView, order = order)
+        spaceDG = dglegendrehp(gridView, order = order, maxOrder = maxOrder)
     print(f"{mth} ({gridView.type}) order = {spaceHDiv.order}\n--------------------------------------",flush=True)
     return gridView, spaceHDiv, spaceDG
 

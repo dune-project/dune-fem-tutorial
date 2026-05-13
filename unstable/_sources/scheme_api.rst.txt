@@ -194,17 +194,11 @@ If a ``scheme`` is constructed including boundary conditions then the
 additional method available on the operator are available on the scheme as
 well.
 
-Additional
-----------
+Additional methods
+..................
 
 - ``virtualization``:
-
-Unclear
--------
-
 - ``dimRange``: is available on schemes.
   The following should be removed or on operator (same as ``scheme.rangeSpace.dimRange``
   or even ``scheme.space.dimRange=scheme.domainSpace.dimRange``)
 - ``gridSizeInterior``: is missing on scheme
-
-

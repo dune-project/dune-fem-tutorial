@@ -1,4 +1,5 @@
 # %% [markdown]
+# :orphan:
 
 # %%
 from matplotlib import pyplot

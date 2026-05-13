@@ -330,9 +330,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -459,9 +460,10 @@
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-without-dbc">Operator without DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#operator-with-dbc">Operator with DBC:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-without-dbc">Scheme without DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#additional">Additional</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#unclear">Unclear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scheme_api.html#scheme-with-dbc">Scheme with DBC:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scheme_api.html#additional-methods">Additional methods</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="todo.html">List of things that need doing…</a></li>
@@ -814,9 +816,6 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <span class="k">for</span> <span class="n">codim</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">dimension</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">entities</span><span class="p">(</span><span class="n">codim</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">entity</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">corners</span><span class="p">))</span>
-
-<span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">edge</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">corners</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -837,6 +836,42 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 (1.000000, 0.000000)
 (1.000000, 1.000000)
 (0.000000, 1.000000)
+</pre></div></div>
+</div>
+<p>While the above <code class="docutils literal notranslate"><span class="pre">entities</span></code> method is dimension independent, convenience implementations exist, such as <code class="docutils literal notranslate"><span class="pre">elements</span></code>,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">center</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+(, 0, ., 3, 3, 3, 3, 3, 3, ,,  , 0, ., 6, 6, 6, 6, 6, 7, )
+(, 0, ., 6, 6, 6, 6, 6, 7, ,,  , 0, ., 3, 3, 3, 3, 3, 3, )
+</pre></div></div>
+</div>
+<p>or <code class="docutils literal notranslate"><span class="pre">vertices</span></code>, <code class="docutils literal notranslate"><span class="pre">edges</span></code> or <code class="docutils literal notranslate"><span class="pre">faces</span></code> (3d only).</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">edge</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">corners</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
 (0.000000, 0.000000), (1.000000, 0.000000)
 (0.000000, 0.000000), (1.000000, 1.000000)
 (0.000000, 0.000000), (0.000000, 1.000000)
@@ -844,7 +879,69 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 (1.000000, 1.000000), (0.000000, 1.000000)
 </pre></div></div>
 </div>
-<p>In the above we have used the geometry method on the entity which provides the geometric mapping between the reference element of the entity and it’s position in physical space. We have used the corners method to retrieve corners of the entity. Other properties and methods are available to provide volume or the integration element needed to compute quadratures of a grid function over the element - which is discussed in the next section.</p>
+<p>It is also possible to access sub-entities with the <code class="docutils literal notranslate"><span class="pre">subEntities</span></code> method of a given entity of codimension 0, i.e. and element. For example, vertices of a grid could also be accessed by the following iteration</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Element vertices &quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">subEntities</span><span class="p">(</span><span class="n">unitSquare</span><span class="o">.</span><span class="n">dimension</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">vertex</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">center</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Element vertices
+ (0.000000, 0.000000)
+ (0.000000, 1.000000)
+ (1.000000, 1.000000)
+Element vertices
+ (1.000000, 1.000000)
+ (1.000000, 0.000000)
+ (0.000000, 0.000000)
+</pre></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Using this approach vertices might be visited several times compared to the iterator approach where each vertex will only be visited once.</p>
+</div>
+<p>For some schemes or investigations the access of neighboring elements or boundaries might be needed. Access for such is provided by the <code class="docutils literal notranslate"><span class="pre">intersection</span></code> iterator for elements (entities with codimension 0)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">isec</span> <span class="ow">in</span> <span class="n">unitSquare</span><span class="o">.</span><span class="n">intersections</span><span class="p">(</span> <span class="n">element</span> <span class="p">):</span>
+        <span class="c1"># do something with neighbor</span>
+        <span class="k">if</span> <span class="n">isec</span><span class="o">.</span><span class="n">outside</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;outside </span><span class="si">{</span><span class="n">isec</span><span class="o">.</span><span class="n">outside</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">center</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># check if boundary segment</span>
+        <span class="k">if</span> <span class="n">isec</span><span class="o">.</span><span class="n">boundary</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;boundary </span><span class="si">{</span><span class="n">isec</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">center</span><span class="si">}</span><span class="s2"> with normal </span><span class="si">{</span><span class="n">isec</span><span class="o">.</span><span class="n">centerUnitOuterNormal</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+boundary (0.000000, 0.500000) with normal (-1.000000, -0.000000)
+outside (0.666667, 0.333333)
+boundary (0.500000, 1.000000) with normal (0.000000, 1.000000)
+boundary (1.000000, 0.500000) with normal (1.000000, 0.000000)
+outside (0.333333, 0.666667)
+boundary (0.500000, 0.000000) with normal (0.000000, -1.000000)
+</pre></div></div>
+</div>
+<p>In the above examples we have used the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> attribute on the entity which provides the geometric mapping between the reference element of the entity and it’s position in physical space. We have used the corners attribute to retrieve corners of the entity. Other attributes and methods, such as <code class="docutils literal notranslate"><span class="pre">toGlobal</span></code>, <code class="docutils literal notranslate"><span class="pre">toLocal</span></code>, <code class="docutils literal notranslate"><span class="pre">integrationElement</span></code>, <code class="docutils literal notranslate"><span class="pre">jacobianInverseTransposed</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">corners</span></code>, <code class="docutils literal notranslate"><span class="pre">referenceElement</span></code> and more, are available to provide volume or the integration element
+needed to compute quadratures of a grid function over the element - which is discussed in the next section.</p>
 </section>
 </section>
 </section>
@@ -856,7 +953,7 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <p>in the following we will use the <code class="docutils literal notranslate"><span class="pre">gridFunction</span></code> decorator provided by <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code>. A very similar decorator is also available in <code class="docutils literal notranslate"><span class="pre">dune.grid</span></code> but the latter does not provide the option to use the grid functions in ufl expressions.</p>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">gridFunction</span><span class="p">(</span><span class="n">aluView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cos&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -882,26 +979,26 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/dune-corepy_nb_26_0.jpg" src="_images/dune-corepy_nb_26_0.jpg" />
+<img alt="_images/dune-corepy_nb_35_0.jpg" src="_images/dune-corepy_nb_35_0.jpg" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/dune-corepy_nb_26_1.jpg" src="_images/dune-corepy_nb_26_1.jpg" />
+<img alt="_images/dune-corepy_nb_35_1.jpg" src="_images/dune-corepy_nb_35_1.jpg" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/dune-corepy_nb_26_2.jpg" src="_images/dune-corepy_nb_26_2.jpg" />
+<img alt="_images/dune-corepy_nb_35_2.jpg" src="_images/dune-corepy_nb_35_2.jpg" />
 </div>
 </div>
 <p id="index-7">We can now use the quadrature rules discuss at the beginning of this chapter to compute the integral over each element of the grid function.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">quadratureRules</span>
@@ -926,7 +1023,7 @@ integral of function &#39;f&#39;: 0.07942992585030181
 </div>
 <p>There are some approach available to improve the efficiency of the computation of integrals since this is an important component of many grid based schemes. Especially, using vectorization can greatly reduce the complexity of the above loop:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">integral</span> <span class="o">=</span> <span class="mi">0</span>
@@ -951,7 +1048,7 @@ integral of function &#39;f&#39;: 0.07942992585030184
 </div>
 <p>Now a vector valued function</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># an easy case</span>
@@ -997,7 +1094,7 @@ integral of function &#39;g&#39;: [0.07942993 1.8       ]
 of freedom that is supposed to be attached to every entity with a given geometry type.</p>
 <p>In the following we first construct a mapper for a 2d cube grid attaching 2 dofs to each element (codimension 0), 4 to each edge (codimension 1), and 3 to each vertex (codimension 2):</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
@@ -1016,7 +1113,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 </div>
 <p>We can also use the reference element types from <code class="docutils literal notranslate"><span class="pre">dune.geometry</span></code> to define the layout</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="p">{</span><span class="n">dune</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">quadrilateral</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dune</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">triangle</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
@@ -1026,7 +1123,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 </div>
 <p>Finally here is an example of using the mapper to attach one degree of freedom per vertex and using that to define a piecewise linear Lagrange interpolation:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">interpolate</span><span class="p">(</span><span class="n">grid</span><span class="p">):</span>
@@ -1047,7 +1144,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 </div>
 <p>We can use a grid function to compute the error of the Lagrange interpolation at the barycenter of each triangle:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="n">gridFunction</span><span class="p">(</span><span class="n">aluView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
@@ -1071,7 +1168,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <p>the mapper describe here provides a slightly extended interface compared to the <a class="reference internal" href="concepts_nb.html#Discrete-Spaces"><span class="std std-ref">mappers available from discrete spaces</span></a> in <code class="docutils literal notranslate"><span class="pre">dune.fem</span></code>. While the mappers from the grid provide methods like <code class="docutils literal notranslate"><span class="pre">subIndices</span></code> and similar the mapper from the space only provide a method to obtain all indices attached to a given (codimension 0) entity. This method is also available in the mappers from the grid.</p>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">aluView</span><span class="o">.</span><span class="n">elements</span><span class="p">):</span>
@@ -1104,7 +1201,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <p>the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method will only work on 1d or 2d grids.</p>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p12dEvaluate</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mi">9</span><span class="p">),</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
@@ -1117,21 +1214,21 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/dune-corepy_nb_46_0.jpg" src="_images/dune-corepy_nb_46_0.jpg" />
+<img alt="_images/dune-corepy_nb_55_0.jpg" src="_images/dune-corepy_nb_55_0.jpg" />
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/dune-corepy_nb_46_1.jpg" src="_images/dune-corepy_nb_46_1.jpg" />
+<img alt="_images/dune-corepy_nb_55_1.jpg" src="_images/dune-corepy_nb_55_1.jpg" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/dune-corepy_nb_46_2.jpg" src="_images/dune-corepy_nb_46_2.jpg" />
+<img alt="_images/dune-corepy_nb_55_2.jpg" src="_images/dune-corepy_nb_55_2.jpg" />
 </div>
 </div>
 </section>
@@ -1139,7 +1236,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <h2>Paraview (vtu/vtk files)<a class="headerlink" href="#Paraview-(vtu/vtk-files)" title="Link to this heading"></a></h2>
 <p>Now we write out vtu files and use <code class="docutils literal notranslate"><span class="pre">pvpython</span></code> to prduce similar but 3d plots of the same functions</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;exact&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">,</span> <span class="s2">&quot;discrete&quot;</span><span class="p">:</span> <span class="n">p12dEvaluate</span><span class="p">,</span> <span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="n">error</span><span class="p">}</span>
@@ -1155,7 +1252,7 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <h2>Mayavi<a class="headerlink" href="#Mayavi" title="Link to this heading"></a></h2>
 <p>Mayavi can also be used to plot grid function in Python. This approach relies on methods to extract <code class="docutils literal notranslate"><span class="pre">numpy</span></code> representations of the grid data structure and values of a given grid function.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">level</span> <span class="o">=</span> <span class="mi">3</span>
@@ -1247,7 +1344,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Apr 23, 2026.
+      <span class="lastupdated">Last updated on May 13, 2026.
       </span></p>
   </div>
 
