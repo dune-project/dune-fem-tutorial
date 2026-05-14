@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TUTORIALWEB=https://dune-project.github.io/dune-fem-tutorial/
+TUTORIALWEB=https://dune-project.github.io/dune-fem-tutorial
 
 VERSIONS=
 while read arg; do
