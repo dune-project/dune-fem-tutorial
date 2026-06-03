@@ -1,3 +1,5 @@
+.. index:: Citing DUNE
+
 ###################
 Citing this project
 ###################
@@ -9,7 +11,6 @@ Title: Python Bindings for the DUNE-FEM module
 *Authors: Andreas Dedner, Martin Nolte, and Robert Klöfkorn*
 Publisher: Zenodoo, 2020
 DOI 10.5281/zenodo.3706994
-
 
 Note that the `Dune`_ project consists of a number of different modules which can be
 used through the Python interface described in this tutorial. Many people
