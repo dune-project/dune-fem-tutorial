@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "a03a37f4",
+   "id": "b31c57ac",
    "metadata": {},
    "source": [
     ".. index:: Equations; Wave Equation\n",
@@ -61,13 +61,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "239f221d",
+   "id": "0ad63e31",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:22.070142Z",
-     "iopub.status.busy": "2026-06-03T21:07:22.069872Z",
-     "iopub.status.idle": "2026-06-03T21:07:23.190092Z",
-     "shell.execute_reply": "2026-06-03T21:07:23.188930Z"
+     "iopub.execute_input": "2026-06-05T10:17:09.297315Z",
+     "iopub.status.busy": "2026-06-05T10:17:09.297145Z",
+     "iopub.status.idle": "2026-06-05T10:17:10.391833Z",
+     "shell.execute_reply": "2026-06-05T10:17:10.390700Z"
     }
    },
    "outputs": [],
@@ -87,7 +87,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2175ba11",
+   "id": "247c4528",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; gmsh (from file)\n",
@@ -104,13 +104,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "59ee4058",
+   "id": "70b6d714",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:23.192724Z",
-     "iopub.status.busy": "2026-06-03T21:07:23.192439Z",
-     "iopub.status.idle": "2026-06-03T21:07:24.667499Z",
-     "shell.execute_reply": "2026-06-03T21:07:24.666558Z"
+     "iopub.execute_input": "2026-06-05T10:17:10.394260Z",
+     "iopub.status.busy": "2026-06-05T10:17:10.393994Z",
+     "iopub.status.idle": "2026-06-05T10:17:11.918097Z",
+     "shell.execute_reply": "2026-06-05T10:17:11.917065Z"
     }
    },
    "outputs": [
@@ -140,7 +140,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "446e3197",
+   "id": "139a3b2c",
    "metadata": {},
    "source": [
     "Next we define an operator for the stiffness matrix including the\n",
@@ -162,13 +162,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "080cf3aa",
+   "id": "7eb32e8e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:24.669960Z",
-     "iopub.status.busy": "2026-06-03T21:07:24.669642Z",
-     "iopub.status.idle": "2026-06-03T21:07:24.673549Z",
-     "shell.execute_reply": "2026-06-03T21:07:24.672629Z"
+     "iopub.execute_input": "2026-06-05T10:17:11.920209Z",
+     "iopub.status.busy": "2026-06-05T10:17:11.919880Z",
+     "iopub.status.idle": "2026-06-05T10:17:11.924016Z",
+     "shell.execute_reply": "2026-06-05T10:17:11.923069Z"
     }
    },
    "outputs": [],
@@ -182,13 +182,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "0fccbd33",
+   "id": "650c4a58",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:24.675122Z",
-     "iopub.status.busy": "2026-06-03T21:07:24.674952Z",
-     "iopub.status.idle": "2026-06-03T21:07:57.990607Z",
-     "shell.execute_reply": "2026-06-03T21:07:57.989592Z"
+     "iopub.execute_input": "2026-06-05T10:17:11.925711Z",
+     "iopub.status.busy": "2026-06-05T10:17:11.925522Z",
+     "iopub.status.idle": "2026-06-05T10:17:44.814432Z",
+     "shell.execute_reply": "2026-06-05T10:17:44.813164Z"
     }
    },
    "outputs": [],
@@ -202,7 +202,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "dedfae10",
+   "id": "258ce778",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -219,13 +219,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "630ae77b",
+   "id": "6abaeaf8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:57.992567Z",
-     "iopub.status.busy": "2026-06-03T21:07:57.992269Z",
-     "iopub.status.idle": "2026-06-03T21:07:58.155063Z",
-     "shell.execute_reply": "2026-06-03T21:07:58.154102Z"
+     "iopub.execute_input": "2026-06-05T10:17:44.816177Z",
+     "iopub.status.busy": "2026-06-05T10:17:44.816003Z",
+     "iopub.status.idle": "2026-06-05T10:17:44.989892Z",
+     "shell.execute_reply": "2026-06-05T10:17:44.988966Z"
     }
    },
    "outputs": [],
@@ -236,7 +236,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e488a58c",
+   "id": "9c0bbb34",
    "metadata": {},
    "source": [
     "Another approach is to construct a mass operator $<L[u],\\varphi_i> = \\int_\\Omega u\\varphi_i$\n",
@@ -246,13 +246,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "0f703c04",
+   "id": "943a2f2c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:58.157254Z",
-     "iopub.status.busy": "2026-06-03T21:07:58.157058Z",
-     "iopub.status.idle": "2026-06-03T21:07:58.266485Z",
-     "shell.execute_reply": "2026-06-03T21:07:58.265913Z"
+     "iopub.execute_input": "2026-06-05T10:17:44.992256Z",
+     "iopub.status.busy": "2026-06-05T10:17:44.992082Z",
+     "iopub.status.idle": "2026-06-05T10:17:45.104645Z",
+     "shell.execute_reply": "2026-06-05T10:17:45.103543Z"
     }
    },
    "outputs": [],
@@ -268,7 +268,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "500bc3d8",
+   "id": "3a431d63",
    "metadata": {},
    "source": [
     "An alternative approach is to use an interpolation quadrature, where the\n",
@@ -283,13 +283,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "2504a62c",
+   "id": "e49a05ab",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:58.270505Z",
-     "iopub.status.busy": "2026-06-03T21:07:58.270298Z",
-     "iopub.status.idle": "2026-06-03T21:07:58.541582Z",
-     "shell.execute_reply": "2026-06-03T21:07:58.540542Z"
+     "iopub.execute_input": "2026-06-05T10:17:45.107679Z",
+     "iopub.status.busy": "2026-06-05T10:17:45.107443Z",
+     "iopub.status.idle": "2026-06-05T10:17:45.374255Z",
+     "shell.execute_reply": "2026-06-05T10:17:45.373197Z"
     }
    },
    "outputs": [],
@@ -303,7 +303,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9c6d486f",
+   "id": "2a5ff343",
    "metadata": {},
    "source": [
     "We can now set up the time loop and perform our explicit time stepping\n",
@@ -318,13 +318,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "c559f6bf",
+   "id": "edf4afe3",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-03T21:07:58.543493Z",
-     "iopub.status.busy": "2026-06-03T21:07:58.543314Z",
-     "iopub.status.idle": "2026-06-03T21:08:11.073308Z",
-     "shell.execute_reply": "2026-06-03T21:08:11.072330Z"
+     "iopub.execute_input": "2026-06-05T10:17:45.376203Z",
+     "iopub.status.busy": "2026-06-05T10:17:45.375982Z",
+     "iopub.status.idle": "2026-06-05T10:17:59.963623Z",
+     "shell.execute_reply": "2026-06-05T10:17:59.962498Z"
     }
    },
    "outputs": [
