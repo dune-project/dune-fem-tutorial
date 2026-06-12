@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saddle point solver for the stationary Stokes problem &mdash; Tutorial for version 2.11-git</title>
+  <title>Since 2.11 release &mdash; Tutorial for version 2.11-git</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
@@ -21,8 +21,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Monolithic solver (Lagrange and DG formulation)" href="monolithicStokes_nb.html" />
-    <link rel="prev" title="Wave Equation: double slit domain (using mass lumping)" href="wave_nb.html" /> 
+    <link rel="next" title="DUNE-FEM Tutorial Versions" href="versions.html" />
+    <link rel="prev" title="Since 2.10 release" href="changelog210.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,8 +55,8 @@
 <li class="toctree-l1"><a class="reference internal" href="overview.html">An Overview of this Document</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Teasers</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="furtherexamples.html">Main Gallery</a><ul class="current">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="furtherexamples.html">Main Gallery</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
@@ -65,7 +65,7 @@
 <li class="toctree-l2"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wave_nb.html">Wave Equation: double slit domain (using mass lumping)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
@@ -238,7 +238,7 @@
 </li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Examples</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="discontinuousgalerkin_nb.html">Discontinuous Galerkin Methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html#Advection-Diffusion:-Discontinuous-Galerkin-Method-with-Upwinding">Advection-Diffusion: Discontinuous Galerkin Method with Upwinding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="discontinuousgalerkin_nb.html#A-linear-transport-problem">A linear transport problem</a></li>
@@ -247,7 +247,7 @@
 <li class="toctree-l1"><a class="reference internal" href="elasticity_nb.html">Linear Elasticity: a deformed beam</a></li>
 <li class="toctree-l1"><a class="reference internal" href="spiral_nb.html">Time Dependent Reaction Diffuison: spiral wave</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wave_nb.html">Wave Equation: double slit domain (using mass lumping)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Saddle point solver for the stationary Stokes problem</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="stokes.html">Saddle point solver for the stationary Stokes problem</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="monolithicStokes_nb.html#Taylor-Hood-formulation">Taylor-Hood formulation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="monolithicStokes_nb.html#Bercovier-Engelmann-Testcase">Bercovier-Engelmann Testcase</a></li>
@@ -387,7 +387,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ddfem_descr.html">DDFEM: Diffuse Domain Python package</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Information and Resources</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="citing.html">Citing this project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="developers.html">Information for C++ Developers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="developers.html#remove-and-rebuild-existing-modules">Remove and rebuild existing modules</a></li>
@@ -397,7 +397,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contributions.html">Contributing to this tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributions.html#how-to-showcase-your-own-work">How to showcase your own work</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="changelog.html">Changelog</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="changelog290.html">Since 2.9 release</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog290.html#general-changes">General changes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="changelog290.html#updating-to-newer-version-of-ufl">Updating to newer version of UFL</a></li>
@@ -444,11 +444,11 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog212.html">Since 2.11 release</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog212.html#breaking-changes">Breaking changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog212.html#general-changes">General changes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog212.html#features">Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog212.html#bugfixes">Bugfixes</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Since 2.11 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#breaking-changes">Breaking changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-changes">General changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bugfixes">Bugfixes</a></li>
 </ul>
 </li>
 </ul>
@@ -487,28 +487,57 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="furtherexamples.html">Main Gallery</a></li>
-      <li class="breadcrumb-item active">Saddle point solver for the stationary Stokes problem</li>
+          <li class="breadcrumb-item"><a href="inforesources.html">Keyword index</a></li>
+          <li class="breadcrumb-item"><a href="changelog.html">Changelog</a></li>
+      <li class="breadcrumb-item active">Since 2.11 release</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="wave_nb.html" class="btn btn-neutral float-left" title="Wave Equation: double slit domain (using mass lumping)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="monolithicStokes_nb.html" class="btn btn-neutral float-right" title="Monolithic solver (Lagrange and DG formulation)" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="changelog210.html" class="btn btn-neutral float-left" title="Since 2.10 release" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="versions.html" class="btn btn-neutral float-right" title="DUNE-FEM Tutorial Versions" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="saddle-point-solver-for-the-stationary-stokes-problem">
-<h1>Saddle point solver for the stationary Stokes problem<a class="headerlink" href="#saddle-point-solver-for-the-stationary-stokes-problem" title="Link to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="monolithicStokes_nb.html">Monolithic solver (Lagrange and DG formulation)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fieldsplitStokes_nb.html">Stokes problem with fieldsplit preconditioner (PETSc)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="uzawa-scipy_nb.html">(Quasi) Stokes equations (Scipy based Uzawa scheme)</a></li>
+  <section id="since-2-11-release">
+<h1>Since 2.11 release<a class="headerlink" href="#since-2-11-release" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#breaking-changes" id="id1">Breaking changes</a></p></li>
+<li><p><a class="reference internal" href="#general-changes" id="id2">General changes</a></p></li>
+<li><p><a class="reference internal" href="#features" id="id3">Features</a></p></li>
+<li><p><a class="reference internal" href="#bugfixes" id="id4">Bugfixes</a></p></li>
 </ul>
-</div>
+</nav>
+<section id="breaking-changes">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Breaking changes</a><a class="headerlink" href="#breaking-changes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The implementation of <cite>CellDiameter</cite> was corrected. Before it would behave
+like <cite>MaxCellEdgeLength</cite> but now it’s correctly computing the maximum distance
+between two points in an element. To keep the previous behavior, one should
+switch to <cite>MaxCellEdgeLength</cite>. Otherwise, use <cite>dune.ufl.DuneCellDiameter</cite>.</p></li>
+</ul>
+</section>
+<section id="general-changes">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">General changes</a><a class="headerlink" href="#general-changes" title="Link to this heading"></a></h2>
+</section>
+<section id="features">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Features</a><a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>UFLs <cite>CellAvg</cite> is now supported to compute the cell average of a quantity.</p></li>
+<li><p>BDFM space for cubes was implemented.</p></li>
+<li><p>RT0 for tetrahedrons was added.</p></li>
+<li><p>Eisenstat-Walker can now be configured by the user.</p></li>
+</ul>
+</section>
+<section id="bugfixes">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Bugfixes</a><a class="headerlink" href="#bugfixes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Unique face orientation for RT and BDM spaces changed to a simpler
+implementation.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">orphan<span class="colon">:</span></dt>
 <dd class="field-odd"><p></p></dd>
@@ -516,13 +545,14 @@
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3706994"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" />
 </a>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="wave_nb.html" class="btn btn-neutral float-left" title="Wave Equation: double slit domain (using mass lumping)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="monolithicStokes_nb.html" class="btn btn-neutral float-right" title="Monolithic solver (Lagrange and DG formulation)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="changelog210.html" class="btn btn-neutral float-left" title="Since 2.10 release" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="versions.html" class="btn btn-neutral float-right" title="DUNE-FEM Tutorial Versions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

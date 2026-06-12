@@ -447,6 +447,13 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="changelog212.html">Since 2.11 release</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog212.html#breaking-changes">Breaking changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog212.html#general-changes">General changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog212.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog212.html#bugfixes">Bugfixes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="versions.html">DUNE-FEM Tutorial Versions</a></li>
@@ -506,9 +513,7 @@ This document is part of the dune-fem tutorial
 <section id="Examples-of-grid-construction">
 <span id="index-0"></span><h1>Examples of grid construction<a class="headerlink" href="#Examples-of-grid-construction" title="Link to this heading"></a></h1>
 <p>In addition to the already discussed construction of Cartesian grid using <code class="docutils literal notranslate"><span class="pre">dune.grid.structuredGrid</span></code> and <code class="docutils literal notranslate"><span class="pre">dune.grid.cartesianDomain</span></code> and the usage of dictionaries discussed in the <a class="reference internal" href="dune-corepy_nb.html"><span class="doc">general concepts section</span></a>, it is also possible to read grid files using either the <code class="docutils literal notranslate"><span class="pre">DGF</span></code> or <code class="docutils literal notranslate"><span class="pre">gmsh</span></code> format (or other formats available through the <code class="docutils literal notranslate"><span class="pre">meshio</span></code> package).</p>
-.. contents::
-   :local:
-   :depth: 2<div class="nbinput nblast docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -531,7 +536,7 @@ This document is part of the dune-fem tutorial
 <p>The DGF is ASCII based and thus only meant for prototyping and testing. For serious computations use <code class="docutils literal notranslate"><span class="pre">meshio</span></code> or the <a class="reference internal" href="backuprestore_nb.html"><span class="doc">pickling approach</span></a>.</p>
 </div>
 <p>We start with a simple <a class="reference external" href="triangle.dgf">grid of triangles</a></p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
@@ -541,13 +546,6 @@ This document is part of the dune-fem tutorial
 <span class="n">aluView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span><span class="n">domain2d</span><span class="p">,</span> <span class="n">dimgrid</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">aluView</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/othergrids_nb_4_0.jpg" src="_images/othergrids_nb_4_0.jpg" />
 </div>
 </div>
 </section>
@@ -568,8 +566,9 @@ This document is part of the dune-fem tutorial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_6_0.jpg" src="_images/othergrids_nb_6_0.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 500x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <section id="3D-example-(using-PyGmsh)">
 <span id="index-3"></span><h3>3D example (using PyGmsh)<a class="headerlink" href="#3D-example-(using-PyGmsh)" title="Link to this heading"></a></h3>
@@ -683,8 +682,9 @@ This document is part of the dune-fem tutorial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_15_1.jpg" src="_images/othergrids_nb_15_1.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 500x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p id="index-6">Here is a second example where we want to read a <a class="reference external" href="quads.msh">gmsh file</a> containing quadrilateral elements. Note that the vertices of the cells are ordered counterclockwise which is not identical to the ordering required by the <a class="reference external" href="https://www.dune-project.org/doxygen/2.5.0/group__GeometryReferenceElements.html">Dune reference element</a>. The last two vertices need to be exchanged:</p>
 <div class="nbinput docutils container">
@@ -703,20 +703,13 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
 </pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/othergrids_nb_17_1.jpg" src="_images/othergrids_nb_17_1.jpg" />
-</div>
 </div>
 </section>
 <section id="Providing-IDs-for-boundary-conditions-using-dgf-and-gmsh/pygmsh">
@@ -814,7 +807,8 @@ This document is part of the dune-fem tutorial
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">boundaryFunction</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">boundaryFunction</span><span class="p">(</span> <span class="n">gridView2d</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;lightgray&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;lightgray&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -822,8 +816,9 @@ This document is part of the dune-fem tutorial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_21_0.jpg" src="_images/othergrids_nb_21_0.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 320x240 with 0 Axes&gt;
+</pre></div></div>
 </div>
 </section>
 <section id="Using-gmsh's-'add_physical`-to-set-boundary-ids">
@@ -897,7 +892,8 @@ This document is part of the dune-fem tutorial
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">boundaryFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;lightgray&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span> <span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">get_axes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;lightgray&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -917,22 +913,22 @@ Info    : [ 70%] Meshing curve 7 (Line)
 Info    : [ 80%] Meshing curve 8 (Line)
 Info    : [ 90%] Meshing curve 9 (Line)
 Info    : [100%] Meshing curve 10 (Line)
-Info    : Done meshing 1D (Wall 0.00300907s, CPU 0.00351s)
+Info    : Done meshing 1D (Wall 0.00285754s, CPU 0.003092s)
 Info    : Meshing 2D...
 Info    : [  0%] Meshing surface 1 (Plane, Frontal-Delaunay for Quads)
 Info    : [ 40%] Meshing surface 2 (Plane, Frontal-Delaunay for Quads)
 Info    : [ 70%] Meshing surface 3 (Plane, Frontal-Delaunay for Quads)
-Info    : Done meshing 2D (Wall 0.00998813s, CPU 0.010142s)
+Info    : Done meshing 2D (Wall 0.00866678s, CPU 0.008709s)
 Info    : 210 nodes 444 elements
 Info    : Recombining 2D mesh...
-Info    : Blossom recombination completed (Wall 0.000280692s, CPU 0.000279s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.698908, min Q = 0.444444
-Info    : Blossom recombination completed (Wall 0.000263725s, CPU 0.00062s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.698835, min Q = 0.444444
+Info    : Blossom recombination completed (Wall 0.000312763s, CPU 0.00052s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.698908, min Q = 0.444444
+Info    : Blossom recombination completed (Wall 0.000358057s, CPU 0.000607s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.698835, min Q = 0.444444
 Info    : Blossom: 493 internal 57 closed
-Info    : Blossom recombination completed (Wall 0.00616678s, CPU 0.006772s): 173 quads, 0 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.758466, min Q = 0.383231
-Info    : Done recombining 2D mesh (Wall 0.0067928s, CPU 0.007748s)
-Info    : Writing &#39;/tmp/tmpy70a_2an.msh&#39;...
-Info    : Done writing &#39;/tmp/tmpy70a_2an.msh&#39;
+Info    : Blossom recombination completed (Wall 0.00507776s, CPU 0.005158s): 173 quads, 0 triangles, 0 invalid quads, 0 quads with Q &lt; 0.1, avg Q = 0.758466, min Q = 0.383231
+Info    : Done recombining 2D mesh (Wall 0.00582788s, CPU 0.006354s)
+Info    : Writing &#39;/tmp/tmp0pth9gak.msh&#39;...
 
+Info    : Done writing &#39;/tmp/tmp0pth9gak.msh&#39;
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -948,8 +944,9 @@ Warning : Cannot apply Blossom: odd number of triangles (13) in surface 2
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_23_2.jpg" src="_images/othergrids_nb_23_2.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 320x240 with 0 Axes&gt;
+</pre></div></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">wave_tank</span></code> mesh file already used previously also contains boundary tags. An simple way of extracting the grid and keeping the boundary ids is to use the <code class="docutils literal notranslate"><span class="pre">meshio</span></code> reader:</p>
 <div class="nbinput docutils container">
@@ -974,15 +971,16 @@ Warning : Cannot apply Blossom: odd number of triangles (13) in surface 2
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_25_1.jpg" src="_images/othergrids_nb_25_1.jpg" />
-</div>
+<div class="highlight"><pre>
+&lt;Figure size 800x500 with 0 Axes&gt;
+</pre></div></div>
 </div>
 </section>
 </section>
 <section id="1D-example">
 <h2>1D example<a class="headerlink" href="#1D-example" title="Link to this heading"></a></h2>
 <p>It’s also possible to create grids in 1D</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
@@ -995,13 +993,6 @@ Warning : Cannot apply Blossom: odd number of triangles (13) in surface 2
 <span class="n">u</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
 <span class="n">u</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/othergrids_nb_27_0.jpg" src="_images/othergrids_nb_27_0.jpg" />
 </div>
 </div>
 <p>pyplot can very easily be used in 1d using the <code class="docutils literal notranslate"><span class="pre">tessellate</span></code> method on the grid which will be described in more detail in the section about the bindings for the full <a class="reference internal" href="dune-corepy_nb.html"><span class="doc">dune grid interface</span></a>.</p>
@@ -1019,14 +1010,14 @@ Warning : Cannot apply Blossom: odd number of triangles (13) in surface 2
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7914cc06fa70&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7ff4203d4c20&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/othergrids_nb_29_1.jpg" src="_images/othergrids_nb_29_1.jpg" />
+<img alt="_images/othergrids_nb_28_1.jpg" src="_images/othergrids_nb_28_1.jpg" />
 </div>
 </div>
 </section>
@@ -1051,7 +1042,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 05, 2026.
+      <span class="lastupdated">Last updated on Jun 12, 2026.
       </span></p>
   </div>
 

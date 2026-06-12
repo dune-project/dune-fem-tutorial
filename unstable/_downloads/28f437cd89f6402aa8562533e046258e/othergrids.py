@@ -281,7 +281,8 @@ gridView2d = leafGridView(domain2d, dimgrid=2)
 from dune.fem.function import boundaryFunction
 fig = pyplot.figure()
 boundaryFunction( gridView2d).plot(gridLines="white",linewidth=2,figure=fig)
-fig.get_axes()[0].set_facecolor("lightgray")
+if len( fig.get_axes() ) > 0:
+    fig.get_axes()[0].set_facecolor("lightgray")
 
 # %% [markdown]
 #
@@ -357,7 +358,8 @@ with pygmsh.geo.Geometry() as geom:
 
 fig = pyplot.figure()
 boundaryFunction(gridView).plot(gridLines="white",linewidth=2, figure=fig)
-fig.get_axes()[0].set_facecolor("lightgray")
+if len( fig.get_axes() ) > 0:
+    fig.get_axes()[0].set_facecolor("lightgray")
 
 # %% [markdown]
 # The `wave_tank` mesh file already used previously also contains boundary
