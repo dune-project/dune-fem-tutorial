@@ -171,7 +171,7 @@ solverParameters =\
         "linear.tolerance": 1e-11,
         "linear.preconditioning.method": "jacobi",
         "nonlinear.verbose": False,
-        "linear.preconditioning.iteration": 3}
+        "linear.preconditioning.iterations": 3}
 # setup scheme
 scheme = solutionScheme([form == 0, bc], space, solver="cg",
                         parameters=solverParameters)

@@ -287,7 +287,7 @@ u_h.plot()
 try:
     import scikits.umfpack as um
 except ModuleNotFoundError:
-    print("can not import scikits.umfpacl ")
+    print("can not import scikits.umfpack ")
     um = None
 
 # %% [markdown]

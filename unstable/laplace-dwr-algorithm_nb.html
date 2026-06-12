@@ -723,7 +723,6 @@ double pointFunctional(const Point &amp;point, Functional &amp;functional, Error
         <span class="c1"># update refinement tolerance</span>
         <span class="n">hTol</span> <span class="o">=</span> <span class="n">eta</span><span class="o">/</span><span class="n">uh</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">fem</span><span class="o">.</span><span class="n">gridAdapt</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">uh</span><span class="p">)</span> <span class="c1"># can also be a list or tuple of function to prolong/restrict</span>
-        <span class="n">fem</span><span class="o">.</span><span class="n">loadBalance</span><span class="p">(</span><span class="n">uh</span><span class="p">)</span>
         <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">plot</span><span class="p">(</span><span class="n">uh</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="mi">122</span><span class="p">),</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -743,9 +742,9 @@ double pointFunctional(const Point &amp;point, Functional &amp;functional, Error
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2 : size= 49 estimate= 0.0021727727683382566 error= 0.0013543219723588518
-5 : size= 115 estimate= 0.0005316985104488464 error= 0.0005407738706247889
-8 : size= 217 estimate= 0.00016016431031228712 error= 0.00015909061405922076
+2 : size= 49 estimate= 0.002172772768082819 error= 0.0013543219723587963
+5 : size= 115 estimate= 0.0005316985104455623 error= 0.0005407738706248444
+8 : size= 217 estimate= 0.00016016431048617577 error= 0.00015909061563024185
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -769,10 +768,10 @@ double pointFunctional(const Point &amp;point, Functional &amp;functional, Error
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2 : size= 481 estimate= 3.5537253724533654e-05 error= 3.468638369930055e-05
-5 : size= 873 estimate= 1.1729409214813716e-05 error= 1.1534183750605553e-05
-8 : size= 1527 estimate= 3.7340634303919675e-06 error= 3.5763659909648915e-06
-11 : size= 2736 estimate= 1.2372474839687126e-06 error= 1.1891840895339456e-06
+2 : size= 481 estimate= 3.553725371568126e-05 error= 3.468638369896748e-05
+5 : size= 873 estimate= 1.17294087382456e-05 error= 1.1534183750272486e-05
+8 : size= 1527 estimate= 3.734063227065169e-06 error= 3.576365992241648e-06
+11 : size= 2736 estimate= 1.2372474849273728e-06 error= 1.1891840688837974e-06
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">

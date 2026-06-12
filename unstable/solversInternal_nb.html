@@ -583,14 +583,21 @@ to <span class="math notranslate nohighlight">\(10^{-8}\)</span>. In addition we
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Default L^2, H^1 error: 1.20362e-06, 1.83003e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 252, &#39;timing&#39;: [0.026355596, 0.0087408, 0.017614796]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 252, &#39;timing&#39;: [0.026825667, 0.008847415999999999, 0.017978251]}
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/solversInternal_nb_5_1.jpg" src="_images/solversInternal_nb_5_1.jpg" />
+</div>
 </div>
 <section id="Python-sided-Newton-solver">
 <h2>Python sided Newton solver<a class="headerlink" href="#Python-sided-Newton-solver" title="Link to this heading"></a></h2>
@@ -765,7 +772,7 @@ Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.010478958, 0.002983155, 0.0074958030000000005]}
+{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.011823732, 0.003192378, 0.008631354]}
 </pre></div></div>
 </div>
 <div class="admonition tip">
@@ -791,7 +798,7 @@ Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
 </div>
 <p>So far everything is as before. Dirichlet boundary conditions are handled in the matrix through changing all rows associated with boundary degrees of freedom to unit rows - associated columns are not changed so the matrix will not be symmetric anymore. For solving the system we need to modify the right hand side and the initial guess for the iterative solver to include the boundary values (to counter the missing symmetry). We can use the first of the three versions of the <code class="docutils literal notranslate"><span class="pre">setConstraints</span></code>
 methods on the scheme class discussed in the section on <a class="reference internal" href="boundary_nb.html#Accessing-the-Dirichlet-degrees-of-freedom"><span class="std std-ref">more general boundary conditions</span></a>.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
@@ -805,6 +812,13 @@ methods on the scheme class discussed in the section on <a class="reference inte
 <span class="n">lin</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rightHandSide</span><span class="o">=</span><span class="n">rhs</span><span class="p">,</span><span class="n">target</span><span class="o">=</span><span class="n">sol</span><span class="p">)</span>
 <span class="n">sol</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/solversInternal_nb_19_0.jpg" src="_images/solversInternal_nb_19_0.jpg" />
 </div>
 </div>
 <p>Let’s revisit our two implementations of the Newton method discussed above but with Dirichlet conditions on the whole boundary:</p>
@@ -910,7 +924,7 @@ Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.057090904, 0.028823335999999998, 0.028267568]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.060830753, 0.029777502, 0.031053251]}
 </pre></div></div>
 </div>
 </section>
@@ -941,7 +955,7 @@ PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Dune-Istl L^2, H^1 error: 1.17597e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.07824696, 0.00842524, 0.06982172]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.079185366, 0.008541723, 0.07064364299999999]}
 </pre></div></div>
 </div>
 </section>
@@ -986,8 +1000,8 @@ that is used in the output.</p>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Fem::CG preconditioning=jacobi
-Fem::CG it: 0 : residual 3.14786e-13
-Fem::CG it: 1 : residual 1.08052e-13
+Fem::CG it: 0 : residual 3.14787e-13
+Fem::CG it: 1 : residual 1.08053e-13
 </pre></div></div>
 </div>
 <p>We use the <code class="docutils literal notranslate"><span class="pre">pprint</span></code> (pretty print) module if available to get nicer output.</p>
@@ -1010,7 +1024,7 @@ Fem::CG it: 1 : residual 1.08052e-13
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;default&#39;: {(&#39;fem.threads.communicationthread&#39;, &#39;false&#39;), (&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;), (&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;)},
+{&#39;default&#39;: {(&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;), (&#39;fem.threads.communicationthread&#39;, &#39;false&#39;), (&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;)},
  &#39;log-jacobi&#39;: {(&#39;fem.solver.linear.maxiterations&#39;, &#39;2147483647&#39;),
                 (&#39;fem.solver.linear.preconditioning.iterations&#39;, &#39;1&#39;),
                 (&#39;fem.solver.linear.preconditioning.relaxation&#39;, &#39;1.1&#39;),

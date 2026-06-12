@@ -1,6 +1,3 @@
-# %% [markdown]
-# :orphan:
-
 # %%
 from matplotlib import pyplot
 from ufl import sqrt, SpatialCoordinate, as_vector

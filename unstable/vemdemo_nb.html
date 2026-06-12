@@ -571,7 +571,7 @@ u(x,y) &= xy\cos(\pi xy)
 </pre></div>
 </div>
 <p>Let’s take a look at the grid with the 50 polygons triangulated</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
@@ -581,6 +581,13 @@ u(x,y) &= xy\cos(\pi xy)
     <span class="k">return</span> <span class="n">polyGrid</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">agglomerate</span><span class="p">(</span><span class="n">indexSet</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">en</span><span class="p">))</span>
 <span class="n">polygons</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/vemdemo_nb_5_0.jpg" src="_images/vemdemo_nb_5_0.jpg" />
 </div>
 </div>
 <p>The vem space is now setup in exactly the same way as usual but the type of space constructed is defined by the final argument which defines the moments used on the subentities of a given codimension. So <code class="docutils literal notranslate"><span class="pre">testSpaces=[-1,order-1,order-2]</span></code> means: use no vertex values (-1), order-1 moments on the edges and order-2 moments in the inside. So this gives us a non-conforming space for second order problems - while using <code class="docutils literal notranslate"><span class="pre">testSpaces=[0,order-2,order-2]</span></code> defines a conforming space.</p>
@@ -638,13 +645,20 @@ u(x,y) &= xy\cos(\pi xy)
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 size of space: 151
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/vemdemo_nb_11_1.jpg" src="_images/vemdemo_nb_11_1.jpg" />
+</div>
 </div>
 <p>Repeating the same test with a H^1-conforming space</p>
 <div class="nbinput docutils container">
@@ -664,13 +678,20 @@ size of space: 151
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 size of space: 102
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/vemdemo_nb_13_1.jpg" src="_images/vemdemo_nb_13_1.jpg" />
+</div>
 </div>
 <p>The Vem spaces have an additional method :code:diameters which returns estimation of the polygon sizes. Note that for technical reasons this is at the time of writing not available on the grid itself. A estimate of the minimum and the maximum bounding box diameters are returned. Note that this is just an estimate of the actual polygon diameters.</p>
 <div class="nbinput docutils container">
@@ -686,7 +707,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.23008854636646828, 0.2806312072978748)
+Polygon diameters: (0.22425576353087734, 0.2770741887600868)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -757,20 +778,19 @@ Polygon diameters: (0.23008854636646828, 0.2806312072978748)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.020388547827736546 H^1:  0.3675789156730823 56
-method ( dg ): dofs:  525 L^2:  0.0120834901562935 H^1:  0.3402002775868577 642
-method ( vem-conforming ): dofs:  102 L^2:  0.022868143194953987 H^1:  0.3459047510479079 30
-method ( vem-nonconforming ): dofs:  151 L^2:  0.019821912900476375 H^1:  0.36230503896328736 33
-method ( bb-dg ): dofs:  150 L^2:  0.018795215394178784 H^1:  0.3703818204642102 89
+method ( lagrange ): dofs:  102 L^2:  0.01917733011291812 H^1:  0.38558050486092665 47
+method ( dg ): dofs:  525 L^2:  0.013152597683365972 H^1:  0.3552743081239359 457
+method ( vem-conforming ): dofs:  102 L^2:  0.022325113437895904 H^1:  0.34111268344398155 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019272024855096048 H^1:  0.35336646089565443 31
+method ( bb-dg ): dofs:  150 L^2:  0.01849414144559464 H^1:  0.3700114459771562 82
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Figure size 1250x500 with 0 Axes&gt;
-</pre></div></div>
+<img alt="_images/vemdemo_nb_21_1.jpg" src="_images/vemdemo_nb_21_1.jpg" />
+</div>
 </div>
 </section>
 <section id="Nonlinear-Elliptic-Problem">
@@ -802,20 +822,27 @@ method ( bb-dg ): dofs:  150 L^2:  0.018795215394178784 H^1:  0.3703818204642102
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.01058739048190637), np.float64(0.15422963441829982)]
+non linear problem: [np.float64(0.0106187105019293), np.float64(0.156219321705139)]
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/vemdemo_nb_23_1.jpg" src="_images/vemdemo_nb_23_1.jpg" />
+</div>
 </div>
 </section>
 <section id="Linear-Elasticity">
 <h1>Linear Elasticity<a class="headerlink" href="#Linear-Elasticity" title="Link to this heading"></a></h1>
 <p>Next we solve a linear elasticity equation using a conforming VEM space:</p>
 <p>First we setup the domain</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
@@ -831,6 +858,13 @@ non linear problem: [np.float64(0.01058739048190637), np.float64(0.1542296344182
 <span class="c1"># instead of providing the moments we can simply add a parameter &#39;conforming&#39; to construct the H^1-conforming space</span>
 <span class="n">space</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">vem</span><span class="o">.</span><span class="n">vemSpace</span><span class="p">(</span> <span class="n">beamGrid</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">conforming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/vemdemo_nb_25_0.jpg" src="_images/vemdemo_nb_25_0.jpg" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -889,12 +923,11 @@ non linear problem: [np.float64(0.01058739048190637), np.float64(0.1542296344182
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight"><pre>
-&lt;Figure size 1000x500 with 0 Axes&gt;
-</pre></div></div>
+<img alt="_images/vemdemo_nb_29_0.jpg" src="_images/vemdemo_nb_29_0.jpg" />
+</div>
 </div>
 <p>Finally we plot the deformed beam</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
@@ -903,6 +936,13 @@ non linear problem: [np.float64(0.01058739048190637), np.float64(0.1542296344182
 <span class="n">beam</span> <span class="o">=</span> <span class="n">geometryGridView</span><span class="p">(</span> <span class="n">position</span> <span class="p">)</span>
 <span class="n">beam</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/vemdemo_nb_31_0.jpg" src="_images/vemdemo_nb_31_0.jpg" />
 </div>
 </div>
 </section>
@@ -958,13 +998,20 @@ u &= g, && \text{on } \partial\Omega, \\
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(29.251265886776526), np.float64(170.4179039439464)]
+bi-laplace errors: [np.float64(32.29332157974691), np.float64(174.36538658018426)]
 </pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="_images/vemdemo_nb_35_1.jpg" src="_images/vemdemo_nb_35_1.jpg" />
+</div>
 </div>
 </section>
 <div class="admonition note">
