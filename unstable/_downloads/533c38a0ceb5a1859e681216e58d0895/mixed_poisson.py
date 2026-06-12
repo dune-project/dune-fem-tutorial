@@ -166,7 +166,8 @@ def simulate(gridView, spaceHDiv, spaceDG, dirichlet):
     sol = spaceDG.function(name = "sol")
 
     refs = 4
-    fig, axs = plt.subplots(1,refs, figsize=(10,10))
+    if gridView.dimension <= 2: # we can only use myplot to plot 2d
+        fig, axs = plt.subplots(1,refs, figsize=(10,10))
 
     print("     L^2         H^1         div",flush=True)
     for i in range(refs):
