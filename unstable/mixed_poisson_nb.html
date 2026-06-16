@@ -645,7 +645,8 @@ H_0(\mathop{\mathrm{Div}},\Omega):=\{\sigma\in H(\mathop{\mathrm{Div}},\Omega)\c
     <span class="n">sol</span> <span class="o">=</span> <span class="n">spaceDG</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;sol&quot;</span><span class="p">)</span>
 
     <span class="n">refs</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">refs</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">gridView</span><span class="o">.</span><span class="n">dimension</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># we can only use myplot to plot 2d</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">refs</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;     L^2         H^1         div&quot;</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">refs</span><span class="p">):</span>
@@ -976,7 +977,7 @@ BDFM (quadrilateral) order = 2
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
@@ -1010,27 +1011,6 @@ RT (hexahedron) order = 1
 --------------------------------------
 </pre></div></div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/mixed_poisson_nb_16_1.jpg" src="_images/mixed_poisson_nb_16_1.jpg" />
-</div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/mixed_poisson_nb_16_2.jpg" src="_images/mixed_poisson_nb_16_2.jpg" />
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="_images/mixed_poisson_nb_16_3.jpg" src="_images/mixed_poisson_nb_16_3.jpg" />
-</div>
-</div>
 </section>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1052,7 +1032,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 12, 2026.
+      <span class="lastupdated">Last updated on Jun 16, 2026.
       </span></p>
   </div>
 

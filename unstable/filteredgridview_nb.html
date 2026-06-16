@@ -514,7 +514,7 @@ This document is part of the dune-fem tutorial
 <section id="FilteredGridView-examples">
 <span id="index-0"></span><h1>FilteredGridView examples<a class="headerlink" href="#FilteredGridView-examples" title="Link to this heading"></a></h1>
 <p>In this example we use <code class="docutils literal notranslate"><span class="pre">filteredGridView</span></code> to filter out parts of a given grid view.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -526,6 +526,23 @@ This document is part of the dune-fem tutorial
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.utility</span><span class="w"> </span><span class="kn">import</span> <span class="n">inspectBoundaryIds</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[1781551851.665821] [runnervm1li68:88569:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x55ebca844990 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported
+[1781551851.666114] [runnervm1li68:88569:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+[runnervm1li68:88569] pml_ucx.c:319  Error: Failed to create UCP worker
+</pre></div></div>
 </div>
 <p>Create a host grid view of the underlying grid as usual. We show the boundary ids and some discrete function - also note the size of the Lagrange space in this example:</p>
 <div class="nbinput docutils container">
@@ -864,7 +881,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 12, 2026.
+      <span class="lastupdated">Last updated on Jun 16, 2026.
       </span></p>
   </div>
 

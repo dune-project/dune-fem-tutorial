@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "f2bf4efd",
+   "id": "86cc0f8b",
    "metadata": {},
    "source": [
     "\n",
@@ -41,7 +41,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "90dc9c79",
+   "id": "38e9a305",
    "metadata": {},
    "source": [
     "We first introduce a discrete domain $\\Omega_h$ with a structured quadrilateral grid:"
@@ -50,13 +50,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "8a4db8a8",
+   "id": "065d24a4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:20.671122Z",
-     "iopub.status.busy": "2026-06-12T22:43:20.670903Z",
-     "iopub.status.idle": "2026-06-12T22:43:22.750771Z",
-     "shell.execute_reply": "2026-06-12T22:43:22.749729Z"
+     "iopub.execute_input": "2026-06-15T20:02:27.543312Z",
+     "iopub.status.busy": "2026-06-15T20:02:27.543118Z",
+     "iopub.status.idle": "2026-06-15T20:02:29.668513Z",
+     "shell.execute_reply": "2026-06-15T20:02:29.667558Z"
     },
     "lines_to_next_cell": 2
    },
@@ -77,7 +77,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e8dce19a",
+   "id": "d2a94d1c",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -98,7 +98,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a8e389f5",
+   "id": "f9b88fbc",
    "metadata": {},
    "source": [
     "On the DUNE side we start by initializing some geometric / ufl variables\n",
@@ -108,13 +108,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "14d3837b",
+   "id": "dd2b4f9e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:22.752859Z",
-     "iopub.status.busy": "2026-06-12T22:43:22.752597Z",
-     "iopub.status.idle": "2026-06-12T22:43:22.756604Z",
-     "shell.execute_reply": "2026-06-12T22:43:22.755825Z"
+     "iopub.execute_input": "2026-06-15T20:02:29.670888Z",
+     "iopub.status.busy": "2026-06-15T20:02:29.670627Z",
+     "iopub.status.idle": "2026-06-15T20:02:29.675067Z",
+     "shell.execute_reply": "2026-06-15T20:02:29.674253Z"
     },
     "lines_to_next_cell": 1
    },
@@ -145,7 +145,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ed3ae11e",
+   "id": "bbb2f132",
    "metadata": {},
    "source": [
     "## Taylor-Hood formulation\n",
@@ -156,13 +156,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "c4a8e236",
+   "id": "b78fc34a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:22.758065Z",
-     "iopub.status.busy": "2026-06-12T22:43:22.757904Z",
-     "iopub.status.idle": "2026-06-12T22:43:22.761654Z",
-     "shell.execute_reply": "2026-06-12T22:43:22.760905Z"
+     "iopub.execute_input": "2026-06-15T20:02:29.676855Z",
+     "iopub.status.busy": "2026-06-15T20:02:29.676580Z",
+     "iopub.status.idle": "2026-06-15T20:02:29.680739Z",
+     "shell.execute_reply": "2026-06-15T20:02:29.679987Z"
     }
    },
    "outputs": [],
@@ -204,7 +204,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "28806c98",
+   "id": "eb71b20c",
    "metadata": {},
    "source": [
     "### Bercovier-Engelmann Testcase\n",
@@ -229,13 +229,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "c99b65ef",
+   "id": "15ad7a5f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:22.763103Z",
-     "iopub.status.busy": "2026-06-12T22:43:22.762938Z",
-     "iopub.status.idle": "2026-06-12T22:43:23.000754Z",
-     "shell.execute_reply": "2026-06-12T22:43:23.000151Z"
+     "iopub.execute_input": "2026-06-15T20:02:29.682321Z",
+     "iopub.status.busy": "2026-06-15T20:02:29.682133Z",
+     "iopub.status.idle": "2026-06-15T20:02:29.949983Z",
+     "shell.execute_reply": "2026-06-15T20:02:29.949150Z"
     }
    },
    "outputs": [],
@@ -271,7 +271,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5fd47819",
+   "id": "4a02b246",
    "metadata": {},
    "source": [
     "Continuous Galerkin (CG) setup"
@@ -280,13 +280,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "209ad717",
+   "id": "aca5affe",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:23.002961Z",
-     "iopub.status.busy": "2026-06-12T22:43:23.002714Z",
-     "iopub.status.idle": "2026-06-12T22:43:23.712649Z",
-     "shell.execute_reply": "2026-06-12T22:43:23.711869Z"
+     "iopub.execute_input": "2026-06-15T20:02:29.952502Z",
+     "iopub.status.busy": "2026-06-15T20:02:29.952255Z",
+     "iopub.status.idle": "2026-06-15T20:02:30.678964Z",
+     "shell.execute_reply": "2026-06-15T20:02:30.678110Z"
     }
    },
    "outputs": [
@@ -378,7 +378,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cfc1e607",
+   "id": "cd5bcf31",
    "metadata": {},
    "source": [
     "\n",
@@ -391,7 +391,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "cf300f18",
+   "id": "11c55041",
    "metadata": {},
    "source": [
     "Test solve with CG on the toy mesh:"
@@ -400,13 +400,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "6582b2d1",
+   "id": "24d1f7b1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:23.714440Z",
-     "iopub.status.busy": "2026-06-12T22:43:23.714141Z",
-     "iopub.status.idle": "2026-06-12T22:43:23.872792Z",
-     "shell.execute_reply": "2026-06-12T22:43:23.872133Z"
+     "iopub.execute_input": "2026-06-15T20:02:30.681360Z",
+     "iopub.status.busy": "2026-06-15T20:02:30.680954Z",
+     "iopub.status.idle": "2026-06-15T20:02:30.861182Z",
+     "shell.execute_reply": "2026-06-15T20:02:30.860261Z"
     }
    },
    "outputs": [
@@ -444,7 +444,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "623d6d18",
+   "id": "fcfdcd4c",
    "metadata": {},
    "source": [
     "Here is a plot of the pressure and velocity field:"
@@ -453,13 +453,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "b9735168",
+   "id": "3790024b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:23.874244Z",
-     "iopub.status.busy": "2026-06-12T22:43:23.874072Z",
-     "iopub.status.idle": "2026-06-12T22:43:24.105935Z",
-     "shell.execute_reply": "2026-06-12T22:43:24.105200Z"
+     "iopub.execute_input": "2026-06-15T20:02:30.862941Z",
+     "iopub.status.busy": "2026-06-15T20:02:30.862747Z",
+     "iopub.status.idle": "2026-06-15T20:02:31.115139Z",
+     "shell.execute_reply": "2026-06-15T20:02:31.114165Z"
     },
     "lines_to_next_cell": 2
    },
@@ -483,7 +483,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e5950213",
+   "id": "9792ccb2",
    "metadata": {},
    "source": [
     "## DG formulation\n",
@@ -499,13 +499,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "f2d406bd",
+   "id": "cda2d59e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:24.107589Z",
-     "iopub.status.busy": "2026-06-12T22:43:24.107421Z",
-     "iopub.status.idle": "2026-06-12T22:43:24.113740Z",
-     "shell.execute_reply": "2026-06-12T22:43:24.112985Z"
+     "iopub.execute_input": "2026-06-15T20:02:31.116872Z",
+     "iopub.status.busy": "2026-06-15T20:02:31.116700Z",
+     "iopub.status.idle": "2026-06-15T20:02:31.123630Z",
+     "shell.execute_reply": "2026-06-15T20:02:31.122668Z"
     },
     "lines_to_next_cell": 1
    },
@@ -606,7 +606,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "42fd2106",
+   "id": "5973a145",
    "metadata": {},
    "source": [
     "The DG weak form introduces a penalty for discontinuities in the discrete velocity.\n",
@@ -624,13 +624,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "a6b57524",
+   "id": "32d5e969",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:24.115303Z",
-     "iopub.status.busy": "2026-06-12T22:43:24.115139Z",
-     "iopub.status.idle": "2026-06-12T22:43:24.118846Z",
-     "shell.execute_reply": "2026-06-12T22:43:24.118191Z"
+     "iopub.execute_input": "2026-06-15T20:02:31.125231Z",
+     "iopub.status.busy": "2026-06-15T20:02:31.125053Z",
+     "iopub.status.idle": "2026-06-15T20:02:31.129033Z",
+     "shell.execute_reply": "2026-06-15T20:02:31.128286Z"
     },
     "lines_to_next_cell": 0
    },
@@ -682,7 +682,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "015df321",
+   "id": "c6a8a1ec",
    "metadata": {},
    "source": [
     "### Bercovier-Engelmann Testcase\n",
@@ -693,13 +693,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "130048be",
+   "id": "bdc08acd",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:24.120379Z",
-     "iopub.status.busy": "2026-06-12T22:43:24.120196Z",
-     "iopub.status.idle": "2026-06-12T22:43:24.333765Z",
-     "shell.execute_reply": "2026-06-12T22:43:24.332974Z"
+     "iopub.execute_input": "2026-06-15T20:02:31.130779Z",
+     "iopub.status.busy": "2026-06-15T20:02:31.130625Z",
+     "iopub.status.idle": "2026-06-15T20:02:31.343600Z",
+     "shell.execute_reply": "2026-06-15T20:02:31.342764Z"
     },
     "lines_to_next_cell": 2
    },
@@ -770,7 +770,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3c86b070",
+   "id": "ab703ffa",
    "metadata": {},
    "source": [
     "Test the DG setup on the toy mesh. By default all extra stabilization is turned off\n",
@@ -780,13 +780,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "cd4c3a81",
+   "id": "3f4679fd",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:24.335602Z",
-     "iopub.status.busy": "2026-06-12T22:43:24.335433Z",
-     "iopub.status.idle": "2026-06-12T22:43:24.772378Z",
-     "shell.execute_reply": "2026-06-12T22:43:24.771545Z"
+     "iopub.execute_input": "2026-06-15T20:02:31.345759Z",
+     "iopub.status.busy": "2026-06-15T20:02:31.345578Z",
+     "iopub.status.idle": "2026-06-15T20:02:31.800194Z",
+     "shell.execute_reply": "2026-06-15T20:02:31.799129Z"
     }
    },
    "outputs": [
@@ -828,7 +828,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c4081da9",
+   "id": "532b33a2",
    "metadata": {},
    "source": [
     "## Convergence rate check\n",
@@ -842,13 +842,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "feb672dc",
+   "id": "8839bad6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:24.774101Z",
-     "iopub.status.busy": "2026-06-12T22:43:24.773914Z",
-     "iopub.status.idle": "2026-06-12T22:43:24.783975Z",
-     "shell.execute_reply": "2026-06-12T22:43:24.783160Z"
+     "iopub.execute_input": "2026-06-15T20:02:31.802264Z",
+     "iopub.status.busy": "2026-06-15T20:02:31.802031Z",
+     "iopub.status.idle": "2026-06-15T20:02:31.814269Z",
+     "shell.execute_reply": "2026-06-15T20:02:31.813542Z"
     },
     "lines_to_next_cell": 1
    },
@@ -940,7 +940,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "0aa9b4b7",
+   "id": "1d1f2afc",
    "metadata": {},
    "source": [
     "\n",
@@ -950,13 +950,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "3421b889",
+   "id": "1d4094ad",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:24.785619Z",
-     "iopub.status.busy": "2026-06-12T22:43:24.785437Z",
-     "iopub.status.idle": "2026-06-12T22:43:26.035302Z",
-     "shell.execute_reply": "2026-06-12T22:43:26.034580Z"
+     "iopub.execute_input": "2026-06-15T20:02:31.816135Z",
+     "iopub.status.busy": "2026-06-15T20:02:31.815952Z",
+     "iopub.status.idle": "2026-06-15T20:02:33.154753Z",
+     "shell.execute_reply": "2026-06-15T20:02:33.154092Z"
     },
     "lines_to_next_cell": 2
    },
@@ -973,7 +973,7 @@
       "Velocity polynomial order: 3\n",
       "Pressure polynomial order: 2\n",
       "\t linear iteratrion: 13\n",
-      "\t average pressure: 0.09403072439565764\n"
+      "\t average pressure: 0.09403072439561823\n"
      ]
     },
     {
@@ -994,7 +994,13 @@
      "output_type": "stream",
      "text": [
       "\t linear iteratrion: 27\n",
-      "\t average pressure: 0.02513838428515213\n",
+      "\t average pressure: 0.02513838428515213\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
       "Step: 1 , size: 196\n",
       "\t | p_h - p | = 5.91246e-07 , eoc = 5.45\n",
       "\t | u_h - u | = 5.17131e-06 , eoc = 3.99\n",
@@ -1021,7 +1027,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6484bfc3",
+   "id": "0af570e8",
    "metadata": {},
    "source": [
     "\n",
@@ -1032,13 +1038,13 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "fe5c9fc3",
+   "id": "3bb1c9d9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:26.037021Z",
-     "iopub.status.busy": "2026-06-12T22:43:26.036811Z",
-     "iopub.status.idle": "2026-06-12T22:43:28.928899Z",
-     "shell.execute_reply": "2026-06-12T22:43:28.928170Z"
+     "iopub.execute_input": "2026-06-15T20:02:33.156694Z",
+     "iopub.status.busy": "2026-06-15T20:02:33.156499Z",
+     "iopub.status.idle": "2026-06-15T20:02:36.129995Z",
+     "shell.execute_reply": "2026-06-15T20:02:36.129196Z"
     }
    },
    "outputs": [
@@ -1088,7 +1094,13 @@
      "output_type": "stream",
      "text": [
       "\t linear iteratrion: 31\n",
-      "\t average pressure: -0.018921442116436663\n",
+      "\t average pressure: -0.018921442116436663\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
       "Step: 1 , size: 196\n",
       "\t | p_h - p | = 1.80719e-06 , eoc = 4.89\n",
       "\t | u_h - u | = 5.04081e-06 , eoc = 3.96\n",
@@ -1120,7 +1132,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "03689bde",
+   "id": "4530135c",
    "metadata": {},
    "source": [
     "As a sanity check for the construction of the composite DG spaces\n",
@@ -1131,13 +1143,13 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "82e05b5a",
+   "id": "cfb321d7",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:43:28.930857Z",
-     "iopub.status.busy": "2026-06-12T22:43:28.930677Z",
-     "iopub.status.idle": "2026-06-12T22:43:28.935379Z",
-     "shell.execute_reply": "2026-06-12T22:43:28.934806Z"
+     "iopub.execute_input": "2026-06-15T20:02:36.131761Z",
+     "iopub.status.busy": "2026-06-15T20:02:36.131566Z",
+     "iopub.status.idle": "2026-06-15T20:02:36.137002Z",
+     "shell.execute_reply": "2026-06-15T20:02:36.136278Z"
     }
    },
    "outputs": [
@@ -1180,12 +1192,9 @@
  ],
  "metadata": {
   "jupytext": {
-   "cell_metadata_filter": "-all"
-  },
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
+   "cell_metadata_filter": "-all",
+   "main_language": "python",
+   "notebook_metadata_filter": "-all"
   },
   "language_info": {
    "codemirror_mode": {

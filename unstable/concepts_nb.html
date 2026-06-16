@@ -544,11 +544,28 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[1781551781.455403] [runnervm1li68:87744:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x564ebb261aa0 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported
+[1781551781.455750] [runnervm1li68:87744:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+[runnervm1li68:87744] pml_ucx.c:319  Error: Failed to create UCP worker
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/concepts_nb_2_0.jpg" src="_images/concepts_nb_2_0.jpg" />
+<img alt="_images/concepts_nb_2_2.jpg" src="_images/concepts_nb_2_2.jpg" />
 </div>
 </div>
 <p>Often the initial grid is a bit coarse - it is very easy to refine it globally.</p>
@@ -1080,7 +1097,7 @@ u(x) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of elements: 64 number of dofs: 289 H^1 error: 0.5635700799030191
+Number of elements: 64 number of dofs: 289 H^1 error: 0.5635700799030016
 </pre></div></div>
 </div>
 <div class="admonition note" id="index-17">
@@ -1130,7 +1147,7 @@ Number of elements: 64 number of dofs: 289 H^1 error: 0.5635700799030191
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of elements: 64 number of dofs: 289 H^1 error: 0.0016470196146885752
+Number of elements: 64 number of dofs: 289 H^1 error: 0.0016470196146885809
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1515,7 +1532,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 12, 2026.
+      <span class="lastupdated">Last updated on Jun 16, 2026.
       </span></p>
   </div>
 

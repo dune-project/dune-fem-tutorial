@@ -557,11 +557,28 @@ describe a part of the boundary during grid construction as described at the end
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[1781551758.843592] [runnervm1li68:87569:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x5562d8598210 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported
+[1781551758.843893] [runnervm1li68:87569:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+[runnervm1li68:87569] pml_ucx.c:319  Error: Failed to create UCP worker
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/boundary_nb_1_0.jpg" src="_images/boundary_nb_1_0.jpg" />
+<img alt="_images/boundary_nb_1_2.jpg" src="_images/boundary_nb_1_2.jpg" />
 </div>
 </div>
 <p>To prescribe <span class="math notranslate nohighlight">\(u_2=1\)</span> at the bottom boundary is easily achieve by providing multiple instances of the <code class="docutils literal notranslate"><span class="pre">dune.ufl.DiricheltBC</span></code> class:</p>
@@ -955,7 +972,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 12, 2026.
+      <span class="lastupdated">Last updated on Jun 16, 2026.
       </span></p>
   </div>
 

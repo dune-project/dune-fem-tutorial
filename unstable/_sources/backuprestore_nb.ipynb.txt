@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "cd5aa5da",
+   "id": "fe0b6c4a",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -17,13 +17,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "4dd66a44",
+   "id": "becc91db",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:38:11.394429Z",
-     "iopub.status.busy": "2026-06-12T22:38:11.394274Z",
-     "iopub.status.idle": "2026-06-12T22:38:13.020403Z",
-     "shell.execute_reply": "2026-06-12T22:38:13.019562Z"
+     "iopub.execute_input": "2026-06-15T19:53:31.618942Z",
+     "iopub.status.busy": "2026-06-15T19:53:31.618773Z",
+     "iopub.status.idle": "2026-06-15T19:53:33.338834Z",
+     "shell.execute_reply": "2026-06-15T19:53:33.338005Z"
     }
    },
    "outputs": [],
@@ -33,7 +33,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5cf99e89",
+   "id": "bd56ab1f",
    "metadata": {},
    "source": [
     "Let's first construct a grid and some discrete function:"
@@ -42,13 +42,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "ff5fd135",
+   "id": "48564b0f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:38:13.022865Z",
-     "iopub.status.busy": "2026-06-12T22:38:13.022669Z",
-     "iopub.status.idle": "2026-06-12T22:38:13.144606Z",
-     "shell.execute_reply": "2026-06-12T22:38:13.143812Z"
+     "iopub.execute_input": "2026-06-15T19:53:33.341294Z",
+     "iopub.status.busy": "2026-06-15T19:53:33.341114Z",
+     "iopub.status.idle": "2026-06-15T19:53:33.460125Z",
+     "shell.execute_reply": "2026-06-15T19:53:33.459005Z"
     },
     "lines_to_next_cell": 1
    },
@@ -90,7 +90,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "fea0cb92",
+   "id": "8ba28f79",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -112,13 +112,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "d17d54a7",
+   "id": "a9b3129c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:38:13.146817Z",
-     "iopub.status.busy": "2026-06-12T22:38:13.146578Z",
-     "iopub.status.idle": "2026-06-12T22:38:20.463538Z",
-     "shell.execute_reply": "2026-06-12T22:38:20.462835Z"
+     "iopub.execute_input": "2026-06-15T19:53:33.463204Z",
+     "iopub.status.busy": "2026-06-15T19:53:33.462974Z",
+     "iopub.status.idle": "2026-06-15T19:53:41.105274Z",
+     "shell.execute_reply": "2026-06-15T19:53:41.104424Z"
     }
    },
    "outputs": [
@@ -155,7 +155,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7f898f98",
+   "id": "05d0e76f",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -166,13 +166,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "f1dc9c7d",
+   "id": "c25cb567",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:38:20.465841Z",
-     "iopub.status.busy": "2026-06-12T22:38:20.465547Z",
-     "iopub.status.idle": "2026-06-12T22:38:25.107461Z",
-     "shell.execute_reply": "2026-06-12T22:38:25.106766Z"
+     "iopub.execute_input": "2026-06-15T19:53:41.107247Z",
+     "iopub.status.busy": "2026-06-15T19:53:41.106977Z",
+     "iopub.status.idle": "2026-06-15T19:53:45.819379Z",
+     "shell.execute_reply": "2026-06-15T19:53:45.818349Z"
     }
    },
    "outputs": [
@@ -306,7 +306,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "df03b30d",
+   "id": "a5693777",
    "metadata": {},
    "source": [
     "## A Chekpointer class\n",
@@ -321,13 +321,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "adea231f",
+   "id": "eb8dcd7c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:38:25.109040Z",
-     "iopub.status.busy": "2026-06-12T22:38:25.108854Z",
-     "iopub.status.idle": "2026-06-12T22:38:25.113275Z",
-     "shell.execute_reply": "2026-06-12T22:38:25.112548Z"
+     "iopub.execute_input": "2026-06-15T19:53:45.821129Z",
+     "iopub.status.busy": "2026-06-15T19:53:45.820950Z",
+     "iopub.status.idle": "2026-06-15T19:53:45.825733Z",
+     "shell.execute_reply": "2026-06-15T19:53:45.824834Z"
     },
     "lines_to_next_cell": 1
    },
@@ -361,7 +361,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6653fe24",
+   "id": "a099ddd7",
    "metadata": {},
    "source": [
     "First test: construct the grid view, some discrete function, and refine the mesh.\n",
@@ -371,13 +371,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "a6e6a6c6",
+   "id": "923f267c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:38:25.114723Z",
-     "iopub.status.busy": "2026-06-12T22:38:25.114558Z",
-     "iopub.status.idle": "2026-06-12T22:38:25.928449Z",
-     "shell.execute_reply": "2026-06-12T22:38:25.927457Z"
+     "iopub.execute_input": "2026-06-15T19:53:45.827268Z",
+     "iopub.status.busy": "2026-06-15T19:53:45.827098Z",
+     "iopub.status.idle": "2026-06-15T19:53:46.704301Z",
+     "shell.execute_reply": "2026-06-15T19:53:46.703401Z"
     }
    },
    "outputs": [
@@ -402,7 +402,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9907d7c7",
+   "id": "af9d3d94",
    "metadata": {},
    "source": [
     "Now we restore the backup"
@@ -411,13 +411,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "a460f8de",
+   "id": "07ad80ae",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:38:25.929955Z",
-     "iopub.status.busy": "2026-06-12T22:38:25.929770Z",
-     "iopub.status.idle": "2026-06-12T22:38:26.440807Z",
-     "shell.execute_reply": "2026-06-12T22:38:26.440083Z"
+     "iopub.execute_input": "2026-06-15T19:53:46.705910Z",
+     "iopub.status.busy": "2026-06-15T19:53:46.705752Z",
+     "iopub.status.idle": "2026-06-15T19:53:47.246867Z",
+     "shell.execute_reply": "2026-06-15T19:53:47.246017Z"
     }
    },
    "outputs": [
@@ -466,12 +466,9 @@
  ],
  "metadata": {
   "jupytext": {
-   "cell_metadata_filter": "-all"
-  },
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
+   "cell_metadata_filter": "-all",
+   "main_language": "python",
+   "notebook_metadata_filter": "-all"
   },
   "language_info": {
    "codemirror_mode": {
@@ -483,7 +480,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.14.5"
+   "version": "3.14.6"
   }
  },
  "nbformat": 4,

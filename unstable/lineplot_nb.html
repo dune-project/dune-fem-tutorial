@@ -514,7 +514,7 @@ This document is part of the dune-fem tutorial
 <section id="Sampling-the-Solution-over-a-Line">
 <span id="index-0"></span><h1>Sampling the Solution over a Line<a class="headerlink" href="#Sampling-the-Solution-over-a-Line" title="Link to this heading"></a></h1>
 <p>Let us revisit our simple 3d example from the introduction</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -545,6 +545,23 @@ This document is part of the dune-fem tutorial
 <span class="n">gridView3d</span>  <span class="o">=</span> <span class="n">leafGridView3d</span><span class="p">(</span><span class="n">domain3d</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[1781551863.954480] [runnervm1li68:88663:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x5613c5759230 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported
+[1781551863.954826] [runnervm1li68:88663:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+[runnervm1li68:88663] pml_ucx.c:319  Error: Failed to create UCP worker
+</pre></div></div>
 </div>
 <p>As before we solve a simple Laplace problem</p>
 <div class="nbinput nblast docutils container">
@@ -609,7 +626,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f23bf359160&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7f51256752b0&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -640,7 +657,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f23bae3b0e0&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7f51211e70e0&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -672,7 +689,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f23bad47e00&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7f51210efe00&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -699,7 +716,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f23bade8c20&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7f5120fa4c20&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -732,7 +749,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 12, 2026.
+      <span class="lastupdated">Last updated on Jun 16, 2026.
       </span></p>
   </div>
 

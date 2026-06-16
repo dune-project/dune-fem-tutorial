@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "f0994c15",
+   "id": "e0524397",
    "metadata": {},
    "source": [
     ".. index:: Parallelization\n",
@@ -32,13 +32,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "14dde6a0",
+   "id": "689a6c4b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:27:25.179558Z",
-     "iopub.status.busy": "2026-06-12T22:27:25.179407Z",
-     "iopub.status.idle": "2026-06-12T22:27:26.996234Z",
-     "shell.execute_reply": "2026-06-12T22:27:26.995430Z"
+     "iopub.execute_input": "2026-06-15T19:31:38.645763Z",
+     "iopub.status.busy": "2026-06-15T19:31:38.645665Z",
+     "iopub.status.idle": "2026-06-15T19:31:40.164569Z",
+     "shell.execute_reply": "2026-06-15T19:31:40.164115Z"
     }
    },
    "outputs": [
@@ -46,8 +46,17 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
+      "[1781551900.064388] [runnervm1li68:88867:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x5636e032db10 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported\n",
+      "[1781551900.064679] [runnervm1li68:88867:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error\n",
       "Using 4 threads\n",
       "Using 4 threads\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "[runnervm1li68:88867] pml_ucx.c:319  Error: Failed to create UCP worker\n"
      ]
     }
    ],
@@ -60,7 +69,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e3017bc5",
+   "id": "09c8f4f5",
    "metadata": {},
    "source": [
     "At startup a maximum number of threads is selected based on the hardware\n",
@@ -73,13 +82,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "6cd174cd",
+   "id": "07f5eb30",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:27:26.997947Z",
-     "iopub.status.busy": "2026-06-12T22:27:26.997742Z",
-     "iopub.status.idle": "2026-06-12T22:27:27.001088Z",
-     "shell.execute_reply": "2026-06-12T22:27:27.000265Z"
+     "iopub.execute_input": "2026-06-15T19:31:40.166142Z",
+     "iopub.status.busy": "2026-06-15T19:31:40.165966Z",
+     "iopub.status.idle": "2026-06-15T19:31:40.168155Z",
+     "shell.execute_reply": "2026-06-15T19:31:40.167720Z"
     }
    },
    "outputs": [
@@ -100,7 +109,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b97b798e",
+   "id": "1bd31536",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -134,13 +143,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "fc5a6a16",
+   "id": "37b56677",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:27:27.002579Z",
-     "iopub.status.busy": "2026-06-12T22:27:27.002429Z",
-     "iopub.status.idle": "2026-06-12T22:27:27.005488Z",
-     "shell.execute_reply": "2026-06-12T22:27:27.004587Z"
+     "iopub.execute_input": "2026-06-15T19:31:40.169040Z",
+     "iopub.status.busy": "2026-06-15T19:31:40.168944Z",
+     "iopub.status.idle": "2026-06-15T19:31:40.171070Z",
+     "shell.execute_reply": "2026-06-15T19:31:40.170710Z"
     },
     "lines_to_next_cell": 0
    },
@@ -154,7 +163,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6514963d",
+   "id": "4bc76205",
    "metadata": {},
    "source": [
     "\n",
@@ -185,13 +194,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "9c5a9e29",
+   "id": "ebcfd44f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:27:27.007014Z",
-     "iopub.status.busy": "2026-06-12T22:27:27.006835Z",
-     "iopub.status.idle": "2026-06-12T22:27:27.094975Z",
-     "shell.execute_reply": "2026-06-12T22:27:27.094138Z"
+     "iopub.execute_input": "2026-06-15T19:31:40.171989Z",
+     "iopub.status.busy": "2026-06-15T19:31:40.171890Z",
+     "iopub.status.idle": "2026-06-15T19:31:40.256785Z",
+     "shell.execute_reply": "2026-06-15T19:31:40.256250Z"
     }
    },
    "outputs": [
@@ -271,7 +280,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e267749e",
+   "id": "4d945cfe",
    "metadata": {},
    "source": [
     "\n",
@@ -283,13 +292,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "d46e6913",
+   "id": "161d5327",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-12T22:27:27.096678Z",
-     "iopub.status.busy": "2026-06-12T22:27:27.096482Z",
-     "iopub.status.idle": "2026-06-12T22:27:27.129189Z",
-     "shell.execute_reply": "2026-06-12T22:27:27.128311Z"
+     "iopub.execute_input": "2026-06-15T19:31:40.257921Z",
+     "iopub.status.busy": "2026-06-15T19:31:40.257807Z",
+     "iopub.status.idle": "2026-06-15T19:31:40.280846Z",
+     "shell.execute_reply": "2026-06-15T19:31:40.280364Z"
     }
    },
    "outputs": [],
@@ -300,7 +309,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2b9a9520",
+   "id": "c841e1a1",
    "metadata": {},
    "source": [
     "\n",
@@ -314,12 +323,9 @@
  ],
  "metadata": {
   "jupytext": {
-   "cell_metadata_filter": "-all"
-  },
-  "kernelspec": {
-   "display_name": "Python 3 (ipykernel)",
-   "language": "python",
-   "name": "python3"
+   "cell_metadata_filter": "-all",
+   "main_language": "python",
+   "notebook_metadata_filter": "-all"
   },
   "language_info": {
    "codemirror_mode": {
