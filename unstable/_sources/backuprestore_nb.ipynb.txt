@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "d490614e",
+   "id": "78807d78",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -17,13 +17,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "88bded58",
+   "id": "f2c4a4c3",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T10:46:20.068346Z",
-     "iopub.status.busy": "2026-10-20T10:46:20.068077Z",
-     "iopub.status.idle": "2026-10-20T10:46:22.000662Z",
-     "shell.execute_reply": "2026-10-20T10:46:21.998755Z"
+     "iopub.execute_input": "2026-10-20T15:08:22.214456Z",
+     "iopub.status.busy": "2026-10-20T15:08:22.214201Z",
+     "iopub.status.idle": "2026-10-20T15:08:24.246574Z",
+     "shell.execute_reply": "2026-10-20T15:08:24.245707Z"
     }
    },
    "outputs": [],
@@ -33,7 +33,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c3e04062",
+   "id": "8fe0216c",
    "metadata": {},
    "source": [
     "Let's first construct a grid and some discrete function:"
@@ -42,13 +42,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "b9ffd543",
+   "id": "1ab1679b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T10:46:22.006942Z",
-     "iopub.status.busy": "2026-10-20T10:46:22.006729Z",
-     "iopub.status.idle": "2026-10-20T10:46:22.091956Z",
-     "shell.execute_reply": "2026-10-20T10:46:22.088658Z"
+     "iopub.execute_input": "2026-10-20T15:08:24.249247Z",
+     "iopub.status.busy": "2026-10-20T15:08:24.248964Z",
+     "iopub.status.idle": "2026-10-20T15:08:24.343730Z",
+     "shell.execute_reply": "2026-10-20T15:08:24.342442Z"
     },
     "lines_to_next_cell": 1
    },
@@ -90,7 +90,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "67e4d3aa",
+   "id": "b06e002b",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -112,13 +112,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "1f38e141",
+   "id": "4a3acabf",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T10:46:22.093971Z",
-     "iopub.status.busy": "2026-10-20T10:46:22.093757Z",
-     "iopub.status.idle": "2026-10-20T10:46:29.107836Z",
-     "shell.execute_reply": "2026-10-20T10:46:29.107004Z"
+     "iopub.execute_input": "2026-10-20T15:08:24.346153Z",
+     "iopub.status.busy": "2026-10-20T15:08:24.345897Z",
+     "iopub.status.idle": "2026-10-20T15:08:32.305585Z",
+     "shell.execute_reply": "2026-10-20T15:08:32.304690Z"
     }
    },
    "outputs": [
@@ -155,7 +155,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d111f867",
+   "id": "4805acad",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -166,13 +166,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "a0f5f71c",
+   "id": "85a23007",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T10:46:29.110016Z",
-     "iopub.status.busy": "2026-10-20T10:46:29.109770Z",
-     "iopub.status.idle": "2026-10-20T10:46:33.595928Z",
-     "shell.execute_reply": "2026-10-20T10:46:33.595135Z"
+     "iopub.execute_input": "2026-10-20T15:08:32.307761Z",
+     "iopub.status.busy": "2026-10-20T15:08:32.307514Z",
+     "iopub.status.idle": "2026-10-20T15:08:37.060854Z",
+     "shell.execute_reply": "2026-10-20T15:08:37.060038Z"
     }
    },
    "outputs": [
@@ -306,7 +306,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4f332b51",
+   "id": "bf7e9402",
    "metadata": {},
    "source": [
     "## A Chekpointer class\n",
@@ -321,13 +321,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "539b5b06",
+   "id": "41ff7e9e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T10:46:33.597544Z",
-     "iopub.status.busy": "2026-10-20T10:46:33.597368Z",
-     "iopub.status.idle": "2026-10-20T10:46:33.601425Z",
-     "shell.execute_reply": "2026-10-20T10:46:33.600764Z"
+     "iopub.execute_input": "2026-10-20T15:08:37.062545Z",
+     "iopub.status.busy": "2026-10-20T15:08:37.062377Z",
+     "iopub.status.idle": "2026-10-20T15:08:37.066937Z",
+     "shell.execute_reply": "2026-10-20T15:08:37.066077Z"
     },
     "lines_to_next_cell": 1
    },
@@ -361,7 +361,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7b6f7900",
+   "id": "5d296298",
    "metadata": {},
    "source": [
     "First test: construct the grid view, some discrete function, and refine the mesh.\n",
@@ -371,13 +371,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "84cde91a",
+   "id": "7d9ab036",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T10:46:33.602785Z",
-     "iopub.status.busy": "2026-10-20T10:46:33.602644Z",
-     "iopub.status.idle": "2026-10-20T10:46:34.471667Z",
-     "shell.execute_reply": "2026-10-20T10:46:34.470859Z"
+     "iopub.execute_input": "2026-10-20T15:08:37.068443Z",
+     "iopub.status.busy": "2026-10-20T15:08:37.068250Z",
+     "iopub.status.idle": "2026-10-20T15:08:37.977073Z",
+     "shell.execute_reply": "2026-10-20T15:08:37.976323Z"
     }
    },
    "outputs": [
@@ -402,7 +402,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4c055f02",
+   "id": "1fd892ec",
    "metadata": {},
    "source": [
     "Now we restore the backup"
@@ -411,13 +411,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "fedc283f",
+   "id": "48fb73cc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T10:46:34.473115Z",
-     "iopub.status.busy": "2026-10-20T10:46:34.472973Z",
-     "iopub.status.idle": "2026-10-20T10:46:34.989245Z",
-     "shell.execute_reply": "2026-10-20T10:46:34.988477Z"
+     "iopub.execute_input": "2026-10-20T15:08:37.978772Z",
+     "iopub.status.busy": "2026-10-20T15:08:37.978615Z",
+     "iopub.status.idle": "2026-10-20T15:08:38.510625Z",
+     "shell.execute_reply": "2026-10-20T15:08:38.509783Z"
     }
    },
    "outputs": [
