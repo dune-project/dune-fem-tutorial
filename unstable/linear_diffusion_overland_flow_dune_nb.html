@@ -590,7 +590,7 @@ R - I_c \left( 1 - e^{-H^{n}/H_i} \right),\qquad
 <span class="n">heavy_rain_duration</span> <span class="o">=</span> <span class="mf">300.0</span>  <span class="c1"># duration of heavy rainfall, s</span>
 <span class="n">run_time</span> <span class="o">=</span> <span class="mf">1200.0</span>  <span class="c1"># duration of run, s</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">20.0</span>  <span class="c1"># time-step size, s</span>
-<span class="n">dem_filename</span> <span class="o">=</span> <span class="s2">&quot;hugo_site.asc&quot;</span>
+<span class="n">dem_filename</span> <span class="o">=</span> <span class="s2">"hugo_site.asc"</span>
 
 <span class="c1"># Derived parameters</span>
 <span class="n">num_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">run_time</span> <span class="o">/</span> <span class="n">dt</span><span class="p">)</span>
@@ -608,10 +608,10 @@ R - I_c \left( 1 - e^{-H^{n}/H_i} \right),\qquad
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the DEM file as a grid with a &#39;topographic__elevation&#39; field</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the DEM file as a grid with a 'topographic__elevation' field</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dem_filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
-    <span class="n">grid</span> <span class="o">=</span> <span class="n">esri_ascii</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;topographic__elevation&quot;</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="s2">&quot;node&quot;</span><span class="p">)</span>
-<span class="n">elev</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">at_node</span><span class="p">[</span><span class="s2">&quot;topographic__elevation&quot;</span><span class="p">]</span>
+    <span class="n">grid</span> <span class="o">=</span> <span class="n">esri_ascii</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"topographic__elevation"</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="s2">"node"</span><span class="p">)</span>
+<span class="n">elev</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">at_node</span><span class="p">[</span><span class="s2">"topographic__elevation"</span><span class="p">]</span>
 
 <span class="c1"># Configure the boundaries: valid right-edge nodes will be open;</span>
 <span class="c1"># all NODATA (= -9999) nodes will be closed.</span>
@@ -625,7 +625,7 @@ R - I_c \left( 1 - e^{-H^{n}/H_i} \right),\qquad
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># display the topography</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">elev</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="s2">&quot;Elevation (m)&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;pink&quot;</span><span class="p">)</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">elev</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="s2">"Elevation (m)"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"pink"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -644,14 +644,14 @@ links as those connected to the outlet nodes that have active status (meaning th
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">elev</span><span class="p">[</span><span class="n">grid</span><span class="o">.</span><span class="n">nodes_at_right_edge</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">outlet_nodes</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">nodes_at_right_edge</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Outlet nodes: </span><span class="si">{</span><span class="n">outlet_nodes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Elevations of the outlet nodes: </span><span class="si">{</span><span class="n">elev</span><span class="p">[</span><span class="n">outlet_nodes</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Outlet nodes: </span><span class="si">{</span><span class="n">outlet_nodes</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Elevations of the outlet nodes: </span><span class="si">{</span><span class="n">elev</span><span class="p">[</span><span class="n">outlet_nodes</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">links_at_outlets</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">links_at_node</span><span class="p">[</span><span class="n">outlet_nodes</span><span class="p">]</span>
 <span class="n">links_to_track</span> <span class="o">=</span> <span class="n">links_at_outlets</span><span class="p">[</span>
     <span class="n">grid</span><span class="o">.</span><span class="n">status_at_link</span><span class="p">[</span><span class="n">links_at_outlets</span><span class="p">]</span> <span class="o">==</span> <span class="n">grid</span><span class="o">.</span><span class="n">BC_LINK_IS_ACTIVE</span>
 <span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Links at which to track discharge: </span><span class="si">{</span><span class="n">links_to_track</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Links at which to track discharge: </span><span class="si">{</span><span class="n">links_to_track</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -678,7 +678,7 @@ Links at which to track discharge: [3849 4000 4151 4302 4453 4604 4755 4906]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">at_link</span><span class="p">[</span><span class="s2">&quot;water__specific_discharge&quot;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">at_link</span><span class="p">[</span><span class="s2">"water__specific_discharge"</span><span class="p">]</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
     <span class="n">olflow</span><span class="o">.</span><span class="n">rain_rate</span> <span class="o">=</span> <span class="n">rain_rate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -687,7 +687,7 @@ Links at which to track discharge: [3849 4000 4151 4302 4453 4604 4755 4906]
     <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">6</span> == 3:
         <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
         <span class="n">grid</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
-            <span class="n">grid</span><span class="o">.</span><span class="n">at_node</span><span class="p">[</span><span class="s2">&quot;surface_water__depth&quot;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="s2">&quot;Water depth (m)&quot;</span>
+            <span class="n">grid</span><span class="o">.</span><span class="n">at_node</span><span class="p">[</span><span class="s2">"surface_water__depth"</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"Blues"</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="s2">"Water depth (m)"</span>
         <span class="p">)</span>
 </pre></div>
 </div>
@@ -767,8 +767,8 @@ Links at which to track discharge: [3849 4000 4151 4302 4453 4604 4755 4906]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_since_storm_start</span> <span class="o">/</span> <span class="mf">60.0</span><span class="p">,</span> <span class="n">discharge</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time (min)&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Discharge (cms)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Time (min)"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Discharge (cms)"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -785,7 +785,7 @@ Links at which to track discharge: [3849 4000 4151 4302 4453 4604 4755 4906]
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
-    <span class="n">grid</span><span class="o">.</span><span class="n">at_node</span><span class="p">[</span><span class="s2">&quot;surface_water__depth&quot;</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="s2">&quot;Water depth (m)&quot;</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">at_node</span><span class="p">[</span><span class="s2">"surface_water__depth"</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"Blues"</span><span class="p">,</span> <span class="n">colorbar_label</span><span class="o">=</span><span class="s2">"Water depth (m)"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -801,7 +801,7 @@ Links at which to track discharge: [3849 4000 4151 4302 4453 4604 4755 4906]
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">olflow</span><span class="o">.</span><span class="n">uh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">,</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">olflow</span><span class="o">.</span><span class="n">uh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s2">"Blues"</span><span class="p">,</span><span class="n">gridLines</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">)</span>
 <span class="nb">max</span><span class="p">(</span><span class="n">discharge</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -851,7 +851,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

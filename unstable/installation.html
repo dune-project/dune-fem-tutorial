@@ -534,7 +534,7 @@ description in the <a class="reference internal" href="changelog.html"><span cla
 <p>To use additional external packages like <cite>petsc</cite> or <cite>umfpack</cite> which are not
 in a default location, the cmake prefix variable can be set during
 installation process:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_FLAGS</span><span class="o">=</span><span class="s2">&quot;-DCMAKE_PREFIX_PATH=PATHLIST&quot;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dune-fem
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">CMAKE_FLAGS</span><span class="o">=</span><span class="s2">"-DCMAKE_PREFIX_PATH=PATHLIST"</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dune-fem
 </pre></div>
 </div>
 <p>where <cite>PATHLIST</cite> is a semicolon separated list of path containing external packages.</p>
@@ -679,7 +679,7 @@ links to general instructions on how to <a class="reference external" href="http
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">structuredGrid</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
-<span class="nd">@gridFunction</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nd">@gridFunction</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"test"</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">two_norm</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 <span class="n">f</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -758,7 +758,7 @@ you need to install it using e.g.</p>
 </div>
 </li>
 <li><p><strong>User warning from numpy:</strong></p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>UserWarning: The value of the smallest subnormal for &lt;class &#39;numpy.float64&#39;&gt; type is zero.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>UserWarning: The value of the smallest subnormal for &lt;class 'numpy.float64'&gt; type is zero.
 </pre></div>
 </div>
 <p>This is caused by some shared library using the compiler flag
@@ -778,7 +778,7 @@ The following gives an example of how to first install <cite>petsc</cite> and
 Assuming that the virtual environment with <cite>python</cite> version <cite>X.Y</cite>
 is in <cite>$HOME/dune-env</cite> and we want a few extra <cite>petsc</cite> packages we could run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>mpi4py
-<span class="nv">PETSC_CONFIGURE_OPTIONS</span><span class="o">=</span><span class="s2">&quot;--download-hypre --download-parmetis --download-ml --download-metis --download-scalapack&quot;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>petsc
+<span class="nv">PETSC_CONFIGURE_OPTIONS</span><span class="o">=</span><span class="s2">"--download-hypre --download-parmetis --download-ml --download-metis --download-scalapack"</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>petsc
 <span class="nb">export</span><span class="w"> </span><span class="nv">PETSC_DIR</span><span class="o">=</span><span class="nv">$HOME</span>/dune-env/lib/pythonX.Y/site-packages/petsc
 pip<span class="w"> </span>install<span class="w"> </span>petsc4py
 pip<span class="w"> </span>install<span class="w"> </span>dune-fem
@@ -802,7 +802,7 @@ removed before the new component can be used.</p>
 <p>If issues remain reinstalling all <cite>dune</cite> packages might be required -
 including the cached wheels:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>-y<span class="w"> </span><span class="sb">`</span>pip<span class="w"> </span>freeze<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>dune<span class="sb">`</span>
-pip<span class="w"> </span>cache<span class="w"> </span>remove<span class="w"> </span><span class="s2">&quot;dune*&quot;</span>
+pip<span class="w"> </span>cache<span class="w"> </span>remove<span class="w"> </span><span class="s2">"dune*"</span>
 </pre></div>
 </div>
 <p>When running <cite>pip install</cite> for the <cite>dune</cite> packages setting prefix path
@@ -833,7 +833,7 @@ environment variable <cite>PYTHONUNBUFFERED</cite> to some non zero value.</p></
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

@@ -530,20 +530,20 @@ below.</p>
 <span class="c1"># * This should also work fine with other installations, i.e. pip install but</span>
 <span class="c1"># * might require some adjustments.</span>
 <span class="c1">###</span>
-<span class="nv">RUNDIR</span><span class="o">=</span><span class="s2">&quot;`pwd`/jobs/</span><span class="nv">$SLURM_JOB_ID</span><span class="s2">&quot;</span>
+<span class="nv">RUNDIR</span><span class="o">=</span><span class="s2">"`pwd`/jobs/</span><span class="nv">$SLURM_JOB_ID</span><span class="s2">"</span>
 
 <span class="c1"># Create `rundir` directory where the job will run.</span>
 <span class="c1"># The rundir stores the runscript (this script) + any files written by the job.</span>
-mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUNDIR</span><span class="s2">&quot;</span>
-cat<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUNDIR</span><span class="s2">/run.sh&quot;</span>
-<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$RUNDIR</span><span class="s2">&quot;</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$RUNDIR</span><span class="s2">"</span>
+cat<span class="w"> </span><span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$RUNDIR</span><span class="s2">/run.sh"</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">"</span><span class="nv">$RUNDIR</span><span class="s2">"</span>
 
-:<span class="w"> </span><span class="s1">&#39;</span>
+:<span class="w"> </span><span class="s1">'</span>
 <span class="s1">Optional comment describing the purpose of the run.</span>
-<span class="s1">&#39;</span>
+<span class="s1">'</span>
 
 <span class="c1"># activate a previously created virtual environment</span>
-<span class="nb">source</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DUNE_CONTROL_PATH</span><span class="s2">/dune-env/bin/activate&quot;</span>
+<span class="nb">source</span><span class="w"> </span><span class="s2">"</span><span class="nv">$DUNE_CONTROL_PATH</span><span class="s2">/dune-env/bin/activate"</span>
 
 <span class="c1"># Use local compilation cache.</span>
 <span class="c1"># To use the global cache - comment the following lines.</span>
@@ -554,17 +554,17 @@ cat<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</sp
 <span class="c1"># To use the global cache - comment the following three lines.</span>
 cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$DUNE_PY_DIR</span><span class="w"> </span><span class="nv">$RUNDIR</span>
 <span class="c1"># Reset the DUNE_PY_DIR to the new directory</span>
-<span class="nb">export</span><span class="w"> </span><span class="nv">DUNE_PY_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$RUNDIR</span><span class="s2">/</span><span class="nv">$CACHEFOLDER</span><span class="s2">&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">DUNE_PY_DIR</span><span class="o">=</span><span class="s2">"</span><span class="nv">$RUNDIR</span><span class="s2">/</span><span class="nv">$CACHEFOLDER</span><span class="s2">"</span>
 <span class="c1"># trigger a re-configuration to adjust paths within DUNE_PY_DIR</span>
-rm<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$DUNE_PY_DIR</span><span class="s2">/dune-py/.noconfigure&quot;</span>
+rm<span class="w"> </span><span class="s2">"</span><span class="nv">$DUNE_PY_DIR</span><span class="s2">/dune-py/.noconfigure"</span>
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;JOB STARTED&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"JOB STARTED"</span>
 
 <span class="c1"># Example, replace this part with the test case you intended to run.</span>
 mpirun<span class="w"> </span><span class="se">\</span>
 python<span class="w"> </span><span class="nv">$DUNE_CONTROL_PATH</span>/testcase.py
 
-<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;JOB FINISHED&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">"JOB FINISHED"</span>
 </pre></div>
 </div>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3706994"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3706994.svg" />
@@ -583,7 +583,7 @@ python<span class="w"> </span><span class="nv">$DUNE_CONTROL_PATH</span>/testcas
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

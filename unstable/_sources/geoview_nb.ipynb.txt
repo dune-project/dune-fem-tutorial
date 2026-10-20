@@ -3,32 +3,16 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "f4fac333",
+   "id": "8c7d5752",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-15T19:29:59.018077Z",
-     "iopub.status.busy": "2026-06-15T19:29:59.017941Z",
-     "iopub.status.idle": "2026-06-15T19:30:00.964661Z",
-     "shell.execute_reply": "2026-06-15T19:30:00.964218Z"
+     "iopub.execute_input": "2026-10-20T10:39:35.175927Z",
+     "iopub.status.busy": "2026-10-20T10:39:35.175766Z",
+     "iopub.status.idle": "2026-10-20T10:39:37.679538Z",
+     "shell.execute_reply": "2026-10-20T10:39:37.678614Z"
     }
    },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "[1781551800.576899] [runnervm1li68:87898:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x562d8af07290 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported\n",
-      "[1781551800.577201] [runnervm1li68:87898:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error\n"
-     ]
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "[runnervm1li68:87898] pml_ucx.c:319  Error: Failed to create UCP worker\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "from matplotlib import pyplot\n",
     "from ufl import sqrt, SpatialCoordinate, as_vector\n",
@@ -46,13 +30,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "ffd14b97",
+   "id": "11938fa1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-15T19:30:00.966448Z",
-     "iopub.status.busy": "2026-06-15T19:30:00.966267Z",
-     "iopub.status.idle": "2026-06-15T19:30:01.004164Z",
-     "shell.execute_reply": "2026-06-15T19:30:01.003743Z"
+     "iopub.execute_input": "2026-10-20T10:39:37.681180Z",
+     "iopub.status.busy": "2026-10-20T10:39:37.680939Z",
+     "iopub.status.idle": "2026-10-20T10:39:37.745867Z",
+     "shell.execute_reply": "2026-10-20T10:39:37.744955Z"
     }
    },
    "outputs": [
@@ -73,7 +57,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a40ee7f0",
+   "id": "51d9ce74",
    "metadata": {},
    "source": [
     "In a second example we embed a 1D interval into 3D:"
@@ -82,13 +66,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "fcdc3d47",
+   "id": "932885e6",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-15T19:30:01.005381Z",
-     "iopub.status.busy": "2026-06-15T19:30:01.005267Z",
-     "iopub.status.idle": "2026-06-15T19:30:01.087497Z",
-     "shell.execute_reply": "2026-06-15T19:30:01.086998Z"
+     "iopub.execute_input": "2026-10-20T10:39:37.747591Z",
+     "iopub.status.busy": "2026-10-20T10:39:37.747390Z",
+     "iopub.status.idle": "2026-10-20T10:39:37.845275Z",
+     "shell.execute_reply": "2026-10-20T10:39:37.844408Z"
     }
    },
    "outputs": [],
@@ -103,7 +87,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7ec45fe9",
+   "id": "495f7e8a",
    "metadata": {},
    "source": [
     "Note: currently plotting for 1d grids is not implemented\n",
@@ -114,13 +98,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "bcdce067",
+   "id": "c1a23e14",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-15T19:30:01.089143Z",
-     "iopub.status.busy": "2026-06-15T19:30:01.089030Z",
-     "iopub.status.idle": "2026-06-15T19:30:34.417362Z",
-     "shell.execute_reply": "2026-06-15T19:30:34.416956Z"
+     "iopub.execute_input": "2026-10-20T10:39:37.847098Z",
+     "iopub.status.busy": "2026-10-20T10:39:37.846921Z",
+     "iopub.status.idle": "2026-10-20T10:40:29.609777Z",
+     "shell.execute_reply": "2026-10-20T10:40:29.608987Z"
     }
    },
    "outputs": [
@@ -143,9 +127,12 @@
  ],
  "metadata": {
   "jupytext": {
-   "cell_metadata_filter": "-all",
-   "main_language": "python",
-   "notebook_metadata_filter": "-all"
+   "cell_metadata_filter": "-all"
+  },
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
   },
   "language_info": {
    "codemirror_mode": {
@@ -157,7 +144,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.14.6"
+   "version": "3.14.8"
   }
  },
  "nbformat": 4,

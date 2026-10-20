@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "e6088cb7",
+   "id": "f0ba827a",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -18,13 +18,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "a0d6412e",
+   "id": "8b6e0313",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-15T19:53:55.806030Z",
-     "iopub.status.busy": "2026-06-15T19:53:55.805881Z",
-     "iopub.status.idle": "2026-06-15T19:53:59.548520Z",
-     "shell.execute_reply": "2026-06-15T19:53:59.547810Z"
+     "iopub.execute_input": "2026-10-20T10:46:41.329063Z",
+     "iopub.status.busy": "2026-10-20T10:46:41.328913Z",
+     "iopub.status.idle": "2026-10-20T10:46:44.896513Z",
+     "shell.execute_reply": "2026-10-20T10:46:44.895249Z"
     }
    },
    "outputs": [
@@ -32,19 +32,25 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "0 0.050835191408469156\n",
-      "1 0.004520464458157924\n",
-      "2 0.0001443814586563045\n",
-      "3 6.536111368146112e-06\n",
-      "4 3.445323821267335e-07\n",
-      "5 2.8767428662080097e-08\n",
-      "6 1.6235031965132546e-09\n",
-      "7 2.827657618254882e-12\n",
-      "8 1.2521910308402155e-13\n",
-      "9 9.279809695676823e-15\n",
-      "10 2.8894996916770053e-15\n",
-      "11 8.49792794063936e-17\n",
-      "12 2.006899814639925e-19\n"
+      "0 0.05083519140846916\n",
+      "1 0.004520464458157931\n",
+      "2 0.00014438145865630536\n",
+      "3 6.5361113681461815e-06\n",
+      "4 3.4453238212677255e-07\n",
+      "5 2.8767428662122915e-08\n",
+      "6 1.6235031965136188e-09\n",
+      "7 2.8276576180286405e-12\n",
+      "8 1.252191030321855e-13\n",
+      "9 9.279809689990432e-15\n",
+      "10 2.8894996724317716e-15\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "11 8.497927721205073e-17\n",
+      "12 2.006899373524185e-19\n"
      ]
     }
    ],
@@ -169,7 +175,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "496dba58",
+   "id": "ef6dc521",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -180,13 +186,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "f7c3d744",
+   "id": "974b92c3",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-15T19:53:59.550532Z",
-     "iopub.status.busy": "2026-06-15T19:53:59.550069Z",
-     "iopub.status.idle": "2026-06-15T19:54:00.040208Z",
-     "shell.execute_reply": "2026-06-15T19:54:00.039378Z"
+     "iopub.execute_input": "2026-10-20T10:46:44.898354Z",
+     "iopub.status.busy": "2026-10-20T10:46:44.898055Z",
+     "iopub.status.idle": "2026-10-20T10:46:45.323038Z",
+     "shell.execute_reply": "2026-10-20T10:46:45.322199Z"
     }
    },
    "outputs": [
@@ -210,9 +216,12 @@
  ],
  "metadata": {
   "jupytext": {
-   "cell_metadata_filter": "-all",
-   "main_language": "python",
-   "notebook_metadata_filter": "-all"
+   "cell_metadata_filter": "-all"
+  },
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
   },
   "language_info": {
    "codemirror_mode": {
@@ -224,7 +233,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.14.6"
+   "version": "3.14.8"
   }
  },
  "nbformat": 4,

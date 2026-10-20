@@ -540,24 +540,24 @@ This document is part of the dune-fem tutorial
 <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">():</span>
     <span class="n">gridView</span> <span class="o">=</span> <span class="n">view</span><span class="p">(</span> <span class="n">aluConformGrid</span><span class="p">(</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span> <span class="p">)</span> <span class="p">)</span>
 
-    <span class="nd">@gridFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;gf&quot;</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nd">@gridFunction</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"gf"</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">gf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">&lt;</span><span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
 
     <span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"test"</span><span class="p">)</span>
 
     <span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">marker</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">Marker</span><span class="o">.</span><span class="n">refine</span> <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">localFunction</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="o">.</span><span class="n">jacobian</span><span class="p">([</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">,</span><span class="mf">1.</span><span class="o">/</span><span class="mf">3.</span><span class="p">])</span><span class="o">.</span><span class="n">infinity_norm</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">Marker</span><span class="o">.</span><span class="n">coarsen</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
         <span class="n">gridAdapt</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="p">)</span>
         <span class="n">df</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">gf</span> <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;size of adapted grid view:&quot;</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"size of adapted grid view:"</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 
-    <span class="n">t</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s2">"time"</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">ufl</span><span class="o">.</span><span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
     <span class="n">gf</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">ufl</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">*</span><span class="n">ufl</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span>
-                     <span class="n">gridView</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tanh&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;tanh_h&quot;</span><span class="p">),</span><span class="n">gf</span>
+                     <span class="n">gridView</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"tanh"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span><span class="p">,</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">gf</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"tanh_h"</span><span class="p">),</span><span class="n">gf</span>
 </pre></div>
 </div>
 </div>
@@ -572,10 +572,10 @@ This document is part of the dune-fem tutorial
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dump</span><span class="p">():</span>
     <span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">,</span> <span class="n">gf</span> <span class="o">=</span> <span class="n">setup</span><span class="p">()</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.dbf&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"test.dbf"</span><span class="p">,</span><span class="s2">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">dune</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">([</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">],</span><span class="n">f</span><span class="p">)</span>
 
-    <span class="n">series</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">SeriesPickler</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="p">[</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">])</span>
+    <span class="n">series</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">SeriesPickler</span><span class="p">(</span><span class="s2">"test"</span><span class="p">,</span> <span class="n">objects</span><span class="o">=</span><span class="p">[</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">])</span>
 
     <span class="n">tsps</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">2.5</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">inCircle</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
@@ -587,7 +587,7 @@ This document is part of the dune-fem tutorial
             <span class="n">gridAdapt</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="p">[</span><span class="n">df1</span><span class="p">,</span><span class="n">df2</span><span class="p">])</span>
         <span class="n">gf</span><span class="o">.</span><span class="n">time</span> <span class="o">=</span> <span class="n">tsp</span>
         <span class="n">df2</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">gf</span><span class="p">)</span>
-        <span class="n">series</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span><span class="s2">&quot;time&quot;</span><span class="p">:</span><span class="n">tsp</span><span class="p">})</span>
+        <span class="n">series</span><span class="o">.</span><span class="n">dump</span><span class="p">({</span><span class="s2">"time"</span><span class="p">:</span><span class="n">tsp</span><span class="p">})</span>
 <span class="n">dump</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -605,11 +605,11 @@ size of adapted grid view: 4288
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;test.dbf&quot;</span><span class="p">,</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"test.dbf"</span><span class="p">,</span><span class="s2">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">df1</span><span class="p">,</span><span class="n">df2</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 <span class="n">df1</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 
-<span class="n">series</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">SeriesPickler</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">series</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">pickle</span><span class="o">.</span><span class="n">SeriesPickler</span><span class="p">(</span><span class="s2">"test"</span><span class="p">)</span>
 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">data</span><span class="p">,</span> <span class="n">df</span> <span class="o">=</span> <span class="n">series</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
@@ -727,21 +727,21 @@ size of adapted grid view: 4288
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">CheckPointer</span><span class="p">:</span>
-    <span class="c1"># if &#39;gridView=None&#39; then restore grid view using given file name</span>
-    <span class="c1"># otherwise backup &#39;gridView&#39; to given file</span>
+    <span class="c1"># if 'gridView=None' then restore grid view using given file name</span>
+    <span class="c1"># otherwise backup 'gridView' to given file</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">fileName</span><span class="p">,</span><span class="n">gridView</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">gridView</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># restore file</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="s1">'rb'</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gridView</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>             <span class="c1"># store file</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="s1">'wb'</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">gridView</span> <span class="o">=</span> <span class="n">gridView</span>
             <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gridView</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="c1"># add an item to pickle when backup is called (or restore)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">item</span><span class="p">):</span>
-        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s2">&quot;write&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s2">&quot;read&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s2">"write"</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span><span class="s2">"read"</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">+=</span> <span class="p">[</span><span class="n">item</span><span class="p">]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">backup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -764,7 +764,7 @@ size of adapted grid view: 4288
     <span class="n">checkPointer</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
     <span class="n">checkPointer</span><span class="o">.</span><span class="n">backup</span><span class="p">()</span>
 
-<span class="n">test1</span><span class="p">(</span><span class="s2">&quot;dump.pickle&quot;</span><span class="p">)</span>
+<span class="n">test1</span><span class="p">(</span><span class="s2">"dump.pickle"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -781,12 +781,12 @@ size of adapted grid view: 4288
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkPointer</span> <span class="o">=</span> <span class="n">CheckPointer</span><span class="p">(</span><span class="s2">&quot;dump.pickle&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">checkPointer</span> <span class="o">=</span> <span class="n">CheckPointer</span><span class="p">(</span><span class="s2">"dump.pickle"</span><span class="p">)</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">checkPointer</span><span class="o">.</span><span class="n">gridView</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;size of restored grid view:&quot;</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"size of restored grid view:"</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
-<span class="n">df1</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"test"</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"test"</span><span class="p">)</span>
 <span class="n">checkPointer</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
 <span class="n">checkPointer</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
 <span class="n">checkPointer</span><span class="o">.</span><span class="n">restore</span><span class="p">()</span>
@@ -839,7 +839,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

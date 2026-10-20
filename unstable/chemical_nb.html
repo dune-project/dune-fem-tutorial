@@ -519,7 +519,7 @@ This document is part of the dune-fem tutorial
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">dune.femdg</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This example needs &#39;dune.femdg&#39; - skipping&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"This example needs 'dune.femdg' - skipping"</span><span class="p">)</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
@@ -549,7 +549,7 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">computeVelocity</span><span class="p">():</span>
     <span class="n">streamSpace</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">Psi</span>  <span class="o">=</span> <span class="n">streamSpace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;streamFunction&quot;</span><span class="p">)</span>
+    <span class="n">Psi</span>  <span class="o">=</span> <span class="n">streamSpace</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"streamFunction"</span><span class="p">)</span>
     <span class="n">u</span><span class="p">,</span><span class="n">v</span>  <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">streamSpace</span><span class="p">),</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">streamSpace</span><span class="p">)</span>
     <span class="n">x</span>    <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">streamSpace</span><span class="p">)</span>
     <span class="n">form</span> <span class="o">=</span> <span class="p">(</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">-</span> <span class="mi">5</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
@@ -611,8 +611,8 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">space</span>    <span class="o">=</span> <span class="n">dgonb</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">u_h</span>      <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
-<span class="n">operator</span> <span class="o">=</span> <span class="n">femDGOperator</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">limiter</span><span class="o">=</span><span class="s2">&quot;scaling&quot;</span><span class="p">)</span>
+<span class="n">u_h</span>      <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">'u_h'</span><span class="p">)</span>
+<span class="n">operator</span> <span class="o">=</span> <span class="n">femDGOperator</span><span class="p">(</span><span class="n">Model</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">limiter</span><span class="o">=</span><span class="s2">"scaling"</span><span class="p">)</span>
 <span class="n">stepper</span>  <span class="o">=</span> <span class="n">femdgStepper</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">operator</span><span class="o">=</span><span class="n">operator</span><span class="p">)</span>
 <span class="n">operator</span><span class="o">.</span><span class="n">applyLimiter</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
 
@@ -646,7 +646,7 @@ This document is part of the dune-fem tutorial
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotComponents</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ticker</span>
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">u_h</span><span class="p">,</span> <span class="n">gridLines</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-               <span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;orientation&quot;</span><span class="p">:</span><span class="s2">&quot;horizontal&quot;</span><span class="p">,</span> <span class="s2">&quot;ticks&quot;</span><span class="p">:</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)})</span>
+               <span class="n">colorbar</span><span class="o">=</span><span class="p">{</span><span class="s2">"orientation"</span><span class="p">:</span><span class="s2">"horizontal"</span><span class="p">,</span> <span class="s2">"ticks"</span><span class="p">:</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="n">nbins</span><span class="o">=</span><span class="mi">4</span><span class="p">)})</span>
 </pre></div>
 </div>
 </div>
@@ -678,7 +678,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

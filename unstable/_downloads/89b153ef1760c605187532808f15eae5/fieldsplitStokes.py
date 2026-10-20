@@ -111,7 +111,11 @@ subksps[1].getPC().setType("hypre")
 ksp.setOperators(A, M)
 ksp.setFromOptions()
 
-(x, _) = A.getVecs()
+# petsc API change (at least starting 3.20.6 Mat uses 'createVects' not 'getVecs'
+if hasattr(A, "createVecs"):
+    x, _ = A.createVecs()
+else:
+    x, _ = A.getVecs()
 ksp.solve(b, x)
 solution_vector_cg = taylor_hood_space.function(name="solution_vector_petsc", dofVector=x)
 

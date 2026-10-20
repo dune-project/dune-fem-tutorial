@@ -579,17 +579,17 @@ range space with $v_i=0$ for all degrees of freedom on the boundary.</p>
 construction of a <cite>scheme</cite> have been changed. Keys with prefix
 <cite>newton.linear</cite> have been replaced with <cite>linear</cite> while parameters with only
 a <cite>newton</cite> prefix are now prefixed with <cite>nonlinear</cite>. So</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;newton.tolerance&quot;</span><span class="p">:</span><span class="mf">1e-8</span><span class="p">,</span>
- <span class="s2">&quot;newton.verbose&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
- <span class="s2">&quot;newton.linear.preconditioning.method&quot;</span><span class="p">:</span><span class="s2">&quot;jacobi&quot;</span><span class="p">,</span>
- <span class="s2">&quot;newton.linear.tolerance&quot;</span><span class="p">:</span><span class="mf">1e-10</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"newton.tolerance"</span><span class="p">:</span><span class="mf">1e-8</span><span class="p">,</span>
+ <span class="s2">"newton.verbose"</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
+ <span class="s2">"newton.linear.preconditioning.method"</span><span class="p">:</span><span class="s2">"jacobi"</span><span class="p">,</span>
+ <span class="s2">"newton.linear.tolerance"</span><span class="p">:</span><span class="mf">1e-10</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>should be replace with</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;nonlinear.tolerance&quot;</span><span class="p">:</span><span class="mf">1e-8</span><span class="p">,</span>
- <span class="s2">&quot;nonlinear.verbose&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
- <span class="s2">&quot;linear.preconditioning.method&quot;</span><span class="p">:</span> <span class="s2">&quot;jacobi&quot;</span><span class="p">,</span>
- <span class="s2">&quot;linear.tolerance&quot;</span><span class="p">:</span><span class="mf">1e-10</span><span class="p">}</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">"nonlinear.tolerance"</span><span class="p">:</span><span class="mf">1e-8</span><span class="p">,</span>
+ <span class="s2">"nonlinear.verbose"</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span>
+ <span class="s2">"linear.preconditioning.method"</span><span class="p">:</span> <span class="s2">"jacobi"</span><span class="p">,</span>
+ <span class="s2">"linear.tolerance"</span><span class="p">:</span><span class="mf">1e-10</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>In addition the parameter <code class="docutils literal notranslate"><span class="pre">newton.linear.tolerance.strategy</span></code> has been
@@ -846,7 +846,7 @@ jump of a VEM function in a continuous VEM space will now be zero as expected.</
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

@@ -514,7 +514,7 @@ This document is part of the dune-fem tutorial
 <section id="FilteredGridView-examples">
 <span id="index-0"></span><h1>FilteredGridView examples<a class="headerlink" href="#FilteredGridView-examples" title="Link to this heading"></a></h1>
 <p>In this example we use <code class="docutils literal notranslate"><span class="pre">filteredGridView</span></code> to filter out parts of a given grid view.</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -527,23 +527,6 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[1781551851.665821] [runnervm1li68:88569:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x55ebca844990 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported
-[1781551851.666114] [runnervm1li68:88569:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-[runnervm1li68:88569] pml_ucx.c:319  Error: Failed to create UCP worker
-</pre></div></div>
-</div>
 <p>Create a host grid view of the underlying grid as usual. We show the boundary ids and some discrete function - also note the size of the Lagrange space in this example:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -552,11 +535,11 @@ This document is part of the dune-fem tutorial
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">50</span><span class="p">,</span><span class="mi">25</span><span class="p">])</span> <span class="p">)</span>
 <span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
-<span class="n">solution</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
-<span class="n">solution</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of dofs:&quot;</span><span class="p">,</span> <span class="n">solution</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
-      <span class="s2">&quot;integral over original domain&quot;</span><span class="p">,</span><span class="n">solution</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
-<span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">solution</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">"solution"</span><span class="p">)</span>
+<span class="n">solution</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"number of dofs:"</span><span class="p">,</span> <span class="n">solution</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
+      <span class="s2">"integral over original domain"</span><span class="p">,</span><span class="n">solution</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
+<span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -598,10 +581,10 @@ number of dofs: 5151 integral over original domain 1.3333333333333384
 <span class="n">filteredView10</span> <span class="o">=</span> <span class="n">filteredGridView</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">filterIds</span><span class="p">,</span> <span class="n">domainId</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
                                   <span class="n">useFilteredIndexSet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">space10</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">filteredView10</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">solution10</span> <span class="o">=</span> <span class="n">space10</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
-<span class="n">solution10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of dofs:&quot;</span><span class="p">,</span> <span class="n">solution10</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
-      <span class="s2">&quot;integral over filtered domain 10&quot;</span><span class="p">,</span><span class="n">solution10</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
+<span class="n">solution10</span> <span class="o">=</span> <span class="n">space10</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">"solution"</span><span class="p">)</span>
+<span class="n">solution10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"number of dofs:"</span><span class="p">,</span> <span class="n">solution10</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
+      <span class="s2">"integral over filtered domain 10"</span><span class="p">,</span><span class="n">solution10</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -631,10 +614,10 @@ number of dofs: 1053 integral over filtered domain 10 0.04858624000000002
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solution</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="n">filteredView10</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">solution10</span><span class="p">,</span><span class="n">solution</span><span class="p">)</span>
-<span class="n">solution</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">solution</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 <span class="n">solution10</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="n">filteredView10</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">solution</span><span class="p">,</span><span class="n">solution10</span><span class="p">)</span>
-<span class="n">solution10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">solution10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -657,7 +640,7 @@ number of dofs: 1053 integral over filtered domain 10 0.04858624000000002
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">filteredView10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">filteredView10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -676,11 +659,11 @@ number of dofs: 1053 integral over filtered domain 10 0.04858624000000002
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filteredView15</span> <span class="o">=</span> <span class="n">filteredGridView</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">filterIds</span><span class="p">,</span> <span class="n">domainId</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">space15</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">filteredView15</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space15</span><span class="p">)</span>
-<span class="n">solution15</span> <span class="o">=</span> <span class="n">space15</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
-<span class="n">solution15</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of dofs:&quot;</span><span class="p">,</span> <span class="n">solution15</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
-      <span class="s2">&quot;integral over filtered domain 15&quot;</span><span class="p">,</span><span class="n">solution15</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
-<span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">filteredView15</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">solution15</span> <span class="o">=</span> <span class="n">space15</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">"solution"</span><span class="p">)</span>
+<span class="n">solution15</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"number of dofs:"</span><span class="p">,</span> <span class="n">solution15</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
+      <span class="s2">"integral over filtered domain 15"</span><span class="p">,</span><span class="n">solution15</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
+<span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">filteredView15</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -715,7 +698,7 @@ number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solution15</span> <span class="o">=</span> <span class="n">space15</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solution15</span> <span class="o">=</span> <span class="n">space15</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"solution"</span><span class="p">)</span>
 <span class="n">solution15</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -726,7 +709,7 @@ number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solution</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-<span class="n">solution</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">solution15</span><span class="p">)</span>  <span class="c1"># here the &#39;0&#39; on the domain which is not in the filter is important</span>
+<span class="n">solution</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">solution15</span><span class="p">)</span>  <span class="c1"># here the '0' on the domain which is not in the filter is important</span>
 <span class="n">solution</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 <span class="n">solution15</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">solution</span><span class="p">)</span>
 <span class="n">solution15</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -756,11 +739,11 @@ number of dofs: 5151 integral over filtered domain 15 0.2007825066666666
                                   <span class="n">useFilteredIndexSet</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">space20</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">filteredView20</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space20</span><span class="p">)</span>
-<span class="n">solution20</span> <span class="o">=</span> <span class="n">space20</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
-<span class="n">solution20</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number of dofs:&quot;</span><span class="p">,</span> <span class="n">solution20</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
-      <span class="s2">&quot;integral over filtered domain 20&quot;</span><span class="p">,</span><span class="n">solution20</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
-<span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">filteredView20</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">solution20</span> <span class="o">=</span> <span class="n">space20</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="s2">"solution"</span><span class="p">)</span>
+<span class="n">solution20</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"number of dofs:"</span><span class="p">,</span> <span class="n">solution20</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>\
+      <span class="s2">"integral over filtered domain 20"</span><span class="p">,</span><span class="n">solution20</span><span class="o">.</span><span class="n">integrate</span><span class="p">())</span>
+<span class="n">inspectBoundaryIds</span><span class="p">(</span><span class="n">filteredView20</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -806,9 +789,9 @@ number of dofs: 2979 integral over filtered domain 20 1.0839645866666672
 <span class="n">a</span>     <span class="o">=</span> <span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">*</span> <span class="n">dx</span>
 <span class="n">dbc</span>   <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space10</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;=</span><span class="mf">1e-8</span><span class="p">)</span>
 
-<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">,</span> <span class="n">dbc</span><span class="p">],</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">)</span>
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="p">,</span> <span class="n">dbc</span><span class="p">],</span> <span class="n">solver</span><span class="o">=</span><span class="s1">'cg'</span><span class="p">)</span>
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">solution10</span><span class="p">)</span>
-<span class="n">solution10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">solution10</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -825,7 +808,7 @@ number of dofs: 2979 integral over filtered domain 20 1.0839645866666672
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
-<span class="n">gridFunction</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span><span class="n">gridView</span><span class="o">=</span><span class="n">filteredView10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">gridFunction</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span><span class="n">gridView</span><span class="o">=</span><span class="n">filteredView10</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -847,9 +830,9 @@ number of dofs: 2979 integral over filtered domain 20 1.0839645866666672
 <span class="n">dbc1</span>  <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space15</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># lower internal boundary (domain id there is 10)</span>
 <span class="n">dbc2</span>  <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space15</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># upper internal boundary (domain id there is 20)</span>
 
-<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dbc1</span><span class="p">,</span> <span class="n">dbc2</span><span class="p">],</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">)</span>
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dbc1</span><span class="p">,</span> <span class="n">dbc2</span><span class="p">],</span> <span class="n">solver</span><span class="o">=</span><span class="s1">'cg'</span><span class="p">)</span>
 <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span> <span class="o">=</span> <span class="n">solution15</span><span class="p">)</span>
-<span class="n">solution15</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<span class="n">solution15</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -881,7 +864,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

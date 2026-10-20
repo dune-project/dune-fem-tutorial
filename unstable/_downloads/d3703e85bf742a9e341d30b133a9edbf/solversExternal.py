@@ -242,6 +242,7 @@ class Scheme2:
             self.op = op
             self.shape = (x_coeff.shape[0], x_coeff.shape[0])
             self.dtype = x_coeff.dtype
+            super().__init__(dtype=self.dtype, shape=self.shape)
             x = self.op.domainSpace.function("tmp", dofVector=x_coeff)
             self.jacobian = self.op.linear()
             self.n = -1

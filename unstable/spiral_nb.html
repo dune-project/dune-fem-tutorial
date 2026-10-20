@@ -592,9 +592,9 @@ v^{n+1} &= v^n + \tau h(u^n,v^n)
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gridView</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mf">2.5</span><span class="p">,</span><span class="mf">2.5</span><span class="p">],[</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">])</span>
 <span class="n">space</span>    <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">lagrange</span><span class="p">(</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="n">dimRange</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
 
-<span class="n">uh</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial_u</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;u&quot;</span> <span class="p">)</span>
+<span class="n">uh</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial_u</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"u"</span> <span class="p">)</span>
 <span class="n">uh_n</span> <span class="o">=</span> <span class="n">uh</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="n">vh</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial_v</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;v&quot;</span> <span class="p">)</span>
+<span class="n">vh</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">initial_v</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"v"</span> <span class="p">)</span>
 <span class="n">vh_n</span> <span class="o">=</span> <span class="n">vh</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -632,12 +632,12 @@ v^{n+1} &= v^n + \tau h(u^n,v^n)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">solverParameters</span> <span class="o">=</span>\
-       <span class="p">{</span><span class="s2">&quot;nonlinear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
-        <span class="s2">&quot;nonlinear.verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s2">&quot;linear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-5</span><span class="p">,</span>
-        <span class="s2">&quot;linear.preconditioning.method&quot;</span><span class="p">:</span> <span class="s2">&quot;jacobi&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;linear.verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
-<span class="n">scheme</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">galerkin</span><span class="p">(</span> <span class="n">equation</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;cg&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">solverParameters</span><span class="p">)</span>
+       <span class="p">{</span><span class="s2">"nonlinear.tolerance"</span><span class="p">:</span> <span class="mf">1e-3</span><span class="p">,</span>
+        <span class="s2">"nonlinear.verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"linear.tolerance"</span><span class="p">:</span> <span class="mf">1e-5</span><span class="p">,</span>
+        <span class="s2">"linear.preconditioning.method"</span><span class="p">:</span> <span class="s2">"jacobi"</span><span class="p">,</span>
+        <span class="s2">"linear.verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">}</span>
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">dune</span><span class="o">.</span><span class="n">fem</span><span class="o">.</span><span class="n">scheme</span><span class="o">.</span><span class="n">galerkin</span><span class="p">(</span> <span class="n">equation</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"cg"</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">solverParameters</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -659,11 +659,11 @@ v^{n+1} &= v^n + \tau h(u^n,v^n)
         <span class="n">vh_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">vh</span><span class="p">)</span>
         <span class="n">info</span> <span class="o">=</span> <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">uh</span><span class="p">)</span>
         <span class="n">vh</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span> <span class="n">ode_update</span> <span class="p">)</span>
-        <span class="c1"># print(&quot;Computing solution a t = &quot; + str(t + dt), &quot;iterations: &quot; + str(info[&quot;linear_iterations&quot;]) )</span>
+        <span class="c1"># print("Computing solution a t = " + str(t + dt), "iterations: " + str(info["linear_iterations"]) )</span>
         <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">uh</span><span class="o">.</span><span class="n">pointData</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">C</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">tricontourf</span><span class="p">(</span><span class="n">triangulation</span><span class="p">,</span> <span class="n">data</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">rainbow</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="n">levels</span><span class="p">)</span>
-    <span class="c1"># gridView.writeVTK(&quot;spiral&quot;, pointdata=[uh], number=count)</span>
+    <span class="c1"># gridView.writeVTK("spiral", pointdata=[uh], number=count)</span>
     <span class="k">return</span> <span class="n">C</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">collections</span>
 </pre></div>
 </div>
@@ -682,7 +682,7 @@ v^{n+1} &= v^n + \tau h(u^n,v^n)
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">))</span>
 <span class="n">triangulation</span> <span class="o">=</span> <span class="n">gridView</span><span class="o">.</span><span class="n">triangulation</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">levels</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">);</span>
 <span class="n">t</span>        <span class="o">=</span> <span class="mf">0.</span>
 <span class="n">stepsize</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">nextstep</span> <span class="o">=</span> <span class="mf">0.</span>
@@ -691,14 +691,14 @@ v^{n+1} &= v^n + \tau h(u^n,v^n)
 <span class="k">try</span><span class="p">:</span>
     <span class="n">movie</span> <span class="o">=</span> <span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()</span>
     <span class="c1"># save and embed</span>
-    <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;spiral.gif&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">animation</span><span class="o">.</span><span class="n">ImageMagickWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'spiral.gif'</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">animation</span><span class="o">.</span><span class="n">ImageMagickWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
     <span class="n">display</span><span class="p">(</span> <span class="n">HTML</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span> <span class="p">)</span>
 <span class="k">except</span><span class="p">:</span> <span class="c1"># ffmpeg probably missing</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;spiral.html&quot;</span><span class="p">)</span>
+        <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"spiral.html"</span><span class="p">)</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span>
-        <span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;./spiral.html&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+        <span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">'./spiral.html'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
 </pre></div>
@@ -733,7 +733,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

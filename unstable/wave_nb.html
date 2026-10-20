@@ -532,7 +532,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
 \vec{p} &= \vec{p} + M^{-1}S\vec{\psi}
 \end{align*}</span> where <span class="math notranslate nohighlight">\(S\)</span> is the stiffness matrix <span class="math notranslate nohighlight">\(S=(\int_\Omega\nabla\varphi_j\nabla\varphi_i)_{ij}\)</span> and <span class="math notranslate nohighlight">\(M\)</span> is the mass matrix, i.e., <span class="math notranslate nohighlight">\(M=\int_\Omega\varphi_j\varphi_i)_{ij}\)</span>. To simplify the computation we use a lumped version of this matrix, i.e,, <span class="math notranslate nohighlight">\(M\approx{\rm diag}(\int_\Omega\varphi_i)\)</span>. In this form the algorithm only involves a matrix vector multiplication and no implicit solving step is required.</p>
 <p>The following test case is taken from <a class="reference external" href="https://firedrakeproject.org/demos/linear_wave_equation.py.html">https://firedrakeproject.org/demos/linear_wave_equation.py.html</a></p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -550,39 +550,22 @@ g(t^{n+1}) & \text{on }\Gamma_D
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[1781551946.446808] [runnervm1li68:89524:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x55869bb99190 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported
-[1781551946.447096] [runnervm1li68:89524:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-[runnervm1li68:89524] pml_ucx.c:319  Error: Failed to create UCP worker
-</pre></div></div>
-</div>
 <p id="index-1">We use <em>gmsh</em> to define the domain and then set up a first order scalar Lagrange space which we will use both for <span class="math notranslate nohighlight">\(\psi\)</span> and <span class="math notranslate nohighlight">\(p\)</span>. We can construct general grids by either defining the grids directly in Python (as demonstrated in the following example) or by reading the grid from files using readers provided by Dune, e.g., Dune Grid Format (dgf) files or Gmsh files. Here we use a <a class="reference external" href="wave_tank.msh">slit domain mesh</a>.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">meshio</span><span class="p">,</span> <span class="s2">&quot;wave_tank.msh&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">domain</span> <span class="o">=</span> <span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">meshio</span><span class="p">,</span> <span class="s2">"wave_tank.msh"</span><span class="p">)</span>
 <span class="n">gridView</span>  <span class="o">=</span> <span class="n">leafGridView</span><span class="p">(</span> <span class="n">domain</span><span class="p">,</span> <span class="n">dimgrid</span><span class="o">=</span><span class="mi">2</span> <span class="p">)</span>
 <span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">loadBalance</span><span class="p">()</span>
-<span class="n">V</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="n">V</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s2">"numpy"</span><span class="p">)</span>
 
 <span class="n">u</span>    <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
 <span class="n">v</span>    <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
 <span class="n">x</span>    <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
 
-<span class="n">p</span>      <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;p&quot;</span><span class="p">)</span>
-<span class="n">phi</span>    <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;phi&quot;</span><span class="p">)</span>
+<span class="n">p</span>      <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"p"</span><span class="p">)</span>
+<span class="n">phi</span>    <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"phi"</span><span class="p">)</span>
 <span class="n">pVec</span>   <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">as_numpy</span>
 <span class="n">phiVec</span> <span class="o">=</span> <span class="n">phi</span><span class="o">.</span><span class="n">as_numpy</span>
 </pre></div>
@@ -603,7 +586,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_in</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">p_in</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"g"</span><span class="p">)</span>
 <span class="c1"># bc   = DirichletBC(V, p_in, conditional(x[0]&lt;1e-10,1,0))</span>
 <span class="c1"># bc   = BoxDirichletBC(V, p_in, [None,None],[0,None], eps=1e-10)</span>
 <span class="n">bc</span>   <span class="o">=</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">p_in</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -617,7 +600,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
 <span class="n">op</span>        <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span><span class="n">bc</span><span class="p">])</span>
 <span class="n">S</span>         <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
-<span class="n">lapPhi</span>    <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;e&quot;</span><span class="p">)</span>
+<span class="n">lapPhi</span>    <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"e"</span><span class="p">)</span>
 <span class="n">lapPhiVec</span> <span class="o">=</span> <span class="n">lapPhi</span><span class="o">.</span><span class="n">as_numpy</span>
 </pre></div>
 </div>
@@ -657,7 +640,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
-<span class="n">lumping</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;quadrature_rule&quot;</span><span class="p">:</span><span class="s2">&quot;lumped&quot;</span><span class="p">})</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lumping</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"quadrature_rule"</span><span class="p">:</span><span class="s2">"lumped"</span><span class="p">})</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">lumped</span> <span class="o">=</span> <span class="n">lumping</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span>
 <span class="n">M</span> <span class="o">=</span> <span class="n">dia_matrix</span><span class="p">(([</span><span class="n">dt</span><span class="o">/</span><span class="n">lumped</span><span class="p">],[</span><span class="mi">0</span><span class="p">]),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="p">)</span>
 <span class="n">S2</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">S</span>
@@ -720,7 +703,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

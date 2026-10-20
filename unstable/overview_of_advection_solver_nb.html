@@ -522,14 +522,14 @@ This document is part of the dune-fem tutorial
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">landlab</span><span class="w"> </span><span class="kn">import</span> <span class="n">HexModelGrid</span><span class="p">,</span> <span class="n">RasterModelGrid</span><span class="p">,</span> <span class="n">imshow_grid</span>
 
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{}</span>   <span class="c1"># default for dune component is &quot;limiter&quot;:&quot;default&quot;, &quot;order&quot;:0}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{}</span>   <span class="c1"># default for dune component is "limiter":"default", "order":0}</span>
 <span class="k">if</span> <span class="kc">False</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">landlab.components</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdvectionSolverTVD</span> <span class="k">as</span> <span class="n">AdvectionSolver</span>
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">dune.femdg.landlab</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuneAdvectionSolver</span> <span class="k">as</span> <span class="n">AdvectionSolver</span>
-    <span class="c1"># parameters = {&quot;limiter&quot;:&quot;default&quot;,&quot;order&quot;:1}</span>
-    <span class="c1"># parameters = {&quot;limiter&quot;:None,&quot;order&quot;:1}</span>
-    <span class="c1"># parameters = {&quot;limiter&quot;:None,&quot;order&quot;:0}</span>
+    <span class="c1"># parameters = {"limiter":"default","order":1}</span>
+    <span class="c1"># parameters = {"limiter":None,"order":1}</span>
+    <span class="c1"># parameters = {"limiter":None,"order":0}</span>
 </pre></div>
 </div>
 </div>
@@ -558,12 +558,12 @@ This document is part of the dune-fem tutorial
         <span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">x_of_node</span><span class="p">[</span><span class="n">highest_node</span><span class="p">]</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="o">+</span> <span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">y_of_node</span><span class="p">[</span><span class="n">highest_node</span><span class="p">]</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
     <span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Velocity magnitude is&quot;</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Velocity magnitude is"</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Duration is&quot;</span><span class="p">,</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nt</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicted distance is&quot;</span><span class="p">,</span> <span class="n">u</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nt</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Modeled distance is&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Min/Max&quot;</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">elev</span><span class="p">),</span><span class="s2">&quot;/&quot;</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">elev</span><span class="p">))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Duration is"</span><span class="p">,</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nt</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Predicted distance is"</span><span class="p">,</span> <span class="n">u</span> <span class="o">*</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">nt</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Modeled distance is"</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Min/Max"</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">elev</span><span class="p">),</span><span class="s2">"/"</span><span class="p">,</span><span class="nb">max</span><span class="p">(</span><span class="n">elev</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -599,8 +599,8 @@ This document is part of the dune-fem tutorial
 <span class="n">grid</span> <span class="o">=</span> <span class="n">RasterModelGrid</span><span class="p">((</span><span class="n">nrows</span><span class="p">,</span> <span class="n">ncols</span><span class="p">),</span> <span class="n">xy_spacing</span><span class="o">=</span><span class="n">dx</span><span class="p">)</span>
 
 <span class="c1"># create fields</span>
-<span class="n">elev</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">add_zeros</span><span class="p">(</span><span class="s2">&quot;topographic__elevation&quot;</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="s2">&quot;node&quot;</span><span class="p">)</span>
-<span class="n">vel</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">add_zeros</span><span class="p">(</span><span class="s2">&quot;advection__velocity&quot;</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="s2">&quot;link&quot;</span><span class="p">)</span>
+<span class="n">elev</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">add_zeros</span><span class="p">(</span><span class="s2">"topographic__elevation"</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="s2">"node"</span><span class="p">)</span>
+<span class="n">vel</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">add_zeros</span><span class="p">(</span><span class="s2">"advection__velocity"</span><span class="p">,</span> <span class="n">at</span><span class="o">=</span><span class="s2">"link"</span><span class="p">)</span>
 
 <span class="c1"># initialize fields</span>
 <span class="n">make_gaussian_bump</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">elev</span><span class="p">,</span> <span class="n">bump_width</span><span class="p">,</span><span class="n">center</span><span class="o">=</span><span class="p">[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.5</span><span class="p">])</span>
@@ -618,7 +618,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adv</span> <span class="o">=</span> <span class="n">AdvectionSolver</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">fields_to_advect</span><span class="o">=</span><span class="s2">&quot;topographic__elevation&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adv</span> <span class="o">=</span> <span class="n">AdvectionSolver</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">fields_to_advect</span><span class="o">=</span><span class="s2">"topographic__elevation"</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">)</span>
 <span class="n">imshow_grid</span><span class="p">(</span><span class="n">adv</span><span class="o">.</span><span class="n">grid</span><span class="p">,</span> <span class="n">elev</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -649,8 +649,8 @@ This document is part of the dune-fem tutorial
 Velocity magnitude is 1.0
 Duration is 0.4
 Predicted distance is 0.4
-Modeled distance is 0.44000000000000006
-Min/Max -7.913683198187116e-11 / 0.9761934376590854
+Modeled distance is 0.4204759208325728
+Min/Max -8.334777494006294e-11 / 0.9636317955511577
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -757,8 +757,8 @@ Min/Max 3.500325319846224e-18 / 0.9950124791926823
 Velocity magnitude is 1.7320508075688772
 Duration is 0.4
 Predicted distance is 0.6928203230275509
-Modeled distance is 0.25298221281347033
-Min/Max 1.3957977993029973e-32 / 0.9731738486388961
+Modeled distance is 0.2209072203437452
+Min/Max 1.3957977993029968e-32 / 0.9846969253245498
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -814,7 +814,7 @@ Velocity magnitude is 1.0
 Duration is 0.4
 Predicted distance is 0.4
 Modeled distance is 0.44000000000000006
-Min/Max -9.882540533721253e-11 / 0.9675842611548383
+Min/Max -1.0199639741639931e-10 / 0.9819222291986484
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -997,7 +997,7 @@ Min/Max -9.882540533721253e-11 / 0.9675842611548383
 <div class="highlight"><pre>
 Velocity magnitude is 8.885765876316732
 Modeled distance is 0.010000000000000009
-Min/Max -6.743355647459319e-11 / 0.5323240301616725
+Min/Max -7.066099999759386e-11 / 0.5239637972384779
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1029,7 +1029,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

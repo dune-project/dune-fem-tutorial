@@ -532,8 +532,8 @@ u(x,y) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
                 <span class="n">dx</span><span class="p">,</span> <span class="n">ds</span><span class="p">,</span> <span class="n">div</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">conditional</span>
 
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">leafGridView</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">])</span>
-<span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;istl&#39;</span><span class="p">)</span>
-<span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">'istl'</span><span class="p">)</span>
+<span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'u_h'</span><span class="p">)</span>
 
 <span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">n</span> <span class="o">=</span> <span class="p">(</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">FacetNormal</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="p">)</span>
 <span class="n">exact</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
@@ -544,9 +544,9 @@ u(x,y) = \left(\frac{1}{2}(x^2 + y^2) - \frac{1}{3}(x^3 - y^3)\right) + 1
 
 <span class="c1"># simple function to show the result of a simulation</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">printResult</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="n">error</span><span class="p">,</span><span class="n">info</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="s2">&quot;L^2, H^1 error:&quot;</span><span class="p">,</span><span class="s1">&#39;</span><span class="si">{:0.5e}</span><span class="s1">, </span><span class="si">{:0.5e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="s2">"L^2, H^1 error:"</span><span class="p">,</span><span class="s1">'</span><span class="si">{:0.5e}</span><span class="s1">, </span><span class="si">{:0.5e}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                  <span class="o">*</span><span class="p">[</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">integrate</span><span class="p">([</span><span class="n">error</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">error</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">error</span><span class="p">))])</span> <span class="p">]),</span>
-          <span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;solver info=&quot;</span><span class="p">,</span><span class="n">info</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+          <span class="s2">"</span><span class="se">\n\t</span><span class="s2">"</span><span class="p">,</span><span class="s2">"solver info="</span><span class="p">,</span><span class="n">info</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -557,12 +557,12 @@ to <span class="math notranslate nohighlight">\(10^{-8}\)</span>. In addition we
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
-<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">,</span>
-                  <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;linear.preconditioning.method&quot;</span><span class="p">:</span><span class="s2">&quot;jacobi&quot;</span><span class="p">,</span>
-                              <span class="s2">&quot;nonlinear.forcing&quot;</span><span class="p">:</span><span class="s2">&quot;eisenstatwalker&quot;</span><span class="p">,</span>
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s1">'cg'</span><span class="p">,</span>
+                  <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">"linear.preconditioning.method"</span><span class="p">:</span><span class="s2">"jacobi"</span><span class="p">,</span>
+                              <span class="s2">"nonlinear.forcing"</span><span class="p">:</span><span class="s2">"eisenstatwalker"</span><span class="p">,</span>
                               <span class="c1"># this is the default for this forcing</span>
-                              <span class="s2">&quot;linear.errormeasure&quot;</span><span class="p">:</span><span class="s2">&quot;residualreduction&quot;</span><span class="p">,</span>
-                              <span class="s2">&quot;nonlinear.tolerance&quot;</span><span class="p">:</span><span class="mf">1e-7</span><span class="p">},</span>
+                              <span class="s2">"linear.errormeasure"</span><span class="p">:</span><span class="s2">"residualreduction"</span><span class="p">,</span>
+                              <span class="s2">"nonlinear.tolerance"</span><span class="p">:</span><span class="mf">1e-7</span><span class="p">},</span>
                  <span class="p">)</span>
 </pre></div>
 </div>
@@ -578,7 +578,7 @@ to <span class="math notranslate nohighlight">\(10^{-8}\)</span>. In addition we
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>               <span class="c1"># start with the boundary conditions at the top</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
-<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Default&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">"Default"</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
 <span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -589,7 +589,7 @@ to <span class="math notranslate nohighlight">\(10^{-8}\)</span>. In addition we
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Default L^2, H^1 error: 1.20362e-06, 1.83003e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 252, &#39;timing&#39;: [0.026672529, 0.008325599999999999, 0.018346929]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 252, &#39;timing&#39;: [0.029140961, 0.008700316, 0.020440645]}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -613,8 +613,8 @@ Default L^2, H^1 error: 1.20362e-06, 1.83003e-04
 
     <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
         <span class="c1"># create a copy of target for the residual</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;residual&quot;</span><span class="p">)</span>
-        <span class="n">dh</span>  <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;direction&quot;</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"residual"</span><span class="p">)</span>
+        <span class="n">dh</span>  <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"direction"</span><span class="p">)</span>
         <span class="n">n</span><span class="p">,</span> <span class="n">linIter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="c1"># res = S[u]</span>
@@ -628,17 +628,17 @@ Default L^2, H^1 error: 1.20362e-06, 1.83003e-04
             <span class="c1">#    = u - g on boundary</span>
             <span class="n">dh</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
             <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">jacobian</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">dh</span><span class="p">,</span><span class="n">rightHandSide</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
-            <span class="n">linIter</span> <span class="o">+=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;linear_iterations&quot;</span><span class="p">]</span>
+            <span class="n">linIter</span> <span class="o">+=</span> <span class="n">info</span><span class="p">[</span><span class="s2">"linear_iterations"</span><span class="p">]</span>
             <span class="c1"># unew = u - DS[u]^{-1}S[u]</span>
             <span class="c1">#      = u - (u-g) = g on boundary</span>
             <span class="n">target</span> <span class="o">-=</span> <span class="n">dh</span>
             <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;iterations&quot;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;linear_iterations&quot;</span><span class="p">:</span><span class="n">linIter</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"iterations"</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="s2">"linear_iterations"</span><span class="p">:</span><span class="n">linIter</span><span class="p">}</span>
 
 <span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                        <span class="c1"># start with the boundary conditions at the top</span>
 <span class="n">scheme_cls</span> <span class="o">=</span> <span class="n">Scheme1</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span><span class="n">u0</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
-<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Newton 1&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">"Newton 1"</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -666,13 +666,13 @@ Newton 1 L^2, H^1 error: 1.17597e-06, 1.83002e-04
 <span class="k">class</span><span class="w"> </span><span class="nc">Scheme2</span><span class="p">:</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">u0</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span> <span class="o">=</span> <span class="n">scheme</span>
-        <span class="c1"># let&#39;s use a `gmres` solver for demonstration purposes</span>
+        <span class="c1"># let's use a `gmres` solver for demonstration purposes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">linearized</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span> <span class="n">ubar</span><span class="o">=</span><span class="n">u0</span><span class="p">,</span>
-                      <span class="n">parameters</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;gmres&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres.restart&quot;</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span>
+                      <span class="n">parameters</span><span class="o">=</span><span class="p">{</span> <span class="s2">"method"</span><span class="p">:</span><span class="s2">"gmres"</span><span class="p">,</span> <span class="s2">"gmres.restart"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span>
                                <span class="c1"># the scheme uses Eisenstat-Walker forcing</span>
-                               <span class="c1"># with &#39;residual reduction&#39; as error measure</span>
-                               <span class="c1"># without the forcing &#39;absolute&#39; is the default error measure</span>
-                               <span class="s2">&quot;errormeasure&quot;</span><span class="p">:</span><span class="s2">&quot;absolute&quot;</span><span class="p">,</span>
+                               <span class="c1"># with 'residual reduction' as error measure</span>
+                               <span class="c1"># without the forcing 'absolute' is the default error measure</span>
+                               <span class="s2">"errormeasure"</span><span class="p">:</span><span class="s2">"absolute"</span><span class="p">,</span>
                             <span class="p">})</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
@@ -688,9 +688,9 @@ Newton 1 L^2, H^1 error: 1.17597e-06, 1.83002e-04
             <span class="c1">#   = u^{n+1}</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
             <span class="n">info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">target</span><span class="p">)</span>
-            <span class="n">linIter</span> <span class="o">+=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&quot;linear_iterations&quot;</span><span class="p">]</span>
+            <span class="n">linIter</span> <span class="o">+=</span> <span class="n">info</span><span class="p">[</span><span class="s2">"linear_iterations"</span><span class="p">]</span>
 
-            <span class="c1"># We don&#39;t have access to the residual so we use |u^{n+1}-u^n|</span>
+            <span class="c1"># We don't have access to the residual so we use |u^{n+1}-u^n|</span>
             <span class="c1"># as stopping criteria.</span>
             <span class="c1"># Subtract the new iterate from the previous one</span>
             <span class="n">prev</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span> <span class="n">target</span> <span class="p">)</span>
@@ -700,12 +700,12 @@ Newton 1 L^2, H^1 error: 1.17597e-06, 1.83002e-04
                 <span class="k">break</span>
             <span class="n">prev</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
             <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;iterations&quot;</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;linear_iterations&quot;</span><span class="p">:</span><span class="n">linIter</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"iterations"</span><span class="p">:</span><span class="n">n</span><span class="p">,</span> <span class="s2">"linear_iterations"</span><span class="p">:</span><span class="n">linIter</span><span class="p">}</span>
 
 <span class="n">u_h</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>                         <span class="c1"># reset u_h - so we start the Newton method with u_h=0</span>
 <span class="n">scheme_cls</span> <span class="o">=</span> <span class="n">Scheme2</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span><span class="n">u_h</span><span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
-<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Newton 2 (gmres)&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">"Newton 2 (gmres)"</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -738,11 +738,11 @@ Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="p">(</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">+</span> <span class="p">(</span><span class="n">u</span> <span class="o">-</span> <span class="n">conditional</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">10.</span><span class="p">,</span><span class="mf">0.</span><span class="p">))</span><span class="o">*</span><span class="n">v</span> <span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
 <span class="c1"># verbose output for the linear solver is too long so use default `False` setting</span>
-<span class="n">sc</span>  <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">model</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;cg&quot;</span><span class="p">,</span>
-               <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;linear.verbose&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span><span class="s2">&quot;nonlinear.verbose&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span>
+<span class="n">sc</span>  <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">model</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"cg"</span><span class="p">,</span>
+               <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">"linear.verbose"</span><span class="p">:</span><span class="kc">False</span><span class="p">,</span><span class="s2">"nonlinear.verbose"</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span>
               <span class="p">)</span>
-<span class="n">sol</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;u_h&quot;</span><span class="p">)</span>
-<span class="n">jac</span> <span class="o">=</span> <span class="n">linearized</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span> <span class="s2">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;gmres&quot;</span><span class="p">,</span> <span class="s2">&quot;gmres.restart&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="p">})</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"u_h"</span><span class="p">)</span>
+<span class="n">jac</span> <span class="o">=</span> <span class="n">linearized</span><span class="p">(</span><span class="n">sc</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="p">{</span> <span class="s2">"method"</span><span class="p">:</span><span class="s2">"gmres"</span><span class="p">,</span> <span class="s2">"gmres.restart"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span> <span class="p">})</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">jac</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">sol</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">info</span><span class="p">,</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
@@ -772,7 +772,7 @@ Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.010995116, 0.002726773, 0.008268343]}
+{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.011333202, 0.0029671000000000003, 0.008366102]}
 </pre></div></div>
 </div>
 <div class="admonition tip">
@@ -791,7 +791,7 @@ Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
 <span class="n">model</span> <span class="o">=</span> <span class="p">(</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span> <span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">-</span> <span class="mi">15</span><span class="o">*</span><span class="n">conditional</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">1.</span><span class="p">,</span><span class="mf">0.</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span> <span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
 <span class="n">dbcs</span>  <span class="o">=</span> <span class="p">[</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">]</span>
 <span class="n">op</span>  <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">model</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="o">*</span><span class="n">dbcs</span><span class="p">],</span> <span class="n">space</span><span class="p">)</span>
-<span class="n">sol</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;u_h&quot;</span><span class="p">)</span>
+<span class="n">sol</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"u_h"</span><span class="p">)</span>
 <span class="n">lin</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -826,7 +826,7 @@ methods on the scheme class discussed in the section on <a class="reference inte
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="n">bf</span><span class="p">,</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">exact</span><span class="p">)],</span> <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="n">bf</span><span class="p">,</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">exact</span><span class="p">)],</span> <span class="n">solver</span><span class="o">=</span><span class="s1">'cg'</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -838,7 +838,7 @@ methods on the scheme class discussed in the section on <a class="reference inte
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>                        <span class="c1"># start with the boundary conditions at the top</span>
 <span class="n">scheme_cls</span> <span class="o">=</span> <span class="n">Scheme1</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span><span class="n">u0</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
-<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Dirichlet, Newton 1&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">"Dirichlet, Newton 1"</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -859,7 +859,7 @@ Dirichlet, Newton 1 L^2, H^1 error: 1.17658e-06, 1.83002e-04
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">scheme_cls</span> <span class="o">=</span> <span class="n">Scheme2</span><span class="p">(</span><span class="n">scheme</span><span class="p">,</span><span class="n">u0</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme_cls</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
-<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Dirichlet, Newton 2&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">"Dirichlet, Newton 2"</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -887,10 +887,10 @@ Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.common.checkconfiguration</span><span class="w"> </span><span class="kn">import</span> <span class="n">assertCMakeHave</span><span class="p">,</span> <span class="n">ConfigurationError</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">assertCMakeHave</span><span class="p">(</span><span class="s2">&quot;HAVE_PETSC&quot;</span><span class="p">)</span>
+    <span class="n">assertCMakeHave</span><span class="p">(</span><span class="s2">"HAVE_PETSC"</span><span class="p">)</span>
     <span class="n">petsc</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="k">except</span> <span class="n">ConfigurationError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dune not configured with petsc - skipping example&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Dune not configured with petsc - skipping example"</span><span class="p">)</span>
     <span class="n">petsc</span> <span class="o">=</span> <span class="kc">False</span>
 </pre></div>
 </div>
@@ -907,14 +907,14 @@ Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">petsc</span><span class="p">:</span>
-    <span class="n">spacePetsc</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;petsc&#39;</span><span class="p">)</span>
+    <span class="n">spacePetsc</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">'petsc'</span><span class="p">)</span>
     <span class="c1"># We use an sor preconditioner:</span>
     <span class="n">schemePetsc</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span> <span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">,</span> <span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="n">exact</span><span class="p">,</span><span class="mi">2</span><span class="p">)],</span>
-                           <span class="n">space</span><span class="o">=</span><span class="n">spacePetsc</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;cg&quot;</span><span class="p">,</span>
-                           <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;linear.preconditioning.method&quot;</span><span class="p">:</span><span class="s2">&quot;hypre&quot;</span><span class="p">})</span>
-    <span class="n">uPetsc_h</span> <span class="o">=</span> <span class="n">spacePetsc</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
+                           <span class="n">space</span><span class="o">=</span><span class="n">spacePetsc</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"cg"</span><span class="p">,</span>
+                           <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">"linear.preconditioning.method"</span><span class="p">:</span><span class="s2">"hypre"</span><span class="p">})</span>
+    <span class="n">uPetsc_h</span> <span class="o">=</span> <span class="n">spacePetsc</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'u_h'</span><span class="p">)</span>
     <span class="n">info</span> <span class="o">=</span> <span class="n">schemePetsc</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">uPetsc_h</span><span class="p">)</span>
-    <span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;PETSc&quot;</span><span class="p">,</span><span class="n">uPetsc_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+    <span class="n">printResult</span><span class="p">(</span><span class="s2">"PETSc"</span><span class="p">,</span><span class="n">uPetsc_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -924,7 +924,7 @@ Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.057641244, 0.027311354, 0.03032989]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.057197414, 0.028174589, 0.029022825000000002]}
 </pre></div></div>
 </div>
 </section>
@@ -939,13 +939,13 @@ PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spaceIstl</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;istl&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spaceIstl</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s1">'istl'</span><span class="p">)</span>
 <span class="c1"># We use an amg preconditioner:</span>
-<span class="n">schemeIstl</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;istl&quot;</span><span class="p">,</span><span class="s2">&quot;cg&quot;</span><span class="p">),</span>
-                      <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;linear.preconditioning.method&quot;</span><span class="p">:</span><span class="s2">&quot;amg-jacobi&quot;</span><span class="p">})</span>
+<span class="n">schemeIstl</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">bf</span><span class="o">+</span><span class="n">bg</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="p">(</span><span class="s2">"istl"</span><span class="p">,</span><span class="s2">"cg"</span><span class="p">),</span>
+                      <span class="n">parameters</span><span class="o">=</span><span class="p">{</span><span class="s2">"linear.preconditioning.method"</span><span class="p">:</span><span class="s2">"amg-jacobi"</span><span class="p">})</span>
 <span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">schemeIstl</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
-<span class="n">printResult</span><span class="p">(</span><span class="s2">&quot;Dune-Istl&quot;</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
+<span class="n">printResult</span><span class="p">(</span><span class="s2">"Dune-Istl"</span><span class="p">,</span><span class="n">u_h</span><span class="o">-</span><span class="n">exact</span><span class="p">,</span><span class="n">info</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -955,7 +955,7 @@ PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Dune-Istl L^2, H^1 error: 1.17597e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.076727874, 0.008188935, 0.06853893900000001]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.090767761, 0.008670256, 0.082097505]}
 </pre></div></div>
 </div>
 </section>
@@ -975,7 +975,7 @@ that is used in the output.</p>
                  <span class="n">dx</span><span class="p">,</span> <span class="n">grad</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">dot</span><span class="p">,</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">pi</span> <span class="p">)</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">])</span>
 <span class="n">space</span> <span class="o">=</span> <span class="n">lagrange</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;u_h&#39;</span><span class="p">)</span>
+<span class="n">u_h</span>   <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">'u_h'</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
@@ -983,12 +983,12 @@ that is used in the output.</p>
 <span class="n">f</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">pi</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">a</span> <span class="o">=</span> <span class="p">(</span> <span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="o">+</span> <span class="n">u</span><span class="o">*</span><span class="n">v</span> <span class="p">)</span> <span class="o">*</span> <span class="n">dx</span>
 <span class="n">l</span> <span class="o">=</span> <span class="n">f</span><span class="o">*</span><span class="n">v</span> <span class="o">*</span> <span class="n">dx</span>
-<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="n">a</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;cg&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span>
-                   <span class="p">{</span><span class="s2">&quot;linear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-12</span><span class="p">,</span>
-                    <span class="s2">&quot;linear.verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-                    <span class="s2">&quot;linear.preconditioning.method&quot;</span><span class="p">:</span> <span class="s2">&quot;jacobi&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;linear.errormeasure&quot;</span><span class="p">:</span> <span class="s2">&quot;relative&quot;</span><span class="p">,</span>
-                    <span class="s2">&quot;logging&quot;</span><span class="p">:</span> <span class="s2">&quot;log-jacobi&quot;</span>
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="n">a</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"cg"</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span>
+                   <span class="p">{</span><span class="s2">"linear.tolerance"</span><span class="p">:</span> <span class="mf">1e-12</span><span class="p">,</span>
+                    <span class="s2">"linear.verbose"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                    <span class="s2">"linear.preconditioning.method"</span><span class="p">:</span> <span class="s2">"jacobi"</span><span class="p">,</span>
+                    <span class="s2">"linear.errormeasure"</span><span class="p">:</span> <span class="s2">"relative"</span><span class="p">,</span>
+                    <span class="s2">"logging"</span><span class="p">:</span> <span class="s2">"log-jacobi"</span>
                    <span class="p">}</span> <span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
 </pre></div>
@@ -1024,7 +1024,7 @@ Fem::CG it: 1 : residual 1.08052e-13
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;default&#39;: {(&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;), (&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;), (&#39;fem.threads.communicationthread&#39;, &#39;false&#39;)},
+{&#39;default&#39;: {(&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;), (&#39;fem.threads.communicationthread&#39;, &#39;false&#39;), (&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;)},
  &#39;log-jacobi&#39;: {(&#39;fem.solver.linear.maxiterations&#39;, &#39;2147483647&#39;),
                 (&#39;fem.solver.linear.preconditioning.iterations&#39;, &#39;1&#39;),
                 (&#39;fem.solver.linear.preconditioning.relaxation&#39;, &#39;1.1&#39;),
@@ -1091,8 +1091,8 @@ Fem::CG it: 1 : residual 1.08052e-13
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">scheme</span><span class="o">.</span><span class="n">parameterLog</span><span class="p">())</span> <span class="c1"># this method returns a set of pairs which we can convert to a dictionary</span>
-<span class="n">param</span><span class="p">[</span><span class="s2">&quot;logging&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Dirichlet&quot;</span> <span class="c1"># only needed to use the `parameterLog` method</span>
-<span class="n">param</span><span class="p">[</span><span class="s2">&quot;linear.verbose&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">param</span><span class="p">[</span><span class="s2">"logging"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Dirichlet"</span> <span class="c1"># only needed to use the `parameterLog` method</span>
+<span class="n">param</span><span class="p">[</span><span class="s2">"linear.verbose"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">scheme2</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="p">[</span><span class="n">a</span><span class="o">==</span><span class="n">l</span><span class="p">,</span><span class="n">DirichletBC</span><span class="p">(</span><span class="n">space</span><span class="p">,</span><span class="mi">0</span><span class="p">)],</span> <span class="n">parameters</span><span class="o">=</span><span class="n">param</span> <span class="p">)</span>
 <span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme2</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
@@ -1135,12 +1135,12 @@ Fem::CG it: 1 : residual 1.08052e-13
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="n">a</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;cg&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span>
-                       <span class="p">{</span><span class="s2">&quot;linear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-12</span><span class="p">,</span>
-                        <span class="s2">&quot;linear.verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-                        <span class="s2">&quot;linear.preconditioning.method&quot;</span><span class="p">:</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;linear.errormeasure&quot;</span><span class="p">:</span> <span class="s2">&quot;relative&quot;</span><span class="p">,</span>
-                        <span class="s2">&quot;logging&quot;</span><span class="p">:</span> <span class="s2">&quot;precon&quot;</span>
+    <span class="n">scheme</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span> <span class="n">a</span><span class="o">==</span><span class="n">l</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"cg"</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span>
+                       <span class="p">{</span><span class="s2">"linear.tolerance"</span><span class="p">:</span> <span class="mf">1e-12</span><span class="p">,</span>
+                        <span class="s2">"linear.verbose"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                        <span class="s2">"linear.preconditioning.method"</span><span class="p">:</span> <span class="s2">"help"</span><span class="p">,</span>
+                        <span class="s2">"linear.errormeasure"</span><span class="p">:</span> <span class="s2">"relative"</span><span class="p">,</span>
+                        <span class="s2">"logging"</span><span class="p">:</span> <span class="s2">"precon"</span>
                        <span class="p">}</span> <span class="p">)</span>
     <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">rte</span><span class="p">:</span>
@@ -1381,7 +1381,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

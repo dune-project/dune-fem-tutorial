@@ -532,7 +532,7 @@ This document is part of the dune-fem tutorial
 <span class="n">dimRange</span> <span class="o">=</span> <span class="mi">2</span>      <span class="c1"># we have a system with two unknowns</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="n">gridView</span>  <span class="o">=</span> <span class="n">adaptiveGridView</span><span class="p">(</span> <span class="n">leafGridView</span><span class="p">(</span> <span class="n">domain</span> <span class="p">)</span> <span class="p">)</span>
-<span class="n">space</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="n">dimRange</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s2">&quot;numpy&quot;</span><span class="p">)</span>
+<span class="n">space</span> <span class="o">=</span> <span class="n">solutionSpace</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span> <span class="n">dimRange</span><span class="o">=</span><span class="n">dimRange</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span> <span class="n">storage</span><span class="o">=</span><span class="s2">"numpy"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -578,7 +578,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span> <span class="n">dot</span><span class="p">(</span> <span class="n">x</span><span class="o">-</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">]),</span> <span class="n">x</span><span class="o">-</span><span class="n">as_vector</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">]))</span> <span class="p">)</span>
 <span class="n">initial</span> <span class="o">=</span> <span class="n">as_vector</span><span class="p">(</span> <span class="p">[</span><span class="n">conditional</span><span class="p">(</span><span class="n">r</span><span class="o">&gt;</span><span class="mf">0.3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]</span> <span class="p">)</span>
-<span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+<span class="n">u_h</span> <span class="o">=</span> <span class="n">space</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">initial</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"solution"</span><span class="p">)</span>
 <span class="n">u_h_n</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -592,7 +592,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">Constant</span>
 <span class="n">u</span> <span class="o">=</span> <span class="n">TrialFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
 <span class="n">v</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space</span><span class="p">)</span>
-<span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;dt&quot;</span><span class="p">)</span>    <span class="c1"># time step</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">"dt"</span><span class="p">)</span>    <span class="c1"># time step</span>
 </pre></div>
 </div>
 </div>
@@ -655,12 +655,12 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span> <span class="k">as</span> <span class="n">solutionScheme</span>
 <span class="n">solverParameters</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;nonlinear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span>
-        <span class="s2">&quot;linear.tolerance&quot;</span><span class="p">:</span> <span class="mf">1e-10</span><span class="p">,</span>
-        <span class="s2">&quot;nonlinear.verbose&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="s2">&quot;linear.verbose&quot;</span><span class="p">:</span> <span class="kc">False</span>
+        <span class="s2">"nonlinear.tolerance"</span><span class="p">:</span> <span class="mf">1e-8</span><span class="p">,</span>
+        <span class="s2">"linear.tolerance"</span><span class="p">:</span> <span class="mf">1e-10</span><span class="p">,</span>
+        <span class="s2">"nonlinear.verbose"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">"linear.verbose"</span><span class="p">:</span> <span class="kc">False</span>
     <span class="p">}</span>
-<span class="n">scheme</span> <span class="o">=</span> <span class="n">solutionScheme</span><span class="p">(</span><span class="n">a_im</span> <span class="o">==</span> <span class="n">a_ex</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">&quot;gmres&quot;</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">solverParameters</span><span class="p">)</span>
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">solutionScheme</span><span class="p">(</span><span class="n">a_im</span> <span class="o">==</span> <span class="n">a_ex</span><span class="p">,</span> <span class="n">space</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"gmres"</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">solverParameters</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -692,7 +692,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">startLevel</span><span class="p">,</span> <span class="n">maxLevel</span><span class="p">):</span>
     <span class="n">fem</span><span class="o">.</span><span class="n">gridAdapt</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">u_h</span><span class="p">)</span>
     <span class="n">u_h</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">initial</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">" "</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -721,7 +721,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 </div>
 </div>
 <p id="index-4"><span id="index-3"></span>We can construct a vtk writer that generates a sequence of files:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vtk = gridView.sequencedVTK(&quot;crystal&quot;, pointdata=[u_h],
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vtk = gridView.sequencedVTK("crystal", pointdata=[u_h],
          celldata=[levelFunction(gridView), partitionFunction(gridView)])
 </pre></div>
 </div>
@@ -731,8 +731,8 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">'font.size'</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">u_h</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">pyplot</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span><span class="n">contourWidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">vtk</span><span class="p">()</span>
 </pre></div>
@@ -761,12 +761,12 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotPointData</span>
-<span class="n">u_h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">onlyContours</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">contourWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">contourColor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">u_h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">onlyContours</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">contourWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">contourColor</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
 <span class="n">endTime</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="k">while</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="n">endTime</span><span class="p">:</span>
     <span class="n">u_h_n</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">u_h</span><span class="p">)</span>
     <span class="n">scheme</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">u_h</span><span class="p">)</span>
-    <span class="c1"># print(t, gridView.size(0), end=&quot;\r&quot;)</span>
+    <span class="c1"># print(t, gridView.size(0), end="\r")</span>
     <span class="n">t</span> <span class="o">+=</span> <span class="n">dt</span><span class="o">.</span><span class="n">value</span>
     <span class="n">fem</span><span class="o">.</span><span class="n">gridAdapt</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="n">u_h</span><span class="p">)</span> <span class="c1"># can also be a list or tuple of function to prolong/restrict</span>
     <span class="n">vtk</span><span class="p">()</span>                      <span class="c1"># store result in sequence of vtk file</span>
@@ -774,7 +774,7 @@ c \frac{\partial \beta}{\partial \psi} & 1+c\beta
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 <span class="n">plotComponents</span><span class="p">(</span><span class="n">u_h</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">pyplot</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">jet</span><span class="p">)</span>
-<span class="n">u_h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">onlyContours</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">contourWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">contourColor</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+<span class="n">u_h</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">onlyContours</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">contours</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">contourWidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">contourColor</span><span class="o">=</span><span class="s2">"yellow"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -828,7 +828,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

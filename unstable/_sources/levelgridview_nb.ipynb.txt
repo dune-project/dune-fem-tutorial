@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "2c3d2ae2",
+   "id": "93caab5b",
    "metadata": {},
    "source": [
     ".. index:: Grid construction; Level grid views\n",
@@ -13,13 +13,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "3ddf7779",
+   "id": "9c3648f8",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-06-15T19:31:32.283242Z",
-     "iopub.status.busy": "2026-06-15T19:31:32.283091Z",
-     "iopub.status.idle": "2026-06-15T19:31:33.816863Z",
-     "shell.execute_reply": "2026-06-15T19:31:33.816519Z"
+     "iopub.execute_input": "2026-10-20T10:41:46.989025Z",
+     "iopub.status.busy": "2026-10-20T10:41:46.988796Z",
+     "iopub.status.idle": "2026-10-20T10:41:49.182131Z",
+     "shell.execute_reply": "2026-10-20T10:41:49.181311Z"
     }
    },
    "outputs": [
@@ -27,8 +27,6 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "[1781551893.674667] [runnervm1li68:88822:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x55ab37de34d0 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported\n",
-      "[1781551893.674968] [runnervm1li68:88822:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error\n",
       "level: 0 number of elements: 2\n",
       "level: 1 number of elements: 8\n",
       "level: 2 number of elements: 32\n",
@@ -44,13 +42,6 @@
       "level: 7 number of elements: 256\n",
       "level: 8 number of elements: 512\n",
       "level: 9 number of elements: 1024\n"
-     ]
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "[runnervm1li68:88822] pml_ucx.c:319  Error: Failed to create UCP worker\n"
      ]
     }
    ],
@@ -77,9 +68,12 @@
  ],
  "metadata": {
   "jupytext": {
-   "cell_metadata_filter": "-all",
-   "main_language": "python",
-   "notebook_metadata_filter": "-all"
+   "cell_metadata_filter": "-all"
+  },
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
   },
   "language_info": {
    "codemirror_mode": {
@@ -91,7 +85,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.14.6"
+   "version": "3.14.8"
   }
  },
  "nbformat": 4,

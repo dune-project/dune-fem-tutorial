@@ -551,9 +551,9 @@ This document is part of the dune-fem tutorial
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">order</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">tau</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">,</span> <span class="s2">&quot;tau&quot;</span><span class="p">)</span>      <span class="c1"># time step</span>
-<span class="n">mu</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="s2">&quot;mu&quot;</span><span class="p">)</span>          <span class="c1"># kinematic viscosity</span>
-<span class="n">rho</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">)</span>             <span class="c1"># density</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2000</span><span class="p">,</span> <span class="s2">"tau"</span><span class="p">)</span>      <span class="c1"># time step</span>
+<span class="n">mu</span>  <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="s2">"mu"</span><span class="p">)</span>          <span class="c1"># kinematic viscosity</span>
+<span class="n">rho</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"rho"</span><span class="p">)</span>             <span class="c1"># density</span>
 </pre></div>
 </div>
 </div>
@@ -573,11 +573,11 @@ This document is part of the dune-fem tutorial
     <span class="n">points</span><span class="p">,</span> <span class="n">cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span>
     <span class="c1"># extract dictionary for grid construction</span>
     <span class="n">domain</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;vertices&quot;</span><span class="p">:</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
-        <span class="s2">&quot;simplices&quot;</span><span class="p">:</span> <span class="n">cells</span><span class="p">[</span><span class="s2">&quot;triangle&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
+        <span class="s2">"vertices"</span><span class="p">:</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+        <span class="s2">"simplices"</span><span class="p">:</span> <span class="n">cells</span><span class="p">[</span><span class="s2">"triangle"</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span>
     <span class="p">}</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">GridView</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;grid size:&quot;</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"grid size:"</span><span class="p">,</span> <span class="n">gridView</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -603,11 +603,11 @@ grid size: 1410
 <span class="n">q</span> <span class="o">=</span> <span class="n">TestFunction</span><span class="p">(</span><span class="n">space_p</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space_p</span><span class="p">)</span>
 
-<span class="n">u_h</span> <span class="o">=</span> <span class="n">space_u</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;u_h&quot;</span><span class="p">)</span>
-<span class="n">u_h_n</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;u_h_n&quot;</span><span class="p">)</span>
+<span class="n">u_h</span> <span class="o">=</span> <span class="n">space_u</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"u_h"</span><span class="p">)</span>
+<span class="n">u_h_n</span> <span class="o">=</span> <span class="n">u_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"u_h_n"</span><span class="p">)</span>
 
-<span class="n">p_h</span> <span class="o">=</span> <span class="n">space_p</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;p_h&quot;</span><span class="p">)</span>
-<span class="n">p_h_n</span> <span class="o">=</span> <span class="n">p_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;p_h_n&quot;</span><span class="p">)</span>
+<span class="n">p_h</span> <span class="o">=</span> <span class="n">space_p</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"p_h"</span><span class="p">)</span>
+<span class="n">p_h_n</span> <span class="o">=</span> <span class="n">p_h</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"p_h_n"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -632,7 +632,7 @@ grid size: 1410
 
 <span class="c1"># Define expressions used in variational forms</span>
 <span class="n">U</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">u_h_n</span> <span class="o">+</span> <span class="n">u</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">Constant</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">"f"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -693,10 +693,10 @@ grid size: 1410
 <span class="n">A3</span>    <span class="o">=</span> <span class="n">scheme3</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
 <span class="n">A3inv</span> <span class="o">=</span> <span class="n">invA</span><span class="p">(</span><span class="n">A3</span><span class="p">)</span>
 
-<span class="n">zero_u</span> <span class="o">=</span> <span class="n">space_u</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;zero&quot;</span><span class="p">)</span>
-<span class="n">zero_p</span> <span class="o">=</span> <span class="n">space_p</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;zero&quot;</span><span class="p">)</span>
-<span class="n">rhs_u</span>  <span class="o">=</span> <span class="n">zero_u</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;rhs&quot;</span><span class="p">)</span>
-<span class="n">rhs_p</span>  <span class="o">=</span> <span class="n">zero_p</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;rhs&quot;</span><span class="p">)</span>
+<span class="n">zero_u</span> <span class="o">=</span> <span class="n">space_u</span><span class="o">.</span><span class="n">interpolate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">name</span><span class="o">=</span><span class="s2">"zero"</span><span class="p">)</span>
+<span class="n">zero_p</span> <span class="o">=</span> <span class="n">space_p</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"zero"</span><span class="p">)</span>
+<span class="n">rhs_u</span>  <span class="o">=</span> <span class="n">zero_u</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"rhs"</span><span class="p">)</span>
+<span class="n">rhs_p</span>  <span class="o">=</span> <span class="n">zero_p</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"rhs"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -756,7 +756,7 @@ grid size: 1410
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.41</span><span class="p">))</span>
 <span class="n">triangulation</span> <span class="o">=</span> <span class="n">gridView</span><span class="o">.</span><span class="n">triangulation</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">levels</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">'equal'</span><span class="p">)</span>
 <span class="n">t</span>        <span class="o">=</span> <span class="mf">0.</span>
 <span class="n">stepsize</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">nextstep</span> <span class="o">=</span> <span class="mf">0.</span>
@@ -765,15 +765,15 @@ grid size: 1410
 <span class="k">try</span><span class="p">:</span>
     <span class="n">movie</span> <span class="o">=</span> <span class="n">anim</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">()</span>
     <span class="c1"># save and embed</span>
-    <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;cylinder.gif&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">animation</span><span class="o">.</span><span class="n">ImageMagickWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'cylinder.gif'</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">animation</span><span class="o">.</span><span class="n">ImageMagickWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">display</span>
     <span class="n">display</span><span class="p">(</span> <span class="n">HTML</span><span class="p">(</span><span class="n">movie</span><span class="p">)</span> <span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ffmpeg probably missing&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"ffmpeg probably missing"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;cylinder.html&quot;</span><span class="p">)</span>
+        <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">"cylinder.html"</span><span class="p">)</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span>
-        <span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;./nice.html&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+        <span class="n">IFrame</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">'./nice.html'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span>
 </pre></div>
@@ -800,7 +800,7 @@ ffmpeg probably missing
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">&quot;horizontal&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">u_h</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">colorbar</span><span class="o">=</span><span class="s2">"horizontal"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -832,7 +832,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 

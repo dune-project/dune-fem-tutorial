@@ -514,7 +514,7 @@ This document is part of the dune-fem tutorial
 <section id="Sampling-the-Solution-over-a-Line">
 <span id="index-0"></span><h1>Sampling the Solution over a Line<a class="headerlink" href="#Sampling-the-Solution-over-a-Line" title="Link to this heading"></a></h1>
 <p>Let us revisit our simple 3d example from the introduction</p>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -535,9 +535,9 @@ This document is part of the dune-fem tutorial
         <span class="n">mesh</span> <span class="o">=</span> <span class="n">geom</span><span class="o">.</span><span class="n">generate_mesh</span><span class="p">(</span><span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
     <span class="n">points</span><span class="p">,</span> <span class="n">cells</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">cells_dict</span>
-    <span class="n">domain3d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vertices&quot;</span><span class="p">:</span><span class="n">points</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">),</span> <span class="s2">&quot;simplices&quot;</span><span class="p">:</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;tetra&quot;</span><span class="p">]}</span>
+    <span class="n">domain3d</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"vertices"</span><span class="p">:</span><span class="n">points</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"float"</span><span class="p">),</span> <span class="s2">"simplices"</span><span class="p">:</span><span class="n">cells</span><span class="p">[</span><span class="s2">"tetra"</span><span class="p">]}</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="c1"># pygmsh not installed - use a simple cartesian domain</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pygmsh module not found using a simple Cartesian domain - ignored&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"pygmsh module not found using a simple Cartesian domain - ignored"</span><span class="p">)</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">dune.grid</span><span class="w"> </span><span class="kn">import</span> <span class="n">cartesianDomain</span>
     <span class="n">domain3d</span> <span class="o">=</span> <span class="n">cartesianDomain</span><span class="p">([</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">60</span><span class="p">])</span>
 
@@ -545,23 +545,6 @@ This document is part of the dune-fem tutorial
 <span class="n">gridView3d</span>  <span class="o">=</span> <span class="n">leafGridView3d</span><span class="p">(</span><span class="n">domain3d</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-[1781551863.954480] [runnervm1li68:88663:0]        ib_iface.c:1316 UCX  ERROR mana_0: iface 0x5613c5759230 failed to create UD QP TX wr:256 sge:6 inl:64 resp:0 RX wr:4096 sge:1 resp:0 failed: Operation not supported
-[1781551863.954826] [runnervm1li68:88663:0]      ucp_worker.c:1415 UCX  ERROR uct_iface_open(ud_verbs/mana_0:1) failed: Input/output error
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-[runnervm1li68:88663] pml_ucx.c:319  Error: Failed to create UCP worker
-</pre></div></div>
 </div>
 <p>As before we solve a simple Laplace problem</p>
 <div class="nbinput nblast docutils container">
@@ -578,8 +561,8 @@ This document is part of the dune-fem tutorial
 <span class="n">x</span> <span class="o">=</span> <span class="n">SpatialCoordinate</span><span class="p">(</span><span class="n">space3d</span><span class="p">)</span>
 <span class="n">scheme3d</span> <span class="o">=</span> <span class="n">solutionScheme</span><span class="p">((</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">+</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">==</span>
                         <span class="n">conditional</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">.01</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span>
-                        <span class="n">solver</span><span class="o">=</span><span class="s1">&#39;cg&#39;</span><span class="p">)</span>
-<span class="n">uh3d</span> <span class="o">=</span> <span class="n">space3d</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;solution&quot;</span><span class="p">)</span>
+                        <span class="n">solver</span><span class="o">=</span><span class="s1">'cg'</span><span class="p">)</span>
+<span class="n">uh3d</span> <span class="o">=</span> <span class="n">space3d</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"solution"</span><span class="p">)</span>
 <span class="n">info</span> <span class="o">=</span> <span class="n">scheme3d</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">uh3d</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -610,7 +593,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dune.generator.algorithm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">algorithm</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dune.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">FieldVector</span>
 <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">FieldVector</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]),</span> <span class="n">FieldVector</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">p</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="s1">&#39;utility.hh&#39;</span><span class="p">,</span> <span class="n">uh3d</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">'sample'</span><span class="p">,</span> <span class="s1">'utility.hh'</span><span class="p">,</span> <span class="n">uh3d</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
 <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span><span class="o">.</span><span class="n">two_norm</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
@@ -626,7 +609,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f51256752b0&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fa4d0ffd940&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -644,7 +627,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.function</span><span class="w"> </span><span class="kn">import</span> <span class="n">gridFunction</span>
 <span class="n">absGrad</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">uh3d</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">uh3d</span><span class="p">))))</span>
-<span class="n">p</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="s1">&#39;utility.hh&#39;</span><span class="p">,</span> <span class="n">absGrad</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">'sample'</span><span class="p">,</span> <span class="s1">'utility.hh'</span><span class="p">,</span> <span class="n">absGrad</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
     <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
@@ -657,7 +640,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f51211e70e0&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fa4ccaeb770&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -673,7 +656,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">absGrad</span> <span class="o">=</span> <span class="n">gridFunction</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">uh3d</span><span class="p">))</span>
-<span class="n">p</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="s1">&#39;utility.hh&#39;</span><span class="p">,</span> <span class="n">absGrad</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">p</span><span class="p">,</span><span class="n">v</span> <span class="o">=</span> <span class="n">algorithm</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s1">'sample'</span><span class="p">,</span> <span class="s1">'utility.hh'</span><span class="p">,</span> <span class="n">absGrad</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">dx</span><span class="p">,</span><span class="n">dy</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
     <span class="n">dx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
@@ -689,7 +672,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f51210efe00&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fa4cca3c590&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -716,7 +699,7 @@ sample(const GF &amp;gf, DT &amp;start, DT &amp;end, int n)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x7f5120fa4c20&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fa4cca992b0&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -749,7 +732,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Jun 16, 2026.
+      <span class="lastupdated">Last updated on Oct 20, 2026.
       </span></p>
   </div>
 
