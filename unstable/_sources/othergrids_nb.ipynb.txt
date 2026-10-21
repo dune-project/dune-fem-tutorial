@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "41c26e27",
+   "id": "3b398aa8",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -20,13 +20,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "2377848a",
+   "id": "3889c62f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:34.274932Z",
-     "iopub.status.busy": "2026-10-20T16:30:34.274783Z",
-     "iopub.status.idle": "2026-10-20T16:30:36.295037Z",
-     "shell.execute_reply": "2026-10-20T16:30:36.294500Z"
+     "iopub.execute_input": "2026-10-21T11:54:11.662508Z",
+     "iopub.status.busy": "2026-10-21T11:54:11.662274Z",
+     "iopub.status.idle": "2026-10-21T11:54:13.998423Z",
+     "shell.execute_reply": "2026-10-21T11:54:13.997489Z"
     },
     "lines_to_next_cell": 0
    },
@@ -44,7 +44,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1eea58d5",
+   "id": "2491de01",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -68,13 +68,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "7f2566f7",
+   "id": "5a744efe",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:36.297162Z",
-     "iopub.status.busy": "2026-10-20T16:30:36.296949Z",
-     "iopub.status.idle": "2026-10-20T16:30:36.484899Z",
-     "shell.execute_reply": "2026-10-20T16:30:36.484184Z"
+     "iopub.execute_input": "2026-10-21T11:54:14.000172Z",
+     "iopub.status.busy": "2026-10-21T11:54:13.999942Z",
+     "iopub.status.idle": "2026-10-21T11:54:14.243928Z",
+     "shell.execute_reply": "2026-10-21T11:54:14.243007Z"
     }
    },
    "outputs": [
@@ -99,7 +99,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7eb801d0",
+   "id": "66881473",
    "metadata": {},
    "source": [
     "\n",
@@ -114,13 +114,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "1f01f4a9",
+   "id": "53c44cda",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:36.486242Z",
-     "iopub.status.busy": "2026-10-20T16:30:36.486062Z",
-     "iopub.status.idle": "2026-10-20T16:30:37.348844Z",
-     "shell.execute_reply": "2026-10-20T16:30:37.348045Z"
+     "iopub.execute_input": "2026-10-21T11:54:14.245488Z",
+     "iopub.status.busy": "2026-10-21T11:54:14.245268Z",
+     "iopub.status.idle": "2026-10-21T11:54:15.378331Z",
+     "shell.execute_reply": "2026-10-21T11:54:15.377351Z"
     }
    },
    "outputs": [
@@ -143,7 +143,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6e5cf932",
+   "id": "1d8f2f19",
    "metadata": {},
    "source": [
     "\n",
@@ -158,13 +158,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "b6f46fcf",
+   "id": "abb61eb2",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:37.350216Z",
-     "iopub.status.busy": "2026-10-20T16:30:37.350073Z",
-     "iopub.status.idle": "2026-10-20T16:30:38.262529Z",
-     "shell.execute_reply": "2026-10-20T16:30:38.261845Z"
+     "iopub.execute_input": "2026-10-21T11:54:15.380062Z",
+     "iopub.status.busy": "2026-10-21T11:54:15.379876Z",
+     "iopub.status.idle": "2026-10-21T11:54:16.544187Z",
+     "shell.execute_reply": "2026-10-21T11:54:16.542772Z"
     }
    },
    "outputs": [],
@@ -209,7 +209,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "02a1179b",
+   "id": "9279d2ff",
    "metadata": {},
    "source": [
     "![3d laplace problem](figures/3dexample.png)"
@@ -217,7 +217,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "64c0091b",
+   "id": "cccadad5",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -236,13 +236,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "5b8d5665",
+   "id": "ec674efb",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:38.264165Z",
-     "iopub.status.busy": "2026-10-20T16:30:38.263897Z",
-     "iopub.status.idle": "2026-10-20T16:30:38.417472Z",
-     "shell.execute_reply": "2026-10-20T16:30:38.416753Z"
+     "iopub.execute_input": "2026-10-21T11:54:16.546226Z",
+     "iopub.status.busy": "2026-10-21T11:54:16.545933Z",
+     "iopub.status.idle": "2026-10-21T11:54:16.722767Z",
+     "shell.execute_reply": "2026-10-21T11:54:16.721507Z"
     }
    },
    "outputs": [],
@@ -257,7 +257,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "71cb89cf",
+   "id": "9ca89347",
    "metadata": {},
    "source": [
     "\n",
@@ -268,13 +268,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "634f9de7",
+   "id": "14934d6a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:38.419781Z",
-     "iopub.status.busy": "2026-10-20T16:30:38.419588Z",
-     "iopub.status.idle": "2026-10-20T16:30:38.422462Z",
-     "shell.execute_reply": "2026-10-20T16:30:38.421909Z"
+     "iopub.execute_input": "2026-10-21T11:54:16.724927Z",
+     "iopub.status.busy": "2026-10-21T11:54:16.724730Z",
+     "iopub.status.idle": "2026-10-21T11:54:16.728701Z",
+     "shell.execute_reply": "2026-10-21T11:54:16.727721Z"
     }
    },
    "outputs": [],
@@ -285,7 +285,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "963a416e",
+   "id": "3800c012",
    "metadata": {},
    "source": [
     "\n",
@@ -305,13 +305,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "7ce3a1df",
+   "id": "69561c1c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:38.423716Z",
-     "iopub.status.busy": "2026-10-20T16:30:38.423558Z",
-     "iopub.status.idle": "2026-10-20T16:30:39.338162Z",
-     "shell.execute_reply": "2026-10-20T16:30:39.337388Z"
+     "iopub.execute_input": "2026-10-21T11:54:16.730267Z",
+     "iopub.status.busy": "2026-10-21T11:54:16.730097Z",
+     "iopub.status.idle": "2026-10-21T11:54:17.941793Z",
+     "shell.execute_reply": "2026-10-21T11:54:17.940961Z"
     }
    },
    "outputs": [
@@ -349,7 +349,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "fe808be5",
+   "id": "888f1bd4",
    "metadata": {},
    "source": [
     "\n",
@@ -365,13 +365,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "735b35d3",
+   "id": "831d704b",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:39.339609Z",
-     "iopub.status.busy": "2026-10-20T16:30:39.339441Z",
-     "iopub.status.idle": "2026-10-20T16:30:39.403990Z",
-     "shell.execute_reply": "2026-10-20T16:30:39.403451Z"
+     "iopub.execute_input": "2026-10-21T11:54:17.943352Z",
+     "iopub.status.busy": "2026-10-21T11:54:17.943182Z",
+     "iopub.status.idle": "2026-10-21T11:54:18.031397Z",
+     "shell.execute_reply": "2026-10-21T11:54:18.030599Z"
     },
     "lines_to_next_cell": 2
    },
@@ -408,7 +408,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "43b08ca5",
+   "id": "3f176992",
    "metadata": {},
    "source": [
     "\n",
@@ -442,13 +442,13 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "3de4ab10",
+   "id": "d23541db",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:39.405773Z",
-     "iopub.status.busy": "2026-10-20T16:30:39.405621Z",
-     "iopub.status.idle": "2026-10-20T16:30:39.429596Z",
-     "shell.execute_reply": "2026-10-20T16:30:39.429034Z"
+     "iopub.execute_input": "2026-10-21T11:54:18.033105Z",
+     "iopub.status.busy": "2026-10-21T11:54:18.032937Z",
+     "iopub.status.idle": "2026-10-21T11:54:18.061448Z",
+     "shell.execute_reply": "2026-10-21T11:54:18.060623Z"
     },
     "lines_to_next_cell": 0
    },
@@ -529,7 +529,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6f665ae6",
+   "id": "8e057b81",
    "metadata": {},
    "source": [
     "\n",
@@ -547,13 +547,13 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "b83c0120",
+   "id": "ec4becbc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:39.431276Z",
-     "iopub.status.busy": "2026-10-20T16:30:39.431151Z",
-     "iopub.status.idle": "2026-10-20T16:30:39.704682Z",
-     "shell.execute_reply": "2026-10-20T16:30:39.704041Z"
+     "iopub.execute_input": "2026-10-21T11:54:18.063096Z",
+     "iopub.status.busy": "2026-10-21T11:54:18.062928Z",
+     "iopub.status.idle": "2026-10-21T11:54:18.488142Z",
+     "shell.execute_reply": "2026-10-21T11:54:18.487077Z"
     }
    },
    "outputs": [
@@ -578,7 +578,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "296c34a7",
+   "id": "65b62639",
    "metadata": {},
    "source": [
     "\n",
@@ -593,13 +593,13 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "feb37e24",
+   "id": "0c9f0935",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:39.706503Z",
-     "iopub.status.busy": "2026-10-20T16:30:39.706349Z",
-     "iopub.status.idle": "2026-10-20T16:30:40.005020Z",
-     "shell.execute_reply": "2026-10-20T16:30:40.004325Z"
+     "iopub.execute_input": "2026-10-21T11:54:18.489736Z",
+     "iopub.status.busy": "2026-10-21T11:54:18.489574Z",
+     "iopub.status.idle": "2026-10-21T11:54:18.942711Z",
+     "shell.execute_reply": "2026-10-21T11:54:18.941711Z"
     }
    },
    "outputs": [
@@ -618,21 +618,21 @@
       "Info    : [ 80%] Meshing curve 8 (Line)\n",
       "Info    : [ 90%] Meshing curve 9 (Line)\n",
       "Info    : [100%] Meshing curve 10 (Line)\n",
-      "Info    : Done meshing 1D (Wall 0.00189913s, CPU 0.002103s)\n",
+      "Info    : Done meshing 1D (Wall 0.00244684s, CPU 0.00266s)\n",
       "Info    : Meshing 2D...\n",
       "Info    : [  0%] Meshing surface 1 (Plane, Frontal-Delaunay for Quads)\n",
       "Info    : [ 40%] Meshing surface 2 (Plane, Frontal-Delaunay for Quads)\n",
       "Info    : [ 70%] Meshing surface 3 (Plane, Frontal-Delaunay for Quads)\n",
-      "Info    : Done meshing 2D (Wall 0.00690553s, CPU 0.006973s)\n",
+      "Info    : Done meshing 2D (Wall 0.00854873s, CPU 0.008678s)\n",
       "Info    : 210 nodes 444 elements\n",
       "Info    : Recombining 2D mesh...\n",
-      "Info    : Blossom recombination completed (Wall 0.000245389s, CPU 0.000307s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q < 0.1, avg Q = 0.698908, min Q = 0.444444\n",
-      "Info    : Blossom recombination completed (Wall 0.000182149s, CPU 0.000354s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q < 0.1, avg Q = 0.698835, min Q = 0.444444\n",
+      "Info    : Blossom recombination completed (Wall 0.000301712s, CPU 0.00061s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q < 0.1, avg Q = 0.698908, min Q = 0.444444\n",
+      "Info    : Blossom recombination completed (Wall 0.000276726s, CPU 0.000554s): 6 quads, 1 triangles, 0 invalid quads, 0 quads with Q < 0.1, avg Q = 0.698835, min Q = 0.444444\n",
       "Info    : Blossom: 493 internal 57 closed\n",
-      "Info    : Blossom recombination completed (Wall 0.00396021s, CPU 0.004011s): 173 quads, 0 triangles, 0 invalid quads, 0 quads with Q < 0.1, avg Q = 0.758466, min Q = 0.383231\n",
-      "Info    : Done recombining 2D mesh (Wall 0.0044405s, CPU 0.004918s)\n",
-      "Info    : Writing '/tmp/tmp4pef9r8u.msh'...\n",
-      "Info    : Done writing '/tmp/tmp4pef9r8u.msh'\n",
+      "Info    : Blossom recombination completed (Wall 0.00501246s, CPU 0.005075s): 173 quads, 0 triangles, 0 invalid quads, 0 quads with Q < 0.1, avg Q = 0.758466, min Q = 0.383231\n",
+      "Info    : Done recombining 2D mesh (Wall 0.00566404s, CPU 0.006314s)\n",
+      "Info    : Writing '/tmp/tmpqxhe1vxe.msh'...\n",
+      "Info    : Done writing '/tmp/tmpqxhe1vxe.msh'\n",
       "\n"
      ]
     },
@@ -726,7 +726,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3230f8be",
+   "id": "d6b1310b",
    "metadata": {},
    "source": [
     "The `wave_tank` mesh file already used previously also contains boundary\n",
@@ -737,13 +737,13 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "6fa86dc6",
+   "id": "391cca3e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:40.006651Z",
-     "iopub.status.busy": "2026-10-20T16:30:40.006506Z",
-     "iopub.status.idle": "2026-10-20T16:30:52.218028Z",
-     "shell.execute_reply": "2026-10-20T16:30:52.217450Z"
+     "iopub.execute_input": "2026-10-21T11:54:18.944297Z",
+     "iopub.status.busy": "2026-10-21T11:54:18.944128Z",
+     "iopub.status.idle": "2026-10-21T11:54:39.505766Z",
+     "shell.execute_reply": "2026-10-21T11:54:39.504976Z"
     }
    },
    "outputs": [
@@ -773,7 +773,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1ddca3af",
+   "id": "6816b023",
    "metadata": {},
    "source": [
     "\n",
@@ -784,13 +784,13 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "9d435eca",
+   "id": "4ead37ec",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:52.220111Z",
-     "iopub.status.busy": "2026-10-20T16:30:52.219959Z",
-     "iopub.status.idle": "2026-10-20T16:30:52.344283Z",
-     "shell.execute_reply": "2026-10-20T16:30:52.343370Z"
+     "iopub.execute_input": "2026-10-21T11:54:39.507796Z",
+     "iopub.status.busy": "2026-10-21T11:54:39.507616Z",
+     "iopub.status.idle": "2026-10-21T11:54:39.677473Z",
+     "shell.execute_reply": "2026-10-21T11:54:39.676681Z"
     }
    },
    "outputs": [
@@ -818,7 +818,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d0990938",
+   "id": "49cdc705",
    "metadata": {},
    "source": [
     "pyplot can very easily be used in 1d using the ``tessellate`` method on\n",
@@ -829,20 +829,20 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "28d901b8",
+   "id": "427a906a",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-20T16:30:52.345905Z",
-     "iopub.status.busy": "2026-10-20T16:30:52.345727Z",
-     "iopub.status.idle": "2026-10-20T16:30:52.407151Z",
-     "shell.execute_reply": "2026-10-20T16:30:52.406590Z"
+     "iopub.execute_input": "2026-10-21T11:54:39.679122Z",
+     "iopub.status.busy": "2026-10-21T11:54:39.678942Z",
+     "iopub.status.idle": "2026-10-21T11:54:39.769186Z",
+     "shell.execute_reply": "2026-10-21T11:54:39.768352Z"
     }
    },
    "outputs": [
     {
      "data": {
       "text/plain": [
-       "[<matplotlib.lines.Line2D at 0x7f73de9b2120>]"
+       "[<matplotlib.lines.Line2D at 0x7f6b2dd82270>]"
       ]
      },
      "execution_count": 14,
