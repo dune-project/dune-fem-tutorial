@@ -210,6 +210,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
@@ -593,24 +598,34 @@ g(t^{n+1}) & \text{on }\Gamma_D
 </pre></div>
 </div>
 </div>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
-<span class="n">op</span>        <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">,</span><span class="n">bc</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
+<span class="n">op</span>        <span class="o">=</span> <span class="n">galerkin</span><span class="p">([</span><span class="n">dot</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span><span class="n">bc</span><span class="p">])</span>
 <span class="n">S</span>         <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
 <span class="n">lapPhi</span>    <span class="o">=</span> <span class="n">V</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">"e"</span><span class="p">)</span>
 <span class="n">lapPhiVec</span> <span class="o">=</span> <span class="n">lapPhi</span><span class="o">.</span><span class="n">as_numpy</span>
 </pre></div>
 </div>
 </div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+bash buildScript.sh localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b.dir/localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b.cc -MD -MT CMakeFiles/localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b.dir/localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b.cc.o -MF CMakeFiles/localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b.dir/localfunction_099d339b70bd8ae368ce0c3ec852780c_b1dc94f21d524d06c9380ea86cedb77b.cc.o.d
+
+</pre></div></div>
+</div>
 <p id="index-2">Next we construct a lumped (diagonal) approximation <span class="math notranslate nohighlight">\(M\)</span> to the mass matrix. We then use this to form the matrix <span class="math notranslate nohighlight">\(\Delta t M^{-1}S\)</span> where <span class="math notranslate nohighlight">\(M^{-1}\)</span> is easy to compute since <span class="math notranslate nohighlight">\(M\)</span> is diagonal. To compute <span class="math notranslate nohighlight">\(M\)</span> we can either use the <em>row sum</em> approach which is a diagonal matrix with entries <span class="math notranslate nohighlight">\(m_{ii} = \sum_j\int_\Omega\varphi_i\varphi_j\)</span>. We could either setup a mass matrix using</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span>
 <span class="n">diag</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -621,7 +636,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">dia_matrix</span>
-<span class="n">lumping</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+<span class="n">lumping</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">lumped</span> <span class="o">=</span> <span class="n">lapPhi</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">lumping</span><span class="p">(</span><span class="n">lapPhi</span><span class="p">,</span><span class="n">lumped</span><span class="p">)</span>       <span class="c1"># note that lapPhi=1</span>
 <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">lumped</span><span class="o">.</span><span class="n">as_numpy</span><span class="p">)</span>
@@ -639,8 +654,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">dune.fem.scheme</span><span class="w"> </span><span class="kn">import</span> <span class="n">galerkin</span>
-<span class="n">lumping</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"quadrature_rule"</span><span class="p">:</span><span class="s2">"lumped"</span><span class="p">})</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lumping</span> <span class="o">=</span> <span class="n">galerkin</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span><span class="p">(</span><span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">"quadrature_rule"</span><span class="p">:</span><span class="s2">"lumped"</span><span class="p">})</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">lumped</span> <span class="o">=</span> <span class="n">lumping</span><span class="o">.</span><span class="n">linear</span><span class="p">()</span><span class="o">.</span><span class="n">as_numpy</span><span class="o">.</span><span class="n">diagonal</span><span class="p">()</span>
 <span class="n">M</span> <span class="o">=</span> <span class="n">dia_matrix</span><span class="p">(([</span><span class="n">dt</span><span class="o">/</span><span class="n">lumped</span><span class="p">],[</span><span class="mi">0</span><span class="p">]),</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="p">)</span>
 <span class="n">S2</span> <span class="o">=</span> <span class="n">M</span><span class="o">*</span><span class="n">S</span>
@@ -662,7 +676,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
     <span class="n">p_in</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
     <span class="n">op</span><span class="o">.</span><span class="n">setConstraints</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
-    <span class="c1"># second phi updatw</span>
+    <span class="c1"># second phi update</span>
     <span class="n">phiVec</span><span class="p">[:]</span> <span class="o">-=</span> <span class="n">pVec</span><span class="p">[:]</span><span class="o">*</span><span class="n">dt</span><span class="o">/</span><span class="mi">2</span>
     <span class="c1"># phi.axpy(-dt/2, p)</span>
 
@@ -679,7 +693,7 @@ g(t^{n+1}) & \text{on }\Gamma_D
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/wave_nb_14_0.jpg" src="_images/wave_nb_14_0.jpg" />
+<img alt="_images/wave_nb_14_0.png" src="_images/wave_nb_14_0.png" />
 </div>
 </div>
 </section>
@@ -703,7 +717,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 21, 2026.
+      <span class="lastupdated">Last updated on Oct 27, 2026.
       </span></p>
   </div>
 

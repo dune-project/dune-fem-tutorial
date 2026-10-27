@@ -210,6 +210,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
@@ -536,7 +541,7 @@ use a mixed formulation, i.e., condsider an auxiliary variable <span class="math
 <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)]</span> <span class="p">)</span>
 <span class="n">triangles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">0</span><span class="p">)]</span> <span class="p">)</span>
 <span class="n">gridView</span> <span class="o">=</span> <span class="n">aluSimplexGrid</span><span class="p">({</span><span class="s2">"vertices"</span><span class="p">:</span> <span class="n">vertices</span><span class="p">,</span> <span class="s2">"simplices"</span><span class="p">:</span> <span class="n">triangles</span><span class="p">})</span>
-<span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -627,7 +632,7 @@ use a mixed formulation, i.e., condsider an auxiliary variable <span class="math
 <span class="n">errorH1</span> <span class="o">=</span> <span class="p">[</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span> <span class="n">solution</span> <span class="o">-</span> <span class="n">exactFunction</span><span class="p">),</span><span class="n">grad</span><span class="p">(</span> <span class="n">solution</span> <span class="o">-</span> <span class="n">exactFunction</span><span class="p">)</span> <span class="p">),</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">order</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">))]</span>
 <span class="n">errorH2</span> <span class="o">=</span> <span class="p">[</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">laplace</span><span class="p">(</span><span class="n">solution</span> <span class="o">-</span> <span class="n">exactFunction</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">gridView</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">order</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">assemble</span><span class="p">(</span><span class="n">jump</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">solution</span><span class="p">),</span><span class="n">normal</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">avg</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dS</span><span class="p">)</span><span class="o">.</span><span class="n">as_numpy</span> <span class="p">)</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">(</span><span class="n">assemble</span><span class="p">(</span><span class="n">inner</span><span class="p">(</span><span class="n">grad</span><span class="p">(</span><span class="n">solution</span><span class="p">),</span><span class="n">normal</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">ds</span><span class="p">)</span><span class="o">.</span><span class="n">as_numpy</span> <span class="p">))</span> <span class="p">]</span> <span class="c1"># need to get the error</span>
 
-<span class="n">maxRefs</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">maxRefs</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxRefs</span><span class="p">):</span>
     <span class="n">gridView</span><span class="o">.</span><span class="n">hierarchicalGrid</span><span class="o">.</span><span class="n">globalRefine</span><span class="p">()</span>
     <span class="n">aa</span><span class="p">,</span> <span class="n">ff</span> <span class="o">=</span> <span class="n">assemble</span><span class="p">([</span><span class="n">a</span> <span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="n">dbc</span><span class="p">])</span>
@@ -647,11 +652,10 @@ use a mixed formulation, i.e., condsider an auxiliary variable <span class="math
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-145      0.11364435987378343     0.6208740665237563      5.524365118462585
-545      0.04022273606262905     0.23163339565591903     2.6399394758562136
-2113     0.011783142282722562    0.07049217621424751     1.169480294077768
-8321     0.0031289045004259373   0.019059972388930806    0.5372198060246351
-33025    0.0007995703959455293   0.004898767081320149    0.2595946637908507
+41       0.26797404711950823     1.3919720667373439      12.016086247781562
+145      0.11364435987379069     0.6208740665237933      5.524365118462774
+545      0.040222736062334494    0.23163339565450566     2.6399394758506594
+2113     0.011783142261081804    0.0704921761187458      1.1694802938500162
 </pre></div></div>
 </div>
 <p>We may now plot this into graphs.</p>
@@ -728,11 +732,10 @@ u &= 0     && \text{on } \partial \Omega.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-145      0.024862701102964825    0.11397097581528402     2.197431986473767
-545      0.0063583068041492595   0.02921293698908483     1.1118694335330772
-2113     0.0016038793958868974   0.007404936868235949    0.5581151873209267
-8321     0.0004023877759684038   0.001863685174265575    0.2794395572549001
-33025    0.00010076920007894088          0.0004673623339469213   0.13979427109965017
+41       0.0934383311352782      0.43034263743557555     4.221991528257279
+145      0.024862701102879293    0.11397097581491815     2.197431986473758
+545      0.006358306803225917    0.029212936985119335    1.111869433533039
+2113     0.0016038793619311507   0.007404936721736835    0.5581151873194751
 </pre></div></div>
 </div>
 <p>We may now plot this into graphs.</p>
@@ -780,7 +783,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 21, 2026.
+      <span class="lastupdated">Last updated on Oct 27, 2026.
       </span></p>
   </div>
 

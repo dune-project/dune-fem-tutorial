@@ -210,6 +210,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
@@ -832,8 +837,8 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 2 elements and 4 vertices
-(0.000000, 0.000000), (0.000000, 1.000000), (1.000000, 1.000000)
 (1.000000, 1.000000), (1.000000, 0.000000), (0.000000, 0.000000)
+(0.000000, 0.000000), (0.000000, 1.000000), (1.000000, 1.000000)
 (0.000000, 0.000000), (1.000000, 0.000000)
 (0.000000, 0.000000), (1.000000, 1.000000)
 (0.000000, 0.000000), (0.000000, 1.000000)
@@ -860,8 +865,8 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-(, 0, ., 3, 3, 3, 3, 3, 3, ,,  , 0, ., 6, 6, 6, 6, 6, 7, )
 (, 0, ., 6, 6, 6, 6, 6, 7, ,,  , 0, ., 3, 3, 3, 3, 3, 3, )
+(, 0, ., 3, 3, 3, 3, 3, 3, ,,  , 0, ., 6, 6, 6, 6, 6, 7, )
 </pre></div></div>
 </div>
 <p>or <code class="docutils literal notranslate"><span class="pre">vertices</span></code>, <code class="docutils literal notranslate"><span class="pre">edges</span></code> or <code class="docutils literal notranslate"><span class="pre">faces</span></code> (3d only).</p>
@@ -904,13 +909,13 @@ quadrature weights: [-0.28125     0.26041667  0.26041667  0.26041667] (&lt;class
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Element vertices
- (0.000000, 0.000000)
- (0.000000, 1.000000)
- (1.000000, 1.000000)
-Element vertices
  (1.000000, 1.000000)
  (1.000000, 0.000000)
  (0.000000, 0.000000)
+Element vertices
+ (0.000000, 0.000000)
+ (0.000000, 1.000000)
+ (1.000000, 1.000000)
 </pre></div></div>
 </div>
 <div class="admonition note">
@@ -939,12 +944,12 @@ Element vertices
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-boundary (0.000000, 0.500000) with normal (-1.000000, -0.000000)
-outside (0.666667, 0.333333)
-boundary (0.500000, 1.000000) with normal (0.000000, 1.000000)
 boundary (1.000000, 0.500000) with normal (1.000000, 0.000000)
 outside (0.333333, 0.666667)
 boundary (0.500000, 0.000000) with normal (0.000000, -1.000000)
+boundary (0.000000, 0.500000) with normal (-1.000000, -0.000000)
+outside (0.666667, 0.333333)
+boundary (0.500000, 1.000000) with normal (0.000000, 1.000000)
 </pre></div></div>
 </div>
 <p>In the above examples we have used the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> attribute on the entity which provides the geometric mapping between the reference element of the entity and it’s position in physical space. We have used the corners attribute to retrieve corners of the entity. Other attributes and methods, such as <code class="docutils literal notranslate"><span class="pre">toGlobal</span></code>, <code class="docutils literal notranslate"><span class="pre">toLocal</span></code>, <code class="docutils literal notranslate"><span class="pre">integrationElement</span></code>, <code class="docutils literal notranslate"><span class="pre">jacobianInverseTransposed</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">corners</span></code>, <code class="docutils literal notranslate"><span class="pre">referenceElement</span></code> and more, are available to provide volume or the integration element
@@ -1025,7 +1030,7 @@ needed to compute quadratures of a grid function over the element - which is dis
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-integral of function &#39;f&#39;: 0.07942992585030181
+integral of function &#39;f&#39;: 0.07942992585030194
 </pre></div></div>
 </div>
 <p>There are some approach available to improve the efficiency of the computation of integrals since this is an important component of many grid based schemes. Especially, using vectorization can greatly reduce the complexity of the above loop:</p>
@@ -1050,7 +1055,7 @@ integral of function &#39;f&#39;: 0.07942992585030181
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-integral of function &#39;f&#39;: 0.07942992585030184
+integral of function &#39;f&#39;: 0.07942992585030188
 </pre></div></div>
 </div>
 <p>Now a vector valued function</p>
@@ -1190,10 +1195,10 @@ of freedom that is supposed to be attached to every entity with a given geometry
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 [0 1 2]
-[2 3 0]
-[0 4 5]
-[3 4 0]
-[6 7 0]
+[0 3 1]
+[3 4 1]
+[5 4 3]
+[2 6 0]
 </pre></div></div>
 </div>
 </section>
@@ -1351,7 +1356,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 21, 2026.
+      <span class="lastupdated">Last updated on Oct 27, 2026.
       </span></p>
   </div>
 

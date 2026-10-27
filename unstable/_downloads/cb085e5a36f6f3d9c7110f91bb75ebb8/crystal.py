@@ -12,6 +12,7 @@
 
 
 # %%
+from matplotlib import pyplot as plt
 import dune.fem as fem
 from dune.grid import cartesianDomain
 from dune.alugrid import aluConformGrid as leafGridView
@@ -21,13 +22,26 @@ from dune.fem import threading
 from dune.fem import GridMarker
 threading.use = max(4,threading.max) # use at most 4 threads
 
+# %% [markdown]
+# To be able use in a parallel run we want the png files written to be distinct
+# on each node so we obtain the mpi 'rank'. If this script is run in serial
+# then rank=0:
+
+# %%
+from dune.common import comm
+rank = comm.rank
+size = comm.size
+
+# %% [markdown]
+# Next we construct grids and spaces
+
+# %%
 order = 1
 dimDomain = 2     # we are solving this in 2D
 dimRange = 2      # we have a system with two unknowns
 domain = cartesianDomain([4, 4], [8, 8], [3, 3])
 gridView  = adaptiveGridView( leafGridView( domain ) )
 space = solutionSpace(gridView, dimRange=dimRange, order=order, storage="numpy")
-
 
 # %% [markdown]
 # We want to solve the following system of equations of variables $\phi$ (phase field) and $T$ (temperature field)
@@ -57,7 +71,6 @@ space = solutionSpace(gridView, dimRange=dimRange, order=order, storage="numpy")
 # and where $\beta = \frac{1-\Phi^2}{1+\Phi^2}$, $\Phi = \tan \left( \frac{N}{2} \psi \right)$, $\psi = \theta + \arctan \left(\frac{\partial \phi/ \partial y}{\partial \phi / \partial x} \right)$ and $\theta$, $N$ are constants.
 #
 # Let us first set up the parameters for the problem.
-
 
 # %%
 alpha        = 0.015
@@ -174,7 +187,7 @@ indicator = dot(grad(u_h[0]),grad(u_h[0]))
 # We perform the initial refinement of the grid using the general form of the `mark' method
 
 # %%
-maxLevel = 11
+maxLevel = 11 if size==1 else 13
 startLevel = 5
 gridView.hierarchicalGrid.globalRefine(startLevel)
 u_h.interpolate(initial)
@@ -201,10 +214,6 @@ from dune.fem.plotting import plotComponents
 import matplotlib.pyplot as pyplot
 from dune.fem.function import levelFunction, partitionFunction
 
-# dummy vtk
-def vtk():
-    pass
-
 # %% [markdown]
 # .. index:: Grids; Visualization time series
 #
@@ -212,11 +221,12 @@ def vtk():
 #
 # We can construct a vtk writer that generates a sequence of files:
 #
-# ```
-# vtk = gridView.sequencedVTK("crystal", pointdata=[u_h],
-#          celldata=[levelFunction(gridView), partitionFunction(gridView)])
-# ```
-#
+
+# %%
+vtk = gridView.sequencedVTK("crystal", pointdata=[u_h],
+         celldata=[levelFunction(gridView), partitionFunction(gridView)])
+
+# %% [markdown]
 # This can be for example used in a time loop. Simply adding `vtk()` in the
 # loop will write files `crystalXXXX.vtu` where the sequence counter `XXXX`
 # is automatically increased by one each time `vtk()` is called.
@@ -225,13 +235,9 @@ def vtk():
 import matplotlib
 matplotlib.rcParams.update({'font.size': 10})
 matplotlib.rcParams['figure.figsize'] = [10, 5]
-plotComponents(u_h, cmap=pyplot.cm.jet, show=[0], contours=[0.5],contourWidth=3)
-vtk()
-
 
 # %% [markdown]
 # We set ``dt`` and the initial time t=0.
-
 
 # %%
 dt.value = 0.0005
@@ -244,18 +250,36 @@ t = 0.0
 # The simulation can be progressed further by rerunning the cell while increasing the ``endTime``.
 
 # %%
-from dune.fem.plotting import plotPointData
-u_h[0].plot(onlyContours=True,contours=[0.5], contourWidth=1, contourColor="black")
+def plot(count,u_h):
+    plotArgs = {"linewidth":0.7, "onlyContours":True,"contours":[0.5],
+                "contourWidth":4, "contourColor":"yellow"}
+    if size == 1: # serial run
+        u_h[0].plot(**plotArgs)
+    else:
+        fig = plt.figure(figsize=(10,10))
+        u_h[0].plot(**plotArgs, figure=fig)
+        fig.savefig(f"crystal{rank}{size}_{count}.png", dpi=150, bbox_inches="tight")
+        plt.close(fig)
+    vtk()
+
+count = 0
 endTime = 0.1
+saveInterval = endTime/5
+
+plot(count, u_h)
+count += 1
+nextSaveStep = saveInterval
 while t < endTime:
     u_h_n.assign(u_h)
     scheme.solve(target=u_h)
-    # print(t, gridView.size(0), end="\r")
+    if t > nextSaveStep - dt.value/3:
+        plot(count,u_h)
+        count += 1
+        nextSaveStep += saveInterval
     t += dt.value
     fem.gridAdapt(marker, u_h) # can also be a list or tuple of function to prolong/restrict
-    vtk()                      # store result in sequence of vtk file
-print()
+plot(count, u_h)
 
+# %%
 fig = pyplot.figure(figsize=(30,10))
 plotComponents(u_h, figure=fig, cmap=pyplot.cm.jet)
-u_h[0].plot(onlyContours=True,contours=[0.5], contourWidth=1, contourColor="yellow")

@@ -38,7 +38,7 @@ from dune.alugrid import aluSimplexGrid
 vertices = np.array( [(0,0), (1,0), (1,1), (0,1),(0.5,0.5)] )
 triangles = np.array( [(0,1,4), (1,2,4), (2,4,3), (3,4,0)] )
 gridView = aluSimplexGrid({"vertices": vertices, "simplices": triangles})
-gridView.hierarchicalGrid.globalRefine(2)
+gridView.hierarchicalGrid.globalRefine(1)
 
 # %% [markdown]
 # Introduce the space, test functions and the exact solution which we will estimate:
@@ -103,7 +103,7 @@ errorL2 = [ sqrt(integrate((solution - exactFunction)**2, gridView, order = 2*or
 errorH1 = [ sqrt(integrate(inner(grad( solution - exactFunction),grad( solution - exactFunction) ), gridView, order = 2*(order-1) ))]
 errorH2 = [ sqrt(integrate(laplace(solution - exactFunction)**2, gridView, order = 2*(order-1)) + sum(assemble(jump(grad(solution),normal)**2*avg(v)*dS).as_numpy ) + sum(assemble(inner(grad(solution),normal)**2*v*ds).as_numpy )) ] # need to get the error
 
-maxRefs = 4
+maxRefs = 3
 for _ in range(maxRefs):
     gridView.hierarchicalGrid.globalRefine()
     aa, ff = assemble([a ==0, dbc])

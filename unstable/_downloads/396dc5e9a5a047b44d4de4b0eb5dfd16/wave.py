@@ -113,8 +113,8 @@ p_in = Constant(0.0, name="g")
 bc   = DirichletBC(V, p_in, 1)
 
 # %%
-from dune.fem.operator import galerkin
-op        = galerkin([dot(grad(u),grad(v))*dx,bc])
+from dune.fem.scheme import galerkin
+op        = galerkin([dot(grad(u),grad(v))*dx==0,bc])
 S         = op.linear().as_numpy
 lapPhi    = V.interpolate(1,name="e")
 lapPhiVec = lapPhi.as_numpy
@@ -131,7 +131,7 @@ lapPhiVec = lapPhi.as_numpy
 # We could either setup a mass matrix using
 
 # %%
-M = galerkin(u*v*dx).linear().as_numpy
+M = galerkin(u*v*dx==0).linear().as_numpy
 diag = M.sum(axis=1)
 
 # %% [markdown]
@@ -140,7 +140,7 @@ diag = M.sum(axis=1)
 
 # %%
 from scipy.sparse import dia_matrix
-lumping = galerkin(u*v*dx)
+lumping = galerkin(u*v*dx==0)
 lumped = lapPhi.copy()
 lumping(lapPhi,lumped)       # note that lapPhi=1
 N = len(lumped.as_numpy)
@@ -158,7 +158,6 @@ S1 = M*S
 #
 
 # %%
-from dune.fem.scheme import galerkin
 lumping = galerkin(u*v*dx(metadata={"quadrature_rule":"lumped"})==0)
 lumped = lumping.linear().as_numpy.diagonal()
 M = dia_matrix(([dt/lumped],[0]),shape=(N,N) )
@@ -184,7 +183,7 @@ while t <= T:
     p_in.value = np.sin(2*np.pi*5*t)
     op.setConstraints(p)
 
-    # second phi updatw
+    # second phi update
     phiVec[:] -= pVec[:]*dt/2
     # phi.axpy(-dt/2, p)
 

@@ -210,6 +210,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
@@ -707,7 +712,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.22038988045648691, 0.2709693775167123)
+Polygon diameters: (0.22039631950697425, 0.2788132170712137)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -778,11 +783,11 @@ Polygon diameters: (0.22038988045648691, 0.2709693775167123)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.021661746362131876 H^1:  0.40507946939919476 54
-method ( dg ): dofs:  525 L^2:  0.015050085690089216 H^1:  0.3754537391457335 537
-method ( vem-conforming ): dofs:  102 L^2:  0.023363515520003125 H^1:  0.34589998872638666 30
-method ( vem-nonconforming ): dofs:  151 L^2:  0.020106338920046905 H^1:  0.3548919560351455 33
-method ( bb-dg ): dofs:  150 L^2:  0.020272224534754944 H^1:  0.37592852078158884 86
+method ( lagrange ): dofs:  102 L^2:  0.019654939132366097 H^1:  0.3716417839529101 51
+method ( dg ): dofs:  528 L^2:  0.011670388863315896 H^1:  0.342278235804079 514
+method ( vem-conforming ): dofs:  102 L^2:  0.022349472786444433 H^1:  0.34358899372850177 29
+method ( vem-nonconforming ): dofs:  151 L^2:  0.019696054121834453 H^1:  0.35736891521457836 31
+method ( bb-dg ): dofs:  150 L^2:  0.018369763296505925 H^1:  0.36730810081877213 87
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -827,7 +832,7 @@ method ( bb-dg ): dofs:  150 L^2:  0.020272224534754944 H^1:  0.3759285207815888
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.010764398929343548), np.float64(0.15194487213675015)]
+non linear problem: [np.float64(0.010897544759791636), np.float64(0.15491952518992083)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1003,7 +1008,7 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(28.677625831308948), np.float64(160.725032120788)]
+bi-laplace errors: [np.float64(3.595976340324193), np.float64(31.30128430964564)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1034,7 +1039,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 21, 2026.
+      <span class="lastupdated">Last updated on Oct 27, 2026.
       </span></p>
   </div>
 

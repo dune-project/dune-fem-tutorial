@@ -210,6 +210,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
@@ -589,7 +594,7 @@ to <span class="math notranslate nohighlight">\(10^{-8}\)</span>. In addition we
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Default L^2, H^1 error: 1.20362e-06, 1.83003e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 252, &#39;timing&#39;: [0.026577453, 0.008078497, 0.018498956]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 252, &#39;timing&#39;: [0.08390705, 0.027193162, 0.056713888]}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -714,17 +719,17 @@ Newton 1 L^2, H^1 error: 1.17597e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0 141085.74926120762
-1 17905.920241774333
-2 7537.485122978748
-3 2816.7394179534726
-4 729.4500739362206
-5 67.95220111350947
-6 0.5837200125700535
-7 4.0818883975234545e-05
+0 141085.74934246935
+1 17905.920251682073
+2 7537.485127465824
+3 2816.739420004367
+4 729.4500747369624
+5 67.95220125289819
+6 0.5837202808820594
+7 4.081660241988812e-05
 8 0.0
 Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
-         solver info= {&#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 2201}
+         solver info= {&#39;iterations&#39;: 8, &#39;linear_iterations&#39;: 2202}
 </pre></div></div>
 </div>
 <div class="admonition tip">
@@ -772,7 +777,7 @@ Newton 2 (gmres) L^2, H^1 error: 1.17597e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.0111869, 0.003242407, 0.007944493]}
+{&#39;converged&#39;: True, &#39;iterations&#39;: 0, &#39;linear_iterations&#39;: 213, &#39;timing&#39;: [0.023126349, 0.0069654719999999995, 0.016160877]}
 </pre></div></div>
 </div>
 <div class="admonition tip">
@@ -868,10 +873,10 @@ Dirichlet, Newton 1 L^2, H^1 error: 1.17658e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0 994.7300931673301
-1 14.080846388370963
-2 0.005556564215700865
-3 1.022599295261397e-09
+0 994.7300931673277
+1 14.080846388372295
+2 0.005556564215666092
+3 1.0225993014265804e-09
 4 0.0
 Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 518}
@@ -924,7 +929,7 @@ Dirichlet, Newton 2 L^2, H^1 error: 1.17659e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.049060144, 0.026257476000000002, 0.022802667999999998]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 22, &#39;timing&#39;: [0.191806925, 0.11617812200000001, 0.07562880299999998]}
 </pre></div></div>
 </div>
 </section>
@@ -955,7 +960,7 @@ PETSc L^2, H^1 error: 1.17613e-06, 1.83002e-04
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Dune-Istl L^2, H^1 error: 1.17597e-06, 1.83002e-04
-         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.070876811, 0.008007743, 0.062869068]}
+         solver info= {&#39;converged&#39;: True, &#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 42, &#39;timing&#39;: [0.164580019, 0.025914562000000002, 0.138665457]}
 </pre></div></div>
 </div>
 </section>
@@ -1000,8 +1005,8 @@ that is used in the output.</p>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Fem::CG preconditioning=jacobi
-Fem::CG it: 0 : residual 3.14786e-13
-Fem::CG it: 1 : residual 1.08052e-13
+Fem::CG it: 0 : residual 3.14802e-13
+Fem::CG it: 1 : residual 1.08055e-13
 </pre></div></div>
 </div>
 <p>We use the <code class="docutils literal notranslate"><span class="pre">pprint</span></code> (pretty print) module if available to get nicer output.</p>
@@ -1024,7 +1029,7 @@ Fem::CG it: 1 : residual 1.08052e-13
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;default&#39;: {(&#39;fem.threads.communicationthread&#39;, &#39;false&#39;), (&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;), (&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;)},
+{&#39;default&#39;: {(&#39;fem.dofmanager.memoryfactor&#39;, &#39;1.1&#39;), (&#39;fem.threads.communicationthread&#39;, &#39;false&#39;), (&#39;fem.dofmanager.clearresizedarrays&#39;, &#39;true&#39;)},
  &#39;log-jacobi&#39;: {(&#39;fem.solver.linear.maxiterations&#39;, &#39;2147483647&#39;),
                 (&#39;fem.solver.linear.preconditioning.iterations&#39;, &#39;1&#39;),
                 (&#39;fem.solver.linear.preconditioning.relaxation&#39;, &#39;1.1&#39;),
@@ -1381,7 +1386,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 21, 2026.
+      <span class="lastupdated">Last updated on Oct 27, 2026.
       </span></p>
   </div>
 

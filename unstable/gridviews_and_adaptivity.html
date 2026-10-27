@@ -209,6 +209,11 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#Pickling">Pickling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="backuprestore_nb.html#A-Chekpointer-class">A Chekpointer class</a></li>
@@ -789,7 +794,7 @@ into a grid of a diamond shape:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">diamond</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="geoview_nb_files/geoview_nb_1_0.jpg" src="geoview_nb_files/geoview_nb_1_0.jpg" />
+<img alt="_images/geoview_nb_1_01.jpg" src="_images/geoview_nb_1_01.jpg" />
 <p>In a second example we embed a 1D interval into 3D:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ufl</span><span class="w"> </span><span class="kn">import</span> <span class="n">cos</span><span class="p">,</span><span class="n">sin</span>
 <span class="n">square</span> <span class="o">=</span> <span class="n">structuredGrid</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">25</span><span class="p">],[</span><span class="mi">100</span><span class="p">])</span>
@@ -805,7 +810,7 @@ but we can plot some grid function, e.g., given by ufl expressions</p>
 <span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">gridView</span><span class="o">=</span><span class="n">spiral</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="geoview_nb_files/geoview_nb_5_0.jpg" src="geoview_nb_files/geoview_nb_5_0.jpg" />
+<img alt="_images/geoview_nb_5_01.jpg" src="_images/geoview_nb_5_01.jpg" />
 <p>By using a discrete function to construct a geometry grid view, it becomes
 possible to simulate problems on evolving domains where the evolution is
 itself the solution of the partial differential equation. We demonstrate
@@ -837,7 +842,7 @@ surface:</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 21, 2026.
+      <span class="lastupdated">Last updated on Oct 27, 2026.
       </span></p>
   </div>
 
