@@ -582,7 +582,7 @@ This document is part of the dune-fem tutorial
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_5_0.jpg" src="_images/solversExternal_nb_5_0.jpg" />
+<img alt="_images/solversExternal_nb_5_0.png" src="_images/solversExternal_nb_5_0.png" />
 </div>
 </div>
 <div class="admonition tip">
@@ -636,14 +636,14 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.lines.Line2D at 0x726608111eb0&gt;
+&lt;matplotlib.lines.Line2D at 0x7fd2ac85e510&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_11_2.jpg" src="_images/solversExternal_nb_11_2.jpg" />
+<img alt="_images/solversExternal_nb_11_2.png" src="_images/solversExternal_nb_11_2.png" />
 </div>
 </div>
 </section>
@@ -664,7 +664,7 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_13_0.jpg" src="_images/solversExternal_nb_13_0.jpg" />
+<img alt="_images/solversExternal_nb_13_0.png" src="_images/solversExternal_nb_13_0.png" />
 </div>
 </div>
 <p>Again the dof vector is not copied so changing the <code class="docutils literal notranslate"><span class="pre">numpy</span></code> array will directly change the discrete function</p>
@@ -681,7 +681,7 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_15_0.jpg" src="_images/solversExternal_nb_15_0.jpg" />
+<img alt="_images/solversExternal_nb_15_0.png" src="_images/solversExternal_nb_15_0.png" />
 </div>
 </div>
 <p>Now we have all the ingredients to write a simple Newton solver to solve our non-linear time dependent PDE.</p>
@@ -746,11 +746,14 @@ the <code class="docutils literal notranslate"><span class="pre">linear</span></
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+bash buildScript.sh localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_7f53672c947af4bdf73147f51278a6e2_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d
+
 iter 0 : 4.431052148382562
-iter 1 : 0.04276612643235486
-iter 2 : 0.002883781339264937
-iter 3 : 2.2434900424785198e-05
-iter 4 : 1.413083906799854e-09
+iter 1 : 0.04276612643235331
+iter 2 : 0.0028837813392648516
+iter 3 : 2.2434900428302384e-05
+iter 4 : 1.4130798754435039e-09
 Scipy-1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 856}
 </pre></div></div>
@@ -759,7 +762,7 @@ Scipy-1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_18_1.jpg" src="_images/solversExternal_nb_18_1.jpg" />
+<img alt="_images/solversExternal_nb_18_1.png" src="_images/solversExternal_nb_18_1.png" />
 </div>
 </div>
 <p>We can also use a non linear solver from the Scipy package - together for example with an incomplete LU factorization for the Jacobian.</p>
@@ -840,10 +843,13 @@ Scipy-1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Newton residual: 0.0018287557692952964
-Newton residual: 8.313466294553284e-06
-Newton residual: 5.03522369105679e-10
-Newton residual: 1.7984114890476407e-17
+bash buildScript.sh localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_879f19ff35f502d2768203fb5a0b13a0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d
+
+Newton residual: 0.0018287557646038026
+Newton residual: 8.312816310154387e-06
+Newton residual: 5.038482086439676e-10
+Newton residual: 1.7009759157698087e-17
 Scipy-2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 16}
 </pre></div></div>
@@ -852,7 +858,7 @@ Scipy-2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_20_1.jpg" src="_images/solversExternal_nb_20_1.jpg" />
+<img alt="_images/solversExternal_nb_20_1.png" src="_images/solversExternal_nb_20_1.png" />
 </div>
 </div>
 </section>
@@ -993,6 +999,12 @@ u_h.plot()
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+bash buildScript.sh localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_b80f239f8d05c6aae8a4e54896ead4b0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d
+
+bash buildScript.sh localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_56c4bdbeb89d660530a45efbbbeba91b_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d
+
 PETSc4py 1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 57}
 </pre></div></div>
@@ -1001,7 +1013,7 @@ PETSc4py 1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_27_1.jpg" src="_images/solversExternal_nb_27_1.jpg" />
+<img alt="_images/solversExternal_nb_27_1.png" src="_images/solversExternal_nb_27_1.png" />
 </div>
 </div>
 <p>Here is another example now using the petsc4py bindings for the non linear KSP solvers from PETSc. This time we use a algebraic multigrid preconditioner:</p>
@@ -1056,6 +1068,12 @@ PETSc4py 1 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+bash buildScript.sh localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_1b09037a73aa8262b5d405e06a841a15_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d
+
+bash buildScript.sh localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_e73a664eebc4ee41543c5ea78b549c3f_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d
+
 PETSc4py 2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
          solver info= {&#39;iterations&#39;: 4, &#39;linear_iterations&#39;: 16}
 </pre></div></div>
@@ -1064,7 +1082,7 @@ PETSc4py 2 L^2, H^1 error: 1.17626e-06, 1.83002e-04
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/solversExternal_nb_29_1.jpg" src="_images/solversExternal_nb_29_1.jpg" />
+<img alt="_images/solversExternal_nb_29_1.png" src="_images/solversExternal_nb_29_1.png" />
 </div>
 </div>
 </section>
@@ -1089,7 +1107,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 27, 2026.
+      <span class="lastupdated">Last updated on Oct 28, 2026.
       </span></p>
   </div>
 

@@ -592,7 +592,7 @@ u(x,y) &= xy\cos(\pi xy)
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_5_0.jpg" src="_images/vemdemo_nb_5_0.jpg" />
+<img alt="_images/vemdemo_nb_5_0.png" src="_images/vemdemo_nb_5_0.png" />
 </div>
 </div>
 <p>The vem space is now setup in exactly the same way as usual but the type of space constructed is defined by the final argument which defines the moments used on the subentities of a given codimension. So <code class="docutils literal notranslate"><span class="pre">testSpaces=[-1,order-1,order-2]</span></code> means: use no vertex values (-1), order-1 moments on the edges and order-2 moments in the inside. So this gives us a non-conforming space for second order problems - while using <code class="docutils literal notranslate"><span class="pre">testSpaces=[0,order-2,order-2]</span></code> defines a conforming space.</p>
@@ -662,7 +662,7 @@ size of space: 151
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_11_1.jpg" src="_images/vemdemo_nb_11_1.jpg" />
+<img alt="_images/vemdemo_nb_11_1.png" src="_images/vemdemo_nb_11_1.png" />
 </div>
 </div>
 <p>Repeating the same test with a H^1-conforming space</p>
@@ -695,7 +695,7 @@ size of space: 102
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_13_1.jpg" src="_images/vemdemo_nb_13_1.jpg" />
+<img alt="_images/vemdemo_nb_13_1.png" src="_images/vemdemo_nb_13_1.png" />
 </div>
 </div>
 <p>The Vem spaces have an additional method :code:diameters which returns estimation of the polygon sizes. Note that for technical reasons this is at the time of writing not available on the grid itself. A estimate of the minimum and the maximum bounding box diameters are returned. Note that this is just an estimate of the actual polygon diameters.</p>
@@ -712,7 +712,7 @@ size of space: 102
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Polygon diameters: (0.22039631950697425, 0.2788132170712137)
+Polygon diameters: (0.2183046058798901, 0.2800460172705491)
 </pre></div></div>
 </div>
 <p>We can compare different method, e.g., a lagrange/dg scheme (on the the subtriangulation), a bounding box dg method and conforming/non conforming VEM:</p>
@@ -783,18 +783,18 @@ Polygon diameters: (0.22039631950697425, 0.2788132170712137)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-method ( lagrange ): dofs:  102 L^2:  0.019654939132366097 H^1:  0.3716417839529101 51
-method ( dg ): dofs:  528 L^2:  0.011670388863315896 H^1:  0.342278235804079 514
-method ( vem-conforming ): dofs:  102 L^2:  0.022349472786444433 H^1:  0.34358899372850177 29
-method ( vem-nonconforming ): dofs:  151 L^2:  0.019696054121834453 H^1:  0.35736891521457836 31
-method ( bb-dg ): dofs:  150 L^2:  0.018369763296505925 H^1:  0.36730810081877213 87
+method ( lagrange ): dofs:  102 L^2:  0.018184258100343086 H^1:  0.37514360123044466 49
+method ( dg ): dofs:  522 L^2:  0.013545049019088623 H^1:  0.3480796130441853 468
+method ( vem-conforming ): dofs:  102 L^2:  0.01934583169963529 H^1:  0.3258649374430084 30
+method ( vem-nonconforming ): dofs:  151 L^2:  0.01830660973430166 H^1:  0.3351439342528999 32
+method ( bb-dg ): dofs:  150 L^2:  0.020611535363037625 H^1:  0.36325655514801986 86
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_21_1.jpg" src="_images/vemdemo_nb_21_1.jpg" />
+<img alt="_images/vemdemo_nb_21_1.png" src="_images/vemdemo_nb_21_1.png" />
 </div>
 </div>
 </section>
@@ -832,14 +832,14 @@ method ( bb-dg ): dofs:  150 L^2:  0.018369763296505925 H^1:  0.3673081008187721
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-non linear problem: [np.float64(0.010897544759791636), np.float64(0.15491952518992083)]
+non linear problem: [np.float64(0.010897161093093338), np.float64(0.15729701078477165)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_23_1.jpg" src="_images/vemdemo_nb_23_1.jpg" />
+<img alt="_images/vemdemo_nb_23_1.png" src="_images/vemdemo_nb_23_1.png" />
 </div>
 </div>
 </section>
@@ -869,7 +869,7 @@ non linear problem: [np.float64(0.010897544759791636), np.float64(0.154919525189
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_25_0.jpg" src="_images/vemdemo_nb_25_0.jpg" />
+<img alt="_images/vemdemo_nb_25_0.png" src="_images/vemdemo_nb_25_0.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -924,11 +924,21 @@ non linear problem: [np.float64(0.010897544759791636), np.float64(0.154919525189
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+bash buildScript.sh localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc
+/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc.dir/localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc.cc -MD -MT CMakeFiles/localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc.dir/localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc.cc.o -MF CMakeFiles/localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc.dir/localfunction_c639d99db54739c1e4f3e662c04650bd_f084d41ce9ff164524e5c3ea6f8082cc.cc.o.d
+
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_29_0.jpg" src="_images/vemdemo_nb_29_0.jpg" />
+<img alt="_images/vemdemo_nb_29_1.png" src="_images/vemdemo_nb_29_1.png" />
 </div>
 </div>
 <p>Finally we plot the deformed beam</p>
@@ -947,7 +957,7 @@ non linear problem: [np.float64(0.010897544759791636), np.float64(0.154919525189
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_31_0.jpg" src="_images/vemdemo_nb_31_0.jpg" />
+<img alt="_images/vemdemo_nb_31_0.png" src="_images/vemdemo_nb_31_0.png" />
 </div>
 </div>
 </section>
@@ -1008,14 +1018,14 @@ u &= g, && \text{on } \partial\Omega, \\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-bi-laplace errors: [np.float64(3.595976340324193), np.float64(31.30128430964564)]
+bi-laplace errors: [np.float64(27.099756048355747), np.float64(151.41601616057167)]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="_images/vemdemo_nb_35_1.jpg" src="_images/vemdemo_nb_35_1.jpg" />
+<img alt="_images/vemdemo_nb_35_1.png" src="_images/vemdemo_nb_35_1.png" />
 </div>
 </div>
 </section>
@@ -1039,7 +1049,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 27, 2026.
+      <span class="lastupdated">Last updated on Oct 28, 2026.
       </span></p>
   </div>
 
