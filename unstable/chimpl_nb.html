@@ -202,17 +202,20 @@
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html">Parallelization Basisc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
@@ -658,15 +661,15 @@ u(\cdot,0) = u_0(\cdot)  \quad &\text{in} \ \Omega,\\
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[ 1 ] 0.09999999999999999 0.01 0.21091056562040936 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.474868706, 0.329683477, 0.14518522899999997]}
-[ 2 ] 0.20000000000000004 0.01 0.15979702768268256 {&#39;converged&#39;: True, &#39;iterations&#39;: 3, &#39;linear_iterations&#39;: 3, &#39;timing&#39;: [0.695854744, 0.495662136, 0.20019260800000005]}
-[ 3 ] 0.3000000000000001 0.01 0.14625128437425122 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.474428041, 0.33023356600000003, 0.144194475]}
-[ 4 ] 0.4000000000000002 0.01 0.1365064050797461 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.472765974, 0.3303971, 0.14236887399999998]}
-[ 5 ] 0.5000000000000002 0.01 0.12678192004910604 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.472181188, 0.32985738800000003, 0.14232379999999994]}
-[ 6 ] 0.6000000000000003 0.01 0.11686029348490973 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.476169756, 0.33102516000000004, 0.14514459599999996]}
-[ 7 ] 1.1000000000000008 0.05 0.08265470257363003 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.478395993, 0.332042971, 0.146353022]}
-[ 8 ] 1.6000000000000012 0.05 0.08265484990090055 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.250523974, 0.165579207, 0.08494476699999998]}
-[ 9 ] 2.100000000000001 0.05 0.08265485993702607 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.248711835, 0.16507855300000002, 0.08363328199999998]}
+[ 1 ] 0.09999999999999999 0.01 0.21091056562040902 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.616396857, 0.42262147400000005, 0.19377538299999997]}
+[ 2 ] 0.20000000000000004 0.01 0.1597970276826655 {&#39;converged&#39;: True, &#39;iterations&#39;: 3, &#39;linear_iterations&#39;: 3, &#39;timing&#39;: [0.91071926, 0.634320346, 0.27639891400000005]}
+[ 3 ] 0.3000000000000001 0.01 0.1462512843742452 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.618022936, 0.422482494, 0.19554044200000004]}
+[ 4 ] 0.4000000000000002 0.01 0.13650640507974007 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.617618572, 0.42246458, 0.19515399200000005]}
+[ 5 ] 0.5000000000000002 0.01 0.1267819200491005 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.61735142, 0.422102989, 0.195248431]}
+[ 6 ] 0.6000000000000003 0.01 0.11686029348490407 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.620223502, 0.424367666, 0.195855836]}
+[ 7 ] 1.1000000000000008 0.05 0.08265470257362977 {&#39;converged&#39;: True, &#39;iterations&#39;: 2, &#39;linear_iterations&#39;: 2, &#39;timing&#39;: [0.619178, 0.422722753, 0.196455247]}
+[ 8 ] 1.6000000000000012 0.05 0.0826548499008999 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.324518718, 0.210726425, 0.11379229299999999]}
+[ 9 ] 2.100000000000001 0.05 0.08265485993702523 {&#39;converged&#39;: True, &#39;iterations&#39;: 1, &#39;linear_iterations&#39;: 1, &#39;timing&#39;: [0.326533398, 0.21186285100000002, 0.11467054699999996]}
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -697,7 +700,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 28, 2026.
+      <span class="lastupdated">Last updated on Nov 10, 2026.
       </span></p>
   </div>
 

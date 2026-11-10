@@ -202,17 +202,20 @@
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html">Parallelization Basisc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
@@ -626,16 +629,16 @@ u(r,\varphi) = r^{\frac{\pi}{\Phi}} \sin\big(\frac{\pi}{\Phi} \varphi \big)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0 : size= 32 error= 0.1865512227935699
-1 : size= 68 error= 0.1603436826732526
-2 : size= 144 error= 0.12554948815618464
-3 : size= 296 error= 0.10825248980058122
-4 : size= 608 error= 0.0848634700796355
-5 : size= 1232 error= 0.0732071042251268
-6 : size= 2496 error= 0.05741715963348339
-7 : size= 5024 error= 0.049541335816056624
-8 : size= 10112 error= 0.038864295305863245
-9 : size= 20288 error= 0.03353671438408601
+0 : size= 32 error= 0.18655122279356987
+1 : size= 68 error= 0.16034368267325258
+2 : size= 144 error= 0.12554948815618455
+3 : size= 296 error= 0.10825248980058118
+4 : size= 608 error= 0.08486347007936358
+5 : size= 1232 error= 0.07320710422512679
+6 : size= 2496 error= 0.057417159633466025
+7 : size= 5024 error= 0.04954133581605659
+8 : size= 10112 error= 0.03886429530588109
+9 : size= 20288 error= 0.033536714384085994
 </pre></div></div>
 </div>
 <p>Theory tells us that <span class="math">\begin{align*}
@@ -714,12 +717,12 @@ u(r,\varphi) = r^{\frac{\pi}{\Phi}} \sin\big(\frac{\pi}{\Phi} \varphi \big)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-2 : size= 38 estimate= 0.8627288181776103 error= 0.1343089543540232
-5 : size= 60 estimate= 0.6093716379873629 error= 0.08153414250970607
-8 : size= 74 estimate= 0.4767178417377139 error= 0.05521551774027206
-11 : size= 112 estimate= 0.34311569136980763 error= 0.037411856738835784
-14 : size= 174 estimate= 0.20313335327235632 error= 0.02299393402889541
-17 : size= 316 estimate= 0.11427960569655246 error= 0.01355125494638346
+2 : size= 38 estimate= 0.8627288181776346 error= 0.1343089543540232
+5 : size= 60 estimate= 0.6093716379873626 error= 0.08153414250970609
+8 : size= 74 estimate= 0.47671784173773235 error= 0.055215517740272065
+11 : size= 112 estimate= 0.3431156913697931 error= 0.03741185673883575
+14 : size= 174 estimate= 0.2031333532538282 error= 0.022993934028895664
+17 : size= 316 estimate= 0.11427960569612809 error= 0.013551254946383486
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -797,7 +800,7 @@ u(r,\varphi) = r^{\frac{\pi}{\Phi}} \sin\big(\frac{\pi}{\Phi} \varphi \big)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x7f2b7c3da510&gt;
+&lt;matplotlib.legend.Legend at 0x7f15bbfabb60&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -828,7 +831,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 28, 2026.
+      <span class="lastupdated">Last updated on Nov 10, 2026.
       </span></p>
   </div>
 

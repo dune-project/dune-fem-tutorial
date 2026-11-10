@@ -100,6 +100,21 @@ plotComponents(test, gridLines=None, level=2,
 assert sum([ abs(td-vd) for td,vd in zip(test.dofVector, vec.dofVector)] ) /\
        len(vec.dofVector) < 1e-8
 
+# %% [markdown]
+# The condition used to define the part of the domain where the condition
+# are to be defined can also be a grid function. The following does the
+# same as above:
+
+# %%
+y = gridFunction(x[1],name="xx",gridView=gridView)
+bcBottom = DirichletBC(vecSpace,bnd,y<1e-10)
+vecScheme = solutionScheme( [a == 0, bc, bcBottom],
+        parameters={"linear.tolerance": 1e-9} )
+vecScheme.solve(target=test)
+plotComponents(test, gridLines=None, level=2,
+               colorbar={"orientation":"horizontal", "ticks":ticker.MaxNLocator(nbins=4)})
+assert sum([ abs(td-vd) for td,vd in zip(test.dofVector, vec.dofVector)] ) /\
+       len(vec.dofVector) < 1e-8
 
 # %% [markdown]
 # As with other grid functions we can also use

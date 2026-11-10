@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "623cd2e4",
+   "id": "a301fce3",
    "metadata": {},
    "source": [
     "## C++ Based Grid Functions\n",
@@ -23,13 +23,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "e553ce68",
+   "id": "8a7d2e10",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T08:56:07.210751Z",
-     "iopub.status.busy": "2026-10-28T08:56:07.210623Z",
-     "iopub.status.idle": "2026-10-28T08:56:09.340823Z",
-     "shell.execute_reply": "2026-10-28T08:56:09.340263Z"
+     "iopub.execute_input": "2026-11-10T15:22:14.942599Z",
+     "iopub.status.busy": "2026-11-10T15:22:14.942466Z",
+     "iopub.status.idle": "2026-11-10T15:22:17.212582Z",
+     "shell.execute_reply": "2026-11-10T15:22:17.211970Z"
     }
    },
    "outputs": [],
@@ -44,7 +44,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b83bc39b",
+   "id": "dedef781",
    "metadata": {},
    "source": [
     "The C++ code must contain a function returning a function object (e.g.\n",
@@ -61,13 +61,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "aebbb4ff",
+   "id": "a19ff3ff",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T08:56:09.343044Z",
-     "iopub.status.busy": "2026-10-28T08:56:09.342816Z",
-     "iopub.status.idle": "2026-10-28T08:56:09.445419Z",
-     "shell.execute_reply": "2026-10-28T08:56:09.444498Z"
+     "iopub.execute_input": "2026-11-10T15:22:17.214505Z",
+     "iopub.status.busy": "2026-11-10T15:22:17.214252Z",
+     "iopub.status.idle": "2026-11-10T15:22:17.346556Z",
+     "shell.execute_reply": "2026-11-10T15:22:17.345303Z"
     }
    },
    "outputs": [
@@ -101,7 +101,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4cfbe961",
+   "id": "b4ae3f3c",
    "metadata": {},
    "source": [
     "Let us implement the same function using `gridFunction` with an ufl\n",
@@ -111,13 +111,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "b45c790e",
+   "id": "e8fa8150",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T08:56:09.446797Z",
-     "iopub.status.busy": "2026-10-28T08:56:09.446659Z",
-     "iopub.status.idle": "2026-10-28T08:56:09.528917Z",
-     "shell.execute_reply": "2026-10-28T08:56:09.528369Z"
+     "iopub.execute_input": "2026-11-10T15:22:17.348049Z",
+     "iopub.status.busy": "2026-11-10T15:22:17.347879Z",
+     "iopub.status.idle": "2026-11-10T15:22:17.435891Z",
+     "shell.execute_reply": "2026-11-10T15:22:17.435424Z"
     }
    },
    "outputs": [
@@ -141,7 +141,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "56d3cae4",
+   "id": "7d5e5e63",
    "metadata": {},
    "source": [
     "As the above example shows it is easy to pass in parameters to the C++\n",
@@ -158,13 +158,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "8330e4f8",
+   "id": "c3d14088",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T08:56:09.531012Z",
-     "iopub.status.busy": "2026-10-28T08:56:09.530855Z",
-     "iopub.status.idle": "2026-10-28T08:56:34.635626Z",
-     "shell.execute_reply": "2026-10-28T08:56:34.634955Z"
+     "iopub.execute_input": "2026-11-10T15:22:17.438010Z",
+     "iopub.status.busy": "2026-11-10T15:22:17.437856Z",
+     "iopub.status.idle": "2026-11-10T15:22:49.092467Z",
+     "shell.execute_reply": "2026-11-10T15:22:49.091748Z"
     }
    },
    "outputs": [
@@ -173,8 +173,14 @@
      "output_type": "stream",
      "text": [
       "bash buildScript.sh gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907\n",
-      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dgf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.dir/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc -MD -MT CMakeFiles/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.dir/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc.o -MF CMakeFiles/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.dir/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc.o.d\n",
-      "\n",
+      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dgf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.10/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.dir/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc -MD -MT CMakeFiles/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.dir/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc.o -MF CMakeFiles/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.dir/gf_c838eef77ce38f0a1ee30abbe64c984a_c260f171f306ca87902574e81d764907.cc.o.d\n",
+      "\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
       "0.6666666666666666\n"
      ]
     }
@@ -200,7 +206,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f19cc89c",
+   "id": "40230ebf",
    "metadata": {},
    "source": [
     "We can now change the factor ``a`` on the Python side without having to\n",
@@ -210,13 +216,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "92a4b86d",
+   "id": "c5932e5f",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T08:56:34.637788Z",
-     "iopub.status.busy": "2026-10-28T08:56:34.637618Z",
-     "iopub.status.idle": "2026-10-28T08:56:34.758408Z",
-     "shell.execute_reply": "2026-10-28T08:56:34.757947Z"
+     "iopub.execute_input": "2026-11-10T15:22:49.094745Z",
+     "iopub.status.busy": "2026-11-10T15:22:49.094529Z",
+     "iopub.status.idle": "2026-11-10T15:22:49.257521Z",
+     "shell.execute_reply": "2026-11-10T15:22:49.256697Z"
     }
    },
    "outputs": [
@@ -246,7 +252,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "75c07c9d",
+   "id": "3249c88d",
    "metadata": {},
    "source": [
     "In the above example there is no advantage of using the\n",
@@ -260,7 +266,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "23052f51",
+   "id": "5aa1d32c",
    "metadata": {},
    "source": [
     "We conclude with the example from the\n",
@@ -271,13 +277,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "e257c0eb",
+   "id": "fb03a438",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T08:56:34.760139Z",
-     "iopub.status.busy": "2026-10-28T08:56:34.759920Z",
-     "iopub.status.idle": "2026-10-28T08:56:35.597875Z",
-     "shell.execute_reply": "2026-10-28T08:56:35.597288Z"
+     "iopub.execute_input": "2026-11-10T15:22:49.258975Z",
+     "iopub.status.busy": "2026-11-10T15:22:49.258835Z",
+     "iopub.status.idle": "2026-11-10T15:22:50.462559Z",
+     "shell.execute_reply": "2026-11-10T15:22:50.461985Z"
     }
    },
    "outputs": [

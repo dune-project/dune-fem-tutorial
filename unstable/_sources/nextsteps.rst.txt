@@ -7,7 +7,6 @@
    solversInternal_nb
    solversExternal_nb
    othergrids_nb
-   parallelization_nb
-   parallelrun_nb
+   parallel
    backuprestore_nb
    corepy

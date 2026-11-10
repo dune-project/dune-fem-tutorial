@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parallelization &mdash; Tutorial for version 2.11-git</title>
+  <title>Parallelization Basisc &mdash; Tutorial for version 2.11-git</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="_static/nbsphinx-code-cells.css?v=2aa19091" />
@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Distributed Parallel Simulations" href="parallelrun_nb.html" />
-    <link rel="prev" title="Examples of grid construction" href="othergrids_nb.html" /> 
+    <link rel="prev" title="Parallelization" href="parallel.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -202,17 +202,20 @@
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Parallelization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#OpenMP">OpenMP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#MPI">MPI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#Load-balancing">Load balancing</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="parallel.html">Parallelization</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parallelization Basisc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#OpenMP">OpenMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#MPI">MPI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Load-balancing">Load balancing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
@@ -496,11 +499,12 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="nextsteps.html">Next steps</a></li>
-      <li class="breadcrumb-item active">Parallelization</li>
+          <li class="breadcrumb-item"><a href="parallel.html">Parallelization</a></li>
+      <li class="breadcrumb-item active">Parallelization Basisc</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Sequential page navigation">
-        <a href="othergrids_nb.html" class="btn btn-neutral float-left" title="Examples of grid construction" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parallel.html" class="btn btn-neutral float-left" title="Parallelization" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="parallelrun_nb.html" class="btn btn-neutral float-right" title="Distributed Parallel Simulations" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -515,8 +519,8 @@ This document is part of the dune-fem tutorial
 <div class="line">Download <em>parallelization</em> as <a class="reference download internal" download="" href="_downloads/12ee642280a6389d4005a913b5a0d9bb/parallelization_nb.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Jupyter</span> <span class="pre">notebook</span> <span class="pre">(_nb.ipynb)</span></code></a> or as <a class="reference download internal" download="" href="_downloads/8826f043027bc022325e3dd1abab5e0b/parallelization.py"><code class="xref download docutils literal notranslate"><span class="pre">Python</span> <span class="pre">script</span> <span class="pre">(.py)</span></code></a></div>
 </div>
 </div>
-<section id="Parallelization">
-<span id="index-0"></span><h1>Parallelization<a class="headerlink" href="#Parallelization" title="Link to this heading"></a></h1>
+<section id="Parallelization-Basisc">
+<span id="index-0"></span><h1>Parallelization Basisc<a class="headerlink" href="#Parallelization-Basisc" title="Link to this heading"></a></h1>
 <p>Parallelization is available using either distributed memory based on <strong>MPI</strong> or multithreading using <strong>OpenMP</strong>.</p>
 <section id="OpenMP">
 <span id="index-1"></span><h2>OpenMP<a class="headerlink" href="#OpenMP" title="Link to this heading"></a></h2>
@@ -702,7 +706,7 @@ This document is part of the dune-fem tutorial
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="othergrids_nb.html" class="btn btn-neutral float-left" title="Examples of grid construction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parallel.html" class="btn btn-neutral float-left" title="Parallelization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="parallelrun_nb.html" class="btn btn-neutral float-right" title="Distributed Parallel Simulations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -710,7 +714,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 28, 2026.
+      <span class="lastupdated">Last updated on Nov 10, 2026.
       </span></p>
   </div>
 

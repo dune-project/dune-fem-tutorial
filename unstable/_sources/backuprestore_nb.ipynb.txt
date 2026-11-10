@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "a4e4f22c",
+   "id": "3d8284a3",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -17,13 +17,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "f263df5c",
+   "id": "4e164658",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:51:27.351009Z",
-     "iopub.status.busy": "2026-10-28T09:51:27.350799Z",
-     "iopub.status.idle": "2026-10-28T09:51:29.438651Z",
-     "shell.execute_reply": "2026-10-28T09:51:29.437317Z"
+     "iopub.execute_input": "2026-11-10T15:52:23.707509Z",
+     "iopub.status.busy": "2026-11-10T15:52:23.707389Z",
+     "iopub.status.idle": "2026-11-10T15:52:25.494127Z",
+     "shell.execute_reply": "2026-11-10T15:52:25.493675Z"
     }
    },
    "outputs": [],
@@ -33,7 +33,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "fabd69b5",
+   "id": "e7956c91",
    "metadata": {},
    "source": [
     "Let's first construct a grid and some discrete function:"
@@ -42,13 +42,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "d71d3b72",
+   "id": "84a91fdc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:51:29.442229Z",
-     "iopub.status.busy": "2026-10-28T09:51:29.441978Z",
-     "iopub.status.idle": "2026-10-28T09:51:29.561296Z",
-     "shell.execute_reply": "2026-10-28T09:51:29.559962Z"
+     "iopub.execute_input": "2026-11-10T15:52:25.495642Z",
+     "iopub.status.busy": "2026-11-10T15:52:25.495444Z",
+     "iopub.status.idle": "2026-11-10T15:52:25.548908Z",
+     "shell.execute_reply": "2026-11-10T15:52:25.548515Z"
     },
     "lines_to_next_cell": 1
    },
@@ -90,7 +90,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ffeca543",
+   "id": "2b981ad5",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -112,13 +112,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "04134718",
+   "id": "d2925b0d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:51:29.564379Z",
-     "iopub.status.busy": "2026-10-28T09:51:29.564085Z",
-     "iopub.status.idle": "2026-10-28T09:51:37.637131Z",
-     "shell.execute_reply": "2026-10-28T09:51:37.636215Z"
+     "iopub.execute_input": "2026-11-10T15:52:25.550437Z",
+     "iopub.status.busy": "2026-11-10T15:52:25.550278Z",
+     "iopub.status.idle": "2026-11-10T15:52:29.899169Z",
+     "shell.execute_reply": "2026-11-10T15:52:29.898747Z"
     }
    },
    "outputs": [
@@ -155,7 +155,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "53d3adb4",
+   "id": "bdedceb5",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -166,16 +166,25 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "8217c2ef",
+   "id": "aff0a131",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:51:37.639084Z",
-     "iopub.status.busy": "2026-10-28T09:51:37.638837Z",
-     "iopub.status.idle": "2026-10-28T09:51:42.755421Z",
-     "shell.execute_reply": "2026-10-28T09:51:42.754519Z"
+     "iopub.execute_input": "2026-11-10T15:52:29.901134Z",
+     "iopub.status.busy": "2026-11-10T15:52:29.900891Z",
+     "iopub.status.idle": "2026-11-10T15:52:32.802999Z",
+     "shell.execute_reply": "2026-11-10T15:52:32.802535Z"
     }
    },
    "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\n",
+      "Created empty parallel ALUGrid<2,2,simplex>.\n",
+      "\n"
+     ]
+    },
     {
      "name": "stderr",
      "output_type": "stream",
@@ -184,15 +193,6 @@
       "ALUGrid-LB values: 0 < [balance] < 1.2, partitioning method 'ALUGRID_SpaceFillingCurve(9)'.\n",
       "WARNING (ignored): Could not open file 'alugrid.cfg', using default values!\n",
       "ALUGrid-LB values: 0 < [balance] < 1.2, partitioning method 'ALUGRID_SpaceFillingCurve(9)'.\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "\n",
-      "Created empty parallel ALUGrid<2,2,simplex>.\n",
-      "\n"
      ]
     },
     {
@@ -206,16 +206,6 @@
      "output_type": "display_data"
     },
     {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "WARNING (ignored): Could not open file 'alugrid.cfg', using default values!\n",
-      "ALUGrid-LB values: 0 < [balance] < 1.2, partitioning method 'ALUGRID_SpaceFillingCurve(9)'.\n",
-      "WARNING (ignored): Could not open file 'alugrid.cfg', using default values!\n",
-      "ALUGrid-LB values: 0 < [balance] < 1.2, partitioning method 'ALUGRID_SpaceFillingCurve(9)'.\n"
-     ]
-    },
-    {
      "name": "stdout",
      "output_type": "stream",
      "text": [
@@ -223,6 +213,16 @@
       "Created empty parallel ALUGrid<2,2,simplex>.\n",
       "\n",
       "{'time': 0, 'dumpFileName': 'test.000000.dbf'}\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "WARNING (ignored): Could not open file 'alugrid.cfg', using default values!\n",
+      "ALUGrid-LB values: 0 < [balance] < 1.2, partitioning method 'ALUGRID_SpaceFillingCurve(9)'.\n",
+      "WARNING (ignored): Could not open file 'alugrid.cfg', using default values!\n",
+      "ALUGrid-LB values: 0 < [balance] < 1.2, partitioning method 'ALUGRID_SpaceFillingCurve(9)'.\n"
      ]
     },
     {
@@ -251,7 +251,13 @@
      "text": [
       "\n",
       "Created empty parallel ALUGrid<2,2,simplex>.\n",
-      "\n",
+      "\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
       "{'time': 0.4, 'dumpFileName': 'test.000001.dbf'}\n"
      ]
     },
@@ -403,7 +409,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "90e387d9",
+   "id": "4f7c2ebd",
    "metadata": {},
    "source": [
     "## A Chekpointer class\n",
@@ -418,13 +424,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "f44a818b",
+   "id": "b82998cc",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:51:42.758867Z",
-     "iopub.status.busy": "2026-10-28T09:51:42.758665Z",
-     "iopub.status.idle": "2026-10-28T09:51:42.763432Z",
-     "shell.execute_reply": "2026-10-28T09:51:42.762661Z"
+     "iopub.execute_input": "2026-11-10T15:52:32.805254Z",
+     "iopub.status.busy": "2026-11-10T15:52:32.805121Z",
+     "iopub.status.idle": "2026-11-10T15:52:32.808112Z",
+     "shell.execute_reply": "2026-11-10T15:52:32.807743Z"
     },
     "lines_to_next_cell": 1
    },
@@ -458,7 +464,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d4da0805",
+   "id": "1784a930",
    "metadata": {},
    "source": [
     "First test: construct the grid view, some discrete function, and refine the mesh.\n",
@@ -468,13 +474,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "c32117c5",
+   "id": "cd4c30ec",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:51:42.765414Z",
-     "iopub.status.busy": "2026-10-28T09:51:42.765262Z",
-     "iopub.status.idle": "2026-10-28T09:51:43.670404Z",
-     "shell.execute_reply": "2026-10-28T09:51:43.669628Z"
+     "iopub.execute_input": "2026-11-10T15:52:32.809247Z",
+     "iopub.status.busy": "2026-11-10T15:52:32.809157Z",
+     "iopub.status.idle": "2026-11-10T15:52:33.288032Z",
+     "shell.execute_reply": "2026-11-10T15:52:33.287529Z"
     }
    },
    "outputs": [
@@ -499,7 +505,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8ac14bd8",
+   "id": "2fe1d94d",
    "metadata": {},
    "source": [
     "Now we restore the backup"
@@ -508,13 +514,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "13189699",
+   "id": "515aec6e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:51:43.672312Z",
-     "iopub.status.busy": "2026-10-28T09:51:43.672132Z",
-     "iopub.status.idle": "2026-10-28T09:51:44.294941Z",
-     "shell.execute_reply": "2026-10-28T09:51:44.293995Z"
+     "iopub.execute_input": "2026-11-10T15:52:33.289113Z",
+     "iopub.status.busy": "2026-11-10T15:52:33.289008Z",
+     "iopub.status.idle": "2026-11-10T15:52:33.615779Z",
+     "shell.execute_reply": "2026-11-10T15:52:33.615289Z"
     }
    },
    "outputs": [

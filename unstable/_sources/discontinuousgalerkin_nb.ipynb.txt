@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "b8bee875",
+   "id": "9f181d3f",
    "metadata": {},
    "source": [
     ".. index::\n",
@@ -29,13 +29,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "e9a9a475",
+   "id": "8d61f7cf",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:04.581600Z",
-     "iopub.status.busy": "2026-10-28T09:05:04.581496Z",
-     "iopub.status.idle": "2026-10-28T09:05:07.037784Z",
-     "shell.execute_reply": "2026-10-28T09:05:07.037319Z"
+     "iopub.execute_input": "2026-11-10T15:34:05.984977Z",
+     "iopub.status.busy": "2026-11-10T15:34:05.984834Z",
+     "iopub.status.idle": "2026-11-10T15:34:08.809881Z",
+     "shell.execute_reply": "2026-11-10T15:34:08.809347Z"
     }
    },
    "outputs": [],
@@ -65,7 +65,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e6c0624c",
+   "id": "0873268d",
    "metadata": {},
    "source": [
     "\n",
@@ -75,13 +75,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "a0fd94a4",
+   "id": "8b0cc7d4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:07.039503Z",
-     "iopub.status.busy": "2026-10-28T09:05:07.039318Z",
-     "iopub.status.idle": "2026-10-28T09:05:07.044872Z",
-     "shell.execute_reply": "2026-10-28T09:05:07.044458Z"
+     "iopub.execute_input": "2026-11-10T15:34:08.812279Z",
+     "iopub.status.busy": "2026-11-10T15:34:08.812021Z",
+     "iopub.status.idle": "2026-11-10T15:34:08.819554Z",
+     "shell.execute_reply": "2026-11-10T15:34:08.818929Z"
     }
    },
    "outputs": [],
@@ -120,7 +120,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f48c9279",
+   "id": "fab68817",
    "metadata": {},
    "source": [
     "We solve the problem as in previous examples"
@@ -129,13 +129,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "aa8d455b",
+   "id": "9413ae31",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:07.046035Z",
-     "iopub.status.busy": "2026-10-28T09:05:07.045943Z",
-     "iopub.status.idle": "2026-10-28T09:05:07.468977Z",
-     "shell.execute_reply": "2026-10-28T09:05:07.468535Z"
+     "iopub.execute_input": "2026-11-10T15:34:08.821297Z",
+     "iopub.status.busy": "2026-11-10T15:34:08.821158Z",
+     "iopub.status.idle": "2026-11-10T15:34:09.345837Z",
+     "shell.execute_reply": "2026-11-10T15:34:09.345125Z"
     },
     "nbsphinx-thumbnail": {
      "tooltip": "Discontinuous Galerkin method for advection dominated problems"
@@ -170,7 +170,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "33877647",
+   "id": "972a73ce",
    "metadata": {},
    "source": [
     "So far the example was not really advection dominated so we now\n",
@@ -180,13 +180,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "138e4a1e",
+   "id": "b79b0bbe",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:07.474077Z",
-     "iopub.status.busy": "2026-10-28T09:05:07.473934Z",
-     "iopub.status.idle": "2026-10-28T09:05:30.460994Z",
-     "shell.execute_reply": "2026-10-28T09:05:30.460298Z"
+     "iopub.execute_input": "2026-11-10T15:34:09.347799Z",
+     "iopub.status.busy": "2026-11-10T15:34:09.347627Z",
+     "iopub.status.idle": "2026-11-10T15:34:41.054396Z",
+     "shell.execute_reply": "2026-11-10T15:34:41.053818Z"
     }
    },
    "outputs": [
@@ -195,7 +195,7 @@
      "output_type": "stream",
      "text": [
       "bash buildScript.sh localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9\n",
-      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d\n",
+      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.10/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_437c339efc604e8f98e93f6b16dd4cdc_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d\n",
       "\n"
      ]
     },
@@ -227,7 +227,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3765b2cd",
+   "id": "fe30eb9d",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -252,13 +252,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "29250832",
+   "id": "598f05a1",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:30.462213Z",
-     "iopub.status.busy": "2026-10-28T09:05:30.462081Z",
-     "iopub.status.idle": "2026-10-28T09:05:30.525882Z",
-     "shell.execute_reply": "2026-10-28T09:05:30.524675Z"
+     "iopub.execute_input": "2026-11-10T15:34:41.055896Z",
+     "iopub.status.busy": "2026-11-10T15:34:41.055621Z",
+     "iopub.status.idle": "2026-11-10T15:34:41.120210Z",
+     "shell.execute_reply": "2026-11-10T15:34:41.119643Z"
     }
    },
    "outputs": [],
@@ -272,7 +272,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c2f0c109",
+   "id": "dafc91b5",
    "metadata": {},
    "source": [
     "The space discretization uses the same upwind flux discussed already for the\n",
@@ -309,13 +309,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "5d91c135",
+   "id": "5c02c60e",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:30.527660Z",
-     "iopub.status.busy": "2026-10-28T09:05:30.527509Z",
-     "iopub.status.idle": "2026-10-28T09:05:30.532585Z",
-     "shell.execute_reply": "2026-10-28T09:05:30.531923Z"
+     "iopub.execute_input": "2026-11-10T15:34:41.122543Z",
+     "iopub.status.busy": "2026-11-10T15:34:41.122378Z",
+     "iopub.status.idle": "2026-11-10T15:34:41.127307Z",
+     "shell.execute_reply": "2026-11-10T15:34:41.126752Z"
     }
    },
    "outputs": [],
@@ -342,7 +342,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ebe27c23",
+   "id": "5a71c7f0",
    "metadata": {},
    "source": [
     "We could use the standard approach based on the `dune.fem.operator.galerkin` construction\n",
@@ -353,13 +353,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "14f27e67",
+   "id": "a947b6b0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:30.533841Z",
-     "iopub.status.busy": "2026-10-28T09:05:30.533720Z",
-     "iopub.status.idle": "2026-10-28T09:05:30.580740Z",
-     "shell.execute_reply": "2026-10-28T09:05:30.580137Z"
+     "iopub.execute_input": "2026-11-10T15:34:41.128836Z",
+     "iopub.status.busy": "2026-11-10T15:34:41.128685Z",
+     "iopub.status.idle": "2026-11-10T15:34:41.182533Z",
+     "shell.execute_reply": "2026-11-10T15:34:41.181966Z"
     }
    },
    "outputs": [],
@@ -370,7 +370,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a7dc2ac0",
+   "id": "87b2975c",
    "metadata": {},
    "source": [
     "So `op(uh,res)` applies the given operator to `uh`,\n",
@@ -390,13 +390,13 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "b51b5848",
+   "id": "04a51781",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:05:30.582316Z",
-     "iopub.status.busy": "2026-10-28T09:05:30.582182Z",
-     "iopub.status.idle": "2026-10-28T09:05:30.815812Z",
-     "shell.execute_reply": "2026-10-28T09:05:30.815249Z"
+     "iopub.execute_input": "2026-11-10T15:34:41.184644Z",
+     "iopub.status.busy": "2026-11-10T15:34:41.184504Z",
+     "iopub.status.idle": "2026-11-10T15:34:41.491343Z",
+     "shell.execute_reply": "2026-11-10T15:34:41.489349Z"
     }
    },
    "outputs": [
@@ -448,7 +448,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "80b0a70c",
+   "id": "c6e1eea2",
    "metadata": {},
    "source": [
     "\n",

@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "79ed1bf5",
+   "id": "0b0d5bff",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -15,13 +15,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "b2b0a6da",
+   "id": "d2bf8425",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:02:57.010075Z",
-     "iopub.status.busy": "2026-10-28T09:02:57.009914Z",
-     "iopub.status.idle": "2026-10-28T09:02:59.463662Z",
-     "shell.execute_reply": "2026-10-28T09:02:59.463052Z"
+     "iopub.execute_input": "2026-11-10T15:31:10.132347Z",
+     "iopub.status.busy": "2026-11-10T15:31:10.132171Z",
+     "iopub.status.idle": "2026-11-10T15:31:12.617730Z",
+     "shell.execute_reply": "2026-11-10T15:31:12.616731Z"
     },
     "lines_to_next_cell": 1
    },
@@ -54,7 +54,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6976fb4f",
+   "id": "4f96a857",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -65,13 +65,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "b2376e81",
+   "id": "fd58100c",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:02:59.465683Z",
-     "iopub.status.busy": "2026-10-28T09:02:59.465370Z",
-     "iopub.status.idle": "2026-10-28T09:02:59.469136Z",
-     "shell.execute_reply": "2026-10-28T09:02:59.468658Z"
+     "iopub.execute_input": "2026-11-10T15:31:12.619616Z",
+     "iopub.status.busy": "2026-11-10T15:31:12.619339Z",
+     "iopub.status.idle": "2026-11-10T15:31:12.623263Z",
+     "shell.execute_reply": "2026-11-10T15:31:12.622425Z"
     },
     "lines_to_next_cell": 1
    },
@@ -90,7 +90,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2b26c0e5",
+   "id": "3e1fdd80",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -101,13 +101,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "669bb172",
+   "id": "3197ce64",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:02:59.470655Z",
-     "iopub.status.busy": "2026-10-28T09:02:59.470483Z",
-     "iopub.status.idle": "2026-10-28T09:03:30.854661Z",
-     "shell.execute_reply": "2026-10-28T09:03:30.854045Z"
+     "iopub.execute_input": "2026-11-10T15:31:12.624982Z",
+     "iopub.status.busy": "2026-11-10T15:31:12.624818Z",
+     "iopub.status.idle": "2026-11-10T15:31:52.728199Z",
+     "shell.execute_reply": "2026-11-10T15:31:52.727446Z"
     }
    },
    "outputs": [
@@ -116,7 +116,7 @@
      "output_type": "stream",
      "text": [
       "bash buildScript.sh localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9\n",
-      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d\n",
+      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.10/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_31afb687cc75a96052e7f21acb133de0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d\n",
       "\n"
      ]
     },
@@ -167,7 +167,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "04f18c3e",
+   "id": "1150a0f2",
    "metadata": {},
    "source": [
     "Time evolution scheme"
@@ -176,13 +176,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "69add1a4",
+   "id": "8cb96da9",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:03:30.857444Z",
-     "iopub.status.busy": "2026-10-28T09:03:30.857215Z",
-     "iopub.status.idle": "2026-10-28T09:04:25.911401Z",
-     "shell.execute_reply": "2026-10-28T09:04:25.910902Z"
+     "iopub.execute_input": "2026-11-10T15:31:52.731731Z",
+     "iopub.status.busy": "2026-11-10T15:31:52.731486Z",
+     "iopub.status.idle": "2026-11-10T15:33:03.304160Z",
+     "shell.execute_reply": "2026-11-10T15:33:03.303257Z"
     },
     "nbsphinx-thumbnail": {
      "tooltip": "A chemical reaction problem with three reactants."
@@ -223,7 +223,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "bafada3a",
+   "id": "f998d957",
    "metadata": {
     "lines_to_next_cell": 0
    },
@@ -234,13 +234,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "5ed2c9f9",
+   "id": "f0e9f41d",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:04:25.935322Z",
-     "iopub.status.busy": "2026-10-28T09:04:25.935107Z",
-     "iopub.status.idle": "2026-10-28T09:04:26.270189Z",
-     "shell.execute_reply": "2026-10-28T09:04:26.269525Z"
+     "iopub.execute_input": "2026-11-10T15:33:03.339580Z",
+     "iopub.status.busy": "2026-11-10T15:33:03.339176Z",
+     "iopub.status.idle": "2026-11-10T15:33:03.785874Z",
+     "shell.execute_reply": "2026-11-10T15:33:03.785042Z"
     }
    },
    "outputs": [

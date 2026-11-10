@@ -202,17 +202,20 @@
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html">Parallelization Basisc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Backup and restore (pickling)</a><ul>
@@ -628,22 +631,22 @@ size of adapted grid view: 4288
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+Created empty parallel ALUGrid&lt;2,2,simplex&gt;.
+
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 WARNING (ignored): Could not open file &#39;alugrid.cfg&#39;, using default values!
 ALUGrid-LB values: 0 &lt; [balance] &lt; 1.2, partitioning method &#39;ALUGRID_SpaceFillingCurve(9)&#39;.
 WARNING (ignored): Could not open file &#39;alugrid.cfg&#39;, using default values!
 ALUGrid-LB values: 0 &lt; [balance] &lt; 1.2, partitioning method &#39;ALUGRID_SpaceFillingCurve(9)&#39;.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-
-Created empty parallel ALUGrid&lt;2,2,simplex&gt;.
-
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -656,23 +659,23 @@ Created empty parallel ALUGrid&lt;2,2,simplex&gt;.
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-WARNING (ignored): Could not open file &#39;alugrid.cfg&#39;, using default values!
-ALUGrid-LB values: 0 &lt; [balance] &lt; 1.2, partitioning method &#39;ALUGRID_SpaceFillingCurve(9)&#39;.
-WARNING (ignored): Could not open file &#39;alugrid.cfg&#39;, using default values!
-ALUGrid-LB values: 0 &lt; [balance] &lt; 1.2, partitioning method &#39;ALUGRID_SpaceFillingCurve(9)&#39;.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 
 Created empty parallel ALUGrid&lt;2,2,simplex&gt;.
 
 {&#39;time&#39;: 0, &#39;dumpFileName&#39;: &#39;test.000000.dbf&#39;}
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+WARNING (ignored): Could not open file &#39;alugrid.cfg&#39;, using default values!
+ALUGrid-LB values: 0 &lt; [balance] &lt; 1.2, partitioning method &#39;ALUGRID_SpaceFillingCurve(9)&#39;.
+WARNING (ignored): Could not open file &#39;alugrid.cfg&#39;, using default values!
+ALUGrid-LB values: 0 &lt; [balance] &lt; 1.2, partitioning method &#39;ALUGRID_SpaceFillingCurve(9)&#39;.
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -963,7 +966,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 28, 2026.
+      <span class="lastupdated">Last updated on Nov 10, 2026.
       </span></p>
   </div>
 

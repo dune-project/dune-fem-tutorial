@@ -202,17 +202,20 @@
 <li class="toctree-l2"><a class="reference internal" href="othergrids_nb.html#1D-example">1D example</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelization_nb.html">Parallelization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parallel.html">Parallelization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallelization_nb.html">Parallelization Basisc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#OpenMP">OpenMP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelization_nb.html#MPI">MPI</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="parallelization_nb.html#Load-balancing">Load balancing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallelrun_nb.html">Distributed Parallel Simulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Crystal-Growth-Model">Parallel Crystal Growth Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallelrun_nb.html#Parallel-Wave-Equation">Parallel Wave Equation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="backuprestore_nb.html">Backup and restore (pickling)</a><ul>
@@ -717,16 +720,16 @@ This document is part of the dune-fem tutorial
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-time used: 0.20865225791931152
-time used: 1.1076974868774414
-time used: 4.672171592712402
+time used: 0.10556507110595703
+time used: 0.5716924667358398
+time used: 2.462679386138916
    size     error       eoc  iterations
 0   318  0.001060       NaN          76
 1   766  0.000605  1.619153         208
 2  1745  0.000275  2.275142         420
-time used: 0.3568246364593506
-time used: 1.9388372898101807
-time used: 7.679605960845947
+time used: 0.1733088493347168
+time used: 0.9616446495056152
+time used: 4.037187576293945
    size     error       eoc  iterations
 0   318  0.001060       NaN          76
 1   766  0.000605  1.619153         208
@@ -770,7 +773,7 @@ This document is part of the dune-fem tutorial
 
   <div role="contentinfo">
     <p>&#169; Copyright 2018-2026, Andreas Dedner and Robert Klöfkorn.
-      <span class="lastupdated">Last updated on Oct 28, 2026.
+      <span class="lastupdated">Last updated on Nov 10, 2026.
       </span></p>
   </div>
 

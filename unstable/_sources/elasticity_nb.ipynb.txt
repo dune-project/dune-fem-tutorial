@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "3f39ea02",
+   "id": "0bb0a680",
    "metadata": {},
    "source": [
     ".. index:: Equations; Linear Elasticity\n",
@@ -16,13 +16,13 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "68eb6c31",
+   "id": "4d4337a0",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:32:28.198157Z",
-     "iopub.status.busy": "2026-10-28T09:32:28.198050Z",
-     "iopub.status.idle": "2026-10-28T09:32:30.665118Z",
-     "shell.execute_reply": "2026-10-28T09:32:30.664672Z"
+     "iopub.execute_input": "2026-11-10T16:13:29.677720Z",
+     "iopub.status.busy": "2026-11-10T16:13:29.677574Z",
+     "iopub.status.idle": "2026-11-10T16:13:32.520640Z",
+     "shell.execute_reply": "2026-11-10T16:13:32.519925Z"
     },
     "lines_to_next_cell": 2
    },
@@ -44,7 +44,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "91056c95",
+   "id": "fdd92500",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -55,13 +55,13 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "c4889a4b",
+   "id": "47ebe5b4",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:32:30.666855Z",
-     "iopub.status.busy": "2026-10-28T09:32:30.666606Z",
-     "iopub.status.idle": "2026-10-28T09:32:30.668908Z",
-     "shell.execute_reply": "2026-10-28T09:32:30.668431Z"
+     "iopub.execute_input": "2026-11-10T16:13:32.522432Z",
+     "iopub.status.busy": "2026-11-10T16:13:32.522150Z",
+     "iopub.status.idle": "2026-11-10T16:13:32.525135Z",
+     "shell.execute_reply": "2026-11-10T16:13:32.524573Z"
     },
     "lines_to_next_cell": 2
    },
@@ -73,7 +73,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "be2a115a",
+   "id": "36b57957",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -86,13 +86,13 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "e3a5b0ff",
+   "id": "e2f84cf5",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:32:30.669927Z",
-     "iopub.status.busy": "2026-10-28T09:32:30.669820Z",
-     "iopub.status.idle": "2026-10-28T09:32:30.671641Z",
-     "shell.execute_reply": "2026-10-28T09:32:30.671206Z"
+     "iopub.execute_input": "2026-11-10T16:13:32.526463Z",
+     "iopub.status.busy": "2026-11-10T16:13:32.526329Z",
+     "iopub.status.idle": "2026-11-10T16:13:32.528608Z",
+     "shell.execute_reply": "2026-11-10T16:13:32.527960Z"
     },
     "lines_to_next_cell": 2
    },
@@ -106,7 +106,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "51d2307e",
+   "id": "14a343f3",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -122,13 +122,13 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "c0b4fa2e",
+   "id": "a4dba937",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:32:30.672700Z",
-     "iopub.status.busy": "2026-10-28T09:32:30.672602Z",
-     "iopub.status.idle": "2026-10-28T09:32:30.674662Z",
-     "shell.execute_reply": "2026-10-28T09:32:30.674248Z"
+     "iopub.execute_input": "2026-11-10T16:13:32.529970Z",
+     "iopub.status.busy": "2026-11-10T16:13:32.529843Z",
+     "iopub.status.idle": "2026-11-10T16:13:32.532265Z",
+     "shell.execute_reply": "2026-11-10T16:13:32.531782Z"
     }
    },
    "outputs": [],
@@ -140,7 +140,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "08dbfefe",
+   "id": "5dd5298d",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -155,13 +155,13 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "bc655866",
+   "id": "6f042ca3",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:32:30.675696Z",
-     "iopub.status.busy": "2026-10-28T09:32:30.675590Z",
-     "iopub.status.idle": "2026-10-28T09:32:30.818552Z",
-     "shell.execute_reply": "2026-10-28T09:32:30.818052Z"
+     "iopub.execute_input": "2026-11-10T16:13:32.533610Z",
+     "iopub.status.busy": "2026-11-10T16:13:32.533487Z",
+     "iopub.status.idle": "2026-11-10T16:13:32.749849Z",
+     "shell.execute_reply": "2026-11-10T16:13:32.749253Z"
     },
     "lines_to_next_cell": 2
    },
@@ -178,7 +178,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "86c2c4b1",
+   "id": "38ea6309",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -189,13 +189,13 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "b8e08ada",
+   "id": "c04e3c52",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:32:30.820061Z",
-     "iopub.status.busy": "2026-10-28T09:32:30.819924Z",
-     "iopub.status.idle": "2026-10-28T09:32:52.922426Z",
-     "shell.execute_reply": "2026-10-28T09:32:52.920191Z"
+     "iopub.execute_input": "2026-11-10T16:13:32.751781Z",
+     "iopub.status.busy": "2026-11-10T16:13:32.751614Z",
+     "iopub.status.idle": "2026-11-10T16:14:05.279557Z",
+     "shell.execute_reply": "2026-11-10T16:14:05.278224Z"
     },
     "lines_to_next_cell": 2
    },
@@ -205,7 +205,7 @@
      "output_type": "stream",
      "text": [
       "bash buildScript.sh localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9\n",
-      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.8/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d\n",
+      "/usr/bin/c++ -O3 -DNDEBUG  -DENABLE_PETSC=1 -DHAVE_CONFIG_H -DHAVE_GMP=1 -DHAVE_MPI=1 -DHAVE_PTSCOTCH=1 -DHAVE_QUADMATH=1 -DHAVE_SCOTCH=1 -DHAVE_SUITESPARSE_AMD=1 -DHAVE_SUITESPARSE_BTF=1 -DHAVE_SUITESPARSE_CAMD=1 -DHAVE_SUITESPARSE_CCOLAMD=1 -DHAVE_SUITESPARSE_CHOLMOD=1 -DHAVE_SUITESPARSE_COLAMD=1 -DHAVE_SUITESPARSE_KLU=1 -DHAVE_SUITESPARSE_LDL=1 -DHAVE_SUITESPARSE_SPQR=1 -DHAVE_SUITESPARSE_UMFPACK=1 -DHAVE_SUPERLU=1 -DHAVE_ZOLTAN=1 -DMPICH_SKIP_MPICXX=1 -DMPIPP_H -DMPI_NO_CPPBIND=1 -DOMPI_SKIP_MPICXX=1 -D_MPICC_H -Dlocalfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9_EXPORTS -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include -I/home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/include_private -I/usr/include/trilinos -isystem /opt/hostedtoolcache/Python/3.14.10/x64/include/python3.14 -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include -isystem /home/runner/miniforge/envs/petsc/include -isystem /home/runner/work/dune-testpypi/dune-testpypi/dune-env/include/dune/python -isystem /usr/include/superlu -isystem /usr/include/suitesparse -isystem /usr/include/scotch -fopenmp -std=gnu++20 -fPIC -pthread -o CMakeFiles/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -c /home/runner/work/dune-testpypi/dune-testpypi/dune-env/.cache/dune-py/python/dune/generated/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc -MD -MT CMakeFiles/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o -MF CMakeFiles/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.dir/localfunction_847abbbcac73140458dc1f0eacbb05f0_19659fe2f2f74bcfb5d532f1a0d38be9.cc.o.d\n",
       "\n"
      ]
     },
@@ -230,7 +230,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d5bbd884",
+   "id": "ee85a99e",
    "metadata": {
     "lines_to_next_cell": 2
    },
@@ -247,13 +247,13 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "2c9a3c45",
+   "id": "af4e50dd",
    "metadata": {
     "execution": {
-     "iopub.execute_input": "2026-10-28T09:32:52.923592Z",
-     "iopub.status.busy": "2026-10-28T09:32:52.923478Z",
-     "iopub.status.idle": "2026-10-28T09:32:53.010087Z",
-     "shell.execute_reply": "2026-10-28T09:32:53.009597Z"
+     "iopub.execute_input": "2026-11-10T16:14:05.281101Z",
+     "iopub.status.busy": "2026-11-10T16:14:05.280941Z",
+     "iopub.status.idle": "2026-11-10T16:14:05.402067Z",
+     "shell.execute_reply": "2026-11-10T16:14:05.401361Z"
     }
    },
    "outputs": [

@@ -1,7 +1,7 @@
 # %% [markdown]
 # .. index:: Parallelization
 #
-# # Parallelization
+# # Parallelization Basisc
 #
 # Parallelization is available using either distributed memory based on **MPI**
 # or multithreading using **OpenMP**.
